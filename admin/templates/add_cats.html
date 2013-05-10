@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<script src="js/jquery-1.8.1.min.js" language="javascript" type="text/javascript"></script>
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+<title>添加信息</title>
+</head>
+<style>
+.biaotou{background:url(images/tbg.gif) repeat-x; height:28px;}
+table{ border-color:#FBFCE2;}
+table td table td,table td table{ border:none; text-align:left; line-height:28px; height:28px;}
+td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; font-family:"宋体";background-color: #FFF;}
+</style>
+<body>
+<form action="" id="addchildcatsform" method="post">
+<table width="98%" style=" margin:10px auto;border-collapse:collapse;" border="1" cellspacing="0" cellpadding="0">
+ <tr>
+ 	<td height="28" colspan="6" align="center" class="biaotou">分类栏目管理&gt;&gt;<a href="cats.asp?act=list" class="coolbg">分类列表</a>>>增加分类</td>
+ </tr>
+ 
+ <!---信息标题-->
+  <tr>
+    <td width="100px">所属顶级分类：</td>
+    <td><input type="hidden" name="parent_id" value="{{parent_id}}" />{{cat_name}}</td>
+  </tr>
+  <tr>
+    <td width="100px">分类名称：</td>
+    <td><input name="cat_name"  value="" /></td>
+  </tr>
+  <tr align="left">
+    <td width="90">图片展示：</td>
+    <td><input name="cat_pic" id="pic" type="text"  value="" ">
+    <input type="button" onclick="window.open('uploadimg/index.asp','newwindow','width=500,height=80')" value="本地上传" style="width:70px;cursor:pointer;"><input id="delimg" type="button" style="display:none;"  value="删除本张图片"><img id="picimg" width="20" height="20" style="display:none;" src=""  /></td>
+  </tr>
+  <tr>
+    <td width="100px">显示/隐藏：</td>
+    <td>  <input name="cat_show" type="text"  value="1" size="5" maxlength="1" />&nbsp;显示(1)隐藏(0)</td>
+  </tr>
+  <tr>
+    <tr>
+    <td width="100px">内容模型：</td>
+    <td> {{typeidsel}}</td>
+  </tr>
+  <tr>
+    <td width="100px">排序：</td>
+    <td><input name="sort"  value="999" /></td>
+  </tr>
+<tr><td colspan="2" align="center"><input name="act" type="hidden" value="add" />
+<a href="javascript:tjyanzheng();" class="coolbg">添加</a>
+    <a href="javascript:window.history.go(-1);" class="coolbg">返回</a></td></tr>
+</table>
+
+</form>
+<script type="text/javascript">
+function tjyanzheng(){
+	if (!$("input[name='cat_name']").val()){
+		alert('分类名字不能为空!');
+		return false;
+		}
+	addchildcatsform.submit();
+	}
+$(function(){
+$("#delimg").bind("click",function(){
+	if(confirm("确认要删除?")){
+	$.get("uploadimg/index.asp",{
+									act:'delimg',
+									imgpath:$("#pic").val()
+										},function(data){
+								if(data==1){
+									alert('删除成功！');
+									}else{
+									alert('文件删除错误！');
+										}
+									$("#pic").val('');
+									$("#pic").change();
+		});
+	}
+	});
+$("#pic").bind("change",function(){
+	if($(this).val()!=""){
+		$("#delimg").show();
+		$("#picimg").show();
+		$("#picimg").attr("src",$(this).val());
+		}else{
+		$("#delimg").hide();
+		$("#picimg").hide();	
+			}
+	});
+});
+function cha(){
+	$("#pic").change();
+	}
+</script>
+</body>
+</html>

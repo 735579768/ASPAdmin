@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<import file="Js.jquery-1#8#1#min" />
+<link href="/public/css/main.css" rel="stylesheet" type="text/css" />
+<title>添加信息</title>
+</head>
+<style>
+.biaotou {
+	background: url(/Public/images/tbg.gif) repeat-x;
+	height: 28px;
+}
+table {
+	border-color: #FBFCE2;
+}
+table td table td, table td table {
+	border: none;
+	text-align: left;
+	line-height: 28px;
+	height: 28px;
+}
+td {
+	border-bottom: 1px dotted #BCBCBC;
+	height: 28px;
+	padding: 2px;
+	font-size: 12px;
+	font-family: "宋体";
+	background-color: #FFF;
+}
+</style>
+<body>
+<table style="border-collapse:collapse; text-align:center; margin:0 auto;" width="98%" border="0" cellspacing="0" cellpadding="0">
+  <tr bgcolor="#E7E7E7">
+    <td height="28" colspan="3" background="/Public/images/tbg.gif" style="padding-left:10px;"><span>分类栏目管理<<<a href="add_cats.asp?parent_id=0" class="coolbg">增加顶级栏目</a></span> &nbsp; <a href="javascript:window.history.go(-1);" class="coolbg">返回</a></td>
+  </tr>
+  <tr>
+    <td width="50%">ID选择栏目/分类内容模型</td>
+    <td width="50%" align="left">操作</td>
+  </tr>
+  <!-- BEGIN m1_block -->
+  <tr background="/Public/images/tbg.gif">
+    <td align="left" style="padding-left:20px;background:none;" > 栏目：<a href="article_list.asp?cat_id={{cat_id}}" target="_self">{{cat_name}}</a><span class="red">(ID:{{cat_id}})</span></td>
+    <td align="left" style="background:none;">
+    <a href="add_cats.asp?parent_id={{cat_id}}" class="coolbg">增加子类</a> 
+    <a href="edit_cats.asp?cat_id={{cat_id}}&type_id={{type_id}}" class="coolbg">更改</a>
+    <input type="hidden"  value="{{cat_id}}" />
+    <a href="javascript:void(0);" class="coolbg delcat">删除</a>
+    (排序：{{sort}})({{cat_show}})({{haveimg}})</td>
+  </tr>
+  <!-- BEGIN m2_block -->
+  <tr>
+    <td align="left" style="padding-left:50px;"> 分类：<a href="article_list.asp?cat_id={{cat_id}}" target="_self">{{cat_name}}</a><span class="red">(ID:{{cat_id}})</span></td>
+    <td align="left" style="padding-left:67px;">
+    <a href="edit_cats.asp?cat_id={{cat_id}}&type_id={{type_id}}" class="coolbg">更改</a>
+    <input type="hidden"  value="{{cat_id}}" />
+    <a href="javascript:void(0);" class="coolbg delcat">删除</a>
+    (排序：{{sort}})({{cat_show}})({{haveimg}})</td>
+  </tr>
+  <!-- END m2_block --> 
+  <!-- END m1_block -->
+  
+</table>
+<script type="text/javascript">
+
+$(function(){
+//ajax删除前台菜单
+	$(".delcat").bind("click",function(){
+		if(!confirm('确认要删除吗？'))return;
+		var obj=$(this);
+		var id=obj.prev().val();
+		$.get('./',{
+			'act':'ajax',
+			'action':'delcat',
+			'id':id
+			},function(data){
+					if(data=='1'){
+							alert("删除成功！");
+							obj.parent().parent().remove();	
+						}else{
+							alert(data);
+							}
+				})
+		});
+	})
+</script>
+</body>
+</html>

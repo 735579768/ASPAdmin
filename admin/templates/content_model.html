@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<script src="js/jquery-1.8.1.min.js" language="javascript" type="text/javascript"></script>
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+<title>更新文章信息</title>
+</head>
+<style>
+.biaotou{background:url(images/tbg.gif) repeat-x; height:28px;}
+table{ border-color:#FBFCE2;}
+table td table td,table td table{ border:none; text-align:left; line-height:28px; height:28px;}
+td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; font-family:"宋体";background-color: #FFF;}
+.sx{ text-align:center; margin:0px; padding:0px;}
+</style>
+
+<body>
+<form action="" id="contentmodel" method="post">
+<table width="50%" border="1" align="center" style="border-collapse:collapse; margin:50px auto;">
+<tr><td colspan="2" align="center">内容模型管理<span style="color:red;">(此处设置非程序员请勿操作)</span></td></tr>
+  <tr>
+    <td>模型名称：</td>
+    <td><input type="text" name="type_name" value="{{type_name}}" /></td>
+  </tr>
+  <tr>
+    <td>封面模板：</td>
+    <td><input type="text" name="tpl_index" value="{{tpl_index}}" /></td>
+  </tr>
+  <tr>
+    <td>列表模板：</td>
+    <td><input type="text" name="tpl_list" value="{{tpl_list}}" /></td>
+  </tr>
+  <tr>
+    <td>信息模板：</td>
+    <td><input type="text" name="tpl_article" value="{{tpl_article}}" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">
+    <input type="hidden" name="type_id" value="{{type_id}}" />
+    <input type="hidden" name="act" value="conmodel" />
+    <a href="javascript:void(0);" onclick="contentmodel.submit();" class="coolbg">提交</a> <a href="javascript:window.history.go(-1);" class="coolbg">返回</a></td>
+    </tr>
+</table>
+
+</form>
+</body>
+</html>

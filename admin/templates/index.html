@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>网站后台管理</title>
+<link href="css/frame.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-1.8.1.min.js" language="javascript" type="text/javascript"></script>
+</head>
+<body class="showmenu">
+<div class="header">
+<div class="top">{{include file="header_top.html"}}</div>
+<div class="topnav">
+<ul class="navleft">
+<li><a id="hidemenu" href="javascript:void(0);">隐藏菜单</a></li>
+<li></li>
+</ul>
+<ul class="navright">
+<li><a href="/" title="网站首页" target="_blank">网站首页</a></li>
+<li><a href="main.asp" title="会员中心" target="main">会员中心</a></li>
+<li><a href="{{exit_url}}" title="退出系统" target="main">退出系统</a></li>
+</ul>
+</div>
+</div>
+<div class="left">
+  <div class="menu" id="menu">
+    <iframe id="menufra"  name="menu" frameborder="0" src="menus.asp"  ></iframe>
+  </div>
+</div>
+<div class="right">
+  <div class="main">
+    <iframe id="main" name="main" frameborder="0" src="main.asp"></iframe>
+  </div>
+</div>
+<script>
+$(document).ready(function(e) {
+    $("#hidemenu").bind("click",function(){
+		var a=$(this).html();
+		if(a=='隐藏菜单'){
+			$("body").attr('class','hidemenu');
+			$(this).html('显示菜单');
+			}else{
+			$("body").attr('class','showmenu');
+			$(this).html('隐藏菜单');	
+				}
+		});
+});
+</script>
+</body>
+</html>
