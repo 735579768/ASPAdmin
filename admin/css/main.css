@@ -1,0 +1,41 @@
+a{ color:#000; text-decoration:none;}
+*{ margin:0px; padding:0px; font-size:12px;}
+.biaotou{background:url(images/tbg.gif) repeat-x; height:28px; line-height:28px;}
+table,tr,td{ border-color:#cfcfcf;}
+td{ height:22px; padding:2px; line-height:22px;}
+.np{ border:none;}
+select,input{ height:20px; padding:2px; line-height:20px;}
+select{ height:25px;}
+.coolbg {
+border: none;
+border-right: 1px solid #ACACAC;
+border-bottom: 1px solid #ACACAC;
+padding: 2px;
+padding-right: 5px;
+padding-left: 5px;
+background: #CCC url(../images/allbtbg2.gif);
+cursor: pointer;
+line-height:20px;
+height:20px;
+}
+.coolbt{
+border-left: 1px solid #EFEFEF;
+border-top: 1px solid #EFEFEF;
+border-right: 1px solid #ACACAC;
+border-bottom: 1px solid #ACACAC;
+background-color: #E4F7D7;
+cursor: pointer;
+}
+input[type="button"],input[type="submit"], input[type="reset"] {
+border: none;
+border-right: 1px solid #ACACAC;
+border-bottom: 1px solid #ACACAC;
+background-color: #F1F8B4;
+padding: 2px;
+padding-right: 5px;
+padding-left: 5px;
+background: url(../images/allbtbg2.gif) #EFF7D0;
+cursor: pointer;
+}
+.red{ color:#F00;}
+input,select{border:solid 1px #ccc;}
