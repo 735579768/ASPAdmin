@@ -28,6 +28,8 @@ td {
 	font-family: "宋体";
 	background-color: #FFF;
 }
+a{ color:#555;}
+a:hover{ color:#00F;}
 </style>
 <body>
 <table style="border-collapse:collapse; text-align:center; margin:0 auto;" width="98%" border="0" cellspacing="0" cellpadding="0">
@@ -40,7 +42,7 @@ td {
   </tr>
   <!-- BEGIN m1_block -->
   <tr background="/Public/images/tbg.gif">
-    <td align="left" style="padding-left:20px;background:none;" > 栏目：<a href="article_list.asp?cat_id={{cat_id}}" target="_self">{{cat_name}}</a><span class="red">(ID:{{cat_id}})</span></td>
+    <td align="left" style="padding-left:20px;background:none;" > 栏目：<a title="点击查看此分类下文章" href="article_list.asp?cat_id={{cat_id}}" target="_self">{{cat_name}}</a><span class="red">(ID:{{cat_id}})</span></td>
     <td align="left" style="background:none;">
     <a href="add_cats.asp?parent_id={{cat_id}}" class="coolbg">增加子类</a> 
     <a href="edit_cats.asp?cat_id={{cat_id}}&type_id={{type_id}}" class="coolbg">更改</a>
@@ -50,7 +52,7 @@ td {
   </tr>
   <!-- BEGIN m2_block -->
   <tr>
-    <td align="left" style="padding-left:50px;"> 分类：<a href="article_list.asp?cat_id={{cat_id}}" target="_self">{{cat_name}}</a><span class="red">(ID:{{cat_id}})</span></td>
+    <td align="left" style="padding-left:50px;"> 分类：<a title="点击查看此分类下文章"  href="article_list.asp?cat_id={{cat_id}}" target="_self">{{cat_name}}</a><span class="red">(ID:{{cat_id}})</span></td>
     <td align="left" style="padding-left:67px;">
     <a href="edit_cats.asp?cat_id={{cat_id}}&type_id={{type_id}}" class="coolbg">更改</a>
     <input type="hidden"  value="{{cat_id}}" />

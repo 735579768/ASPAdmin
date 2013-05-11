@@ -17,8 +17,9 @@ dt,dd{ padding:0px 20px;display:block; height:30px; line-height:30px;}
 dd{ padding-left:40px; border-bottom:dashed 1px #ccc;}
 input{ text-align:center; padding:2px;}
 .menutable{ margin-bottom:100px;}
-.menutable input{ border:solid 1px #ccc;}
-td{ height:30px; padding:5px; line-height:30px;}
+.menutable input{ border:solid 1px #ccc; border:none;}
+table td{ border:none;}
+tr{ height:30px; padding:5px; line-height:30px;border:1px dotted #ccc;}
 </style>
 <body>
 <table class="menutable" width="98%"  style="border-collapse:collapse;border-color:gray;"border="1"  cellspacing="0" cellpadding="0"> 
@@ -30,7 +31,8 @@ td{ height:30px; padding:5px; line-height:30px;}
     <form name="addlanmuform" id="addlanmuform" action="" method="post" onsubmit="" > 
         <input type="hidden" name="act" value="add" /> 
       后台栏目：<input name="lanmu"  value="" size="10" />
-        &nbsp;<input type="submit" value="添加" id="addlanmu"  class="coolbg"/> </form></td>
+        &nbsp;
+        <a href="javascript:void(0);" onclick="addlanmuform.submit();" class="coolbg">添加</a></form></td>
   </tr>
 <tr align="center" class="biaotou" >
     <td align="left" colspan="2">
@@ -40,7 +42,7 @@ td{ height:30px; padding:5px; line-height:30px;}
 {{sysmenus}}
     子菜单：
       <input name="childlanmu"  value="" size="10" />      URL:<input name="childlanmuurl"  value="" size="20" />
-&nbsp;<input type="submit" value="添加" id="addchildlanmu"  class="coolbg"/> &nbsp;</form></td>
+&nbsp;<a href="javascript:void(0);" onclick="addchildlanmuform.submit();" class="coolbg">添加</a> &nbsp;</form></td>
   </tr>
 
 <tr class="biaotou">
