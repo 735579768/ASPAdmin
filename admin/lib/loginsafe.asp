@@ -31,7 +31,12 @@ set rs=db.GetRecord(suffix & "admin","*","username='"&Uname&"'","",0)
 			login("<script>alert('密码错误！');</script>")
 		else
 		'echo rs("password")&"--"&md5pwd
+			'更新登陆次数
+			result=db.UpdateRecord("kl_admin","id="&rs("id"),array("logintimes:"&(rs("logintimes")+1)))
+			'记录登陆日志
+			result=db.AddRecord("kl_admin_log",array("uname:"&rs("username"),"loginip:"&getip(),"qx_id:"&rs("qx_id")))
 			Session("admin_id")=rs("id")'保存管理员在数据表中的id值
+			Session("admin_qx_id")=rs("qx_id")'保存管理员在数据表中的id值
 			Session.Timeout=30
 			Response.Cookies("adminid")=rs("id")
 			Response.Cookies("U_name")=Uname

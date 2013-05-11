@@ -1,12 +1,100 @@
 <%
+'指设置模板变量
+'@param arr 键值数组 
+	Function setVarArr(arr)
+		if isarray(arr) then
+		 for i=0 to ubound(arr)
+		 key=mid(arr(i),1,(instr(arr(i),":")-1))
+		 valu=mid(arr(i),instr(arr(i),":")+1)
+		 	tpl.SetVariable key,valu
+		 next
+		 	setvararr=true
+		 else
+		 	setvararr=false
+		end if
+	End Function
+'循环块输出
+'@param block 要输出的块
+'@param sqlstr 查询数据的sql语句
+'@param arr 一个键值数组，如"key:valu"  对应的数据格式为 tpl.SetVariable key,rs(valu)&""
+	Function listBlock(block,sqlstr,arr)
+	on error resume next
+	set rs=db.query(sqlstr)
+			tpl.UpdateBlock block
+		do while not rs.eof
+			if rs.eof and rs.bof then exit do end if
+			 for i=0 to ubound(arr)
+				 key=mid(arr(i),1,(instr(arr(i),":")-1))
+				 valu=mid(arr(i),instr(arr(i),":")+1)
+				 tpl.SetVariable key,rs(valu)&""
+			 next
+			if err.number<>0 then 
+				echo  die(Err.Description&":"&valu)
+				err.clear
+			end if
+			tpl.ParseBlock block
+			rs.movenext
+		loop
+	set rs=nothing
+	End Function
+'////////////////////////////////////////////////////////////////////////////////////////////////////////////
+'循环块输出,后面带分页显示
+'@param block 要输出的块
+'@param sqlstr 查询数据的sql语句
+'@param arr 一个键值数组，如"key:valu"  对应的数据格式为 tpl.SetVariable key,rs(valu)&""
+	Function listBlockPage(block,sqlstr,arr,pages)
+				''创建对象
+			Set mypage=new xdownpage
+			''得到数据库连接
+			mypage.getconn=db.idbconn
+			''sql语句
+			mypage.getsql=sqlstr
+			''设置每一页的记录条数据为5条
+			mypage.pagesize=pages
+			''返回Recordset
+			set rs=mypage.getrs()
+			''显示分页信息，这个方法可以，在set rs=mypage.getrs()以后,可在任意位置调用，可以调用多次
+			'mypage.showpage()
+			'
+			''显示数据
+			'Response.Write("<br/>")
+			on error resume next
+				tpl.UpdateBlock block
+			for i=1 to mypage.pagesize
+			''这里就可以自定义显示方式了
+				if not rs.eof then 
+			'        response.write rs(0) & "<br/>"
+						 for j=0 to ubound(arr)
+							 key=mid(arr(j),1,(instr(arr(j),":")-1))
+							 valu=mid(arr(j),instr(arr(j),":")+1)
+							 tpl.SetVariable key,rs(valu)&""
+							if err.number<>0 then 
+								echo  die(Err.Description&":"&valu)
+								err.clear
+							end if
+						 next
+					tpl.ParseBlock block
+					rs.movenext
+				else
+					 exit for
+				end if
+			next
+			tpl.setvariable "pagenav",mypage.getshowpage()
+			set rs=nothing
+	End Function
+'/////////////////////////////////////////////////////////////////////////////////////////////////////////
+'url转向
+	Function reurl(url)
+		response.Redirect(url)
+	End Function 
 '输出js提示框到前台
-function getJsAlert(str)
-	getJsAlert="<script>alert("""&str&""");</script>"
-end function
+	Function getJsAlert(str)
+		getJsAlert="<script>alert("""&str&""");</script>"
+	End Function
 '弹出js提示框到前台
-function AlertMsg(str)
-	echo "<script>alert('"&str&"');</script>"
-end function
+	function AlertMsg(str)
+		echo "<script>alert('"&str&"');</script>"
+	end function
 '简化取参数操作
 	function G(str)
 		G=getparam(str)
@@ -61,7 +149,7 @@ end function
 		getParamByJs=mydecodeurl(replace(str,"$","%"))
 	end function
 '过滤SQL非法字符并格式化html代码
-	function Replace_Text(fString)
+	function filtersql(fString)
 		if isnull(fString) then
 		Replace_Text=""
 		exit function
@@ -76,44 +164,6 @@ end function
 		Replace_Text=fString
 		end if	
 	end function
-'过滤SQL非法字符
-Function SafeRequest(ParaName,ParaType) 
-'--- 传入参数 --- 
-'ParaName:参数名称-字符型 
-'ParaType:参数类型-数字型(1表示以上参数是数字，0表示以上参数为字符)　 
-	Dim ParaValue 
-	ParaValue=Request(ParaName) 
-	If ParaType=1 then 
-		If not isNumeric(ParaValue) then 
-			Response.write "参数" & ParaName & "必须为数字型！" 
-			Response.end 
-		End if 
-	Else 
-		ParaValue=replace(ParaValue,"'","’")
-		ParaValue=replace(ParaValue,";","") 
-		'ParaValue=replace(ParaValue,";","；") 
-	End if 
-	SafeRequest=ParaValue 
-End function
-
-Function Safeupload(ParaName,ParaType) 
-'--- 传入参数 --- 
-'ParaName:参数名称-字符型 
-'ParaType:参数类型-数字型(1表示以上参数是数字，0表示以上参数为字符)　 
-	Dim ParaValue 
-	ParaValue=upload.form(ParaName) 
-	If ParaType=1 then 
-		If not isNumeric(ParaValue) then 
-			Response.write "参数" & ParaName & "必须为数字型！" 
-			Response.end 
-		End if 
-	Else 
-		ParaValue=replace(ParaValue,"'","’")
-		ParaValue=replace(ParaValue,";","") 
-		'ParaValue=replace(ParaValue,";","；") 
-	End if 
-	Safeupload=ParaValue 
-End function
 
 Function NoSqlHack(FS_inputStr)
 	Dim f_NoSqlHack_AllStr,f_NoSqlHack_Str,f_NoSqlHack_i,Str_InputStr
@@ -130,99 +180,6 @@ Function NoSqlHack(FS_inputStr)
 		End if
 	Next
 	NoSqlHack = Replace(Replace(Str_InputStr,"'","''"),"%27","''")
-End Function
-
-
-Function listPages(LinkFile) 
-   if not (rs.eof and rs.bof) then
-	gopage=currentpage
-	totalpage=n
-	blockPage=Int((gopage-1)/10)*10+1
-'	if instr(linkfile,"?page=")>0 or instr(linkfile,"&page=")>0 then
-'	pos=instr(linkfile,"page=")-2
-'	linkfile=left(linkfile,pos)
-'	end if
-	
-	If LCase(Request.ServerVariables("HTTPS")) = "off" Then 
-    strTemp = "http://" 
-    Else 
-    strTemp = "https://" 
-    End If 
-    strTemp = strTemp & CheckStr(Request.ServerVariables("SERVER_NAME")) 
-    If Request.ServerVariables("SERVER_PORT") <> 80 Then strTemp = strTemp & ":" & CheckStr(Request.ServerVariables("SERVER_PORT")) 
-    strTemp = strTemp & CheckStr(Request.ServerVariables("URL"))
-    lenstrTemp=len(strTemp)+1	
-	if instr(left(linkfile,lenstrTemp),"?")>0 then 
-	
-	if blockPage = 1 Then
-		Response.Write "<span disabled>【←前10页</span>&nbsp;"
-	Else
-		Response.Write("<span disabled>【</span><a href=" & LinkFile & "&page="&blockPage-10&">←前10页</a>&nbsp;")
-	End If
-   i=1
-   Do Until i > 10 or blockPage > n
-    If blockPage=int(gopage) Then
-		Response.Write("<font color=#FF0000>[<b>"&blockPage&"</b>]</font>")
-	Else
-		Response.Write(" <a href=" & LinkFile & "&page="&blockPage&">["&blockPage&"]</a> ")
-    End If
-    blockPage=blockPage+1
-    i = i + 1
-    Loop
-	if blockPage > totalpage Then
-		Response.Write "&nbsp;<span disabled>后10页→】"
-	Else
-		Response.Write("&nbsp;<a href=" & LinkFile & "&page="&blockPage&">后10页→</a><span disabled>】")
-	End If 
-	response.write" 直接到第 "
-	response.write"<select onchange=if(this.options[this.selectedIndex].value!=''){location=this.options[this.selectedIndex].value;}>"
-    for i=1 to totalpage
-    response.write"<option value='" & LinkFile & "&page=" & i & "'"
-    if i=gopage then response.write"selected"
-    response.write">"&i&"</option>"
-    next
-    response.write"</select>"
-    response.write" 页<Br><Br>"
-	
-	else
-	
-	if blockPage = 1 Then
-		Response.Write "<span disabled>【←前10页</span>&nbsp;"
-	Else
-		Response.Write("<span disabled>【</span><a href=" & LinkFile & "?page="&blockPage-10&">←前10页</a>&nbsp;")
-	End If
-   i=1
-   Do Until i > 10 or blockPage > n
-    If blockPage=int(gopage) Then
-		Response.Write("<font color=#FF0000>[<b>"&blockPage&"</b>]</font>")
-	Else
-		Response.Write(" <a href=" & LinkFile & "?page="&blockPage&">["&blockPage&"]</a> ")
-    End If
-    blockPage=blockPage+1
-    i = i + 1
-    Loop
-	if blockPage > totalpage Then
-		Response.Write "&nbsp;<span disabled>后10页→】"
-	Else
-		Response.Write("&nbsp;<a href=" & LinkFile & "?page="&blockPage&">后10页→</a><span disabled>】")
-	End If 
-	response.write" 直接到第 "
-	response.write"<select onchange=if(this.options[this.selectedIndex].value!=''){location=this.options[this.selectedIndex].value;}>"
-    for i=1 to totalpage
-    response.write"<option value='" & LinkFile & "?page=" & i & "'"
-    if i=gopage then response.write"selected"
-    response.write">"&i&"</option>"
-    next
-    response.write"</select>"
-    response.write" 页"
-	
-	End If
-	
-	Startinfo=((gopage-1)*msg_per_page)+1
-	Endinfo=gopage*msg_per_page
-	if Endinfo>totalrec then Endinfo=totalrec
-		Response.Write("&nbsp;&nbsp;共 "&totalrec&" 条信息 当前显示第 "&Startinfo&" - "&Endinfo&" 条 每页 "&msg_per_page&" 条信息 共 "&n&" 页")
-end if
 End Function
 
 '检测传递的参数是否为数字型
@@ -383,5 +340,49 @@ end function
 		Response.Cookies("U_name").Expires=now-100 
 		Response.Cookies("U_pwd").Expires=now-100 
 	end function
+'返回客户端的ip	
+	Function getIP() 
+		Dim strIPAddr 
+		If Request.ServerVariables("HTTP_X_FORWARDED_FOR") = "" OR InStr(Request.ServerVariables("HTTP_X_FORWARDED_FOR"), "unknown") > 0 Then
+		strIPAddr = Request.ServerVariables("REMOTE_ADDR") 
+		ElseIf InStr(Request.ServerVariables("HTTP_X_FORWARDED_FOR"), ",") > 0 Then 
+		strIPAddr = Mid(Request.ServerVariables("HTTP_X_FORWARDED_FOR"), 1, InStr(Request.ServerVariables("HTTP_X_FORWARDED_FOR"), ",")-1) 
+		ElseIf InStr(Request.ServerVariables("HTTP_X_FORWARDED_FOR"), ";") > 0 Then 
+		strIPAddr = Mid(Request.ServerVariables("HTTP_X_FORWARDED_FOR"), 1, InStr(Request.ServerVariables("HTTP_X_FORWARDED_FOR"), ";")-1) 
+		Else 
+		strIPAddr = Request.ServerVariables("HTTP_X_FORWARDED_FOR") 
+		End If 
+		getIP = Trim(Mid(strIPAddr, 1, 30)) 
+	End Function
+'===============================asp调试函数==================================
+function die(a)
+debug(a)
+response.end()
+end function
+function dump(a)
+debug(a)
+end function
+function debug(a)
+	if IsArray(a)  then
+		response.write "=================调试输出==================<br />"
+		for i=lbound(a) to ubound(a)-1
+				if IsArray(a(i)) then
+				response.write """"&i&"""=><br />"
+						for j=lbound(a) to ubound(a)-1
+										response.write "&nbsp&nbsp&nbsp&nbsp&nbsp"""&j&"""=><b style='color:red;'>"&a(i)(j)&"</b><br />"
+						next
+				else
+						response.write """"&i&"""=><b style='color:red;'>"&a(i)&"</b><br />"
+				end if
+		next
+		response.write "============================================<br />"
+	else
+		response.write "=================调试输出==================<br />"
+		response.write "<b style='color:red;'>"&a&"</b><br />"
+		response.write "============================================<br />"
+		
+	end if
+end function
+'====================================================================================
 %>
 <script language="javascript" type="text/javascript" runat="server">function mydecodeurl(s){return decodeURIComponent(s);}</script>

@@ -1,61 +1,32 @@
+<%@LANGUAGE="VBSCRIPT" CODEPAGE="936"%>
 <%
-if request("menuid")<>"" then
-session("menuid")=request("menuid")
-end if
+Dim Fy_Url,Fy_a,Fy_x,Fy_Cs(),Fy_Cl,Fy_Ts,Fy_Zx 
+'---定义部份 头------ 
+Fy_Cl = 1 '处理方式：1=提示信息,2=转向页面,3=先提示再转向 
+Fy_Zx = "index.Asp" '出错时转向的页面 
+'---定义部份 尾------ 
+
+On Error Resume Next 
+Fy_Url=Request.ServerVariables("QUERY_STRING") 
+Fy_a=split(Fy_Url,"&") 
+redim Fy_Cs(ubound(Fy_a)) 
+On Error Resume Next 
+for Fy_x=0 to ubound(Fy_a) 
+Fy_Cs(Fy_x) = left(Fy_a(Fy_x),instr(Fy_a(Fy_x),"=")-1) 
+Next 
+For Fy_x=0 to ubound(Fy_Cs) 
+If Fy_Cs(Fy_x)<>"" Then 
+If Instr(LCase(Request(Fy_Cs(Fy_x))),"'")<>0 or Instr(LCase(Request(Fy_Cs(Fy_x))),"select")<>0 or Instr(LCase(Request(Fy_Cs(Fy_x))),"update")<>0 or Instr(LCase(Request(Fy_Cs(Fy_x))),"chr")<>0 or Instr(LCase(Request(Fy_Cs(Fy_x))),"delete%20from")<>0 or Instr(LCase(Request(Fy_Cs(Fy_x))),";")<>0 or Instr(LCase(Request(Fy_Cs(Fy_x))),"insert")<>0 or Instr(LCase(Request(Fy_Cs(Fy_x))),"mid")<>0 Or Instr(LCase(Request(Fy_Cs(Fy_x))),"master.")<>0 Then 
+	Select Case Fy_Cl 
+		Case "1" 
+		Response.Write "<Script Language=JavaScript>alert(' 出现错误！参数 "&Fy_Cs(Fy_x)&" 的值中包含非法字符串！\n\n 请不要在参数中出现：and,select,update,insert,delete,chr 等非法字符！\n请不要进行非法手段！');window.close();</Script>" 
+		Case "2" 
+		Response.Write "<Script Language=JavaScript>location.href='"&Fy_Zx&"'</Script>" 
+		Case "3" 
+		Response.Write "<Script Language=JavaScript>alert(' 出现错误！参数 "&Fy_Cs(Fy_x)&"的值中包含非法字符串！\n\n 请不要在参数中出现：,and,select,update,insert,delete,chr 等非法字符！\n\n设计了门，非法侵入请离开，谢谢！');location.href='"&Fy_Zx&"';</Script>" 
+	End Select 
+Response.End 
+End If 
+End If 
+Next 
 %>
-<%
-'采用的安全方法是给所有的后台页面编号，然后和所要打开页面编号对比，然后同数据库该用户访问权限对比。
-onmenuid=session("menuid")
-username=session("username")
-flag=session("flag")
-id=session("id")
-
-if onmenuid="" then
-response.write "1"
-response.End()
-response.redirect "../index.asp"
-response.end
-end if
-
-if username="" then
-response.write "2"
-response.End()
-response.redirect "../index.asp"
-response.end
-end if
-
-if flag="" then
-response.write "3"
-response.End()
-response.redirect "../index.asp"
-response.end
-end if
-
-if id="" then
-response.write "4"
-response.End()
-response.redirect "../index.asp"
-response.end
-end if
-
-if int(onmenuid)<>int(menuid) then
-response.write "5"
-response.End()
-response.redirect "../index.asp"
-response.end
-end if
-
-sql = "select * from menux_my where username='"&session("flag")&"' and menuid="&onmenuid&""
-rs.open sql,conn,1,3
-  if rs.eof and rs.bof then
-response.redirect "../index.asp"
-  response.end
-  end if
-  rs.close
-%>
-
-
-
-
-
-

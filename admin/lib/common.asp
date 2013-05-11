@@ -83,4 +83,22 @@
 		str=str&"</select>"
 		getSysMenusSel=str
 	end function
+'输出角色权限下拉菜单
+	Function getQxsel()
+			dim str
+			str="<select name=qx_id>"
+		set rs=db.GetRecordBySQL("select * from kl_admin_qx")
+				if rs.recordcount>0 then 
+					do while not rs.eof
+							if G("qx_id")=rs("qx_id")&"" then
+							str=str&"<option value='"&rs("qx_id")&"' selected>"&rs("qx_name")&"</option>"				
+							else
+							str=str&"<option value='"&rs("qx_id")&"'>"&rs("qx_name")&"</option>"
+							end if
+							rs.movenext
+					loop
+				end if
+		str=str&"</select>"
+		getQxsel=str
+	End Function
 %>

@@ -30,34 +30,34 @@ table input{ text-align:center; border:none; height:22px; padding:2px;}
 <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#cfcfcf" align="center">
 <tr class="biaotou" bgcolor="#E7E7E7">
 <td height="28" colspan="9" align="center" background="images/tbg.gif" style="padding-left:10px;">
-	<span>内容模型列表</span> &gt;&gt;&nbsp;<a href="javascript:window.history.go(-1);" class="coolbg">返回</a>
+	<span>用户列表</span> &gt;&gt;&nbsp;<a href="javascript:window.history.go(-1);" class="coolbg">返回</a>
 </td>
 </tr>
 <tr align="center" bgcolor="#FBFCE2" height="25">
 <td width="5%">ID</td>
-<td width="4%">模型名称</td>
-<td width="20%">封面模板</td>
-<td width="13%">列表模板</td>
-<td width="17%">详情模板</td>
+<td width="4%">用户名</td>
+<td width="20%">昵称</td>
+<td width="13%">角色</td>
+<td width="17%">登陆次数</td>
 <td width="17%">操作</td>
 </tr>
-<!-- BEGIN contentmodellist -->
-<form action="" method="post">
+<!-- BEGIN adminlist -->
+<form action="admin_edit.asp" method="post">
 <tr align="center" bgcolor="#FFFFFF" onmousemove="javascript:this.bgColor='#FCFDEE';" onmouseout="javascript:this.bgColor='#FFFFFF';" height="25" >
-<td>{{type_id}}</td>
-<td align="left">
-	<input  name="type_name" type="text" value="{{type_name}}" />
+<td>{{id}}</td>
+<td align="left">{{uname}}
+	
 </td>
-<td><input  name="tpl_index" type="text" value="{{tpl_index}}" /></td>
-<td><input  name="tpl_list" type="text" value="{{tpl_list}}" /></td>
-<td><input  name="tpl_article" type="text" value="{{tpl_article}}" /></td>
+<td>{{nicheng}}</td>
+<td>{{qx_name}}</td>
+<td>{{logintimes}}</td>
 <td>
-    <input type="hidden" name="type_id" value="{{type_id}}" />
-    <input type="hidden" name="act" value="updmodel" />
-    <input type="submit"  value="提交更新" class="coolbg" /></td>
+	<input type="hidden" name="id" value="{{id}}" />
+    <input type="hidden" name="qx_id" value="{{qx_id}}" />
+    <input type="submit"  value="修改" class="coolbg" /></td>
 </tr>
 </form>
-<!-- END contentmodellist -->
+<!-- END adminlist -->
 </table>
 
 

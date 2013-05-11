@@ -20,10 +20,8 @@ guolv=""
 if G("cat_id")<>"" then
 	guolv=" and a.cat_id="&G("cat_id")	
 end if
-'tpl.SetTemplatesDir("")
-'包含文件
-'tpl.setVariableFile "TOP_HTML","public/top.html"
-'tpl.setVariableFile "FOOTER_HTML","public/footer.html"
+
+'//////////////////////////////////////////////////////////////////////////////////////////
 '创建对象
 Set mypage=new xdownpage
 '得到数据库连接

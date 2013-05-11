@@ -1,7 +1,7 @@
-<!--#INCLUDE FILE="safe.asp"-->
+<!--#INCLUDE file="common/safe.asp"-->
 <!--#INCLUDE FILE="config.asp"-->
 <!--#INCLUDE FILE="common/Functions.asp"-->
-<!--#INCLUDE FILE="md5.asp"-->
+<!--#INCLUDE file="common/md5.asp"-->
 <!--#INCLUDE FILE="AspTpl.class.asp"-->
 <!--#INCLUDE FILE="AspTplPlug.asp"-->
 <!--#INCLUDE FILE="db.class.asp"-->

@@ -5,6 +5,7 @@
 'tpl.setVariableFile "FOOTER_HTML","public/footer.html"
 tpl.setvariable "exit_url","?act=exit"
 'Generate the page
+setvararr(array("a:b"))
 tpl.Parse
 'Destroy our objects
 set tpl = nothing
