@@ -1,15 +1,15 @@
 <!--#include file="lib/AdminInIt.asp"-->
 <%
 'tpl.SetTemplatesDir("")
-'åŒ…å«æ–‡ä»¶
+'°üº¬ÎÄ¼þ
 'tpl.setVariableFile "TOP_HTML","public/top.html"
 'tpl.setVariableFile "FOOTER_HTML","public/footer.html"
 tpl.UpdateBlock "m2_block"
 tpl.UpdateBlock "m1_block"
-'æŸ¥ä¸€çº§èœå•
+'²éÒ»¼¶²Ëµ¥
 set rs=db.query("select sysmenuid,menu_name,parent_menu_id,menu_link,sort from " & suffix & "sysmenus  where parent_menu_id=0 order by sort asc ")
 do while not rs.eof
-		'æŸ¥è¯¢äºŒçº§èœå•
+		'²éÑ¯¶þ¼¶²Ëµ¥
 		set rss=db.query("select sysmenuid,menu_name,menu_link,sort from " & suffix & "sysmenus  where parent_menu_id="&rs("sysmenuid")&" order by sort asc ")
 		do while not rss.eof
 			tpl.SetVariable "menu2_name",rss("menu_name")&""
