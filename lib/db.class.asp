@@ -24,7 +24,7 @@ Function Oc(ByVal Connstr)
 	Set objConn = Server.CreateObject("ADODB.Connection")
 	objConn.Open Connstr
 	If Err.number <> 0 Then
-		Response.Write("<div id=""DBError"">数据库服务器端连接错误，请与网站管理员联系。</div>")
+		Response.Write("<div id=""DBError"">网站维护中... 请稍后访问！</div>")
 		'Response.Write("错误信息：" & Err.Description)
 		objConn.Close
 		Set objConn = Nothing
