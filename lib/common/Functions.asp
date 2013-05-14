@@ -355,10 +355,6 @@ end function
 		getIP = Trim(Mid(strIPAddr, 1, 30)) 
 	End Function
 '===============================aspµ÷ÊÔº¯Êý==================================
-function die(a)
-debug(a)
-response.end()
-end function
 function dump(a)
 debug(a)
 end function
