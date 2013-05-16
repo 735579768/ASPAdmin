@@ -24,7 +24,8 @@ td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; 
 					'fileManagerJson': 'editor/asp/file_manager_json.asp',
 //					'imageUploadJson':'../../../uploads',
 					'allowFlashUpload':true,
-					'allowFileManager':true
+					'allowFileManager':true,
+					'afterBlur':function(){this.sync();}
 				});
 			});
 		</script>
