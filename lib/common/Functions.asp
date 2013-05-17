@@ -42,6 +42,7 @@
 '@param block 要输出的块
 '@param sqlstr 查询数据的sql语句
 '@param arr 一个键值数组，如"key:valu"  对应的数据格式为 tpl.SetVariable key,rs(valu)&""
+'@param pages页面的大小
 	Function listBlockPage(block,sqlstr,arr,pages)
 				''创建对象
 			Set mypage=new xdownpage
@@ -133,7 +134,8 @@
 	end function
 '取url中的请求参数
 	Function getparam(str)
-		getparam=request(str)
+		str1=request(str)
+		getparam=replace(str1,":","：")
 		'getparam=mydecodeurl(replace(request(str),"$","%"))&"888"
 	End Function
 '生成编号

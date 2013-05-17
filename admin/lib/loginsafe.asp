@@ -18,11 +18,10 @@ numcode=getparam("numcode")
 
 
 '如果有用户名和密码传过来的话进行验证
-if not isempty(Uname) and not isempty(Upwd)  Then
+if Uname<>"" and Upwd<>"" and numcode<>"" Then
 	'验证码检验
 	if numcode<>trim(Session("numcode")) then 
-	login("<script>alert('验证码错误！');</script>")
-	
+		login("<script>alert('验证码错误！');</script>")
 	end if
 set rs=db.GetRecord(suffix & "admin","*","username='"&Uname&"'","",0)
 	if not rs.eof Then

@@ -26,6 +26,15 @@ border-bottom: 1px solid #ACACAC;
 background-color: #E4F7D7;
 cursor: pointer;
 }
+input[type="text"], input[type="password"] {
+border-width: 1px;
+border-style: solid;
+border-color: #707070 #CECECE #CECECE #707070;
+padding: 2px 4px;
+height: 18px;
+line-height: 18px;
+vertical-align: middle;
+}
 input[type="button"],input[type="submit"], input[type="reset"] {
 border: none;
 border-right: 1px solid #ACACAC;
@@ -38,4 +47,5 @@ background: url(../images/allbtbg2.gif) #EFF7D0;
 cursor: pointer;
 }
 .red{ color:#F00;}
+.green{ color:#0f0;}
 input,select{border:solid 1px #ccc;}

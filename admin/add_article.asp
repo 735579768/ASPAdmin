@@ -25,7 +25,11 @@
 			AlertMsg(ADD_FAIL_STR)
 		end if
 	end if
-	
+'添加文章时取传递过来的分类
+cat_id=G("cat_id")
+if cat_id="" then echo "<script>window.history.go(-1);</script>":die() end if
+set rs=db.query("select * from kl_cats as a inner join kl_content_types as b on a.type_id=b.type_id where a.cat_id="&cat_id)
+tpl.setVariable "arctpl",rs("cat_article")&""
 tpl.SetVariable "typeidsel",getContentTypeSel()
 tpl.SetVariable "catidsel",getArcCatSel()
 tpl.Parse

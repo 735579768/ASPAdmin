@@ -22,7 +22,7 @@ padding-left: 5px;
 background: #CCC url(images/allbtbg2.gif);
 cursor: pointer;
 }
-table input{ text-align:center; border:none; height:22px; padding:2px;}
+table input{ text-align:center; height:22px; padding:2px;}
 </style>
 </head>
 <body>
@@ -36,7 +36,8 @@ table input{ text-align:center; border:none; height:22px; padding:2px;}
 <tr align="center" bgcolor="#FBFCE2" height="25">
 <td width="5%">ID</td>
 <td width="4%">模型名称</td>
-<td width="20%">封面模板</td>
+<td width="4%">数据表</td>
+<td width="16%">封面模板</td>
 <td width="13%">列表模板</td>
 <td width="17%">详情模板</td>
 <td width="17%">操作</td>
@@ -48,6 +49,7 @@ table input{ text-align:center; border:none; height:22px; padding:2px;}
 <td align="left">
 	<input  name="type_name" type="text" value="{{type_name}}" />
 </td>
+<td><input  name="data_table" type="text" value="{{data_table}}" /></td>
 <td><input  name="tpl_index" type="text" value="{{tpl_index}}" /></td>
 <td><input  name="tpl_list" type="text" value="{{tpl_list}}" /></td>
 <td><input  name="tpl_article" type="text" value="{{tpl_article}}" /></td>

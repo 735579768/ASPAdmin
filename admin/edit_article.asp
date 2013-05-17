@@ -15,6 +15,7 @@
 		arcauthor=G("arcauthor")
 		arcsource=G("arcsource")
 		arckeys=G("arckeys")
+		arctpl=G("arctpl")
 		
 		'É¾³ýÔ­À´µÄÍ¼Æ¬
 		set temrs=db.query("select arcpic from kl_articles where id="&G("id"))
@@ -29,7 +30,7 @@
 		arccontent=G("arccontent")
 		arcflag=Ucase(G("arcflag"))
 		arcupdate=FormatDate(now,1)
-		dim result:result=db.UpdateRecord("kl_articles","ID="&G("id"),array("arctitle:"&arctitle,"arcflag:"&arcflag,"type_id:"&type_id,"cat_id:"&cat_id,"arcpic:"&arcpic,"arccontent:"&arccontent,"arcuddate:"&arcupdate,"arcauthor:"&arcauthor,"arcsource:"&arcsource,"arckeys:"&arckeys))
+		dim result:result=db.UpdateRecord("kl_articles","ID="&G("id"),array("arctitle:"&arctitle,"arcflag:"&arcflag,"type_id:"&type_id,"cat_id:"&cat_id,"arcpic:"&arcpic,"arccontent:"&arccontent,"arcuddate:"&arcupdate,"arcauthor:"&arcauthor,"arcsource:"&arcsource,"arckeys:"&arckeys,"arctpl:"&arctpl))
 		if result<>0 then
 			AlertMsg(UPDATE_SUCCESS_STR)
 		else
@@ -40,11 +41,13 @@
 	id=G("id")
 	sqlstr="SELECT *  from (kl_articles as a inner join  kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on a.type_id=c.type_id where a.id="&id&" order by arcfbdate desc"
 	set rs=db.query(sqlstr)
-	
+	arctpl=rs("arctpl")&""
+	if arctpl="" then arctpl=rs("tpl_article")&"" end if
 	tpl.SetVariable "id",rs("id")&""
 	tpl.SetVariable "arcauthor",rs("arcauthor")&""
 	tpl.SetVariable "arctitle",rs("arctitle")&""
 	tpl.SetVariable "arcpic",rs("arcpic")&""
+	tpl.SetVariable "arctpl",arctpl
 	tpl.SetVariable "arcsource",rs("arcsource")&""
 	tpl.SetVariable "arckeys",rs("arckeys")&""
 	tpl.SetVariable "arcflag",rs("arcflag")&""
