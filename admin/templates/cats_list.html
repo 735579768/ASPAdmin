@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<script src="js/jquery-1.8.1.min.js" type="text/javascript"></script>
 <import file="Js.jquery-1#8#1#min" />
 <link href="css/main.css" rel="stylesheet" type="text/css" />
 <title>添加信息</title>
@@ -28,6 +29,9 @@ td {
 	font-family: "宋体";
 	background-color: #FFF;
 }
+.catimg{ position:relative; display:inline-block;}
+.catimg span{ background:#fff; border:solid 1px #ccc; padding:5px;}
+.catimg .catdaimg{ display:none; position:absolute; left:-150px; top:0px; z-index:999;}
 </style>
 <body>
 <table style="border-collapse:collapse; text-align:center; margin:0 auto;" width="98%" border="0" cellspacing="0" cellpadding="0">
@@ -84,6 +88,15 @@ $(function(){
 							}
 				})
 		});
+		$(".haveimg").bind("mouseover",function(){
+			$(this).next().show();
+			});
+		$(".catdaimg img").bind("mouseover",function(){
+			$(this).parent().show();
+			});
+		$(".catdaimg").bind("mouseout",function(){
+			$(this).hide();
+			});
 	})
 </script>
 </body>

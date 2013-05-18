@@ -1,4 +1,25 @@
 <%
+'取文章模板
+	Function getArticleTpl(arcid)
+		set m=db.getRecord("kl_articles","arctpl","id="&arcid,"",0)
+		a=m("arctpl")&""
+		set m=nothing
+		getArticleTpl=a
+	End Function
+'取分类封面模板
+	Function getCatIndexTpl(catid)
+		set m=db.getRecord("kl_cats","cat_index","cat_id="&catid,"",0)
+		a=m("cat_index")&""
+		set m=nothing
+		getCatIndexTpl=a
+	End Function
+'取分类封面模板
+	Function getCatListTpl(catid)
+		set m=db.getRecord("kl_cats","cat_list","cat_id="&catid,"",0)
+		a=m("cat_list")&""
+		set m=nothing
+		getCatListTpl=a
+	End Function
 '指设置模板变量
 '@param arr 键值数组 
 	Function setVarArr(arr)
@@ -382,5 +403,23 @@ function debug(a)
 	end if
 end function
 '====================================================================================
+'功能：删除文件（图片）
+'参数：@filestr  文件路径，(可以用相对路径)
+Function DeleteFile(FileStr)
+	   Dim FSO
+	   On Error Resume Next
+	   Set FSO = CreateObject("Scripting.FileSystemObject")
+		If FSO.FileExists(Server.MapPath(FileStr)) Then
+			FSO.DeleteFile Server.MapPath(FileStr), True
+		Else
+		DeleteFile = True
+		End If
+	   Set FSO = Nothing
+	   If Err.Number <> 0 Then
+	   Err.Clear:DeleteFile = False
+	   Else
+	   DeleteFile = True
+	   End If
+	End Function
 %>
 <script language="javascript" type="text/javascript" runat="server">function mydecodeurl(s){return decodeURIComponent(s);}</script>

@@ -19,7 +19,7 @@ if G("act")="updtcat" then
 	tempic=trim(temrs("cat_pic")&"")
 	set temrs=nothing
 	if cat_pic<>"" and trim(cat_pic)<>tempic then
-			DeleteFile(tempic )
+			DeleteFile tempic
 	end if
 	'echo db.wUpdateRecord("kl_cats","cat_id="&cat_id,array("cat_name:"&cat_name,"type_id:"&type_id,"sort:"&csort,"cat_show:"&cat_show,"cat_pic:"&cat_pic,"cat_seotitle:"&cat_seotitle,"cat_seokeys:"&cat_seokeys,"cat_seodescr:"&cat_seodescr,"cat_content:"&cat_content))
 	result=db.UpdateRecord("kl_cats","cat_id="&cat_id,array("cat_name:"&cat_name,"type_id:"&type_id,"sort:"&csort,"cat_show:"&cat_show,"cat_pic:"&cat_pic,"cat_index:"&cat_index,"cat_list:"&cat_list,"cat_article:"&cat_article,"cat_seotitle:"&cat_seotitle,"cat_seokeys:"&cat_seokeys,"cat_seodescr:"&cat_seodescr,"cat_content:"&cat_content))

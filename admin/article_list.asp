@@ -81,7 +81,9 @@ set tpl = nothing
 '判断文章是否有图
 function getarcimg(str)
 	if str<>"" then
-		getarcimg="[<img src='images/haveimg.gif' style='cursor:pointer; border:none;' width='12' height='12' alt='文章有图片显示' title='文章有图片显示' />]"
+		getarcimg="<div class='catimg'><img class='haveimg' src='images/haveimg.gif' style='cursor:pointer;' width='12' height='12' alt='分类封面有图片显示' title='分类封面有图片显示' /><span class='catdaimg' ><img src='"&str&"' width='150' height='150' /></span></div>"
+	
+		'getarcimg="[<img src='images/haveimg.gif' style='cursor:pointer; border:none;' width='12' height='12' alt='文章有图片显示' title='文章有图片显示' />]"
 	else
 		getarcimg=""
 	end if
