@@ -27,7 +27,7 @@ Set mypage=new xdownpage
 '得到数据库连接
 mypage.getconn=db.idbconn
 'sql语句
-mypage.getsql="SELECT a.id,a.arctitle,a.arcfbdate,a.arcflag,a.arcuddate,b.cat_name,c.type_name,a.arccontent,a.arcpic,a.recycling  from (kl_articles as a inner join  kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on a.type_id=c.type_id  where recycling=0  "& guolv &" order by arcfbdate desc"
+mypage.getsql="SELECT a.id,a.arctitle,a.arcfbdate,a.arcflag,a.arcuddate,b.cat_name,c.type_name,a.arccontent,a.arcpic,a.recycling,a.archits from (kl_articles as a inner join  kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on a.type_id=c.type_id  where recycling=0  "& guolv &" order by arcfbdate desc"
 '设置每一页的记录条数据为5条
 mypage.pagesize=15
 '返回Recordset
@@ -49,6 +49,7 @@ for i=1 to mypage.pagesize
 	tpl.SetVariable "cat_name",rs("cat_name")&""
 	tpl.SetVariable "type_name",rs("type_name")&""
 	tpl.SetVariable "arccontent",rs("arccontent")&""
+	tpl.SetVariable "archits",rs("archits")&""
 		'组合文章属性
 		arcsx=rs("arcflag")&""
 		arr=split(arcsx,",")

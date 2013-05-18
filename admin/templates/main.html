@@ -22,7 +22,8 @@ body{font-family:Arial, Helvetica, sans-serif,"宋体";margin:0px;padding:0px;}
 .zhou{dispaly:inline;float:left; margin:5px 0 0 5px;}
 .clear{clear:both;}
 /********************************************************/
-.font1{ padding:5px 10px;font-size:22px; font-family:microsoft yahei; font-size:30px; font-weight:900;}
+.font1{ padding:5px 10px;font-size:22px; font-family:microsoft yahei; font-size:20px; font-weight:900;}
+.indexbox{border-top: #e9f2f9 10px solid;border-bottom: #e9f2f9 10px solid;padding: 10px 20px;Unknown property name.over-flow: hidden;}
 </style>
 <script type="text/javascript">
 
@@ -188,8 +189,8 @@ case 7:$(".zhou span:eq(1)").html("日");$(".zhou span:last").html("SUN").css("co
 </div>
 <div class="clear"></div>
 </div>
-<div class="font1">系统文章总数：{{arccount}}</div>
-<div class="font1">有效文章总数：{{arcyescount}}</div>
-<div class="font1">回收站文章总数：{{arcnocount}}</div>
+<div class="font1 indexbox">系统文章总数：<span class="red" style="font-size:25px;"> {{arccount}} </span>,有效文章总数：<span class="red" style="font-size:25px;"> {{arcyescount}} </span>,回收站文章总数：<span class="red" style="font-size:25px;"> {{arcnocount}} </span></div>
+<div class="font1 indexbox"></div>
+<div class="font1 indexbox"></div>
 </body>
 </html>
