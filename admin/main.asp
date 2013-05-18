@@ -13,6 +13,11 @@ tpl.SetVariable "arcyescount",rs("arcyescount")&""'有效文章
 set rs=db.query("select count(*) as arcnocount from kl_articles where recycling=1")
 tpl.SetVariable "arcnocount",rs("arcnocount")&""'回收站文章
 set rs=nothing
+
+
+sql="select top 5 * from kl_articles order by arcuddate desc"
+arr=array("arctitle:arctitle","arcuddate:arcuddate")
+listblock "arclist",sql,arr
 tpl.Parse
 'Destroy our objects
 set tpl = nothing

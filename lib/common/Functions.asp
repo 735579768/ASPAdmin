@@ -422,4 +422,7 @@ Function DeleteFile(FileStr)
 	   End If
 	End Function
 %>
-<script language="javascript" type="text/javascript" runat="server">function mydecodeurl(s){return decodeURIComponent(s);}</script>
+<script language="javascript" type="text/javascript" runat="server">
+function mydecodeurl(s){return decodeURIComponent(s);}
+function toObject(json) {eval("var o=" + json);return o;}
+</script>

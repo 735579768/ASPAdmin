@@ -24,6 +24,7 @@ body{font-family:Arial, Helvetica, sans-serif,"宋体";margin:0px;padding:0px;}
 /********************************************************/
 .font1{ padding:5px 10px;font-size:22px; font-family:microsoft yahei; font-size:20px; font-weight:900;}
 .indexbox{border-top: #e9f2f9 10px solid;border-bottom: #e9f2f9 10px solid;padding: 10px 20px;Unknown property name.over-flow: hidden;}
+.box1{ width:48%; padding:0px 5px;}
 </style>
 <script type="text/javascript">
 
@@ -190,7 +191,16 @@ case 7:$(".zhou span:eq(1)").html("日");$(".zhou span:last").html("SUN").css("co
 <div class="clear"></div>
 </div>
 <div class="font1 indexbox">系统文章总数：<span class="red" style="font-size:25px;"> {{arccount}} </span>,有效文章总数：<span class="red" style="font-size:25px;"> {{arcyescount}} </span>,回收站文章总数：<span class="red" style="font-size:25px;"> {{arcnocount}} </span></div>
-<div class="font1 indexbox"></div>
+<div class="font1 indexbox">
+<div class="box1">
+<h3>最近更新文章</h3>
+<ul>
+<!-- BEGIN arclist -->
+	<li>{{arctitle}}<span style="float:right;">{{arcuddate}}</span></li>
+<!-- END arclist -->
+</ul>
+</div>
+</div>
 <div class="font1 indexbox"></div>
 </body>
 </html>

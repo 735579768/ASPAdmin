@@ -17,26 +17,20 @@ dt,dd{ padding:0px 20px;display:block; height:30px; line-height:30px;}
 dd{ padding-left:40px; border-bottom:dashed 1px #ccc;}
 input{ text-align:center; padding:2px;}
 .menutable{ margin-bottom:100px;}
-table td{ border:none;}
-tr{ height:30px; padding:5px; line-height:30px;border:1px dotted #ccc;}
+.menutable input{ border:solid 1px #ccc;}
+td{ height:30px; padding:5px; line-height:30px;}
 </style>
 <body>
-<input name="childlanmuurl" type="text"   value="" size="20" />
 <table class="menutable" width="98%"  style="border-collapse:collapse;border-color:gray;"border="1"  cellspacing="0" cellpadding="0"> 
   <tr class="biaotou">
-    <td align="center" colspan="2">系统设置/菜单
-      <input name="sysmenu_link"  type="text"  value="{{menu2_link}}" size="20" />
-    管理<span style="color:red;">(此处设置非程序员请勿操作)<a href="javascript:window.history.go(-1);" class="coolbg">返回</a></span></td>
+    <td align="center" colspan="2">系统设置/菜单管理<span style="color:red;">(此处设置非程序员请勿操作)<a href="javascript:window.history.go(-1);" class="coolbg">返回</a></span></td>
   </tr>
   <tr class="biaotou">
     <td align="left" colspan="2">
     <form name="addlanmuform" id="addlanmuform" action="" method="post" onsubmit="" > 
         <input type="hidden" name="act" value="add" /> 
-      后台栏目：<input type="text" name="lanmu"  value="" size="10" />
-        &nbsp;
-        <a href="javascript:void(0);" onclick="addlanmuform.submit();" class="coolbg">添加</a>
-        <input name="sysmenu_name2" type="text"   value="{{menu1_name}}" size="15" />
-    </form></td>
+      后台栏目：<input name="lanmu"  value="" size="10" />
+        &nbsp;<input type="submit" value="添加" id="addlanmu"  class="coolbg"/> </form></td>
   </tr>
 <tr align="center" class="biaotou" >
     <td align="left" colspan="2">
@@ -45,7 +39,8 @@ tr{ height:30px; padding:5px; line-height:30px;border:1px dotted #ccc;}
     后台栏目：
 {{sysmenus}}
     子菜单：
-      <input name="childlanmu" type="text"   value="" size="10" />      URL:&nbsp;<a href="javascript:void(0);" onclick="addchildlanmuform.submit();" class="coolbg">添加</a> &nbsp;</form></td>
+      <input name="childlanmu"  value="" size="10" />      URL:<input name="childlanmuurl"  value="" size="20" />
+&nbsp;<input type="submit" value="添加" id="addchildlanmu"  class="coolbg"/> &nbsp;</form></td>
   </tr>
 
 <tr class="biaotou">
@@ -55,7 +50,8 @@ tr{ height:30px; padding:5px; line-height:30px;border:1px dotted #ccc;}
   <tr background="images/tbg.gif" class="biaotou">
     <td  width="30%" align="left" style="padding-left:20px;background:none;">一级菜单：（ID:{{menu1_id}}）</td><td>
     <form action="" method="post">
-      <input type="hidden" name="act" value="update" />
+    <input name="sysmenu_name"  value="{{menu1_name}}" size="15" /> 
+	<input type="hidden" name="act" value="update" />
 	<input type="submit" value="更新" id="addchildlanmu"  class="coolbg"/>
     <input type="hidden" name="id" value="{{menu1_id}}" />
 	<input type="button" value="删除" id="addchildlanmu"  class="coolbg delbtn"/>
@@ -66,8 +62,8 @@ tr{ height:30px; padding:5px; line-height:30px;border:1px dotted #ccc;}
     <tr>
     <td align="left" style="padding-left:50px;"> 子菜单：（ID:{{menu2_id}}）</td><td>
     <form action="" method="post">
-       <input name="sysmenu_name"  type="text"  value="{{menu2_name}}" size="15" /> 
-    URL:
+       <input name="sysmenu_name"  value="{{menu2_name}}" size="15" /> 
+    URL:<input name="sysmenu_link"  value="{{menu2_link}}" size="20" />
     <input type="hidden" name="act" value="update" />
 	<input type="submit" value="更新" id="addchildlanmu"  class="coolbg"/>
     <input type="hidden" name="id" value="{{menu2_id}}" />
