@@ -26,9 +26,12 @@ if G("act")="add" then
 end if
 'Generate the page
 if parent_id<>0 then
-set rs=db.query("select cat_name from "&suffix&"cats where cat_id="&parent_id)
+set rs=db.query("select * from "&suffix&"cats where cat_id="&parent_id)
 tpl.setvariable "parent_id",parent_id
 tpl.setvariable "cat_name",rs("cat_name")&""
+tpl.setvariable "cat_index",rs("cat_index")&""
+tpl.setvariable "cat_list",rs("cat_list")&""
+tpl.setvariable "cat_article",rs("cat_article")&""
 else
 tpl.setvariable "cat_name","нч"
 tpl.setvariable "parent_id",parent_id
