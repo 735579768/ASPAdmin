@@ -182,11 +182,11 @@ class ASPTemplate
 				oFile.Close
 				set oFile = nothing
 			else
-				response.write "<b>ASPTemplate Error: File [" & inFileName & "] does not exists!</b><br>"
+				response.write "<b>ASPTemplate Error: File [" & server.mappath(p_templates_dir & inFileName) & "] does not exists!</b><br>"
 			end if
 			set FSO = nothing
 		else
-			response.write "<b>ASPTemplate Error: SetTemplateFile missing filename.</b><br>"
+			response.write "<b>ASPTemplate Error: SetTemplateFile missing filename or filename is null:' "&infilename&" '</b><br>"
 		end if
 		'类设置的时候加载包含文件
 		call includefile(p_template)
@@ -252,7 +252,7 @@ class ASPTemplate
 				oFile.Close
 				set oFile = Nothing
 			else
-				response.write "<b>ASPTemplate Error: File [" & inFileName & "] does not exists!</b><br>"
+				response.write "<b>ASPTemplate Error: File [" & server.mappath(p_templates_dir & inFileName) & "] does not exists!</b><br>"
 			end if
 			set FSO = nothing
 		else

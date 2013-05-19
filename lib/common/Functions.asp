@@ -1,8 +1,21 @@
 <%
 'È¡ÎÄÕÂÄ£°å
 	Function getArticleTpl(arcid)
-		set m=db.getRecord("kl_articles","arctpl","id="&arcid,"",0)
-		a=m("arctpl")&""
+		sql="select * from (kl_articles as a inner join kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on b.type_id=c.type_id where a.id="&arcid
+		set m=db.query(sql)
+		arctpl=m("arctpl")&""
+		cat_article=m("cat_article")&""
+		tpl_article=m("tpl_article")&""
+		a=""
+		if arctpl<>"" then 
+			a=arctpl
+		elseif cat_article<>"" then 
+			a=cat_article
+		elseif tpl_article<>"" then
+			a=tpl_article
+		else
+		end if
+		'set m=db.getRecord("kl_articles","arctpl","id="&arcid,"",0)
 		set m=nothing
 		getArticleTpl=a
 	End Function

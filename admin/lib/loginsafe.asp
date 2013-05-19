@@ -35,7 +35,7 @@ set rs=db.GetRecord(suffix & "admin","*","username='"&Uname&"'","",0)
 			'记录登陆日志
 			result=db.AddRecord("kl_admin_log",array("uname:"&rs("username"),"loginip:"&getip(),"qx_id:"&rs("qx_id")))
 			Session("admin_id")=rs("id")'保存管理员在数据表中的id值
-			Session("admin_qx_id")=rs("qx_id")'保存管理员在数据表中的id值
+			Session("admin_qx_id")=rs("qx_id")'保存管理员在数据表中的权限id值
 			Session.Timeout=30
 			Response.Cookies("adminid")=rs("id")
 			Response.Cookies("U_name")=Uname

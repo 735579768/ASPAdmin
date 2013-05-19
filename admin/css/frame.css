@@ -15,7 +15,7 @@ body.hidemenu .right{left:0px;}
 .header .topnav{ height:30px; width:100%; background:url(../images/nav-bg.png) repeat-x 0px -35px;}
 .header .topnav ul.navleft{ float:left;  margin-left:50px;}
 .header .topnav ul.navright{ float:right; margin-right:50px;}
-.header .topnav li{ float:left;}
+.header .topnav li{ float:left; color:#fff; line-height:30px; height:30px; text-align:center;}
 .header .topnav li a{color:#FFF; height:30px; line-height:30px; color:#FFF; float:left; padding:0px 10px;; margin-right:10px;}
 .header .topnav li a:hover{ background:#4c4c4c;}
 
