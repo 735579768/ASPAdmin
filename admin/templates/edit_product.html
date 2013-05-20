@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
 <script src="js/jquery-1.8.1.min.js" language="javascript" type="text/javascript"></script>
 <link href="css/main.css" rel="stylesheet" type="text/css" />
-<title>添加信息</title>
+<title>更新文章信息</title>
 </head>
 <style>
 .biaotou{background:url(images/tbg.gif) repeat-x; height:28px;}
@@ -24,9 +24,7 @@ td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; 
 					'fileManagerJson': 'editor/asp/file_manager_json.asp',
 //					'imageUploadJson':'../../../uploads',
 					'allowFlashUpload':true,
-					'allowFileManager':true,
-					'allowPreviewEmoticons':true,
-					'afterBlur':function(){this.sync();}
+					'allowFileManager':true
 				});
 			});
 		</script>
@@ -34,32 +32,34 @@ td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; 
 <form action="" id="addarc" method="post">
 <table width="98%" style="border-collapse:collapse; margin-bottom:50px;" border="1" cellspacing="0" cellpadding="0">
  <tr>
- 	<td height="28" colspan="2" align="center" class="biaotou">内容添加&gt;&gt;<a href="javascript:window.history.go(-1);" class="coolbg">返回</a></td>
+ 	<td height="28" colspan="2" align="center" class="biaotou">更新产品信息&lt;&lt;<a href="javascript:window.history.go(-1);" class="coolbg">返回</a></td>
  </tr>
-  <tr width="10%">
+ <tr width="10%">
     <td>作者：</td>
-    <td><input name="arcauthor" type="text" class="checknonull"  value="" style="width:100px"></td>
+    <td><input name="arcauthor" type="text" class="checknonull"  value="{{arcauthor}}" style="width:100px"></td>
   </tr>
-   <tr width="10%">
+  <tr width="10%">
     <td>来源：</td>
-    <td><input name="arcsource" type="text" class="checknonull"  value="" style="width:200px"></td>
+    <td><input name="arcsource" type="text" class="checknonull"  value="{{arcsource}}" style="width:200px"></td>
   </tr>
  <!---信息标题-->
-  <tr width="10%">
+  <tr>
     <td>标题：</td>
-    <td><input name="arctitle" type="text" class="checknonull"  value="" style="width:388px"></td>
+    <td><input name="arctitle" type="text" class="checknonull"  value="{{arctitle}}" style="width:388px">
+
+</td>
   </tr>
   <!--信息分类-->
   <tr>
     <td width="90">文章属性：</td>
     <td>
-    <input name="arcflag"  value="" /><span style="color:#f00;">(使用格式(C,H))注意用大写</span>
+    <input name="arcflag"  value="{{arcflag}}" /><span style="color:#f00;">(使用格式(C,H))注意用大写</span>
     <label for="c">1、首页推荐(C)</label>
     <label for="c">2、头条(H)</label>
     </td>
   </tr>
   <tr>
-    <td width="90" style="display:none;">内容模型：</td>
+    <td width="90">内容模型：</td>
     <td>
     {{typeidsel}}</td>
   </tr>
@@ -73,33 +73,30 @@ td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; 
     <td>
 {{catidsel}}</td>
   </tr>
-
   <!--图片信息展示-->
   <tr>
-    <td width="90">图片展示：</td>
-    <td><input name="arcpic" id="pic" type="text"  value="" style="width:388px">
-    <input type="button" onclick="window.open('uploadimg/index.asp','newwindow','width=500,height=80')" value="本地上传" style="width:70px;cursor:pointer;"><input id="delimg" type="button" style="display:none;"  value="删除本张图片"><img id="picimg" width="50" height="50" style="display:none;" src=""  /></td>
-  </tr>
-    <!--关键字-->
-    <tr width="10%">
-    <td>关键字：</td>
-    <td><input name="arckeys" type="text" class="checknonull"  value="" style="width:400px">
-      (关键字用','号分开)</td>
+    <td>
+    图片展示：</td>
+    <td><input name="arcpic" id="pic" type="text"  value="{{arcpic}}" style="width:388px">
+    <input type="button" onclick="window.open('uploadimg/index.asp','newwindow','width=500,height=80')" value="本地上传" style="width:70px;cursor:pointer;"><input id="delimg" type="button" style="display:none;"  value="删除本张图片"><img id="picimg" width="50" height="50" style="display:none;" src=""  />
+    </td>
   </tr>
   <!--内容-->
-  <tr>
-    <td>文章内容：</td>
-    <td><textarea name="arccontent" style="width:710px;height:400px;visibility:hidden;"></textarea></td>
+  <tr width="10%">
+    <td>关键字：</td>
+    <td><input name="arckeys" type="text" class="checknonull"  value="{{arckeys}}" style="width:400px">
+      (关键字用','号分开)</td>
   </tr>
   <tr>
-    <td colspan="2">&nbsp;</td>
+    <td> 文章内容：</td>
+    <td><textarea name="arccontent" style="width:710px;height:400px;visibility:hidden;">{{arccontent}}</textarea></td>
   </tr>
   <tr>
     <td colspan="2" align="center">
-    <input type="hidden" name="isaddarticle" value="true" />
-    <input type="submit"  value="添加文章"  style="width:70px" class="coolbt checkform">
-    <input type="button"  value="返回" onclick="window.history.go(-1);"  style="width:70px" class="coolbt">
-    </td>
+    <input type="hidden" name="isupdtarticle" value="true" />
+    <input type="hidden" name="id" value="{{id}}" />
+    <input type="submit"  value="更新文章"  style="width:70px; height:20px;" class="coolbt checkform">
+       <input type="button"  value="返回" onclick="window.history.go(-1);"  style="width:70px" class="coolbt"></td>
   </tr>
 </table>
 </form>
@@ -137,7 +134,6 @@ $(".checknonull").bind("blur",function(){
 			return false;
 			}
 	});
-//表单提交验证
 $("#addarc").submit(function(e) {
 	var i=0;
 	$(".checknonull").each(function(index, element) {
@@ -152,8 +148,7 @@ $("#addarc").submit(function(e) {
 	    return true;
 			}
 
-});
-
+	});
 });
 function cha(){
 	$("#pic").change();

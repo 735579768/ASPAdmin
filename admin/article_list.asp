@@ -1,13 +1,21 @@
 <!--#include file="lib/AdminInIt.asp"-->
 <!--#include file="../lib/page.class.asp"-->
 <%
+gettablefield("kl_cats")
 '移动回收站
+if act="huishousingle" then
+		id=G("id")
+		result=db.UpdateRecord("kl_archives","id="&id,array("recycling:1"))
+		if result=0 then
+			AlertMsg("操作失败")
+		end if
+end if
 if G("batchid")<>"" then
 	str=G("batchid")
 	arr=split(str,",")
 	dim result
 	for i=0 to ubound(arr)
-		result=db.UpdateRecord("kl_articles","id="&arr(i),array("recycling:1"))
+		result=db.UpdateRecord("kl_archives","id="&arr(i),array("recycling:1"))
 	next
 		if result=0 then
 			AlertMsg(CAOZUO_FAIL_STR)
@@ -27,7 +35,7 @@ Set mypage=new xdownpage
 '得到数据库连接
 mypage.getconn=db.idbconn
 'sql语句
-mypage.getsql="SELECT a.id,a.arctitle,a.arcfbdate,a.arcflag,a.arcuddate,b.cat_name,c.type_name,a.arccontent,a.arcpic,a.recycling,a.archits from (kl_articles as a inner join  kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on a.type_id=c.type_id  where recycling=0  "& guolv &" order by arcfbdate desc"
+mypage.getsql="SELECT a.id,a.cat_id as catid,a.arctitle,a.fbdate,a.arcflag,a.uddate,b.cat_name,c.type_name,a.arccontent,a.arcpic,a.recycling,a.archits from (kl_archives as a inner join  kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on a.type_id=c.type_id  where recycling=0  "& guolv &" order by fbdate desc"
 '设置每一页的记录条数据为5条
 mypage.pagesize=15
 '返回Recordset
@@ -35,17 +43,18 @@ set rs=mypage.getrs()
 
 
 '显示数据
-'set rs=db.query("SELECT a.id,a.arctitle,a.arcfbdate,b.cat_name,c.type_name,a.arccontent,a.arcpic,a.recycling  from (kl_articles as a inner join  kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on a.type_id=c.type_id")
+'set rs=db.query("SELECT a.id,a.arctitle,a.fbdate,b.cat_name,c.type_name,a.arccontent,a.arcpic,a.recycling  from (kl_archives as a inner join  kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on a.type_id=c.type_id")
 	tpl.UpdateBlock "arclist"
 	
 	'输出文章列表
 for i=1 to mypage.pagesize
 	if not rs.eof then
 	tpl.SetVariable "id",rs("id")&""
+	tpl.SetVariable "cat_id",rs("catid")&""
 	tpl.SetVariable "title",rs("arctitle")&""
 	tpl.SetVariable "arctitle",left(rs("arctitle")&"",15)
-	tpl.SetVariable "arcuddate",rs("arcuddate")&""
-	tpl.SetVariable "arcfbdate",rs("arcfbdate")&""
+	tpl.SetVariable "uddate",rs("uddate")&""
+	tpl.SetVariable "fbdate",rs("fbdate")&""
 	tpl.SetVariable "cat_name",rs("cat_name")&""
 	tpl.SetVariable "type_name",rs("type_name")&""
 	tpl.SetVariable "arccontent",rs("arccontent")&""

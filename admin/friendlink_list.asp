@@ -18,7 +18,7 @@ set rs=mypage.getrs()
 
 
 '显示数据
-'set rs=db.query("SELECT a.id,a.arctitle,a.arcfbdate,b.cat_name,c.type_name,a.arccontent,a.arcpic,a.recycling  from (kl_articles as a inner join  kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on a.type_id=c.type_id")
+'set rs=db.query("SELECT a.id,a.arctitle,a.fbdate,b.cat_name,c.type_name,a.arccontent,a.arcpic,a.recycling  from (kl_archives as a inner join  kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on a.type_id=c.type_id")
 	tpl.UpdateBlock "friendlinklist"
 	
 	'输出友情链接列表

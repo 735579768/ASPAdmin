@@ -4,36 +4,36 @@
 		'检查当前是否有默认的id传过来
 		dim selid'定义默认选中的id
 		if G("id")<>"" then
-		'  set rs=db.getrecord("kl_article","type_id",array("id:"&G("id")))
-		  set rs=db.query("select cat_id from kl_articles where id="&G("id"))
-		  selid =cstr(rs("cat_id"))
+		'  set selrs=db.getrecord("kl_article","type_id",array("id:"&G("id")))
+		  set selrs=db.query("select cat_id from kl_archives where id="&G("id"))
+		  selid =cstr(selrs("cat_id"))
 		end if
 		if G("cat_id")<>"" then  selid =G("cat_id")
 		'输出sel表单
 		dim str:str="<select id='cat_id' name='cat_id' style='width:200px;'>"
-		set rs=db.GetRecordBySQL("select cat_id,cat_name from kl_cats where parent_id=0 order by sort asc")
-		if rs.recordcount>0 then 
-			do while not rs.eof
-				if selid=rs("cat_id")&"" then
-				str=str&"<option value='"&rs("cat_id")&"' selected>"&rs("cat_name")&"</option>"				
+		set selrs=db.GetRecordBySQL("select cat_id,cat_name from kl_cats where parent_id=0 order by sort asc")
+		if selrs.recordcount>0 then 
+			do while not selrs.eof
+				if selid=selrs("cat_id")&"" then
+				str=str&"<option value='"&selrs("cat_id")&"' selected>"&selrs("cat_name")&"</option>"				
 				else
-				str=str&"<option value='"&rs("cat_id")&"'>"&rs("cat_name")&"</option>"
+				str=str&"<option value='"&selrs("cat_id")&"'>"&selrs("cat_name")&"</option>"
 				end if
 				'查询二级分类start
-				set rss=db.GetRecordBySQL("select cat_id,cat_name from kl_cats where parent_id="&rs("cat_id")&" order by sort asc")
-				if rss.recordcount>0 then 
-					do while not rss.eof
-						if selid=rss("cat_id")&"" then
-							str=str&"<option value='"&rss("cat_id")&"' selected><b style='color:#ccc;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>"&rss("cat_name")&"</option>"				
+				set selrss=db.GetRecordBySQL("select cat_id,cat_name from kl_cats where parent_id="&selrs("cat_id")&" order by sort asc")
+				if selrss.recordcount>0 then 
+					do while not selrss.eof
+						if selid=selrss("cat_id")&"" then
+							str=str&"<option value='"&selrss("cat_id")&"' selected><b style='color:#ccc;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>"&selrss("cat_name")&"</option>"				
 						else
-							str=str&"<option value='"&rss("cat_id")&"'><b style='color:#ccc;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>"&rss("cat_name")&"</option>"
+							str=str&"<option value='"&selrss("cat_id")&"'><b style='color:#ccc;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>"&selrss("cat_name")&"</option>"
 						end if
-					rss.movenext
+					selrss.movenext
 					loop
-					set rss=nothing
+					set selrss=nothing
 				end if
 				'查询二级分类end
-			rs.movenext
+			selrs.movenext
 			loop
 		end if
 		str=str&"</select>"
@@ -44,22 +44,26 @@
 	'检查当前是否有默认的id传过来
 		dim selid'定义默认选中的id
 		if G("id")<>"" then
-		'  set rs=db.getrecord("kl_article","type_id",array("id:"&G("id")))
-		  set rs=db.query("select type_id from kl_articles where id="&G("id"))
-		  selid =cstr(rs("type_id"))
+		'  set selrs=db.getrecord("kl_article","type_id",array("id:"&G("id")))
+		  set selrs=db.query("select type_id from kl_archives where id="&G("id"))
+		  selid =cstr(selrs("type_id"))
 		end if
 		if G("type_id")<>"" then  selid =G("type_id")
+		if G("cat_id")<>"" then 
+			  set selrs=db.query("select type_id from kl_cats where cat_id="&G("cat_id"))
+			  selid =cstr(selrs("type_id"))
+		end if
 		'输出sel表单
 		dim str:str="<select id='cat_id' name='type_id' style='width:200px;'>"
-		set rs=db.GetRecordBySQL("select * from kl_content_types")
-		if rs.recordcount>0 then 
-			do while not rs.eof
-				if selid=rs("type_id")&"" then
-				str=str&"<option value='"&rs("type_id")&"' selected>"&rs("type_name")&"|内容模型</option>"				
+		set selrs=db.GetRecordBySQL("select * from kl_content_types")
+		if selrs.recordcount>0 then 
+			do while not selrs.eof
+				if selid=selrs("type_id")&"" then
+				str=str&"<option value='"&selrs("type_id")&"' selected>"&selrs("type_name")&"|内容模型</option>"				
 				else
-				str=str&"<option value='"&rs("type_id")&"'>"&rs("type_name")&"|内容模型</option>"
+				str=str&"<option value='"&selrs("type_id")&"'>"&selrs("type_name")&"|内容模型</option>"
 				end if
-				rs.movenext
+				selrs.movenext
 			loop
 		end if
 		str=str&"</select>"
@@ -69,15 +73,15 @@
 	function getSysMenusSel()
 			dim str
 			str="<select name=sysmenuid>"
-		set rs=db.GetRecordBySQL("select * from kl_sysmenus where parent_menu_id=0 order by sort asc")
-				if rs.recordcount>0 then 
-					do while not rs.eof
-							if G("sysmenuid")=rs("sysmenuid")&"" then
-							str=str&"<option value='"&rs("sysmenuid")&"' selected>"&rs("menu_name")&"</option>"				
+		set selrs=db.GetRecordBySQL("select * from kl_sysmenus where parent_menu_id=0 order by sort asc")
+				if selrs.recordcount>0 then 
+					do while not selrs.eof
+							if G("sysmenuid")=selrs("sysmenuid")&"" then
+							str=str&"<option value='"&selrs("sysmenuid")&"' selected>"&selrs("menu_name")&"</option>"				
 							else
-							str=str&"<option value='"&rs("sysmenuid")&"'>"&rs("menu_name")&"</option>"
+							str=str&"<option value='"&selrs("sysmenuid")&"'>"&selrs("menu_name")&"</option>"
 							end if
-							rs.movenext
+							selrs.movenext
 					loop
 				end if
 		str=str&"</select>"
@@ -87,15 +91,15 @@
 	Function getQxsel()
 			dim str
 			str="<select name=qx_id>"
-		set rs=db.GetRecordBySQL("select * from kl_admin_qx")
-				if rs.recordcount>0 then 
-					do while not rs.eof
-							if G("qx_id")=rs("qx_id")&"" then
-							str=str&"<option value='"&rs("qx_id")&"' selected>"&rs("qx_name")&"</option>"				
+		set selrs=db.GetRecordBySQL("select * from kl_admin_qx")
+				if selrs.recordcount>0 then 
+					do while not selrs.eof
+							if G("qx_id")=selrs("qx_id")&"" then
+							str=str&"<option value='"&selrs("qx_id")&"' selected>"&selrs("qx_name")&"</option>"				
 							else
-							str=str&"<option value='"&rs("qx_id")&"'>"&rs("qx_name")&"</option>"
+							str=str&"<option value='"&selrs("qx_id")&"'>"&selrs("qx_name")&"</option>"
 							end if
-							rs.movenext
+							selrs.movenext
 					loop
 				end if
 		str=str&"</select>"

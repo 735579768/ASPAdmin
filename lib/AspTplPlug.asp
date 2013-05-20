@@ -41,7 +41,7 @@ function GetArcList(num,img,imgwidth,imgheight)
 	
 	 temstr=replace(temstr,Matches(0),"{{RECONTENT}}")'保存临时变量
 	'ziduan_arr=array("id","type_name","cat_name","title","content","pic","fbdate","flag","author","source","clicks","keys")
-	set rs=db.GetRecord("kl_articles","*","","arcfbdate desc",num)
+	set rs=db.GetRecord("kl_archives","*","","arcfbdate desc",num)
 	'set rs=db.query("select * from kl_cats order by [sort] asc")
 	'去掉loop循环标签
 	xh_str=replace(xh_str,"<loop>","")

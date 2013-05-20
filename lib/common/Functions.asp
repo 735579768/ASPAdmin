@@ -1,7 +1,46 @@
 <%
+'取数据表中的字段
+	Function getTableField(tablename)
+		on error resume next
+		err.clear
+		set fieldrs=server.createobject("adodb.recordset")
+		fieldrs.open "select * from "&tablename,db.idbconn,1,1
+		redim arr(fieldrs.fields.count)
+			for i=0 to fieldrs.fields.count - 1
+				'response.write(fieldrs.fields(i).name)
+				'arrrr(0)=fieldrs.fields(i).name
+				'arrrr(1)=fieldrs.fields(i).type
+				arr(i)=array(fieldrs.fields(i).name,fieldrs.fields(i).type)
+			next
+		set fieldrs=nothing
+		getTableField=arr
+'		if err.number<>0 then
+'			echoErr()
+'		end if
+	End Function
+'取添加信息表单页面
+	function getAddForm(cat_id)
+		sql="select b.tpl_addform from kl_cats as a inner join kl_content_types as b on a.type_id=b.type_id where a.cat_id="&cat_id
+		set m=db.query(sql)
+		a=m("tpl_addform")&""
+		getAddForm=a
+	End function
+'输出错误
+	Function echoErr()
+		echo("Error code: " & CStr(Err.Number) & "<br>Error Description: " & Err.Description)
+		err.clear
+		die("")
+	End function
+'取编辑信息表单页面
+	function getEditForm(cat_id)
+		sql="select b.tpl_editform from kl_cats as a inner join kl_content_types as b on a.type_id=b.type_id where a.cat_id="&cat_id
+		set m=db.query(sql)
+		a=m("tpl_editform")&""
+		getEditForm=a
+	End function
 '取文章模板
 	Function getArticleTpl(arcid)
-		sql="select * from (kl_articles as a inner join kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on b.type_id=c.type_id where a.id="&arcid
+		sql="select * from (kl_archives as a inner join kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on b.type_id=c.type_id where a.id="&arcid
 		set m=db.query(sql)
 		arctpl=m("arctpl")&""
 		cat_article=m("cat_article")&""
@@ -15,7 +54,7 @@
 			a=tpl_article
 		else
 		end if
-		'set m=db.getRecord("kl_articles","arctpl","id="&arcid,"",0)
+		'set m=db.getRecord("kl_archives","arctpl","id="&arcid,"",0)
 		set m=nothing
 		getArticleTpl=a
 	End Function
@@ -163,9 +202,10 @@
 		response.Write str
 	end function
 '退出程序
-	function die()
+	function die(str)
+		echo str
 		response.End()
-	end function
+	End function
 '取url中的请求参数
 	Function getparam(str)
 		str1=request(str)

@@ -22,7 +22,7 @@ dim id:id=G("id")
 '删除前台栏目菜单
 	if G("action")="delcat" then
 			'判断这个分类下面是不是有文章，有的话不能删除
-			set rs=db.GetRecord("kl_articles","*","cat_id="&id,"",0)
+			set rs=db.GetRecord("kl_archives","*","cat_id="&id,"",0)
 			if not rs.eof then 
 				ajaxstr="分类下有文章不能删除!"
 				echo ajaxstr
@@ -46,14 +46,14 @@ dim id:id=G("id")
 			ajaxstr=1
 		end if
 	end if
-'单个移到回收站文章
-	if G("action")="delarticle" then
-		id=G("id")
-		result=db.UpdateRecord("kl_articles","id="&id,array("recycling:1"))
-		if result<>0 then
-			ajaxstr=1
-		end if
-	end if
+''单个移到回收站文章
+'	if G("action")="delarticle" then
+'		id=G("id")
+'		result=db.UpdateRecord("kl_archives","id="&id,array("recycling:1"))
+'		if result<>0 then
+'			ajaxstr=1
+'		end if
+'	end if
 echo ajaxstr
 die()
 %>
