@@ -619,86 +619,7 @@ class ASPTemplate
 		a=varToNull()
 		Fetch=a
 	End Function
-'//////////////////////////////////loop code start///////////////////////////////////////////////////
-'===============================================================================
-'loop万能循环
-'===============================================================================
-	Function loopsql()
-		p_regexp.Pattern =  "<loop([\s\S]*?)>([\s\S]*?)</loop>" 
-		p_regexp.Global = true
-		'查询模板中的所有loop块
-		set matches=p_regexp.Execute(p_template)
-		if matches.count>0 then 
-		redim looparr(Matches.count)
-			'循环处理loop块
-			for i=0 to Matches.count-1
-			'取loop块中的参数
-				temsql=getloopparam(Matches(i),"sql")
-				temnum=getloopparam(Matches(i),"num")
-				temiterator=getloopparam(Matches(i),"iterator")
-				if temnum="" then 
-					temnum=0
-				else
-					temnum=Cint(temnum)
-				end if
-				'处理单个loop中的内容
-				vostr=volist(Matches(i).SubMatches(1),temsql,temnum,temiterator)
-				'把这个loop块中的内容换为指定的内容
-				p_template=replace(p_template,Matches(i),vostr)
-			next
-		end if
-'		For Each Match in Matches      ' Iterate Matches collection
-'			xh_str= Match.SubMatches(0) '取出循环内容
-'		Next
-		'echo looparr(1)(0)
-	End Function	
-'===============================================================================
-'取loop中的参数
-'===============================================================================	
-	Function getloopparam(str,key)
-		str1=""
-		Set reg = New RegExp 
-		reg.Global = true
-		reg.Pattern =  "<loop([\s\S]*?)"&key&"=\'([\s\S]*?)\'([\s\S]*?)>" 
-		set ms=reg.Execute(str)
-		if ms.count>0 then
-		str1=ms(0).SubMatches(1)'取sql语句
-		end if
-		set reg=nothing
-		getloopparam=str1
-	End Function
-'===============================================================================
-'循环单个loop中的内容并返回处理过的内容
-'===============================================================================	
-	Function volist(str,sql,num,iterator)
-		str1=""'一个块最终处理好后放的变量
-		str2=""'循环字段替换时用到的
-		set vors=db.query(sql)
-		if num=0 then num=vors.recordcount
-		if num>vors.recordcount then num=vors.recordcount
-		'取查询数据集的字段
-		fieldarr=getTableField(sql)
-			if vors.recordcount>0 then
-			'循环记录集
-				for i=0 to num-1
-					if vors.eof  then exit for
-					str2=str
-					'迭代序号
-					str2=replace(str2,"{{"&iterator&"}}",i+1)
-					'循环记录集中的字段并替换为指定的值
-					for j=0 to ubound(fieldarr)-1
-						fieldstr=fieldarr(j)(0)
-						str2=replace(str2,"{{"&fieldstr&"}}",vors(fieldstr)&"")
-					next
-					str1=str1+str2
-					str2=""
-				vors.movenext
-				next
-			end if
-		set vors=nothing
-		volist=str1
-	End Function	
-'//////////////////////////////////loop code end///////////////////////////////////////////////////
+
 '===============================================================================
 '解析模板时首先进行处理
 '===============================================================================	
@@ -706,7 +627,13 @@ class ASPTemplate
 		'解析模板的时候加载包含文件
 		call includefile(p_template)
 		'解析loop循环
-		call loopsql(	)
+		'call loopsql()
+		'使用扩展先进行处理
+		set tplplug=New AspTplPlug
+		tplplug.templatestr=p_template
+		tplplug.run
+		p_template=tplplug.templatestr
+		set tplplug=nothing
 	End Function
 end class
 

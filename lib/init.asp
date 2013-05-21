@@ -3,7 +3,7 @@
 <!--#INCLUDE FILE="common/Functions.asp"-->
 <!--#INCLUDE file="common/md5.asp"-->
 <!--#INCLUDE FILE="AspTpl.class.asp"-->
-<!--#INCLUDE FILE="AspTplPlug.asp"-->
+<!--#INCLUDE file="AspTplPlug.class.asp"-->
 <!--#INCLUDE FILE="db.class.asp"-->
 <%
 '初始化模板引擎
