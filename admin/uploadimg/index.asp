@@ -1,3 +1,4 @@
+<% if session("APP")<>"true" then reurl("/") end if %>
 <%
 if isempty(Session("admin_id")) then response.Write "<script>window.close();</script>":response.End() end if
 

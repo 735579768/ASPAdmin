@@ -26,6 +26,8 @@
 '						end if
 						'echo val&"<br>"
 						'echo key&"<br>"
+					'	echo key&"<br>"
+					'	echo val
 						uprs(key)=val
 					 end if
 				next
@@ -67,7 +69,7 @@
 	end if
 '输出模板默认数据
 	id=G("id")
-	sqlstr="SELECT a.cat_id as cid,*  from (kl_archives as a left join  kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on a.type_id=c.type_id where a.id="&id&" order by fbdate desc"
+	sqlstr="SELECT a.cat_id as cid,c.type_name as typename,b.type_id as typeid,*  from (kl_archives as a inner join  kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on b.type_id=c.type_id where a.id="&id&" order by fbdate desc"
 	set rs=db.query(sqlstr)
 	arctpl=rs("arctpl")&""
 	if arctpl="" then arctpl=rs("tpl_article")&"" end if
@@ -83,7 +85,8 @@
 	tpl.SetVariable "arcflag",rs("arcflag")&""
 	tpl.SetVariable "fbdate",rs("fbdate")&""
 	tpl.SetVariable "cat_name",rs("cat_name")&""
-	tpl.SetVariable "type_name",rs("type_name")&""
+	tpl.SetVariable "type_name",rs("typename")&""
+	tpl.SetVariable "type_id",rs("typeid")&""
 	tpl.SetVariable "arccontent",rs("arccontent")&""
 	
 	tpl.SetVariable "typeidsel",getContentTypeSel()

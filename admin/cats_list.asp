@@ -15,16 +15,19 @@ end select
 tpl.UpdateBlock "m2_block"
 tpl.UpdateBlock "m1_block"
 '查一级分类
-set rs=db.query("select cat_id,type_id,cat_name,cat_pic,parent_id,sort,cat_show from "&suffix&"cats  where parent_id=0 order by sort asc ")
+sql1="select a.type_id as typeid,* from kl_cats as a inner join kl_content_types as b on a.type_id=b.type_id   where a.parent_id=0 order by sort asc "
+set rs=db.query(sql1)
 do while not rs.eof
 		'查询二级分类
-		set rss=db.query("select cat_id,type_id,cat_pic,cat_name,parent_id,sort,cat_show from "&suffix&"cats  where parent_id="&rs("cat_id")&" order by sort asc ")
+		sql2="select a.type_id as typeid,* from kl_cats as a inner join kl_content_types as b on a.type_id=b.type_id   where a.parent_id="&rs("cat_id")&"  order by sort asc "
+		set rss=db.query(sql2)
 		do while not rss.eof
 			tpl.SetVariable "cat_id",rss("cat_id")&""
+			tpl.SetVariable "type_sxname",rss("type_sxname")&""
 			tpl.SetVariable "cat_name",rss("cat_name")&""
 			tpl.SetVariable "sort",rss("sort")&""
 			tpl.SetVariable "cat_show",getcatshow(rss("cat_show")&"")
-			tpl.setvariable "type_id",rss("type_id")&""
+			tpl.setvariable "type_id",rss("typeid")&""
 			tpl.setvariable "haveimg",getcatimg(rs("cat_pic")&"")
 			tpl.ParseBlock "m2_block"
 		rss.movenext
@@ -33,7 +36,8 @@ do while not rs.eof
 			tpl.SetVariable "cat_name",rs("cat_name")&""
 			tpl.SetVariable "sort",rs("sort")&""
 			tpl.SetVariable "cat_show",getcatshow(rs("cat_show")&"")
-			tpl.setvariable "type_id",rs("type_id")&""
+			tpl.setvariable "type_id",rs("typeid")&""
+			tpl.SetVariable "type_sxname",rs("type_sxname")&""
 			tpl.setvariable "haveimg",getcatimg(rs("cat_pic")&"")
 			tpl.ParseBlock "m1_block"
 		rs.movenext

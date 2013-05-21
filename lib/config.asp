@@ -3,6 +3,7 @@
 '初始化系统的配置参数
 '//////////////////////////////////
 on error goto 0
+session("APP")="true"
 '字符集设置
 Response.Addheader "Content-Type","text/html; charset=gbk" 
 

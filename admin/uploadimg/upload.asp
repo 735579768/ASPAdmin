@@ -1,3 +1,4 @@
+<% if session("APP")<>"true" then reurl("/") end if %>
 <!--#include file="UpLoad_Class.asp"-->
 <%
 dim upload

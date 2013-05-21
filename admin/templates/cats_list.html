@@ -44,7 +44,7 @@ td {
   </tr>
   <!-- BEGIN m1_block -->
   <tr background="/Public/images/tbg.gif">
-    <td align="left" style="padding-left:20px;background:none;" > 栏目：<a title="点击查看此分类下文章" href="article_list.asp?cat_id={{cat_id}}" target="_self">{{cat_name}}</a><span class="red">(ID:{{cat_id}})</span></td>
+    <td align="left" style="padding-left:20px;background:none;" > 栏目：<a title="点击查看此分类下文章" href="article_list.asp?cat_id={{cat_id}}" target="_self">{{cat_name}}</a><span class="red">(ID:{{cat_id}})</span>({{type_sxname}})</td>
     <td align="left" style="background:none;">
     <a href="add_cats.asp?parent_id={{cat_id}}" class="coolbg">增加子类</a> 
     <a href="add_article.asp?cat_id={{cat_id}}" title="在此分类下添加信息"  class="coolbg red">添加信息</a> 
@@ -55,7 +55,7 @@ td {
   </tr>
   <!-- BEGIN m2_block -->
   <tr>
-    <td align="left" style="padding-left:50px;"> 分类：<a title="点击查看此分类下文章"  href="article_list.asp?cat_id={{cat_id}}" target="_self">{{cat_name}}</a><span class="red">(ID:{{cat_id}})</span></td>
+    <td align="left" style="padding-left:50px;"> 分类：<a title="点击查看此分类下文章"  href="article_list.asp?cat_id={{cat_id}}" target="_self">{{cat_name}}</a><span class="red">(ID:{{cat_id}})</span>({{type_sxname}})</td>
     <td align="left" style="padding-left:67px;">
     <a href="add_article.asp?cat_id={{cat_id}}" title="在此分类下添加信息"  class="coolbg red">添加信息</a> 
     <a href="edit_cats.asp?cat_id={{cat_id}}&type_id={{type_id}}" class="coolbg">更改</a>

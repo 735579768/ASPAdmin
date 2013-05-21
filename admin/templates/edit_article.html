@@ -58,20 +58,15 @@ td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; 
     <label for="c">2、头条(H)</label>
     </td>
   </tr>
+     <tr>
+    <td width="90">信息分类：</td>
+    <td>
+{{catidsel}}<span class="red">(只能在同样信息类型下更改所属分类)</span></td>
+  </tr>
   <tr>
     <td width="90">内容模型：</td>
     <td>
-    {{typeidsel}}</td>
-  </tr>
-  <tr>
-    <td width="90">内容模板：</td>
-    <td>
-    <input type="text" name="arctpl" value="{{arctpl}}" /></td>
-  </tr>
-  <tr>
-    <td width="90">信息分类：</td>
-    <td>
-{{catidsel}}</td>
+    {{type_name}} <input type="hidden" name="type_id" value="{{type_id}}" /></td>
   </tr>
   <!--图片信息展示-->
   <tr>

@@ -18,6 +18,9 @@ set rs=nothing
 sql="select top 5 * from kl_archives order by uddate desc"
 arr=array("arctitle:arctitle","uddate:uddate")
 listblock "arclist",sql,arr
+
+sql="select top 5 * from kl_admin_log order by logintime desc"
+loopblock "adminlog",sql
 tpl.Parse
 'Destroy our objects
 set tpl = nothing

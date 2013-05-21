@@ -18,7 +18,7 @@ id=G("id")
 			AlertMsg(UPDATE_SUCCESS_STR)
 		else
 			AlertMsg(UPDATE_FAIL_STR)
-			die()
+			die("")
 		end if
 	end if
 

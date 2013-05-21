@@ -4,7 +4,7 @@
 if getparam("act")="exit" Then
 destroyCookies()
 echo "<script>parent.window.location.reload();</script>"
-die()
+die("")
 end if
 
 
@@ -12,9 +12,10 @@ end if
 dim logerrmsg:logerrmsg=""
 '验证登陆
 dim Uname,Upwd,zhiye,rs,sqlstr
-Uname=getparam("loginname")
-Upwd=getparam("loginpwd")
-numcode=getparam("numcode")
+Uname=G("loginname")
+Upwd=G("loginpwd")
+numcode=G("numcode")
+loginstate=G("loginstate")
 
 
 '如果有用户名和密码传过来的话进行验证
@@ -31,17 +32,31 @@ set rs=db.GetRecord(suffix & "admin","*","username='"&Uname&"'","",0)
 		else
 		'echo rs("password")&"--"&md5pwd
 			'更新登陆次数
-			result=db.UpdateRecord("kl_admin","id="&rs("id"),array("logintimes:"&(rs("logintimes")+1)))
+			result=db.UpdateRecord("kl_admin","id="&rs("id"),array("logintimes:"&(rs("logintimes")+1),"lastdate:"&now()))
 			'记录登陆日志
 			result=db.AddRecord("kl_admin_log",array("uname:"&rs("username"),"loginip:"&getip(),"qx_id:"&rs("qx_id")))
 			Session("admin_id")=rs("id")'保存管理员在数据表中的id值
-			Session("admin_qx_id")=rs("qx_id")'保存管理员在数据表中的权限id值
+			Session("adminqxid")=rs("qx_id")'保存管理员在数据表中的权限id值
 			Session.Timeout=30
 			Response.Cookies("adminid")=rs("id")
 			Response.Cookies("U_name")=Uname
 			Response.Cookies("U_pwd")=md5(Upwd,32)
-			Response.Cookies("U_name").Expires=now()+1/24
-			Response.Cookies("U_pwd").Expires=now()+1/24
+			'求记录时间
+			shijian=0
+			select case loginstate
+				case "0":
+					shijian=0.2'10分钟
+				case "1":
+					shijian=0.5'半小时
+				case "2":
+					shijian=24'一天
+				case "3":
+					shijian=24*7'一周
+				case "4":
+					shijian=24*30'一月
+			end select
+			Response.Cookies("U_name").Expires=now()+(shijian/24)
+			Response.Cookies("U_pwd").Expires=now()+(shijian/24)
 		end if
 	else
 		logerrmsg="用户名不存在"
@@ -74,13 +89,22 @@ end if
 					destroyCookies()
 					yanzhengCookies=false
 				else
+		'更新登陆次数
+					result=db.UpdateRecord("kl_admin","id="&rs("id"),array("logintimes:"&(rs("logintimes")+1),"lastdate:"&now()))
+					'记录登陆日志
+					result=db.AddRecord("kl_admin_log",array("uname:"&rs("username"),"loginip:"&getip(),"qx_id:"&rs("qx_id")))
 					Session("admin_id")=rs("id")'保存管理员在数据表中的id值
+					Session("adminqxid")=rs("qx_id")'保存管理员在数据表中的权限id值
 					Session.Timeout=30
-					Response.Cookies("adminid")=rs("id")
-					Response.Cookies("U_name")=Request.Cookies("U_name")
-					Response.Cookies("U_pwd")=Request.Cookies("U_pwd")
-					Response.Cookies("U_name").Expires=now()+1/24
-					Response.Cookies("U_pwd").Expires=now()+1/24
+'					Response.Cookies("adminid")=rs("id")
+'					Response.Cookies("U_name")=Uname
+'					Response.Cookies("U_pwd")=md5(Upwd,32)
+'					
+'					Response.Cookies("adminid")=rs("id")
+'					Response.Cookies("U_name")=Request.Cookies("U_name")
+'					Response.Cookies("U_pwd")=Request.Cookies("U_pwd")
+'					Response.Cookies("U_name").Expires=now()+1/24
+'					Response.Cookies("U_pwd").Expires=now()+1/24
 					yanzhengCookies=true
 				end if
 			end if
@@ -92,6 +116,6 @@ end if
 		tpl.setvariable "errstr",errstr
 		tpl.Parse
 		set tpl = nothing
-		die()
+		die("")
 	end function
 %>

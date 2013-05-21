@@ -15,8 +15,9 @@ if G("act")="addfriend" then
 	sortrank=G("sortrank")
 	friend_weizhi=G("friend_weizhi")
 	friend_email=G("friend_email")
+	show=G("show")
 	'echo db.wAddRecord("kl_friend_link",array("friend_name:"&friend_name,"sortrank:"&sortrank,"friend_url:"&friend_url,"friend_weizhi:"&friend_weizhi,"friend_email:"&friend_email))
-	dim result:result=db.AddRecord("kl_friend_link",array("friend_name:"&friend_name,"sortrank:"&sortrank,"friend_url:"&friend_url,"friend_weizhi:"&friend_weizhi,"friend_email:"&friend_email))
+	dim result:result=db.AddRecord("kl_friend_link",array("friend_name:"&friend_name,"sortrank:"&sortrank,"friend_url:"&friend_url,"friend_weizhi:"&friend_weizhi,"friend_email:"&friend_email,"show:"&show))
 		if result<>0 then
 			AlertMsg(ADD_SUCCESS_STR)
 		else

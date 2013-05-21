@@ -26,11 +26,7 @@ a {
               <td width="100">网址：</td>
               <td ><input name="friend_url" type="text" id="url" value="http://localhost/" size="30" class="pubinputs"></td>
             </tr>
-            <tr>
-              <td  >排列位置：</td>
-              <td ><input name="sortrank" type="text" id="sortrank" value="1" size="10" class="pubinputs" style="width:60px">
-                (由小到大排列) </td>
-            </tr>
+            
             <tr>
               <td >网站名称：</td>
               <td><input name="friend_name" type="text" size="30" value="友链标题" class="pubinputs"></td>
@@ -41,25 +37,21 @@ a {
             </tr>
             <tr>
               <td >链接位置：</td>
-              <td><input type="radio" name="friend_weizhi" value="0">
-                未审核
+              <td>                <input type="radio" name="friend_weizhi" value="2" checked="1">
+                首页
                 <input type="radio" name="friend_weizhi" value="1">
                 内页
-                <input type="radio" name="friend_weizhi" value="2" checked="1">
-                首页 </td>
+ </td>
             </tr>
             <tr>
-              <td >网站类型：</td>
-              <td><select name="typeid" id="typeid">
-                  <option value="1">综合网站</option>
-                  <option value="2">娱乐类</option>
-                  <option value="3">教育类</option>
-                  <option value="4">计算机类</option>
-                  <option value="5">电子商务</option>
-                  <option value="6">网上信息</option>
-                  <option value="7">论坛类</option>
-                  <option value="8">其它类型</option>
-                </select></td>
+              <td  >排列位置：</td>
+              <td ><input name="sortrank" type="text" id="sortrank" value="1" size="10" class="pubinputs" style="width:60px">
+                (由小到大排列) </td>
+            </tr>
+            <tr>
+              <td  >显示：</td>
+              <td ><input name="show" type="text" id="sortrank" value="1" size="10" class="pubinputs" style="width:60px">
+                (0不显示，1显示) </td>
             </tr>
             <tr align="center">
               <td colspan="2"><input type="hidden" name="friend_id" value="{{friend_id}}">

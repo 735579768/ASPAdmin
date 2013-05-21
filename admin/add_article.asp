@@ -1,4 +1,5 @@
 <!--#include file="lib/AdminInIt.asp"-->
+<% if session("APP")<>"true" then reurl("/") end if %>
 <%
 'tpl.SetTemplatesDir("")
 '包含文件
@@ -118,10 +119,13 @@
 	end if
 '添加文章时取传递过来的分类
 cat_id=G("cat_id")
-if cat_id="" then echo "<script>window.history.go(-1);</script>":die() end if
-set rs=db.query("select * from kl_cats as a inner join kl_content_types as b on a.type_id=b.type_id where a.cat_id="&cat_id)
+if cat_id="" then echo "<script>window.history.go(-1);</script>":die("") end if
+set rs=db.query("select a.type_id as typeid, * from kl_cats as a inner join kl_content_types as b on a.type_id=b.type_id where a.cat_id="&cat_id)
 tpl.setVariable "arctpl",rs("cat_article")&""
-tpl.SetVariable "typeidsel",getContentTypeSel()
+tpl.setVariable "cat_name",rs("cat_name")&""
+tpl.setVariable "type_name",rs("type_name")&""
+tpl.setVariable "type_id",rs("typeid")&""
+'tpl.SetVariable "typeidsel",getContentTypeSel()
 tpl.SetVariable "catidsel",getArcCatSel()
 
 

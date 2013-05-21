@@ -2,32 +2,48 @@
 '输出所有文章分类
 	function getArcCatSel()
 		'检查当前是否有默认的id传过来
-		dim selid'定义默认选中的id
-		if G("id")<>"" then
-		'  set selrs=db.getrecord("kl_article","type_id",array("id:"&G("id")))
-		  set selrs=db.query("select cat_id from kl_archives where id="&G("id"))
-		  selid =cstr(selrs("cat_id"))
-		end if
-		if G("cat_id")<>"" then  selid =G("cat_id")
+		dim selid,typeid,sql'定义默认选中的id
+			if G("id")<>"" then
+			'  set selrs=db.getrecord("kl_article","type_id",array("id:"&G("id")))
+			  set selrs=db.query("select cat_id,type_id from kl_archives where id="&G("id"))
+			  selid =cstr(selrs("cat_id"))
+			end if
+			
+			if G("cat_id")<>"" then  
+				selid =G("cat_id")
+				set srs=db.query("select type_id from kl_cats where cat_id="&selid)
+				typeid=srs("type_id")
+			end if
+			
+			if typeid<>"" then 
+				sql="select cat_id,cat_name from kl_cats where parent_id=0 and type_id="&typeid&" order by sort asc"
+			else
+				sql="select cat_id,cat_name from kl_cats where parent_id=0 order by sort asc"
+			end if
 		'输出sel表单
 		dim str:str="<select id='cat_id' name='cat_id' style='width:200px;'>"
-		set selrs=db.GetRecordBySQL("select cat_id,cat_name from kl_cats where parent_id=0 order by sort asc")
+		set selrs=db.GetRecordBySQL(sql)
+		set srs=nothing
 		if selrs.recordcount>0 then 
 			do while not selrs.eof
+			
 				if selid=selrs("cat_id")&"" then
 				str=str&"<option value='"&selrs("cat_id")&"' selected>"&selrs("cat_name")&"</option>"				
 				else
 				str=str&"<option value='"&selrs("cat_id")&"'>"&selrs("cat_name")&"</option>"
 				end if
+			
 				'查询二级分类start
 				set selrss=db.GetRecordBySQL("select cat_id,cat_name from kl_cats where parent_id="&selrs("cat_id")&" order by sort asc")
 				if selrss.recordcount>0 then 
 					do while not selrss.eof
+						
 						if selid=selrss("cat_id")&"" then
 							str=str&"<option value='"&selrss("cat_id")&"' selected><b style='color:#ccc;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>"&selrss("cat_name")&"</option>"				
 						else
 							str=str&"<option value='"&selrss("cat_id")&"'><b style='color:#ccc;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>"&selrss("cat_name")&"</option>"
 						end if
+					
 					selrss.movenext
 					loop
 					set selrss=nothing

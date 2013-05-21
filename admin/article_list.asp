@@ -1,7 +1,6 @@
 <!--#include file="lib/AdminInIt.asp"-->
 <!--#include file="../lib/page.class.asp"-->
 <%
-gettablefield("kl_cats")
 '移动回收站
 if act="huishousingle" then
 		id=G("id")
@@ -35,7 +34,7 @@ Set mypage=new xdownpage
 '得到数据库连接
 mypage.getconn=db.idbconn
 'sql语句
-mypage.getsql="SELECT a.id,a.cat_id as catid,a.arctitle,a.fbdate,a.arcflag,a.uddate,b.cat_name,c.type_name,a.arccontent,a.arcpic,a.recycling,a.archits from (kl_archives as a inner join  kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on a.type_id=c.type_id  where recycling=0  "& guolv &" order by fbdate desc"
+mypage.getsql="SELECT a.id,a.cat_id as catid,a.arctitle,a.fbdate,a.arcflag,a.uddate,b.cat_name,c.type_name,a.arccontent,a.arcpic,a.recycling,a.archits from (kl_archives as a inner join  kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on b.type_id=c.type_id  where recycling=0  "& guolv &" order by fbdate desc"
 '设置每一页的记录条数据为5条
 mypage.pagesize=15
 '返回Recordset
@@ -49,6 +48,7 @@ set rs=mypage.getrs()
 	'输出文章列表
 for i=1 to mypage.pagesize
 	if not rs.eof then
+	tpl.SetVariable "page",G("page")
 	tpl.SetVariable "id",rs("id")&""
 	tpl.SetVariable "cat_id",rs("catid")&""
 	tpl.SetVariable "title",rs("arctitle")&""

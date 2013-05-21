@@ -1,5 +1,5 @@
 <%
-
+on error resume next
 dim ajaxstr
 dim id:id=G("id")
 '处理删除后台菜单请求
@@ -26,7 +26,7 @@ dim id:id=G("id")
 			if not rs.eof then 
 				ajaxstr="分类下有文章不能删除!"
 				echo ajaxstr
-				die()
+				die("")
 			end if
 			'查询这个是不是顶级菜单，判断是不是有子菜单,含有子菜单的不能删除
 			set rs=db.query("select * from "& suffix &"cats where parent_id="& id)
@@ -55,5 +55,5 @@ dim id:id=G("id")
 '		end if
 '	end if
 echo ajaxstr
-die()
+die("")
 %>

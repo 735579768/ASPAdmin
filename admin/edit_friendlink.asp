@@ -16,9 +16,10 @@ if G("act")="updtfriend" then
 	if sortrank="" then sortrank =0
 	friend_weizhi=G("friend_weizhi")
 	friend_email=G("friend_email")
+	show=G("show")
 	'echo db.wAddRecord("kl_friend_link",array("friend_name:"&friend_name,"sortrank:"&sortrank,"friend_url:"&friend_url,"friend_weizhi:"&friend_weizhi,"friend_email:"&friend_email))
 	'echo db.wUpdateRecord("kl_friend_link","friend_id="&friend_id,array("friend_name:"&friend_name,"sortrank:"&sortrank,"friend_url:"&friend_url,"friend_weizhi:"&friend_weizhi,"friend_email:"&friend_email))
-	dim result:result=db.UpdateRecord("kl_friend_link","friend_id="&friend_id,array("friend_name:"&friend_name,"sortrank:"&sortrank,"friend_url:"&friend_url,"friend_weizhi:"&friend_weizhi,"friend_email:"&friend_email))
+	dim result:result=db.UpdateRecord("kl_friend_link","friend_id="&friend_id,array("friend_name:"&friend_name,"sortrank:"&sortrank,"friend_url:"&friend_url,"friend_weizhi:"&friend_weizhi,"friend_email:"&friend_email,"show:"&show))
 		if result<>0 then
 			AlertMsg(UPDATE_SUCCESS_STR)
 		else

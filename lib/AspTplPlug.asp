@@ -62,4 +62,5 @@ function GetArcList(num,img,imgwidth,imgheight)
 	set fs=nothing
 	GetArcList=replace(temstr,"{{RECONTENT}}",restr)
 end function
+
 %>

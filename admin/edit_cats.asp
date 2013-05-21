@@ -21,24 +21,28 @@ if G("act")="updtcat" then
 	if cat_pic<>"" and trim(cat_pic)<>tempic then
 			DeleteFile tempic
 	end if
-	'echo db.wUpdateRecord("kl_cats","cat_id="&cat_id,array("cat_name:"&cat_name,"type_id:"&type_id,"sort:"&csort,"cat_show:"&cat_show,"cat_pic:"&cat_pic,"cat_seotitle:"&cat_seotitle,"cat_seokeys:"&cat_seokeys,"cat_seodescr:"&cat_seodescr,"cat_content:"&cat_content))
+
 	result=db.UpdateRecord("kl_cats","cat_id="&cat_id,array("cat_name:"&cat_name,"type_id:"&type_id,"sort:"&csort,"cat_show:"&cat_show,"cat_pic:"&cat_pic,"cat_index:"&cat_index,"cat_list:"&cat_list,"cat_article:"&cat_article,"cat_seotitle:"&cat_seotitle,"cat_seokeys:"&cat_seokeys,"cat_seodescr:"&cat_seodescr,"cat_content:"&cat_content))
-	'db.query("insert into "&suffix&"cats(parent_id,cat_name,type_id,[sort]) values("&parent_id&",'"&cat_name&"',"&type_id&","&csort&")")
+
 	if result<>0 then
 	AlertMsg("分类更新成功!")
 	echo "<script>window.history.go(-1);</script>"
 	end if
 end if
 'Generate the page
-set rs=db.query("select * from "&suffix&"cats as a inner join kl_content_types as b on a.type_id=b.type_id where a.cat_id="&cat_id)
+sql="select * from "&suffix&"cats as a inner join kl_content_types as b on a.type_id=b.type_id where a.cat_id="&cat_id
+set rs=db.query(sql)
 cat_index=rs("cat_index")&""
 cat_list=rs("cat_list")&""
 cat_article=rs("cat_article")&""
 if cat_index="" then cat_index=rs("tpl_index")&"" end if
 if cat_list="" then cat_list=rs("tpl_list")&"" end if
 if cat_article="" then cat_article=rs("tpl_article")&"" end if
-setVarArr(array("cat_id:"&cat_id,"cat_name:"&rs("cat_name"),"cat_show:"&rs("cat_show"),"sort:"&rs("sort"),"cat_pic:"&rs("cat_pic"),"cat_index:"&cat_index,"cat_list:"&cat_list,"cat_article:"&cat_article,"cat_seotitle:"&rs("cat_seotitle"),"cat_seokeys:"&rs("cat_seokeys"),"cat_seodescr:"&rs("cat_seodescr"),"cat_content:"&rs("cat_content")))
-tpl.setvariable "typeidsel",getContentTypeSel()
+setVarArr(array("cat_index:"&cat_index,"cat_list:"&cat_list,"cat_article:"&cat_article))
+
+
+setTplVarBySql(sql)
+
 tpl.Parse
 'Destroy our objects
 set tpl = nothing

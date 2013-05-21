@@ -535,14 +535,21 @@ class ASPTemplate
 	'输出模板文件
 	'===============================================================================
 	public sub Parse
-		Dim parsed
-		parsed = replace(GetOutput,"{{void_url}}", "javascript:void(0)")'替换空js链接
+		parsed=varToNull()
+		response.write parsed
+	end sub
+
+	'===============================================================================
+	'清空没有替换的变量
+	'===============================================================================	
+	Function varToNull()
+		Dim a
+		a = replace(GetOutput,"{{void_url}}", "javascript:void(0)")'替换空js链接
 		p_regexp.IgnoreCase = True
 		p_regexp.Global = True
 		p_regexp.Pattern = "{{\S*}}"    			 '把没有赋值的变量标签替换成空
-		parsed = p_regexp.Replace(parsed, "")
-		response.write parsed
-	end sub
+		varToNull= p_regexp.Replace(a, "")
+	End Function
 	'===============================================================================
 	'替换模板中指定字符并输出
 	'===============================================================================
@@ -601,6 +608,13 @@ class ASPTemplate
 				next
 		replace_img=zongstr
 	end function
+'===============================================================================
+'内置的图片滚动加载特效,调用这个函数就可以让网页中的图片实现滚动加载特效
+'===============================================================================
+	Function Fetch()
+		a=varToNull()
+		Fetch=a
+	End Function
 end class
 
 %>

@@ -159,7 +159,7 @@ Class Aspdb
 		wGetRecord = strSelect
 	End Function
 	Public Function Query(ByVal strSelect)
-		set Query=GetRecordBySQL(strSelect)
+		 set Query=GetRecordBySQL(strSelect)
 	end function 
 	Public Function GetRecordBySQL(ByVal strSelect)
 		On Error Resume Next
