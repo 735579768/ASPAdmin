@@ -360,17 +360,17 @@
 '///////////////////////////////////////////
 	function filtersql(fString)
 		if isnull(fString) then
-		Replace_Text=""
+		filtersql=""
 		exit function
 		else
 		fString=trim(fString)
-		fString=replace(fString,">","¡·")
-		fString=replace(fString,"<","¡¶")
-		fString=replace(fString,"'","¡®")
+		'fString=replace(fString,">","¡·")
+		'fString=replace(fString,"<","¡¶")
+		fString=replace(fString,"'","""")
 		fString=replace(fString,";","£»")
 		fString=replace(fString,"--","¡ª")
-		fString=server.htmlencode(fString)
-		Replace_Text=fString
+		'fString=server.htmlencode(fString)
+		filtersql=fString
 		end if	
 	end function
 '///////////////////////////////////////////

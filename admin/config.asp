@@ -1,5 +1,4 @@
 <!--#include file="lib/AdminInIt.asp"-->
-<!--#include file="../lib/json.asp"-->
 <%
 'tpl.SetTemplatesDir("")
 '°üº¬ÎÄ¼þ
