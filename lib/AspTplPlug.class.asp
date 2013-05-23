@@ -21,7 +21,7 @@ class AspTplPlug
 'loop万能循环
 '===============================================================================
 	Function loopsql()
-		p_regexp.Pattern =  "<loop([\s\S]*?)>([\s\S]*?)</loop>" 
+		p_regexp.Pattern =  "<\!--\{loop([\s\S]*?)\}-->([\s\S]*?)<\!--\{/loop\}-->" 
 		p_regexp.Global = true
 		'查询模板中的所有loop块
 		set matches=p_regexp.Execute(tpl_str)
@@ -59,7 +59,7 @@ class AspTplPlug
 		str1=""
 		Set reg = New RegExp 
 		reg.Global = true
-		reg.Pattern =  "<"&tag&"([\s\S]*?)"&key&"=\'([\s\S]*?)\'([\s\S]*?)>" 
+		reg.Pattern =  "<\!--\{"&tag&"([\s\S]*?)"&key&"=\'([\s\S]*?)\'([\s\S]*?)\}-->" 
 		set ms=reg.Execute(str)
 		if ms.count>0 then
 		str1=ms(0).SubMatches(1)'取sql语句
