@@ -11,21 +11,21 @@
 {{#}}
 {{include file="public/header.html"}}
 <ul>
-<loop sql='select top 10 * from kl_archives' num='5'>
+<!--{loop sql='select top 10 * from kl_archives' num='5'}-->
 <li>{{arctitle}}</li>
-</loop>
+<!--{/loop}-->
 </ul>
 <ul>
 <div>1111111111111111111111111111111111111</div>
-<loop sql='select top 10 * from kl_archives' num='8' iterator='a'>
+<!--{loop sql='select top 10 * from kl_archives' num='8' iterator='a'}-->
 <li>{{arctitle}}{{a}}</li>
-</loop>
+<!--{/loop}-->
 </ul>
 <ul>
 
-<loop sql='select top 10 * from kl_cats'>
+<!--{loop sql='select top 10 * from kl_cats'}-->
 <li>{{cat_name}}</li>
-</loop>
+<!--{/loop}-->
 </ul>
 {{include file="public/footer.html"}}
 </body>
