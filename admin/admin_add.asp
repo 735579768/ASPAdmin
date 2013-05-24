@@ -13,8 +13,13 @@
 		qx_id=G("qx_id")
 		nicheng=G("nicheng")
 		'dump(qx_id)
+		set yzrs=db.query("select * from kl_admin where username='"&uname&"'")
 		'echo db.wAddRecord("kl_admin",array("username:"&uname,"qx_id:"&qx_id,"nicheng:"&nicheng,"password:"&md5(newpwd,32)))
-		result=db.AddRecord("kl_admin",array("username:"&uname,"qx_id:"&qx_id,"nicheng:"&nicheng,"password:"&md5(newpwd,32)))
+		if yzrs.recordcount>0 then
+			AlertMsg(EXISTADMIN)
+		else
+			result=db.AddRecord("kl_admin",array("username:"&uname,"qx_id:"&qx_id,"nicheng:"&nicheng,"password:"&md5(newpwd,32)))
+		end if
 		if result<>0 then
 			AlertMsg(ADD_SUCCESS_STR)
 		end if

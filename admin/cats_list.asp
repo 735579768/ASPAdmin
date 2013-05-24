@@ -22,6 +22,7 @@ do while not rs.eof
 		sql2="select a.type_id as typeid,* from kl_cats as a inner join kl_content_types as b on a.type_id=b.type_id   where a.parent_id="&rs("cat_id")&"  order by sort asc "
 		set rss=db.query(sql2)
 		do while not rss.eof
+			tpl.SetVariable "arcnum",getarcnum(rs("cat_id")&"")
 			tpl.SetVariable "cat_id",rss("cat_id")&""
 			tpl.SetVariable "type_sxname",rss("type_sxname")&""
 			tpl.SetVariable "cat_name",rss("cat_name")&""
@@ -32,6 +33,7 @@ do while not rs.eof
 			tpl.ParseBlock "m2_block"
 		rss.movenext
 		loop
+			tpl.SetVariable "arcnum",getarcnum(rs("cat_id")&"")
 			tpl.SetVariable "cat_id",rs("cat_id")&""
 			tpl.SetVariable "cat_name",rs("cat_name")&""
 			tpl.SetVariable "sort",rs("sort")&""
@@ -61,8 +63,14 @@ function getcatimg(str)
 	if str<>"" then
 		getcatimg="<div class='catimg'><img class='haveimg' src='images/haveimg.gif' style='cursor:pointer;' width='12' height='12' alt='分类封面有图片显示' title='分类封面有图片显示' /><span class='catdaimg' ><img src='"&str&"' width='150' height='150' /></span></div>"
 	else
-		getcatimg=""
+		getcatimg="无图"
 	end if
 end function
-
+'查询分类文章数量
+function getarcnum(catid)
+	sql="select count(*) as  a from kl_archives where cat_id="&catid
+	set bbbb=db.query(sql)
+	getarcnum=bbbb("a")&""
+	set bbbb=nothing
+end function
 %>

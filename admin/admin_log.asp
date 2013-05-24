@@ -4,7 +4,9 @@
 'tpl.SetTemplatesDir("")
 'tpl.setVariableFile "TOP_HTML","public/top.html"
 'tpl.setVariableFile "FOOTER_HTML","public/footer.html"
-
+if G("act")="delall" then 
+db.query("delete from kl_admin_log")
+end if
 id=G("id")
 	if id<>"" then
 		result=db.deleteRecord("kl_admin_log","id",id)

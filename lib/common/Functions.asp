@@ -631,14 +631,15 @@
 	 objRegExp.IgnoreCase = True
 	 objRegExp.Global = True
 	 '取闭合的<>
-	 objRegExp.Pattern = "<.+?>"
+	 objRegExp.Pattern = "<(.*?)>|\s+?"
 	 '进行匹配
-	 Set Matches=objRegExp.Execute(strHTML)
-	 ' 遍历匹配集合，并替换掉匹配的项目
-	 For Each Match in Matches 
-	 strHtml=Replace(strHTML,Match.Value,"")
-	 Next
-	 strHTML=replace(strHTML," ","")
+	 strHTML=objRegExp.replace(strHTML,"")
+'	 Set Matches=objRegExp.Execute(strHTML)
+'	 ' 遍历匹配集合，并替换掉匹配的项目
+'	 For Each Match in Matches 
+'	 strHtml=Replace(strHTML,Match.Value,"")
+'	 Next
+'	 strHTML=replace(strHTML," ","")
 	 RemoveHTML=strHTML
 	 Set objRegExp = Nothing
 	End Function

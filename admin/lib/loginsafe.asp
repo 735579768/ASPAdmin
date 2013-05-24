@@ -90,9 +90,9 @@ end if
 					yanzhengCookies=false
 				else
 		'更新登陆次数
-					result=db.UpdateRecord("kl_admin","id="&rs("id"),array("logintimes:"&(rs("logintimes")+1),"lastdate:"&now()))
+					'result=db.UpdateRecord("kl_admin","id="&rs("id"),array("logintimes:"&(rs("logintimes")+1),"lastdate:"&now()))
 					'记录登陆日志
-					result=db.AddRecord("kl_admin_log",array("uname:"&rs("username"),"loginip:"&getip(),"qx_id:"&rs("qx_id")))
+					'result=db.AddRecord("kl_admin_log",array("uname:"&rs("username"),"loginip:"&getip(),"qx_id:"&rs("qx_id")))
 					Session("admin_id")=rs("id")'保存管理员在数据表中的id值
 					Session("adminqxid")=rs("qx_id")'保存管理员在数据表中的权限id值
 					Session.Timeout=30

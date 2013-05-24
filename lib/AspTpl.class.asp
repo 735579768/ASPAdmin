@@ -544,10 +544,15 @@ class ASPTemplate
 	'===============================================================================	
 	Function varToNull()
 		Dim a
-		a = replace(GetOutput,"{{void_url}}", "javascript:void(0)")'替换空js链接
-		a = replace(GetOutput,"{{#}}", "javascript:void(0)")
+		a=Getoutput
+		'a = replace(GetOutput,"{{void_url}}", "javascript:void(0)")'替换空js链接
+		'a = replace(GetOutput,"{{#}}", "javascript:void(0)")
 		p_regexp.IgnoreCase = True
 		p_regexp.Global = True
+		p_regexp.Pattern = "{{#}}"    
+		a= p_regexp.Replace(a, "javascript:void(0);")			 '去掉锚点
+		p_regexp.Pattern = "\'#\'|""#"""    
+		a= p_regexp.Replace(a, "'javascript:void(0);'")			 '去掉锚点		
 		p_regexp.Pattern = "{{\S*}}"    
 		a= p_regexp.Replace(a, "")			 '把没有赋值的变量标签替换成空
 		'p_regexp.Pattern = "([\s]*)\r*(\n)"  '去掉所有换行

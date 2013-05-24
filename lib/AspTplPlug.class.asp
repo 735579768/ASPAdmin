@@ -33,13 +33,13 @@ class AspTplPlug
 				temsql=getloopparam(Matches(i),"loop","sql")
 				temnum=getloopparam(Matches(i),"loop","num")
 				temiterator=getloopparam(Matches(i),"loop","iterator")
-				if temnum="" then 
-					temnum=0
-				else
-					temnum=Cint(temnum)
-				end if
+				temtitlelen=getloopparam(Matches(i),"loop","titlelen")
+				temcontentlen=getloopparam(Matches(i),"loop","contentlen")
+				if temnum="" then:temnum=0:else:temnum=Cint(temnum):end if
+				if temtitlelen="" then:temtitlelen=30:else:temtitlelen=Cint(temtitlelen):end if
+				if temcontentlen="" then:temcontentlen=30:else:temcontentlen=Cint(temcontentlen):end if
 				'处理单个loop中的内容
-				vostr=volist(Matches(i).SubMatches(1),temsql,temnum,temiterator)
+				vostr=volist(Matches(i).SubMatches(1),temsql,temnum,temiterator,temtitlelen,temcontentlen)
 				'把这个loop块中的内容换为指定的内容
 				tpl_str=replace(tpl_str,Matches(i),vostr)
 			next
@@ -70,7 +70,7 @@ class AspTplPlug
 '===============================================================================
 '循环单个loop中的内容并返回处理过的内容
 '===============================================================================	
-	Function volist(str,sql,num,iterator)
+	Function volist(str,sql,num,iterator,titlelen,contentlen)
 		str1=""'一个块最终处理好后放的变量
 		str2=""'循环字段替换时用到的
 		set vors=db.query(sql)
@@ -88,6 +88,8 @@ class AspTplPlug
 					'循环记录集中的字段并替换为指定的值
 					for j=0 to ubound(fieldarr)-1
 						fieldstr=fieldarr(j)(0)
+	if instr(fieldstr,"content")>0 then: str2=replace(str2,"{{infocontent}}",left(removehtml(vors(fieldstr)&""),contentlen)	):end if
+	if instr(fieldstr,"title")>0 then: str2=replace(str2,"{{infotitle}}",left(vors(fieldstr)&"",titlelen)):end if
 						str2=replace(str2,"{{"&fieldstr&"}}",vors(fieldstr)&"")
 					next
 					str1=str1+str2

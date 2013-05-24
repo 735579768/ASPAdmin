@@ -31,6 +31,7 @@
 						uprs(key)=val
 					 end if
 				next
+				if(G("arcdescr")="") then uprs("arcdescr")=left(removehtml(G("arccontent")),30)
 				uprs.update
 				if err.number<>0 then
 					AlertMsg(UPDATE_FAIL_STR)
@@ -88,6 +89,7 @@
 	tpl.SetVariable "type_name",rs("typename")&""
 	tpl.SetVariable "type_id",rs("typeid")&""
 	tpl.SetVariable "arccontent",rs("arccontent")&""
+	tpl.SetVariable "arcdescr",rs("arcdescr")&""
 	
 	tpl.SetVariable "typeidsel",getContentTypeSel()
 	tpl.SetVariable "catidsel",getArcCatSel()
