@@ -1,4 +1,4 @@
-<%@LANGUAGE="VBSCRIPT" CODEPAGE="65001"%>
+<%@LANGUAGE="VBSCRIPT" CODEPAGE="936"%>
 <%
 Dim Fy_Url,Fy_a,Fy_x,Fy_Cs(),Fy_Cl,Fy_Ts,Fy_Zx 
 '---定义部份 头------ 
