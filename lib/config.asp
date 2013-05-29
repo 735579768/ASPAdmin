@@ -1,30 +1,30 @@
 <%
 '////////////////////////////////////
-'³õÊ¼»¯ÏµÍ³µÄÅäÖÃ²ÎÊý
+'åˆå§‹åŒ–ç³»ç»Ÿçš„é…ç½®å‚æ•°
 '//////////////////////////////////
 'on error resume next 
 on error goto 0
 session("APP")="true"
-'×Ö·û¼¯ÉèÖÃ
-Response.Addheader "Content-Type","text/html; charset=gbk" 
+'å­—ç¬¦é›†è®¾ç½®
+'Response.Addheader "Content-Type","text/html; charset=utf-8" 
 
-'Êý¾Ý¿âÅäÖÃ
-const Sql_Server = "127.0.0.1" 'Êý¾Ý¿â·þÎñÆ÷µØÖ· 
-const Sql_User = "" 'Êý¾Ý¿âµÇÂ¼Ãû 
-const Sql_Pass = "" 'Êý¾Ý¿âÃÜÂë 
-const Sql_Data = "/admin/#data/#aspadmindata.mdb" 'Êý¾Ý¿âÃû
+'æ•°æ®åº“é…ç½®
+const Sql_Server = "127.0.0.1" 'æ•°æ®åº“æœåŠ¡å™¨åœ°å€ 
+const Sql_User = "" 'æ•°æ®åº“ç™»å½•å 
+const Sql_Pass = "" 'æ•°æ®åº“å¯†ç  
+const Sql_Data = "/admin/#data/#aspadmindata.mdb" 'æ•°æ®åº“å
 const suffix ="kl_"
 
-'ºóÌ¨ÎÄ¼þ¼ÐÄ¿Â¼
+'åŽå°æ–‡ä»¶å¤¹ç›®å½•
 const adminDir="admin"
 
 
-'µÇÂ½id±£´æ È¨ÏÞ²Ù×÷³¬¼¶¹ÜÀíÔ±(0)  ÆÕÍ¨¹ÜÀíÔ±(1)  
+'ç™»é™†idä¿å­˜ æƒé™æ“ä½œè¶…çº§ç®¡ç†å‘˜(0)  æ™®é€šç®¡ç†å‘˜(1)  
 dim login_id
 login_id=0
 
 
-'Ä£°åÅäÖÃ
+'æ¨¡æ¿é…ç½®
 dim TPL_PATH
 	TPL_PATH="templates/"
 	
