@@ -1,8 +1,34 @@
 <div class="footer">
-	<div class="width900 footer_nav">
-		<span><a href="about.asp">关于我们 About Us</a></span>
-		<span class="kefu"><a href="about.asp"> 客服中心 Customer Service</a></span>
-		<span class="kefu"><a href="about.asp">联系我们 Contact Us</a></span>                       
-	</div>
-	<div class="width900 footer_bq">版权所有：玲珑酿酒师   Copyright(c) 2013-2015 <a href="http://www.artfulwinemaker.cn">http://www.artfulwinemaker.cn</a></div>
+    <div class="sub_nav clear">
+    	<ul>
+        	<li>快速导航：</li>
+            <li><a href="#">代用茶</a>   &nbsp;|</li>
+            <li><a href="#">固体饮料</a>   &nbsp;|</li>
+            <li><a href="#">颗粒</a>   &nbsp;|</li>
+            <li><a href="#">胶囊</a>   &nbsp;|</li>
+            <li><a href="#">片剂</a>   &nbsp;|</li>
+            <li><a href="#">OEM代工</a>   &nbsp;|</li>
+           	<li><a href="#">荷叶决明固体饮料</a>   &nbsp;|</li>
+            <li><a href="#">刀豆枸杞固体饮料</a>   &nbsp;|</li>
+            <li><a href="#">刀豆枸杞固体饮料</a></li>
+        </ul>
+    </div>
+    <div class="friend clear">
+    <ul>
+    	<li><a href="/">{{cfg_indexname}}</a></li>
+        <!--{loop sql='select * from kl_cats where cat_show=1 order by sort asc ' num=''}-->
+        <li><a href="cat.asp?cat_id={{cat_id}}">{{cat_name}}</a> &nbsp;|</li>
+               <!--{/loop}-->
+        </ul>
+    </div>
+    <div class="bottom clear">
+    	<div class="logo"><a href="#"><img src="images/logo1.gif" alt="林诺药业" title="林诺药业"/></a></div>
+        <div class="address">
+        	<ul>
+            	<li>公司地址：郑州市高新区冬青街10号银发工业园3号</li>
+                <li>公司电话：0371-66207707   0371-66209327</li>
+                <li>版权所有：{{cfg_powerby}}    备案号：{{cfg_beian}}Copyright(c) 2013-2015  www.xinhuipinggu.com</li>
+            </ul>
+        </div>
+    </div>
 </div>

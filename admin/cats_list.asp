@@ -53,9 +53,9 @@ set tpl = nothing
 ''文章列表内容输输出
 function getcatshow(str)
 	if "1"=str then
-		getcatshow="导航显示中..."
+		getcatshow=NAVSHOW
 	else
-		getcatshow="<span style='color:red;'>导航隐藏中...</span>"
+		getcatshow="<span style='color:red;'>"&NAVHIDDEN&"</span>"
 	end if
 end function
 '判断分类封面是否有图
@@ -63,7 +63,7 @@ function getcatimg(str)
 	if str<>"" then
 		getcatimg="<div class='catimg'><img class='haveimg' src='images/haveimg.gif' style='cursor:pointer;' width='12' height='12' alt='分类封面有图片显示' title='分类封面有图片显示' /><span class='catdaimg' ><img src='"&str&"' width='150' height='150' /></span></div>"
 	else
-		getcatimg="无图"
+		getcatimg=NOIMG
 	end if
 end function
 '查询分类文章数量

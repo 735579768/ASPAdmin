@@ -2,6 +2,7 @@
 '////////////////////////////////////
 '初始化系统的配置参数
 '//////////////////////////////////
+'on error resume next 
 on error goto 0
 session("APP")="true"
 '字符集设置
@@ -26,4 +27,9 @@ login_id=0
 '模板配置
 dim TPL_PATH
 	TPL_PATH="templates/"
+	
+'在模板最终输出时进行正则替换第一组替换中间用##隔开
+redim regarr(2)
+regarr(0)="cat\.asp\?cat_id\=(\d+)##cat-$1.html"
+regarr(1)="view\.asp\?id\=(\d+)##view-$1.html"
 %>

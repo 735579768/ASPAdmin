@@ -3,7 +3,7 @@
 <%
 catid=G("cat_id")
 if catid="" then reurl("/") end if
-'Éè¶¨Ö¸¶¨µÄÄ£°å
+'è®¾å®šæŒ‡å®šçš„æ¨¡æ¿
 tpl.SetTemplateFile getCatIndexTpl(catid)
 
 setTplVarBySql("select * from kl_cats where cat_id="&catid)

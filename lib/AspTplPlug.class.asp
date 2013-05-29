@@ -11,6 +11,8 @@ class AspTplPlug
 
 	private sub class_Initialize
 		Set p_regexp = New RegExp
+		p_regexp.Global = true
+		p_regexp.IgnoreCase = True
 	end sub
 	
 	Function run()
@@ -100,6 +102,17 @@ class AspTplPlug
 		set vors=nothing
 		volist=str1
 	End Function	
+'正则最终输出的模板字符串
+	Function regtplstr()
+		for each a in regarr 
+			ta=split(a,"##",2)
+			if ubound(ta)>0 then 
+				p_regexp.Pattern = ta(0)
+				tpl_str= p_regexp.Replace(tpl_str,ta(1))	
+			end if
+		next
+		'伪静态
+	End Function
 '//////////////////////////////////loop code end///////////////////////////////////////////////////
 end class
 %>

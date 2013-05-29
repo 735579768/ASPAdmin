@@ -32,44 +32,80 @@ td {
 .catimg{ position:relative; display:inline-block;}
 .catimg span{ background:#fff; border:solid 1px #ccc; padding:5px;}
 .catimg .catdaimg{ display:none; position:absolute; left:-150px; top:0px; z-index:999;}
+
+.lanmu{ margin:0 auto; }
+.lanmu,.lanmu dt,.lanmu dd{display:block;  width:98%; margin:0px; padding:0px;}
+.lanmu dt,.lanmu dd{ height:30px; line-height:30px;}
+.lanmu dt{ background:url(images/tbg.gif) repeat-x;padding:0px 40px;}
+.lanmu dd{padding:0px 70px;border-bottom: 1px dotted #BCBCBC;}
+.lanmu dt .left{ width:330px; float:left;}
+.lanmu dt .right{ float:left;}
+
+.lanmu dd .left{ width:300px; float:left;}
+.lanmu dd .right{ float:left;}
+.lanmu dt .jiajian{ display:block; float:left; margin:10px; cursor:pointer;}
 </style>
 <body>
-<table style="border-collapse:collapse; text-align:center; margin:0 auto;" width="98%" border="0" cellspacing="0" cellpadding="0">
-  <tr bgcolor="#E7E7E7">
-    <td height="28" colspan="3" background="/Public/images/tbg.gif" style="padding-left:10px;"><span>分类栏目管理<<<a href="add_cats.asp?parent_id=0" class="coolbg">增加顶级栏目</a></span> &nbsp; <a href="javascript:window.history.go(-1);" class="coolbg">返回</a></td>
-  </tr>
-  <tr>
-    <td width="50%">ID选择栏目/分类内容模型</td>
-    <td width="50%" align="left">操作</td>
-  </tr>
-  <!-- BEGIN m1_block -->
-  <tr background="/Public/images/tbg.gif">
-    <td align="left" style="padding-left:20px;background:none;" > 栏目：<a title="点击查看此分类下文章" href="article_list.asp?cat_id={{cat_id}}" target="_self">{{cat_name}}</a><span class="red">(ID:{{cat_id}},文档数:{{arcnum}})</span>({{type_sxname}})</td>
-    <td align="left" style="background:none;">
-    <a href="add_cats.asp?parent_id={{cat_id}}&type_id={{type_id}}" class="coolbg">增加子类</a> 
-    <a href="add_article.asp?cat_id={{cat_id}}" title="在此分类下添加信息"  class="coolbg red">添加信息</a> 
-    <a href="edit_cats.asp?cat_id={{cat_id}}&type_id={{type_id}}" class="coolbg">更改</a>
-    <input type="hidden"  value="{{cat_id}}" />
-    <a href="javascript:void(0);" class="coolbg delcat">删除</a>
-    (排序：{{sort}})({{cat_show}})({{haveimg}})</td>
-  </tr>
-  <!-- BEGIN m2_block -->
-  <tr>
-    <td align="left" style="padding-left:50px;"> 分类：<a title="点击查看此分类下文章"  href="article_list.asp?cat_id={{cat_id}}" target="_self">{{cat_name}}</a><span class="red">(ID:{{cat_id}},文档数:{{arcnum}})</span>({{type_sxname}})</td>
-    <td align="left" style="padding-left:67px;">
-    <a href="add_article.asp?cat_id={{cat_id}}" title="在此分类下添加信息"  class="coolbg red">添加信息</a> 
-    <a href="edit_cats.asp?cat_id={{cat_id}}&type_id={{type_id}}" class="coolbg">更改</a>
-    <input type="hidden"  value="{{cat_id}}" />
-    <a href="javascript:void(0);" class="coolbg delcat">删除</a>
-    (排序：{{sort}})({{cat_show}})({{haveimg}})</td>
-  </tr>
-  <!-- END m2_block --> 
-  <!-- END m1_block -->
-  
-</table>
-<script type="text/javascript">
 
+<dl class="lanmu">
+<dt><a href="javascript:zall();" class="coolbg zhankai">全部展开</a>
+<a href="javascript:hall();" class="coolbg hebing">全部合并</a></dt>
+</dl>
+<!-- BEGIN m1_block -->
+<dl class="lanmu">
+	<dt><div class="left"><img class="jiajian" src="images/jian.gif" width="9" height="9" />栏目：<u><a title="点击查看此分类下文章" href="article_list.asp?cat_id={{cat_id}}" target="_self">{{cat_name}}</a></u><span class="red">(ID:{{cat_id}},文档数:{{arcnum}})</span>({{type_sxname}})</div>
+    <div class="right"> 
+    <a href="add_article.asp?cat_id={{cat_id}}" title="在此分类下添加信息"  class="coolbg red">添加信息</a> 
+    <a href="edit_cats.asp?cat_id={{cat_id}}&type_id={{type_id}}" class="coolbg">更改</a>
+    <input type="hidden"  value="{{cat_id}}" />
+    <a href="javascript:void(0);" class="coolbg delcat">删除</a>
+    <a href="add_cats.asp?parent_id={{cat_id}}&type_id={{type_id}}" class="coolbg">增加子类</a> 
+    (排序：{{sort}})({{cat_show}})({{haveimg}})</div>
+    </dt>
+        <!-- BEGIN m2_block -->
+    <dd><div class="left">
+    	栏目：<u><a title="点击查看此分类下文章"  href="article_list.asp?cat_id={{cat_id}}" target="_self">{{cat_name}}</a></u><span class="red">(ID:{{cat_id}},文档数:{{arcnum}})</span>({{type_sxname}})</div>
+        <div class="right">
+        <a href="add_article.asp?cat_id={{cat_id}}" title="在此分类下添加信息"  class="coolbg red">添加信息</a> 
+    <a href="edit_cats.asp?cat_id={{cat_id}}&type_id={{type_id}}" class="coolbg">更改</a>
+    <input type="hidden"  value="{{cat_id}}" />
+    <a href="javascript:void(0);" class="coolbg delcat">删除</a>
+    (排序：{{sort}})({{cat_show}})({{haveimg}})
+        </div>
+    </dd>
+     <!-- END m2_block --> 
+</dl>
+ 
+  <!-- END m1_block -->
+
+
+
+<script type="text/javascript">
+function zall(){
+	$('.jiajian').attr('src','images/jian.gif');
+	$('.lanmu dd').show();
+	}
+function hall(){
+	$('.jiajian').attr('src','images/jia.gif');
+	$('.lanmu dd').hide();
+	}
+hall();
 $(function(){
+		$(".lanmu dd").bind("mouseover",function(){
+			$(this).css('background','#FBFCE2');
+		});
+		$(".lanmu dd").bind("mouseout",function(){
+			$(this).css('background','#ffffff');
+		});
+	$('.lanmu .jiajian').bind('click',function(){
+		var a=$(this).attr('src')
+		if(a=='images/jia.gif'){
+			$(this).attr('src','images/jian.gif');
+			}else{
+			$(this).attr('src','images/jia.gif');	
+				}
+		$(this).parent().parent().parent().children('dd').toggle();
+		});
 //ajax删除前台菜单
 	$(".delcat").bind("click",function(){
 		if(!confirm('确认要删除吗？'))return;

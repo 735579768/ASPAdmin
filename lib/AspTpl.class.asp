@@ -557,7 +557,14 @@ class ASPTemplate
 		a= p_regexp.Replace(a, "")			 '把没有赋值的变量标签替换成空
 		'p_regexp.Pattern = "([\s]*)\r*(\n)"  '去掉所有换行
 		p_regexp.Pattern = "\r*(\n)([\s*])\r*(\n)"  '去掉空行
-		varToNull= p_regexp.Replace(a, vbCrLf)	 
+		a= p_regexp.Replace(a, vbCrLf)	
+		'使用扩展先进行处理
+		set tplplug=New AspTplPlug
+		tplplug.templatestr=a
+		tplplug.regtplstr
+		a=tplplug.templatestr
+		set tplplug=nothing
+		varToNull=a 
 	End Function
 	'===============================================================================
 	'替换模板中指定字符并输出
