@@ -11,6 +11,6 @@ rs.addNew
 					rs("fbdate")=FormatDate(now,2)
 					rs("fbip")=getIP()
 rs.update
-echo "<script>alert('发布成功');window.history.go(-1);</script>"
+echo "<script>alert('鍙戝竷鎴愬姛');window.history.go(-1);</script>"
 set rs=nothing
 %>

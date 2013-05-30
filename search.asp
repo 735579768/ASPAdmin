@@ -3,7 +3,7 @@
 <%
 s=G("s")
 cat_id=G("cat_id")
-'Éè¶¨Ö¸¶¨µÄÄ£°å
+'è®¾å®šæŒ‡å®šçš„æ¨¡æ¿
 sql=""
 if cat_id="0" then
 sql="select * from kl_archives where type_id=2 and arctitle like '%"&s&"%' order by fbdate desc"

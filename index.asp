@@ -1,7 +1,7 @@
 <!--#include file="lib/init.asp"-->
 <%
 'reurl("admin")
-'°üº¬ÎÄ¼þ
+'åŒ…å«æ–‡ä»¶
 'Generate the page
 tpl.Parse
 'Destroy our objects
