@@ -1,10 +1,9 @@
-<%@LANGUAGE="VBSCRIPT" CODEPAGE="936"%>
 <%
 Dim Fy_Url,Fy_a,Fy_x,Fy_Cs(),Fy_Cl,Fy_Ts,Fy_Zx 
-'---¶¨Òå²¿·İ Í·------ 
-Fy_Cl = 1 '´¦Àí·½Ê½£º1=ÌáÊ¾ĞÅÏ¢,2=×ªÏòÒ³Ãæ,3=ÏÈÌáÊ¾ÔÙ×ªÏò 
-Fy_Zx = "index.Asp" '³ö´íÊ±×ªÏòµÄÒ³Ãæ 
-'---¶¨Òå²¿·İ Î²------ 
+'---å®šä¹‰éƒ¨ä»½ å¤´------ 
+Fy_Cl = 1 'å¤„ç†æ–¹å¼ï¼š1=æç¤ºä¿¡æ¯,2=è½¬å‘é¡µé¢,3=å…ˆæç¤ºå†è½¬å‘ 
+Fy_Zx = "index.Asp" 'å‡ºé”™æ—¶è½¬å‘çš„é¡µé¢ 
+'---å®šä¹‰éƒ¨ä»½ å°¾------ 
 
 On Error Resume Next 
 Fy_Url=Request.ServerVariables("QUERY_STRING") 
@@ -19,11 +18,11 @@ If Fy_Cs(Fy_x)<>"" Then
 If Instr(LCase(Request(Fy_Cs(Fy_x))),"'")<>0 or Instr(LCase(Request(Fy_Cs(Fy_x))),"select")<>0 or Instr(LCase(Request(Fy_Cs(Fy_x))),"update")<>0 or Instr(LCase(Request(Fy_Cs(Fy_x))),"chr")<>0 or Instr(LCase(Request(Fy_Cs(Fy_x))),"delete%20from")<>0 or Instr(LCase(Request(Fy_Cs(Fy_x))),";")<>0 or Instr(LCase(Request(Fy_Cs(Fy_x))),"insert")<>0 or Instr(LCase(Request(Fy_Cs(Fy_x))),"mid")<>0 Or Instr(LCase(Request(Fy_Cs(Fy_x))),"master.")<>0 Then 
 	Select Case Fy_Cl 
 		Case "1" 
-		Response.Write "<Script Language=JavaScript>alert(' ³öÏÖ´íÎó£¡²ÎÊı "&Fy_Cs(Fy_x)&" µÄÖµÖĞ°üº¬·Ç·¨×Ö·û´®£¡\n\n Çë²»ÒªÔÚ²ÎÊıÖĞ³öÏÖ£ºand,select,update,insert,delete,chr µÈ·Ç·¨×Ö·û£¡\nÇë²»Òª½øĞĞ·Ç·¨ÊÖ¶Î£¡');window.close();</Script>" 
+		Response.Write "<Script Language=JavaScript>alert(' å‡ºç°é”™è¯¯ï¼å‚æ•° "&Fy_Cs(Fy_x)&" çš„å€¼ä¸­åŒ…å«éæ³•å­—ç¬¦ä¸²ï¼\n\n è¯·ä¸è¦åœ¨å‚æ•°ä¸­å‡ºç°ï¼šand,select,update,insert,delete,chr ç­‰éæ³•å­—ç¬¦ï¼\nè¯·ä¸è¦è¿›è¡Œéæ³•æ‰‹æ®µï¼');window.close();</Script>" 
 		Case "2" 
 		Response.Write "<Script Language=JavaScript>location.href='"&Fy_Zx&"'</Script>" 
 		Case "3" 
-		Response.Write "<Script Language=JavaScript>alert(' ³öÏÖ´íÎó£¡²ÎÊı "&Fy_Cs(Fy_x)&"µÄÖµÖĞ°üº¬·Ç·¨×Ö·û´®£¡\n\n Çë²»ÒªÔÚ²ÎÊıÖĞ³öÏÖ£º,and,select,update,insert,delete,chr µÈ·Ç·¨×Ö·û£¡\n\nÉè¼ÆÁËÃÅ£¬·Ç·¨ÇÖÈëÇëÀë¿ª£¬Ğ»Ğ»£¡');location.href='"&Fy_Zx&"';</Script>" 
+		Response.Write "<Script Language=JavaScript>alert(' å‡ºç°é”™è¯¯ï¼å‚æ•° "&Fy_Cs(Fy_x)&"çš„å€¼ä¸­åŒ…å«éæ³•å­—ç¬¦ä¸²ï¼\n\n è¯·ä¸è¦åœ¨å‚æ•°ä¸­å‡ºç°ï¼š,and,select,update,insert,delete,chr ç­‰éæ³•å­—ç¬¦ï¼\n\nè®¾è®¡äº†é—¨ï¼Œéæ³•ä¾µå…¥è¯·ç¦»å¼€ï¼Œè°¢è°¢ï¼');location.href='"&Fy_Zx&"';</Script>" 
 	End Select 
 Response.End 
 End If 
