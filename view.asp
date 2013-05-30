@@ -2,9 +2,9 @@
 <%
 id=G("id")
 if id="" then reurl("/") end if
-'°üº¬ÎÄ¼þ
+'åŒ…å«æ–‡ä»¶
 'Generate the page
-'Éè¶¨Ö¸¶¨µÄÄ£°å
+'è®¾å®šæŒ‡å®šçš„æ¨¡æ¿
 tpl.SetTemplateFile getArticleTpl(id)
 sql="select * from (kl_archives as a inner join kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on b.type_id=c.type_id where a.id="&id
 setTplVarBySql(sql)
