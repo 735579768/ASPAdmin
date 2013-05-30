@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>产品搜索|{{cfg_webname}}</title>
+<meta name="keywords" content="{{cfg_keywords}}{{arckeys}}" />
+<meta name="description" content="{{cfg_description}}{{arcdescr}}" />
+<link rel="stylesheet" type="text/css" href="/css/index.css">
+</head>
+
+<body>
+{{include file="public/header.html"}}
+<div class="kl-tab">
+  	<div class="left_bt">
+        <div class="oem_box">
+            <div class="oem_bt"><span style="padding-left:45px;">产品展示</span></div>
+            <div class="oem_list">
+                <ul>
+                <!--{loop sql='select * from kl_cats where parent_id=28'}-->
+                    <li class="kl-tab-nav lili"><a href="cat.asp?cat_id={{cat_id}}">{{cat_name}}>></a></li>
+                <!--{/loop}-->
+                </ul>
+            </div>       
+          </div>
+          <div class="img">
+              <ul>
+                   <li><a href="cat.asp?cat_id=23"><img src="images/contact.jpg" alt="联系我们" title="联系我们"/></a></li>
+                   <li><a href="cat.asp?cat_id=22"><img src="images/message_03.jpg" alt="网上留言" title="网上留言" /></a></li>
+                   <li><a href="cat.asp?cat_id=25"><img src="images/zsdl_tel_03.jpg" alt="招商代理" title="招商代理" /></a></li>
+              </ul>
+          </div>
+    </div>
+
+    	<div class="list_nr">
+        <!--kl-tab-div的开始-->
+            <div class="kl-tab-div clear">
+            	<div class="bt">
+                   
+                	<span style="color:#616060; font-size:14px; font-weight:800; padding-left:110px;" >{{cat_name}}</span>
+                	            <span style="padding-left:330px; background:url(images/fh.png) no-repeat 310px 3px;">                                    &nbsp;&nbsp;您现在的位置:首页-产品展示-{{cat_name}}</span>
+                </div>
+                <div class="nr">
+                <!--cpjs的开始-->
+                	<div class="cpjs">
+                     <!--cpjs1的开始-->
+                    	 <!-- BEGIN list -->
+                    	<div class="cpjs1">
+                        	<div class="cptp"><a href="view.asp?id={{id}}" class="pic"><img src="{{arcpic}}" /></a></div>
+                            <div class="wzms">
+                            	<ul>
+                                	<li style="color:#74C84C; font-size:13px; font-weight:800;">{{arctitle}}</li>
+                                    <li>{{arcdescr}}</li>
+                                    <li><a href="view.asp?id={{id}}" ><img src="images/xx.png" /></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                       <!-- END list -->
+                        <div style="clear:both;"></div>
+                    </div>
+                    <!--fy的开始-->
+                    <div class="page">
+                       
+                      {{pagenav}}
+                        
+                    </div>
+                
+                </div>
+            
+            </div>
+        </div>
+        
+        
+</div>
+    
+    
+    
+    
+
+
+
+
+{{include file="public/footer.html"}}
+</body>
+</html>
