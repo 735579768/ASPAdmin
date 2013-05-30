@@ -16,12 +16,24 @@ dl{ width:30%; float:left; margin-left:10px;}
 dt,dd{ padding:0px 20px;display:block; height:30px; line-height:30px;}
 dd{ padding-left:40px; border-bottom:dashed 1px #ccc;}
 input{ text-align:center; padding:2px;}
-.menutable{ margin-bottom:100px;}
+.menutable{}
 .menutable input{ border:solid 1px #ccc;}
 td{ height:23px; padding:2px; line-height:23px;}
+
+.lanmu{ margin:0 auto; }
+.lanmu,.lanmu dt,.lanmu dd{display:block;  width:98%; margin:0px; padding:0px;}
+.lanmu dt,.lanmu dd{ height:30px; line-height:30px;}
+.lanmu dt{ background:url(images/tbg.gif) repeat-x;padding:0px 40px;}
+.lanmu dd{padding:0px 70px;}
+.lanmu dt .left{ width:330px; float:left;}
+.lanmu dt .right{ float:left;}
+
+.lanmu dd .left{ width:300px; float:left;}
+.lanmu dd .right{ float:left;}
+.lanmu dt .jiajian{ display:block; float:left; margin:10px; cursor:pointer;}
 </style>
 <body>
-<table class="menutable" width="98%"  style="border-collapse:collapse;border-color:gray;"border="1"  cellspacing="0" cellpadding="0"> 
+<table class="menutable" width="98%"  style="border-collapse:collapse;border-color:gray;"border="0"  cellspacing="0" cellpadding="0"> 
   <tr class="biaotou">
     <td align="center" colspan="2">系统设置/菜单管理<span style="color:red;">(此处设置非程序员请勿操作)<a href="javascript:window.history.go(-1);" class="coolbg">返回</a></span></td>
   </tr>
@@ -49,9 +61,15 @@ td{ height:23px; padding:2px; line-height:23px;}
 <tr class="biaotou">
     <td align="center" colspan="2">系统菜单更新/删除</td>
   </tr>
-     <!-- BEGIN m1_block -->
-  <tr background="images/tbg.gif" class="biaotou">
-    <td  width="30%" align="left" style="padding-left:20px;background:none;">一级菜单：（ID:{{menu1_id}}）</td><td>
+ </table>
+<dl class="lanmu">
+<dt><a href="javascript:zall();" class="coolbg zhankai">全部展开</a>
+<a href="javascript:hall();" class="coolbg hebing">全部合并</a></dt>
+</dl>
+  <!-- BEGIN m1_block -->
+ <dl class="lanmu">
+	<dt><div class="left"><img class="jiajian" src="images/jian.gif" width="9" height="9" />栏目：{{menu1_name}}<span class="red">（ID:{{menu1_id}}）</span></div>
+    <div class="right"> 
     <form action="" method="post">
     <input name="sysmenu_name"  value="{{menu1_name}}" size="15" /> 
 	<input type="hidden" name="act" value="update" />
@@ -59,12 +77,14 @@ td{ height:23px; padding:2px; line-height:23px;}
     <input type="hidden" name="id" value="{{menu1_id}}" />
 	<input type="button" value="删除" id="addchildlanmu"  class="coolbg delbtn"/>
      排序:<input type="text" class="sort" value="{{sort1}}" size="3" maxlength="2"   />
-    </form></td>
-  </tr>
-    <!-- BEGIN m2_block -->
-    <tr>
-    <td align="left" style="padding-left:50px;"> 子菜单：（ID:{{menu2_id}}）</td><td>
-    <form action="" method="post">
+    </form></div>
+    </dt>
+<!-- BEGIN m2_block -->
+    <dd>
+        <div class="left">
+    	菜单：{{menu2_name}}<span class="red">（ID:{{menu2_id}}）</span></div>
+        <div class="right">
+        <form action="" method="post">
        <input name="sysmenu_name"  value="{{menu2_name}}" size="15" /> 
     URL
     ：
@@ -74,13 +94,39 @@ td{ height:23px; padding:2px; line-height:23px;}
     <input type="hidden" name="id" value="{{menu2_id}}" />
 	<input type="button" value="删除" id="addchildlanmu"  class="coolbg delbtn"/>
     排序:<input type="text" class="sort" value="{{sort2}}" size="3" maxlength="2"  />
-    </form></td>
-  </tr>
-    <!-- END m2_block -->
+    </form>
+        </div>
+    </dd>
+        <!-- END m2_block -->
+</dl>
+
   <!-- END m1_block -->
- </table>
 <script>
+function zall(){
+	$('.jiajian').attr('src','images/jian.gif');
+	$('.lanmu dd').show();
+	}
+function hall(){
+	$('.jiajian').attr('src','images/jia.gif');
+	$('.lanmu dd').hide();
+	}
+	hall();
 $(function(){
+		$(".lanmu dd").bind("mouseover",function(){
+			$(this).css('background','#FBFCE2');
+		});
+		$(".lanmu dd").bind("mouseout",function(){
+			$(this).css('background','#ffffff');
+		});
+$('.lanmu .jiajian').bind('click',function(){
+		var a=$(this).attr('src')
+		if(a=='images/jia.gif'){
+			$(this).attr('src','images/jian.gif');
+			}else{
+			$(this).attr('src','images/jia.gif');	
+				}
+		$(this).parent().parent().parent().children('dd').toggle();
+		});
 	$("#addchildlanmu").bind("click",function(){
 		if($("input[name='childlanmu']").val()==''){
 			alert('名称不能为空');

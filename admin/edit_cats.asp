@@ -13,6 +13,7 @@ if G("act")="updtcat" then
 	cat_seotitle=G("cat_seotitle")
 	cat_seokeys=G("cat_seokeys")
 	cat_seodescr=G("cat_seodescr")
+	cat_single=G("cat_single")
 	cat_content=filtersql(G("cat_content"))
 	
 	if cat_index="" or cat_list="" or cat_article="" then
@@ -31,7 +32,7 @@ if G("act")="updtcat" then
 	end if
 	
 'echo db.wUpdateRecord("kl_cats","cat_id="&cat_id,array("cat_name:"&cat_name,"type_id:"&type_id,"sort:"&csort,"cat_show:"&cat_show,"cat_pic:"&cat_pic,"cat_index:"&cat_index,"cat_list:"&cat_list,"cat_article:"&cat_article,"cat_seotitle:"&cat_seotitle,"cat_seokeys:"&cat_seokeys,"cat_seodescr:"&cat_seodescr,"cat_content:"&cat_content))
-	result=db.UpdateRecord("kl_cats","cat_id="&cat_id,array("cat_name:"&cat_name,"type_id:"&type_id,"sort:"&csort,"cat_show:"&cat_show,"cat_pic:"&cat_pic,"cat_index:"&cat_index,"cat_list:"&cat_list,"cat_article:"&cat_article,"cat_seotitle:"&cat_seotitle,"cat_seokeys:"&cat_seokeys,"cat_seodescr:"&cat_seodescr,"cat_content:"&cat_content))
+	result=db.UpdateRecord("kl_cats","cat_id="&cat_id,array("cat_name:"&cat_name,"type_id:"&type_id,"sort:"&csort,"cat_show:"&cat_show,"cat_pic:"&cat_pic,"cat_index:"&cat_index,"cat_list:"&cat_list,"cat_article:"&cat_article,"cat_seotitle:"&cat_seotitle,"cat_seokeys:"&cat_seokeys,"cat_seodescr:"&cat_seodescr,"cat_content:"&cat_content,"cat_single:"&cat_single))
 
 	if result<>0 then
 	'AlertMsg("分类更新成功!")
@@ -45,12 +46,13 @@ set rs=db.query(sql)
 cat_index=rs("cat_index")&""
 cat_list=rs("cat_list")&""
 cat_article=rs("cat_article")&""
+if rs("cat_single")="0" then tpl.setvariable "sel0","checked='checked'"
+if rs("cat_single")="1" then tpl.setvariable "sel1","checked='checked'"
 if cat_index="" then cat_index=rs("tpl_index")&"" end if
 if cat_list="" then cat_list=rs("tpl_list")&"" end if
 if cat_article="" then cat_article=rs("tpl_article")&"" end if
 setVarArr(array("cat_index:"&cat_index,"cat_list:"&cat_list,"cat_article:"&cat_article))
-
-
+echo getsinglesel
 setTplVarBySql(sql)
 
 tpl.Parse

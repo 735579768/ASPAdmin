@@ -54,6 +54,8 @@
 		end if
 		str=str&"</select>"
 		getArcCatSel=str
+		set selrs=nothing
+		set selrss=nothing
 	end function
 '输出内容模型sel
 	function getContentTypeSel()
@@ -81,6 +83,7 @@
 				end if
 				selrs.movenext
 			loop
+		set selrs=nothing
 		end if
 		str=str&"</select>"
 		getContentTypeSel=str
@@ -99,6 +102,7 @@
 							end if
 							selrs.movenext
 					loop
+					set selrs=nothing
 				end if
 		str=str&"</select>"
 		getSysMenusSel=str
@@ -117,8 +121,28 @@
 							end if
 							selrs.movenext
 					loop
+					set selrs=nothing
 				end if
 		str=str&"</select>"
 		getQxsel=str
 	End Function
+'输出单页面下拉菜
+	function getsinglesel()
+			dim str
+			str="<select name=singleid>"
+		set selrs=db.GetRecordBySQL("select * from kl_single")
+				if selrs.recordcount>0 then 
+					do while not selrs.eof
+							if G("singleid")=selrs("id")&"" then
+							str=str&"<option value='"&selrs("id")&"' selected>"&selrs("pagename")&"</option>"				
+							else
+							str=str&"<option value='"&selrs("id")&"'>"&selrs("pagename")&"</option>"
+							end if
+							selrs.movenext
+					loop
+					set selrs=nothing
+				end if
+		str=str&"</select>"
+		getsinglesel=str	
+	end function
 %>

@@ -12,7 +12,4 @@ setTplVarBySql("select * from kl_cats where cat_id="&catid)
 sql="select * from kl_archives as a inner join kl_cats as b on a.cat_id=b.cat_id where a.cat_id="&catid&" or b.parent_id="&catid&" order by fbdate desc "
 loopBlockpage "list",sql,6
 
-tpl.Parse
-'Destroy our objects
-set tpl = nothing
 %>

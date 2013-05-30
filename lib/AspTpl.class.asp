@@ -12,7 +12,7 @@
 ' ASP Template main class file
 '===============================================================================
 class ASPTemplate
-
+	private displaytpl
 	' Contains the error objects
 	private p_error
 	
@@ -46,6 +46,7 @@ class ASPTemplate
 	' Remarks: None
 	'===============================================================================
 	private sub class_Initialize
+		displaytpl=false
 		p_print_errors = FALSE
 		p_unknowns = "keep"
 
@@ -62,6 +63,9 @@ class ASPTemplate
 		Set p_regexp = New RegExp   
 		
 	end sub
+	Private Sub Class_Terminate()
+		if not displaytpl then Parse
+	End Sub
 	
 	'===============================================================================
 	' Name: SetTemplatesDir
@@ -565,6 +569,7 @@ class ASPTemplate
 		a=tplplug.templatestr
 		set tplplug=nothing
 		varToNull=a 
+		displaytpl=true
 	End Function
 	'===============================================================================
 	'替换模板中指定字符并输出
