@@ -1,7 +1,7 @@
 <!--#include file="lib/AdminInIt.asp"-->
 <% if session("APP")<>"true" then reurl("/") end if %>
 <%
-'添加文章
+'娣诲姞鏂囩珷
 	if G("isaddarticle")="true" then
 '		on error resume next
 		err.clear
@@ -38,7 +38,7 @@
 					AlertMsg(ADD_SUCCESS_STR)
 				end if
 	end if
-'添加文章时取传递过来的分类
+'娣诲姞鏂囩珷鏃跺彇浼犻�掕繃鏉ョ殑鍒嗙被
 cat_id=G("cat_id")
 if cat_id="" then echo "<script>window.history.go(-1);</script>":die("") end if
 set rs=db.query("select a.type_id as typeid, * from kl_cats as a inner join kl_content_types as b on a.type_id=b.type_id where a.cat_id="&cat_id)

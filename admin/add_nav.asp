@@ -1,26 +1,26 @@
 <!--#include file="lib/AdminInIt.asp"-->
 <%
 'tpl.SetTemplatesDir("")
-'°üº¬ÎÄ¼ş
+'åŒ…å«æ–‡ä»¶
 'tpl.setVariableFile "TOP_HTML","public/top.html"
 'tpl.setVariableFile "FOOTER_HTML","public/footer.html"
 
-'Ìí¼Ó²Ëµ¥ºÍ×Ó²Ëµ¥
+'æ·»åŠ èœå•å’Œå­èœå•
 	if G("act")="add" then
 		if G("lanmu")<>"" then
 			db.query("insert into kl_sysmenus(parent_menu_id,menu_name) values(0,'"&G("lanmu")&"')")
 			'echo "insert into "&suffix&"sysmenus(parent_menu_id,menu_name) values(0,'"&G("lanmu")&"')"
-			AlertMsg("Ìí¼Ó²Ëµ¥--"&G("lanmu")&"-- ³É¹¦£¡")
+			AlertMsg("æ·»åŠ èœå•--"&G("lanmu")&"-- æˆåŠŸï¼")
 		end if 
 		if G("childlanmu")<>"" then
 			db.query("insert into kl_sysmenus(parent_menu_id,menu_name,menu_link) values("&G("sysmenuid")&",'"&G("childlanmu")&"','"&G("childlanmuurl")&"')")
-			AlertMsg("×Ó²Ëµ¥ --"&G("childlanmu")&"-- Ìí¼Ó³É¹¦£¡")
+			AlertMsg("å­èœå• --"&G("childlanmu")&"-- æ·»åŠ æˆåŠŸï¼")
 		end if 
 	end if
 
 
 
-'¸üĞÂÀ¸Ä¿ºÍ×Ó²Ëµ¥
+'æ›´æ–°æ ç›®å’Œå­èœå•
 	if G("act")="update" then
 		sqlstr=""
 		id=G("id")
@@ -34,15 +34,15 @@
 		end if
 	end if
 
-'Êä³öÀ¸Ä¿ºÍ×Ó²Ëµ¥
+'è¾“å‡ºæ ç›®å’Œå­èœå•
 	dim str:str=getSysMenusSel()
 	tpl.setVariable "sysmenus",str
 	tpl.UpdateBlock "m2_block"
 	tpl.UpdateBlock "m1_block"
-	'²éÒ»¼¶²Ëµ¥
+	'æŸ¥ä¸€çº§èœå•
 	set rs=db.query("select sysmenuid,menu_name,parent_menu_id,menu_link,sort from " & suffix & "sysmenus  where parent_menu_id=0 order by sort asc ")
 	do while not rs.eof
-			'²éÑ¯¶ş¼¶²Ëµ¥
+			'æŸ¥è¯¢äºŒçº§èœå•
 			set rss=db.query("select sysmenuid,menu_name,menu_link,sort from " & suffix & "sysmenus  where parent_menu_id="&rs("sysmenuid")&" order by sort asc ")
 			do while not rss.eof
 				tpl.SetVariable "sort2",rss("sort")&""

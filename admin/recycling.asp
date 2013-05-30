@@ -1,8 +1,8 @@
 <!--#include file="lib/AdminInIt.asp"-->
 <!--#include file="../lib/page.class.asp"-->
 <%
-'ÒÆ³ö»ØÊÕÕ¾
-	'Ê×ÏÈÊÇµ¥¸öÒÆ³ö
+'ç§»å‡ºå›æ”¶ç«™
+	'é¦–å…ˆæ˜¯å•ä¸ªç§»å‡º
 	if G("act")="huanyuan" then
 			if G("id")<>"" then 
 				id=G("id")
@@ -11,7 +11,7 @@
 						AlertMsg(CAOZUO_FAIL_STR)
 					end if
 			end if
-		'ÅúÁ¿ÒÆ³ö
+		'æ‰¹é‡ç§»å‡º
 		if G("batchid")<>"" then
 		
 			str=G("batchid")
@@ -25,7 +25,7 @@
 				end if
 		end if
 	end if
-'³¹µ×É¾³ı
+'å½»åº•åˆ é™¤
 	if G("act")="del" then
 			if G("id")<>"" then 
 				id=G("id")
@@ -34,7 +34,7 @@
 						AlertMsg(CAOZUO_FAIL_STR)
 					end if
 			end if
-		'ÅúÁ¿É¾³ı
+		'æ‰¹é‡åˆ é™¤
 		if G("batchid")<>"" then
 			str=G("batchid")
 			arr=split(str,",")
@@ -48,27 +48,27 @@
 		end if	
 	end if
 'tpl.SetTemplatesDir("")
-'°üº¬ÎÄ¼ş
+'åŒ…å«æ–‡ä»¶
 'tpl.setVariableFile "TOP_HTML","public/top.html"
 'tpl.setVariableFile "FOOTER_HTML","public/footer.html"
-'´´½¨¶ÔÏó
+'åˆ›å»ºå¯¹è±¡
 Set mypage=new xdownpage
-'µÃµ½Êı¾İ¿âÁ¬½Ó
+'å¾—åˆ°æ•°æ®åº“è¿æ¥
 mypage.getconn=db.idbconn
-'sqlÓï¾ä
+'sqlè¯­å¥
 mypage.getsql="SELECT a.id,a.arctitle,a.fbdate,a.arcflag,a.uddate,b.cat_name,c.type_name,a.arccontent,a.arcpic,a.recycling  from (kl_archives as a inner join  kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on b.type_id=c.type_id  where recycling=1 order by fbdate desc"
-'ÉèÖÃÃ¿Ò»Ò³µÄ¼ÇÂ¼ÌõÊı¾İÎª5Ìõ
+'è®¾ç½®æ¯ä¸€é¡µçš„è®°å½•æ¡æ•°æ®ä¸º5æ¡
 mypage.pagesize=15
-'·µ»ØRecordset
+'è¿”å›Recordset
 set rs=mypage.getrs()
 
 
-'ÏÔÊ¾Êı¾İ
+'æ˜¾ç¤ºæ•°æ®
 'set rs=db.query("SELECT a.id,a.arctitle,a.fbdate,b.cat_name,c.type_name,a.arccontent,a.arcpic,a.recycling  from (kl_archives as a inner join  kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on a.type_id=c.type_id")
 	tpl.UpdateBlock "arclist"
 	
 	tpl.SetVariable "page",G("page")
-	'Êä³öÎÄÕÂÁĞ±í
+	'è¾“å‡ºæ–‡ç« åˆ—è¡¨
 for i=1 to mypage.pagesize
 	if not rs.eof then
 	tpl.SetVariable "id",rs("id")&""
@@ -79,16 +79,16 @@ for i=1 to mypage.pagesize
 	tpl.SetVariable "cat_name",rs("cat_name")&""
 	tpl.SetVariable "type_name",rs("type_name")&""
 	tpl.SetVariable "arccontent",rs("arccontent")&""
-		'×éºÏÎÄÕÂÊôĞÔ
+		'ç»„åˆæ–‡ç« å±æ€§
 		arcsx=rs("arcflag")&""
 		arr=split(arcsx,",")
 		flagstr=""
 		for j=0 to ubound(arr)
 			select case arr(j)
 				case "H":
-					flagstr=flagstr&"[<span style='color:red;' title='Ê×Ò³ÍÆ¼ö'>Ê×</span>]"
+					flagstr=flagstr&"[<span style='color:red;' title='é¦–é¡µæ¨è'>é¦–</span>]"
 				case "C":
-					flagstr=flagstr&"[<span style='color:red;' title='Í·ÌõÎÄÕÂ'>Í·</span>]"
+					flagstr=flagstr&"[<span style='color:red;' title='å¤´æ¡æ–‡ç« '>å¤´</span>]"
 			end select
 		next
 	tpl.SetVariable "flagstr",flagstr
@@ -98,7 +98,7 @@ for i=1 to mypage.pagesize
          exit for
     end if
 next
-'ÏÔÊ¾·ÖÒ³ĞÅÏ¢£¬Õâ¸ö·½·¨¿ÉÒÔ£¬ÔÚset rs=mypage.getrs()ÒÔºó,¿ÉÔÚÈÎÒâÎ»ÖÃµ÷ÓÃ£¬¿ÉÒÔµ÷ÓÃ¶à´Î
+'æ˜¾ç¤ºåˆ†é¡µä¿¡æ¯ï¼Œè¿™ä¸ªæ–¹æ³•å¯ä»¥ï¼Œåœ¨set rs=mypage.getrs()ä»¥å,å¯åœ¨ä»»æ„ä½ç½®è°ƒç”¨ï¼Œå¯ä»¥è°ƒç”¨å¤šæ¬¡
 tpl.setvariable "pagenav",mypage.getshowpage()
 'Generate the page
 tpl.Parse

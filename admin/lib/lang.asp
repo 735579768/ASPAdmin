@@ -1,27 +1,27 @@
 <%
-'ºóÌ¨²Ù×÷ÖÐÓÃµ½µÄ×Ö·û´®
-'¹«ÓÃ×Ö·û´®
-const ADD_SUCCESS_STR="Ìí¼Ó³É¹¦£¡"
-const ADD_FAIL_STR="Ìí¼ÓÊ§°Ü£¡"
-const UPDATE_SUCCESS_STR="ÐÅÏ¢¸üÐÂ³É¹¦£¡"
-const UPDATE_FAIL_STR="ÐÅÏ¢¸üÐÂÊ§°Ü£¡"
-const CAOZUO_FAIL_STR="²Ù×÷Ê§°Ü£¡"
-const NODELADMIN="ÏµÍ³¹ÌÓÐ¹ÜÀíÔ±ÕË»§,½ûÖ¹É¾³ý!"
-const EXISTADMIN="ÓÃ»§ÃûÒÑ¾­´æÔÚ!ÇëÓÃÆäËüµÄÓÃ»§Ãû!"
+'åŽå°æ“ä½œä¸­ç”¨åˆ°çš„å­—ç¬¦ä¸²
+'å…¬ç”¨å­—ç¬¦ä¸²
+const ADD_SUCCESS_STR="æ·»åŠ æˆåŠŸï¼"
+const ADD_FAIL_STR="æ·»åŠ å¤±è´¥ï¼"
+const UPDATE_SUCCESS_STR="ä¿¡æ¯æ›´æ–°æˆåŠŸï¼"
+const UPDATE_FAIL_STR="ä¿¡æ¯æ›´æ–°å¤±è´¥ï¼"
+const CAOZUO_FAIL_STR="æ“ä½œå¤±è´¥ï¼"
+const NODELADMIN="ç³»ç»Ÿå›ºæœ‰ç®¡ç†å‘˜è´¦æˆ·,ç¦æ­¢åˆ é™¤!"
+const EXISTADMIN="ç”¨æˆ·åå·²ç»å­˜åœ¨!è¯·ç”¨å…¶å®ƒçš„ç”¨æˆ·å!"
 
-const pg_index="Ê×Ò³"
-const pg_prev="Ç°Ò»Ò³"
-const pg_next="ÏÂÒ»Ò³"
-const pg_end="Î²Ò³"
+const pg_index="é¦–é¡µ"
+const pg_prev="å‰ä¸€é¡µ"
+const pg_next="ä¸‹ä¸€é¡µ"
+const pg_end="å°¾é¡µ"
 const pg_totalmsg=""
-const pg_yeci="Ò³´Î:"
-const pg_yegong="Ò³ ¹²:"
-const pg_tiaojilu="Ìõ¼ÇÂ¼ "
-const pg_tiaomy="Ìõ/Ã¿Ò³ "
-const AJAX_NODELMENU="²Ëµ¥ÏÂÃæ»¹ÓÐ×Ó²Ëµ¥²»ÄÜÉ¾³ý£¡0.0"	'²»ÄÜÉ¾³ýÓÐ×Ó²Ëµ¥µÄ²Ëµ¥
+const pg_yeci="é¡µæ¬¡:"
+const pg_yegong="é¡µ å…±:"
+const pg_tiaojilu="æ¡è®°å½• "
+const pg_tiaomy="æ¡/æ¯é¡µ "
+const AJAX_NODELMENU="èœå•ä¸‹é¢è¿˜æœ‰å­èœå•ä¸èƒ½åˆ é™¤ï¼0.0"	'ä¸èƒ½åˆ é™¤æœ‰å­èœå•çš„èœå•
 
 
-const NOIMG="ÎÞÍ¼"
-const NAVHIDDEN="µ¼º½Òþ²ØÖÐ..."
-const NAVSHOW="µ¼º½ÏÔÊ¾ÖÐ..."
+const NOIMG="æ— å›¾"
+const NAVHIDDEN="å¯¼èˆªéšè—ä¸­..."
+const NAVSHOW="å¯¼èˆªæ˜¾ç¤ºä¸­..."
 %>

@@ -1,8 +1,8 @@
 <%
-'Êä³öËùÓĞÎÄÕÂ·ÖÀà
+'è¾“å‡ºæ‰€æœ‰æ–‡ç« åˆ†ç±»
 	function getArcCatSel()
-		'¼ì²éµ±Ç°ÊÇ·ñÓĞÄ¬ÈÏµÄid´«¹ıÀ´
-		dim selid,typeid,sql'¶¨ÒåÄ¬ÈÏÑ¡ÖĞµÄid
+		'æ£€æŸ¥å½“å‰æ˜¯å¦æœ‰é»˜è®¤çš„idä¼ è¿‡æ¥
+		dim selid,typeid,sql'å®šä¹‰é»˜è®¤é€‰ä¸­çš„id
 			if G("id")<>"" then
 			'  set selrs=db.getrecord("kl_article","type_id",array("id:"&G("id")))
 			  set selrs=db.query("select cat_id,type_id from kl_archives where id="&G("id"))
@@ -20,7 +20,7 @@
 			else
 				sql="select cat_id,cat_name from kl_cats where parent_id=0 order by sort asc"
 			end if
-		'Êä³ösel±íµ¥
+		'è¾“å‡ºselè¡¨å•
 		dim str:str="<select id='cat_id' name='cat_id' style='width:200px;'>"
 		set selrs=db.GetRecordBySQL(sql)
 		set srs=nothing
@@ -33,7 +33,7 @@
 				str=str&"<option value='"&selrs("cat_id")&"'>"&selrs("cat_name")&"</option>"
 				end if
 			
-				'²éÑ¯¶ş¼¶·ÖÀàstart
+				'æŸ¥è¯¢äºŒçº§åˆ†ç±»start
 				set selrss=db.GetRecordBySQL("select cat_id,cat_name from kl_cats where parent_id="&selrs("cat_id")&" order by sort asc")
 				if selrss.recordcount>0 then 
 					do while not selrss.eof
@@ -48,17 +48,17 @@
 					loop
 					set selrss=nothing
 				end if
-				'²éÑ¯¶ş¼¶·ÖÀàend
+				'æŸ¥è¯¢äºŒçº§åˆ†ç±»end
 			selrs.movenext
 			loop
 		end if
 		str=str&"</select>"
 		getArcCatSel=str
 	end function
-'Êä³öÄÚÈİÄ£ĞÍsel
+'è¾“å‡ºå†…å®¹æ¨¡å‹sel
 	function getContentTypeSel()
-	'¼ì²éµ±Ç°ÊÇ·ñÓĞÄ¬ÈÏµÄid´«¹ıÀ´
-		dim selid'¶¨ÒåÄ¬ÈÏÑ¡ÖĞµÄid
+	'æ£€æŸ¥å½“å‰æ˜¯å¦æœ‰é»˜è®¤çš„idä¼ è¿‡æ¥
+		dim selid'å®šä¹‰é»˜è®¤é€‰ä¸­çš„id
 		if G("id")<>"" then
 		'  set selrs=db.getrecord("kl_article","type_id",array("id:"&G("id")))
 		  set selrs=db.query("select type_id from kl_archives where id="&G("id"))
@@ -69,15 +69,15 @@
 			  set selrs=db.query("select type_id from kl_cats where cat_id="&G("cat_id"))
 			  selid =cstr(selrs("type_id"))
 		end if
-		'Êä³ösel±íµ¥
+		'è¾“å‡ºselè¡¨å•
 		dim str:str="<select id='cat_id' name='type_id' style='width:200px;'>"
 		set selrs=db.GetRecordBySQL("select * from kl_content_types")
 		if selrs.recordcount>0 then 
 			do while not selrs.eof
 				if selid=selrs("type_id")&"" then
-				str=str&"<option value='"&selrs("type_id")&"' selected>"&selrs("type_name")&"|ÄÚÈİÄ£ĞÍ</option>"				
+				str=str&"<option value='"&selrs("type_id")&"' selected>"&selrs("type_name")&"|å†…å®¹æ¨¡å‹</option>"				
 				else
-				str=str&"<option value='"&selrs("type_id")&"'>"&selrs("type_name")&"|ÄÚÈİÄ£ĞÍ</option>"
+				str=str&"<option value='"&selrs("type_id")&"'>"&selrs("type_name")&"|å†…å®¹æ¨¡å‹</option>"
 				end if
 				selrs.movenext
 			loop
@@ -85,7 +85,7 @@
 		str=str&"</select>"
 		getContentTypeSel=str
 	end function
-'Êä³öºóÌ¨À¸Ä¿²Ëµ¥
+'è¾“å‡ºåå°æ ç›®èœå•
 	function getSysMenusSel()
 			dim str
 			str="<select name=sysmenuid>"
@@ -103,7 +103,7 @@
 		str=str&"</select>"
 		getSysMenusSel=str
 	end function
-'Êä³ö½ÇÉ«È¨ÏŞÏÂÀ­²Ëµ¥
+'è¾“å‡ºè§’è‰²æƒé™ä¸‹æ‹‰èœå•
 	Function getQxsel()
 			dim str
 			str="<select name=qx_id>"

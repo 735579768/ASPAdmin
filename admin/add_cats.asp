@@ -1,7 +1,7 @@
 <!--#include file="lib/AdminInIt.asp"-->
 <%
-'Õâ¸öÎÄ¼şÓÃÀ´Ìí¼Ó×ÓÀàºÍ¶¥¼¶Àà
-'catÈç¹ûÎª0ÔòÌí¼Ó¶¥¼¶Àà£¬²»Îª0ÔòÎªÕâ¸ö·ÖÀàµÄ¸¸id
+'è¿™ä¸ªæ–‡ä»¶ç”¨æ¥æ·»åŠ å­ç±»å’Œé¡¶çº§ç±»
+'catå¦‚æœä¸º0åˆ™æ·»åŠ é¡¶çº§ç±»ï¼Œä¸ä¸º0åˆ™ä¸ºè¿™ä¸ªåˆ†ç±»çš„çˆ¶id
 dim parent_id:parent_id=G("parent_id")
 if G("act")="add" then
 	cat_name=G("cat_name")
@@ -17,7 +17,7 @@ if G("act")="add" then
 	cat_list=G("cat_list")
 	cat_article=G("cat_article")
 	if cat_index="" or cat_list="" or cat_article="" then
-		''Èç¹ûÓĞ¸¸·ÖÀà¾ÍÓÃ¸¸·ÖÀàµÄÄ£°å
+		''å¦‚æœæœ‰çˆ¶åˆ†ç±»å°±ç”¨çˆ¶åˆ†ç±»çš„æ¨¡æ¿
 		'if parent_id<>"0" then
 		'	set tplrs=db.query("select * from kl_cats where cat_id="&parent_id)
 		'	if cat_index="" then cat_index=tplrs("tpl_index")&""
@@ -37,7 +37,7 @@ if G("act")="add" then
 	arr=array("parent_id:"&parent_id,"cat_name:"&cat_name,"type_id:"&type_id,"sort:"&csort,"cat_show:"&cat_show,"cat_pic:"&cat_pic,"cat_seotitle:"&cat_seotitle,"cat_seokeys:"&cat_seokeys,"cat_seodescr:"&cat_seodescr,"cat_content:"&cat_content,"cat_article:"&cat_article,"cat_list:"&cat_list,"cat_index:"&cat_index)
 	result=db.AddRecord("kl_cats",arr)
 	if result<>0 then
-		AlertMsg("Ìí¼Ó³É¹¦!")
+		AlertMsg("æ·»åŠ æˆåŠŸ!")
 		echo "<script>window.location='cats_list.asp';</script>"
 	end if
 end if
@@ -50,7 +50,7 @@ tpl.setvariable "cat_index",rs("cat_index")&""
 tpl.setvariable "cat_list",rs("cat_list")&""
 tpl.setvariable "cat_article",rs("cat_article")&""
 else
-tpl.setvariable "cat_name","ÎŞ"
+tpl.setvariable "cat_name","æ— "
 tpl.setvariable "parent_id",parent_id
 end if
 tpl.setvariable "typeidsel",getContentTypeSel()
@@ -59,6 +59,6 @@ tpl.Parse
 'Destroy our objects
 set tpl = nothing
 
-'////////////////////////////////////////////////////////±¾Ò³º¯Êı¿â///////////////////////////////////////////////////////////
+'////////////////////////////////////////////////////////æœ¬é¡µå‡½æ•°åº“///////////////////////////////////////////////////////////
 
 %>

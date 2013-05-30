@@ -1,6 +1,6 @@
 <%
 
-'ÍË³öµÇÂ½
+'é€€å‡ºç™»é™†
 if getparam("act")="exit" Then
 destroyCookies()
 echo "<script>parent.window.location.reload();</script>"
@@ -8,9 +8,9 @@ die("")
 end if
 
 
-'µÇÂ½´íÎóĞÅÏ¢
+'ç™»é™†é”™è¯¯ä¿¡æ¯
 dim logerrmsg:logerrmsg=""
-'ÑéÖ¤µÇÂ½
+'éªŒè¯ç™»é™†
 dim Uname,Upwd,zhiye,rs,sqlstr
 Uname=G("loginname")
 Upwd=G("loginpwd")
@@ -18,54 +18,54 @@ numcode=G("numcode")
 loginstate=G("loginstate")
 
 
-'Èç¹ûÓĞÓÃ»§ÃûºÍÃÜÂë´«¹ıÀ´µÄ»°½øĞĞÑéÖ¤
+'å¦‚æœæœ‰ç”¨æˆ·åå’Œå¯†ç ä¼ è¿‡æ¥çš„è¯è¿›è¡ŒéªŒè¯
 if Uname<>"" and Upwd<>"" and numcode<>"" Then
-	'ÑéÖ¤Âë¼ìÑé
+	'éªŒè¯ç æ£€éªŒ
 	if numcode<>trim(Session("numcode")) then 
-		login("<script>alert('ÑéÖ¤Âë´íÎó£¡');</script>")
+		login("<script>alert('éªŒè¯ç é”™è¯¯ï¼');</script>")
 	end if
 set rs=db.GetRecord(suffix & "admin","*","username='"&Uname&"'","",0)
 	if not rs.eof Then
 		dim md5pwd:md5pwd=md5(Upwd,32)
 		if rs("password")<> md5pwd Then
-			login("<script>alert('ÃÜÂë´íÎó£¡');</script>")
+			login("<script>alert('å¯†ç é”™è¯¯ï¼');</script>")
 		else
 		'echo rs("password")&"--"&md5pwd
-			'¸üĞÂµÇÂ½´ÎÊı
+			'æ›´æ–°ç™»é™†æ¬¡æ•°
 			result=db.UpdateRecord("kl_admin","id="&rs("id"),array("logintimes:"&(rs("logintimes")+1),"lastdate:"&now()))
-			'¼ÇÂ¼µÇÂ½ÈÕÖ¾
+			'è®°å½•ç™»é™†æ—¥å¿—
 			result=db.AddRecord("kl_admin_log",array("uname:"&rs("username"),"loginip:"&getip(),"qx_id:"&rs("qx_id")))
-			Session("admin_id")=rs("id")'±£´æ¹ÜÀíÔ±ÔÚÊı¾İ±íÖĞµÄidÖµ
-			Session("adminqxid")=rs("qx_id")'±£´æ¹ÜÀíÔ±ÔÚÊı¾İ±íÖĞµÄÈ¨ÏŞidÖµ
+			Session("admin_id")=rs("id")'ä¿å­˜ç®¡ç†å‘˜åœ¨æ•°æ®è¡¨ä¸­çš„idå€¼
+			Session("adminqxid")=rs("qx_id")'ä¿å­˜ç®¡ç†å‘˜åœ¨æ•°æ®è¡¨ä¸­çš„æƒé™idå€¼
 			Session.Timeout=30
 			Response.Cookies("adminid")=rs("id")
 			Response.Cookies("U_name")=Uname
 			Response.Cookies("U_pwd")=md5(Upwd,32)
-			'Çó¼ÇÂ¼Ê±¼ä
+			'æ±‚è®°å½•æ—¶é—´
 			shijian=0
 			select case loginstate
 				case "0":
-					shijian=0.2'10·ÖÖÓ
+					shijian=0.2'10åˆ†é’Ÿ
 				case "1":
-					shijian=0.5'°ëĞ¡Ê±
+					shijian=0.5'åŠå°æ—¶
 				case "2":
-					shijian=24'Ò»Ìì
+					shijian=24'ä¸€å¤©
 				case "3":
-					shijian=24*7'Ò»ÖÜ
+					shijian=24*7'ä¸€å‘¨
 				case "4":
-					shijian=24*30'Ò»ÔÂ
+					shijian=24*30'ä¸€æœˆ
 			end select
 			Response.Cookies("U_name").Expires=now()+(shijian/24)
 			Response.Cookies("U_pwd").Expires=now()+(shijian/24)
 		end if
 	else
-		logerrmsg="ÓÃ»§Ãû²»´æÔÚ"
-		login("<script>alert('ÓÃ»§Ãû²»´æÔÚ£¡');//parent.window.location.reload();</script>")
+		logerrmsg="ç”¨æˆ·åä¸å­˜åœ¨"
+		login("<script>alert('ç”¨æˆ·åä¸å­˜åœ¨ï¼');//parent.window.location.reload();</script>")
 		
 	end if
 end if
 
-'¼ì²écookiesÑéÖ¤µÇÂ½×´
+'æ£€æŸ¥cookieséªŒè¯ç™»é™†çŠ¶
 if not yanzhengCookies() then 
 	login("")
 end if
@@ -76,25 +76,25 @@ if act="ajax" then
 <%
 end if
 '///////////////////////////////////////////////////////////////////////////////////////
-	'¼ì²écookiesÑéÖ¤µÇÂ½×´Ì¬
+	'æ£€æŸ¥cookieséªŒè¯ç™»é™†çŠ¶æ€
 	function yanzhengCookies()
-			if Request.Cookies("U_pwd")="" or Request.Cookies("U_name")="" then  'Ê¹ÓÃcookiesÑéÖ¤µÇÂ½×´Ì¬
+			if Request.Cookies("U_pwd")="" or Request.Cookies("U_name")="" then  'ä½¿ç”¨cookieséªŒè¯ç™»é™†çŠ¶æ€
 				destroyCookies()
 				yanzhengCookies=false
 		else
-			'ÑéÖ¤cookies
+			'éªŒè¯cookies
 			set rs=db.GetRecord(suffix & "admin","*","username='"&Request.Cookies("U_name")&"'","",0)
 			if not rs.eof Then
 				if rs("password") <> Request.Cookies("U_pwd") Then
 					destroyCookies()
 					yanzhengCookies=false
 				else
-		'¸üĞÂµÇÂ½´ÎÊı
+		'æ›´æ–°ç™»é™†æ¬¡æ•°
 					'result=db.UpdateRecord("kl_admin","id="&rs("id"),array("logintimes:"&(rs("logintimes")+1),"lastdate:"&now()))
-					'¼ÇÂ¼µÇÂ½ÈÕÖ¾
+					'è®°å½•ç™»é™†æ—¥å¿—
 					'result=db.AddRecord("kl_admin_log",array("uname:"&rs("username"),"loginip:"&getip(),"qx_id:"&rs("qx_id")))
-					Session("admin_id")=rs("id")'±£´æ¹ÜÀíÔ±ÔÚÊı¾İ±íÖĞµÄidÖµ
-					Session("adminqxid")=rs("qx_id")'±£´æ¹ÜÀíÔ±ÔÚÊı¾İ±íÖĞµÄÈ¨ÏŞidÖµ
+					Session("admin_id")=rs("id")'ä¿å­˜ç®¡ç†å‘˜åœ¨æ•°æ®è¡¨ä¸­çš„idå€¼
+					Session("adminqxid")=rs("qx_id")'ä¿å­˜ç®¡ç†å‘˜åœ¨æ•°æ®è¡¨ä¸­çš„æƒé™idå€¼
 					Session.Timeout=30
 '					Response.Cookies("adminid")=rs("id")
 '					Response.Cookies("U_name")=Uname
@@ -111,7 +111,7 @@ end if
 		end if
 	end function
 	function login(errstr)	
-		tpl.SetTemplateFile "login.html" 'ÉèÖÃÄ£°åÎÄ¼ş
+		tpl.SetTemplateFile "login.html" 'è®¾ç½®æ¨¡æ¿æ–‡ä»¶
 		tpl.SetVariable "adminDir","/"&adminDir&"/"
 		tpl.setvariable "errstr",errstr
 		tpl.Parse

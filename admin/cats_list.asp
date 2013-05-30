@@ -1,7 +1,7 @@
 <!--#include file="lib/AdminInIt.asp"-->
 <%
 'tpl.SetTemplatesDir("")
-'°üº¬ÎÄ¼ş
+'åŒ…å«æ–‡ä»¶
 'tpl.setVariableFile "TOP_HTML","public/top.html"
 dim act:act=G("act")
 select case act
@@ -14,11 +14,11 @@ end select
 
 tpl.UpdateBlock "m2_block"
 tpl.UpdateBlock "m1_block"
-'²éÒ»¼¶·ÖÀà
+'æŸ¥ä¸€çº§åˆ†ç±»
 sql1="select a.type_id as typeid,* from kl_cats as a inner join kl_content_types as b on a.type_id=b.type_id   where a.parent_id=0 order by sort asc "
 set rs=db.query(sql1)
 do while not rs.eof
-		'²éÑ¯¶ş¼¶·ÖÀà
+		'æŸ¥è¯¢äºŒçº§åˆ†ç±»
 		sql2="select a.type_id as typeid,* from kl_cats as a inner join kl_content_types as b on a.type_id=b.type_id   where a.parent_id="&rs("cat_id")&"  order by sort asc "
 		set rss=db.query(sql2)
 		do while not rss.eof
@@ -49,8 +49,8 @@ tpl.Parse
 'Destroy our objects
 set tpl = nothing
 
-'////////////////////////////////////////////////////////±¾Ò³º¯Êı¿â///////////////////////////////////////////////////////////
-''ÎÄÕÂÁĞ±íÄÚÈİÊäÊä³ö
+'////////////////////////////////////////////////////////æœ¬é¡µå‡½æ•°åº“///////////////////////////////////////////////////////////
+''æ–‡ç« åˆ—è¡¨å†…å®¹è¾“è¾“å‡º
 function getcatshow(str)
 	if "1"=str then
 		getcatshow=NAVSHOW
@@ -58,15 +58,15 @@ function getcatshow(str)
 		getcatshow="<span style='color:red;'>"&NAVHIDDEN&"</span>"
 	end if
 end function
-'ÅĞ¶Ï·ÖÀà·âÃæÊÇ·ñÓĞÍ¼
+'åˆ¤æ–­åˆ†ç±»å°é¢æ˜¯å¦æœ‰å›¾
 function getcatimg(str)
 	if str<>"" then
-		getcatimg="<div class='catimg'><img class='haveimg' src='images/haveimg.gif' style='cursor:pointer;' width='12' height='12' alt='·ÖÀà·âÃæÓĞÍ¼Æ¬ÏÔÊ¾' title='·ÖÀà·âÃæÓĞÍ¼Æ¬ÏÔÊ¾' /><span class='catdaimg' ><img src='"&str&"' width='150' height='150' /></span></div>"
+		getcatimg="<div class='catimg'><img class='haveimg' src='images/haveimg.gif' style='cursor:pointer;' width='12' height='12' alt='åˆ†ç±»å°é¢æœ‰å›¾ç‰‡æ˜¾ç¤º' title='åˆ†ç±»å°é¢æœ‰å›¾ç‰‡æ˜¾ç¤º' /><span class='catdaimg' ><img src='"&str&"' width='150' height='150' /></span></div>"
 	else
 		getcatimg=NOIMG
 	end if
 end function
-'²éÑ¯·ÖÀàÎÄÕÂÊıÁ¿
+'æŸ¥è¯¢åˆ†ç±»æ–‡ç« æ•°é‡
 function getarcnum(catid)
 	sql="select count(*) as  a from kl_archives where cat_id="&catid
 	set bbbb=db.query(sql)

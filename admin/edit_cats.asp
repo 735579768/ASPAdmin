@@ -22,7 +22,7 @@ if G("act")="updtcat" then
 		if cat_article="" then cat_article=tplrs("tpl_article")&""
 		set tplrs=nothing
 	end if
-	'É¾³ıÔ­À´µÄÍ¼Æ¬
+	'åˆ é™¤åŸæ¥çš„å›¾ç‰‡
 	set temrs=db.query("select cat_pic from kl_cats where cat_id="&cat_id)
 	tempic=trim(temrs("cat_pic")&"")
 	set temrs=nothing
@@ -34,7 +34,7 @@ if G("act")="updtcat" then
 	result=db.UpdateRecord("kl_cats","cat_id="&cat_id,array("cat_name:"&cat_name,"type_id:"&type_id,"sort:"&csort,"cat_show:"&cat_show,"cat_pic:"&cat_pic,"cat_index:"&cat_index,"cat_list:"&cat_list,"cat_article:"&cat_article,"cat_seotitle:"&cat_seotitle,"cat_seokeys:"&cat_seokeys,"cat_seodescr:"&cat_seodescr,"cat_content:"&cat_content))
 
 	if result<>0 then
-	AlertMsg("·ÖÀà¸üĞÂ³É¹¦!")
+	'AlertMsg("åˆ†ç±»æ›´æ–°æˆåŠŸ!")
 '	reurl("cats_list.asp")
 	echo "<script>window.location='cats_list.asp';</script>"
 	end if

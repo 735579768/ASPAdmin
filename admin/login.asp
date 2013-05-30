@@ -1,5 +1,5 @@
 <%
-	tpl.SetTemplateFile "login.html" 'ÉèÖÃÄ£°åÎÄ¼þ
+	tpl.SetTemplateFile "login.html" 'è®¾ç½®æ¨¡æ¿æ–‡ä»¶
 	tpl.SetVariable "adminDir","/"
 	tpl.Parse
 	'Destroy our objects

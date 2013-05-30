@@ -1,13 +1,13 @@
 <!--#include file="lib/AdminInIt.asp"-->
 <%
 'tpl.SetTemplatesDir("")
-'°üº¬ÎÄ¼þ
+'åŒ…å«æ–‡ä»¶
 'tpl.setVariableFile "TOP_HTML","public/top.html"
 'tpl.setVariableFile "FOOTER_HTML","public/footer.html"
 'Generate the page
 
 
-''¸üÐÂÎÄÕÂ
+''æ›´æ–°æ–‡ç« 
 	if G("isupdtarticle")="true" then
 		id=G("id")
 		cat_id=G("cat_id")
@@ -48,7 +48,7 @@
 '		arckeys=G("arckeys")
 '		arctpl=G("arctpl")
 '		
-'		'É¾³ýÔ­À´µÄÍ¼Æ¬
+'		'åˆ é™¤åŽŸæ¥çš„å›¾ç‰‡
 '		set temrs=db.query("select arcpic from kl_archives where id="&G("id"))
 '		if not temrs.eof  then
 '			tempic=trim(temrs("arcpic")&"")
@@ -68,7 +68,7 @@
 '			AlertMsg(UPDATE_FAIL_STR)
 '		end if
 	end if
-'Êä³öÄ£°åÄ¬ÈÏÊý¾Ý
+'è¾“å‡ºæ¨¡æ¿é»˜è®¤æ•°æ®
 	id=G("id")
 	sqlstr="SELECT a.cat_id as cid,c.type_name as typename,b.type_id as typeid,*  from (kl_archives as a inner join  kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on b.type_id=c.type_id where a.id="&id&" order by fbdate desc"
 	set rs=db.query(sqlstr)

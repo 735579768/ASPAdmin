@@ -1,3 +1,4 @@
+@charset "utf-8";
 .panel{border:solid 1px; border-color:#AAC4D3; FONT-SIZE: 12px; COLOR: #1B93BA;}
 .panel1{border:solid 1px; border-color:#d8d8d8; FONT-SIZE: 12px; COLOR: #888888;}
 .panel3{border-bottom:solid 2px; border-color:#96C050;}
@@ -41,7 +42,7 @@ BODY {
     margin-left: 0px;
 	margin-right: 0px;
 	line-height: 20px;
-	font-family:"ËÎÌå";
+	font-family:"å®‹ä½“";
     SCROLLBAR-FACE-COLOR: #f7f7f7; 
 	MARGIN: 0px; SCROLLBAR-HIGHLIGHT-COLOR: #cbcbcb; 
 	SCROLLBAR-SHADOW-COLOR: #cbcbcb; 
@@ -122,7 +123,7 @@ A.a05:active {
 A.a05:hover {
 	COLOR: #5F9CB7; TEXT-DECORATION: none
 }
-td { font-size:12px; font-family:"ËÎÌå"}
+td { font-size:12px; font-family:"å®‹ä½“"}
 p { line-height:170%
 }
 .login {

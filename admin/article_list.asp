@@ -1,12 +1,12 @@
 <!--#include file="lib/AdminInIt.asp"-->
 <!--#include file="../lib/page.class.asp"-->
 <%
-'ÒÆ¶¯»ØÊÕÕ¾
+'ç§»åŠ¨å›æ”¶ç«™
 if act="huishousingle" then
 		id=G("id")
 		result=db.UpdateRecord("kl_archives","id="&id,array("recycling:1"))
 		if result=0 then
-			AlertMsg("²Ù×÷Ê§°Ü")
+			AlertMsg("æ“ä½œå¤±è´¥")
 		end if
 end if
 if G("batchid")<>"" then
@@ -21,7 +21,7 @@ if G("batchid")<>"" then
 		end if
 end if
 
-'±íµ¥¹ıÂË·ÖÀàÌõ¼ş
+'è¡¨å•è¿‡æ»¤åˆ†ç±»æ¡ä»¶
 tpl.setvariable "selcatid",getArcCatSel()
 guolv=""
 if G("cat_id")<>"" then
@@ -29,23 +29,23 @@ if G("cat_id")<>"" then
 end if
 
 '//////////////////////////////////////////////////////////////////////////////////////////
-'´´½¨¶ÔÏó
+'åˆ›å»ºå¯¹è±¡
 Set mypage=new xdownpage
-'µÃµ½Êı¾İ¿âÁ¬½Ó
+'å¾—åˆ°æ•°æ®åº“è¿æ¥
 mypage.getconn=db.idbconn
-'sqlÓï¾ä
+'sqlè¯­å¥
 mypage.getsql="SELECT a.id,a.cat_id as catid,a.arctitle,a.fbdate,a.arcflag,a.uddate,b.cat_name,c.type_name,a.arccontent,a.arcpic,a.recycling,a.archits from (kl_archives as a inner join  kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on b.type_id=c.type_id  where recycling=0  "& guolv &" order by fbdate desc"
-'ÉèÖÃÃ¿Ò»Ò³µÄ¼ÇÂ¼ÌõÊı¾İÎª5Ìõ
+'è®¾ç½®æ¯ä¸€é¡µçš„è®°å½•æ¡æ•°æ®ä¸º5æ¡
 mypage.pagesize=15
-'·µ»ØRecordset
+'è¿”å›Recordset
 set rs=mypage.getrs()
 
 
-'ÏÔÊ¾Êı¾İ
+'æ˜¾ç¤ºæ•°æ®
 'set rs=db.query("SELECT a.id,a.arctitle,a.fbdate,b.cat_name,c.type_name,a.arccontent,a.arcpic,a.recycling  from (kl_archives as a inner join  kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on a.type_id=c.type_id")
 	tpl.UpdateBlock "arclist"
 	
-	'Êä³öÎÄÕÂÁĞ±í
+	'è¾“å‡ºæ–‡ç« åˆ—è¡¨
 for i=1 to mypage.pagesize
 	if not rs.eof then
 	tpl.SetVariable "page",G("page")
@@ -59,16 +59,16 @@ for i=1 to mypage.pagesize
 	tpl.SetVariable "type_name",rs("type_name")&""
 	tpl.SetVariable "arccontent",rs("arccontent")&""
 	tpl.SetVariable "archits",rs("archits")&""
-		'×éºÏÎÄÕÂÊôĞÔ
+		'ç»„åˆæ–‡ç« å±æ€§
 		arcsx=rs("arcflag")&""
 		arr=split(arcsx,",")
 		flagstr=""
 		for j=0 to ubound(arr)
 			select case Ucase(arr(j))
 				case "C":
-					flagstr=flagstr&"[<span style='color:red;' title='Ê×Ò³ÍÆ¼ö'>Ê×</span>]"
+					flagstr=flagstr&"[<span style='color:red;' title='é¦–é¡µæ¨è'>é¦–</span>]"
 				case "H":
-					flagstr=flagstr&"[<span style='color:red;' title='Í·ÌõÎÄÕÂ'>Í·</span>]"
+					flagstr=flagstr&"[<span style='color:red;' title='å¤´æ¡æ–‡ç« '>å¤´</span>]"
 			end select
 		next
 	tpl.SetVariable "flagstr",flagstr
@@ -80,19 +80,19 @@ for i=1 to mypage.pagesize
          exit for
     end if
 next
-'ÏÔÊ¾·ÖÒ³ĞÅÏ¢£¬Õâ¸ö·½·¨¿ÉÒÔ£¬ÔÚset rs=mypage.getrs()ÒÔºó,¿ÉÔÚÈÎÒâÎ»ÖÃµ÷ÓÃ£¬¿ÉÒÔµ÷ÓÃ¶à´Î
+'æ˜¾ç¤ºåˆ†é¡µä¿¡æ¯ï¼Œè¿™ä¸ªæ–¹æ³•å¯ä»¥ï¼Œåœ¨set rs=mypage.getrs()ä»¥å,å¯åœ¨ä»»æ„ä½ç½®è°ƒç”¨ï¼Œå¯ä»¥è°ƒç”¨å¤šæ¬¡
 tpl.setvariable "pagenav",mypage.getshowpage()
 tpl.Parse
 'Destroy our objects
 set tpl = nothing
 
 
-'ÅĞ¶ÏÎÄÕÂÊÇ·ñÓĞÍ¼
+'åˆ¤æ–­æ–‡ç« æ˜¯å¦æœ‰å›¾
 function getarcimg(str)
 	if str<>"" then
-		getarcimg="<div class='catimg'><img class='haveimg' src='images/haveimg.gif' style='cursor:pointer;' width='12' height='12' alt='·ÖÀà·âÃæÓĞÍ¼Æ¬ÏÔÊ¾' title='·ÖÀà·âÃæÓĞÍ¼Æ¬ÏÔÊ¾' /><span class='catdaimg' ><img src='"&str&"' width='150' height='150' /></span></div>"
+		getarcimg="<div class='catimg'><img class='haveimg' src='images/haveimg.gif' style='cursor:pointer;' width='12' height='12' alt='åˆ†ç±»å°é¢æœ‰å›¾ç‰‡æ˜¾ç¤º' title='åˆ†ç±»å°é¢æœ‰å›¾ç‰‡æ˜¾ç¤º' /><span class='catdaimg' ><img src='"&str&"' width='150' height='150' /></span></div>"
 	
-		'getarcimg="[<img src='images/haveimg.gif' style='cursor:pointer; border:none;' width='12' height='12' alt='ÎÄÕÂÓĞÍ¼Æ¬ÏÔÊ¾' title='ÎÄÕÂÓĞÍ¼Æ¬ÏÔÊ¾' />]"
+		'getarcimg="[<img src='images/haveimg.gif' style='cursor:pointer; border:none;' width='12' height='12' alt='æ–‡ç« æœ‰å›¾ç‰‡æ˜¾ç¤º' title='æ–‡ç« æœ‰å›¾ç‰‡æ˜¾ç¤º' />]"
 	else
 		getarcimg=""
 	end if

@@ -2,9 +2,9 @@
 on error resume next
 dim ajaxstr
 dim id:id=G("id")
-'´¦ÀíÉ¾³ıºóÌ¨²Ëµ¥ÇëÇó
+'å¤„ç†åˆ é™¤åå°èœå•è¯·æ±‚
 	if G("action")="delmenu" then
-		'²éÑ¯Õâ¸öÊÇ²»ÊÇ¶¥¼¶²Ëµ¥£¬ÅĞ¶ÏÊÇ²»ÊÇÓĞ×Ó²Ëµ¥
+		'æŸ¥è¯¢è¿™ä¸ªæ˜¯ä¸æ˜¯é¡¶çº§èœå•ï¼Œåˆ¤æ–­æ˜¯ä¸æ˜¯æœ‰å­èœå•
 			set rs=db.query("select * from "& suffix &"sysmenus where parent_menu_id="& id)
 		if rs.eof then 
 			 db.query("delete * from "& suffix &"sysmenus where sysmenuid="& id) 
@@ -13,22 +13,22 @@ dim id:id=G("id")
 			 ajaxstr=AJAX_NODELMENU
 		end if
 	end if
-'¸üĞÂºóÌ¨²Ëµ¥ÅÅĞòÇëÇó
+'æ›´æ–°åå°èœå•æ’åºè¯·æ±‚
 	if G("action")="updtsort" then
 		dim menusort:menusort=G("sort")
 		db.query("update kl_sysmenus set [sort]='"&menusort&"' where sysmenuid="&id)
 		ajaxstr=1
 	end if
-'É¾³ıÇ°Ì¨À¸Ä¿²Ëµ¥
+'åˆ é™¤å‰å°æ ç›®èœå•
 	if G("action")="delcat" then
-			'ÅĞ¶ÏÕâ¸ö·ÖÀàÏÂÃæÊÇ²»ÊÇÓĞÎÄÕÂ£¬ÓĞµÄ»°²»ÄÜÉ¾³ı
+			'åˆ¤æ–­è¿™ä¸ªåˆ†ç±»ä¸‹é¢æ˜¯ä¸æ˜¯æœ‰æ–‡ç« ï¼Œæœ‰çš„è¯ä¸èƒ½åˆ é™¤
 			set rs=db.GetRecord("kl_archives","*","cat_id="&id,"",0)
 			if not rs.eof then 
-				ajaxstr="·ÖÀàÏÂÓĞÎÄÕÂ²»ÄÜÉ¾³ı!"
+				ajaxstr="åˆ†ç±»ä¸‹æœ‰æ–‡ç« ä¸èƒ½åˆ é™¤!"
 				echo ajaxstr
 				die("")
 			end if
-			'²éÑ¯Õâ¸öÊÇ²»ÊÇ¶¥¼¶²Ëµ¥£¬ÅĞ¶ÏÊÇ²»ÊÇÓĞ×Ó²Ëµ¥,º¬ÓĞ×Ó²Ëµ¥µÄ²»ÄÜÉ¾³ı
+			'æŸ¥è¯¢è¿™ä¸ªæ˜¯ä¸æ˜¯é¡¶çº§èœå•ï¼Œåˆ¤æ–­æ˜¯ä¸æ˜¯æœ‰å­èœå•,å«æœ‰å­èœå•çš„ä¸èƒ½åˆ é™¤
 			set rs=db.query("select * from "& suffix &"cats where parent_id="& id)
 			if rs.eof then 
 				 db.query("delete * from "& suffix &"cats where cat_id="& id)
@@ -38,7 +38,7 @@ dim id:id=G("id")
 			end if
 	end if
 	
-'É¾³ıÓÑÇéÁ´½Ó
+'åˆ é™¤å‹æƒ…é“¾æ¥
 	if G("action")="delfriendlink" then
 		friend_id=G("friend_id")
 		result=db.deleteRecord("kl_friend_link","friend_id",friend_id)
@@ -46,7 +46,7 @@ dim id:id=G("id")
 			ajaxstr=1
 		end if
 	end if
-''µ¥¸öÒÆµ½»ØÊÕÕ¾ÎÄÕÂ
+''å•ä¸ªç§»åˆ°å›æ”¶ç«™æ–‡ç« 
 '	if G("action")="delarticle" then
 '		id=G("id")
 '		result=db.UpdateRecord("kl_archives","id="&id,array("recycling:1"))

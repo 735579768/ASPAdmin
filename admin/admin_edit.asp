@@ -1,10 +1,10 @@
 <!--#include file="lib/AdminInIt.asp"-->
 <%
 'tpl.SetTemplatesDir("")
-'°üº¬ÎÄ¼þ
+'åŒ…å«æ–‡ä»¶
 'Generate the page
 
-'Êä³öÄÚÈÝ
+'è¾“å‡ºå†…å®¹
 'echo db.wGetRecord("kl_content_types","type_id,type_name,type_index,type_list,type_article","type_id="&type_id,"type_id desc",0)
 'set rs=db.GetRecord("kl_content_types","type_id,type_name,tpl_index,tpl_list,tpl_article","type_id="&type_id,"type_id desc",0)
 id=G("id")
@@ -23,7 +23,7 @@ id=G("id")
 	end if
 
 set rs=db.query("select top 1 * from kl_admin where id="&id)
-'³õÊ¼»¯Êý¾Ý
+'åˆå§‹åŒ–æ•°æ®
 setvararr(array("username:"&rs("username"),"nicheng:"&rs("nicheng"),"id:"&id))
 tpl.setvariable "qx_idsel",getQxsel()
 tpl.Parse

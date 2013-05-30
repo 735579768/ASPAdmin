@@ -1,7 +1,7 @@
 <!--#include file="lib/AdminInIt.asp"-->
 <%
 'tpl.SetTemplatesDir("")
-'°üº¬ÎÄ¼þ
+'åŒ…å«æ–‡ä»¶
 'tpl.setVariableFile "TOP_HTML","public/top.html"
 'tpl.setVariableFile "FOOTER_HTML","public/footer.html"
 

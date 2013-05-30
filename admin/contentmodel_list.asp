@@ -1,7 +1,7 @@
 <!--#include file="lib/AdminInIt.asp"-->
 <%
 'tpl.SetTemplatesDir("")
-'包含文件
+'鍖呭惈鏂囦欢
 'tpl.setVariableFile "TOP_HTML","public/top.html"
 'tpl.setVariableFile "FOOTER_HTML","public/footer.html"
 dim type_id,type_name,tpl_index,tpl_list,tplarticle
@@ -22,7 +22,7 @@ if G("act")="updmodel" then
 end if
 'Generate the page
 
-'输出内容
+'杈撳嚭鍐呭
 'echo db.wGetRecord("kl_content_types","type_id,type_name,type_index,type_list,type_article","type_id="&type_id,"type_id desc",0)
 'set rs=db.GetRecord("kl_content_types","type_id,type_name,tpl_index,tpl_list,tpl_article","type_id="&type_id,"type_id desc",0)
 

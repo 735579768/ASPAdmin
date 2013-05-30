@@ -2,26 +2,26 @@
 <!--#include file="../lib/page.class.asp"-->
 <%
 'tpl.SetTemplatesDir("")
-'°üº¬ÎÄ¼þ
+'åŒ…å«æ–‡ä»¶
 'tpl.setVariableFile "TOP_HTML","public/top.html"
 'tpl.setVariableFile "FOOTER_HTML","public/footer.html"
-'´´½¨¶ÔÏó
+'åˆ›å»ºå¯¹è±¡
 Set mypage=new xdownpage
-'µÃµ½Êý¾Ý¿âÁ¬½Ó
+'å¾—åˆ°æ•°æ®åº“è¿žæŽ¥
 mypage.getconn=db.idbconn
-'sqlÓï¾ä
+'sqlè¯­å¥
 mypage.getsql="SELECT * from kl_friend_link order by friend_id desc"
-'ÉèÖÃÃ¿Ò»Ò³µÄ¼ÇÂ¼ÌõÊý¾ÝÎª5Ìõ
+'è®¾ç½®æ¯ä¸€é¡µçš„è®°å½•æ¡æ•°æ®ä¸º5æ¡
 mypage.pagesize=15
-'·µ»ØRecordset
+'è¿”å›žRecordset
 set rs=mypage.getrs()
 
 
-'ÏÔÊ¾Êý¾Ý
+'æ˜¾ç¤ºæ•°æ®
 'set rs=db.query("SELECT a.id,a.arctitle,a.fbdate,b.cat_name,c.type_name,a.arccontent,a.arcpic,a.recycling  from (kl_archives as a inner join  kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on a.type_id=c.type_id")
 	tpl.UpdateBlock "friendlinklist"
 	
-	'Êä³öÓÑÇéÁ´½ÓÁÐ±í
+	'è¾“å‡ºå‹æƒ…é“¾æŽ¥åˆ—è¡¨
 for i=1 to mypage.pagesize
 	if not rs.eof then
 	tpl.SetVariable "friend_id",rs("friend_id")&""
@@ -35,7 +35,7 @@ for i=1 to mypage.pagesize
          exit for
     end if
 next
-'ÏÔÊ¾·ÖÒ³ÐÅÏ¢£¬Õâ¸ö·½·¨¿ÉÒÔ£¬ÔÚset rs=mypage.getrs()ÒÔºó,¿ÉÔÚÈÎÒâÎ»ÖÃµ÷ÓÃ£¬¿ÉÒÔµ÷ÓÃ¶à´Î
+'æ˜¾ç¤ºåˆ†é¡µä¿¡æ¯ï¼Œè¿™ä¸ªæ–¹æ³•å¯ä»¥ï¼Œåœ¨set rs=mypage.getrs()ä»¥åŽ,å¯åœ¨ä»»æ„ä½ç½®è°ƒç”¨ï¼Œå¯ä»¥è°ƒç”¨å¤šæ¬¡
 tpl.setvariable "pagenav",mypage.getshowpage()
 tpl.Parse
 'Destroy our objects

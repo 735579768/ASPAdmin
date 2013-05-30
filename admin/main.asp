@@ -1,17 +1,17 @@
 <!--#include file="lib/AdminInIt.asp"-->
 <%
 'tpl.SetTemplatesDir("")
-'°üº¬ÎÄ¼þ
+'åŒ…å«æ–‡ä»¶
 'tpl.setVariableFile "TOP_HTML","public/top.html"
 'tpl.setVariableFile "FOOTER_HTML","public/footer.html"
 
 'Generate the page
 set rs=db.query("select count(*) as arccount from kl_archives")
-tpl.SetVariable "arccount",rs("arccount")&""'ÓÐÐ§ÎÄÕÂ
+tpl.SetVariable "arccount",rs("arccount")&""'æœ‰æ•ˆæ–‡ç« 
 set rs=db.query("select count(*) as arcyescount from kl_archives where recycling=0")
-tpl.SetVariable "arcyescount",rs("arcyescount")&""'ÓÐÐ§ÎÄÕÂ
+tpl.SetVariable "arcyescount",rs("arcyescount")&""'æœ‰æ•ˆæ–‡ç« 
 set rs=db.query("select count(*) as arcnocount from kl_archives where recycling=1")
-tpl.SetVariable "arcnocount",rs("arcnocount")&""'»ØÊÕÕ¾ÎÄÕÂ
+tpl.SetVariable "arcnocount",rs("arcnocount")&""'å›žæ”¶ç«™æ–‡ç« 
 set rs=nothing
 
 
