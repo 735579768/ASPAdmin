@@ -1,6 +1,6 @@
 <!--#INCLUDE FILE="config.asp"-->
+<!--#INCLUDE file="lang.asp"-->
 <!--#INCLUDE file="common/safe.asp"-->
-<!--#INCLUDE FILE="../admin/lib/lang.asp"-->
 <!--#INCLUDE FILE="common/Functions.asp"-->
 <!--#INCLUDE file="common/md5.asp"-->
 <!--#INCLUDE FILE="AspTpl.class.asp"-->
