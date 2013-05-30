@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<script src="js/jquery-1.8.1.min.js" type="text/javascript"></script>
+<script src="js/list.js" type="text/javascript"></script>
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+<title>编辑分类信息</title>
+<style>
+.kl-tab{}
+.kl-tab-nav{ cursor:pointer;display:block; height:30px; float:left;line-height: 30px;width: 100px;text-align: center;border-right: solid 1px #ccc;}
+.kl-tab .kl-tab-nav-block,.kl-tab .kl-tab-div-block{ display:block; width:100%; float:left;}
+.kl-tab .kl-tab-div{ width:100%;}
+</style>
+</head>
+<body   style="text-align:center;">
+<script charset="utf-8" src="editor/kindeditor-min.js"></script>
+<script charset="utf-8" src="editor/lang/zh_CN.js"></script>
+<script>
+			var editor;
+			KindEditor.ready(function(K) {
+					editor = K.create('textarea[name="cat_content"]', {
+					'allowFileManager' : true,
+					'uploadJson': 'editor/asp/upload_json.asp',
+					'fileManagerJson': 'editor/asp/file_manager_json.asp',
+//					'imageUploadJson':'../../../uploads',
+					'allowFlashUpload':true,
+					'allowFileManager':true,
+					'afterBlur':function(){this.sync();}
+				});
+			});
+		</script>
+<form name="updatecatsform" action="" method="post" style="margin:0 auto;">
+<div class="kl-tab">
+<ul class="kl-tab-nav-block">
+	<li class="kl-tab-nav">基本信息</li>
+    <li class="kl-tab-nav">高级选项</li>
+    <li class="kl-tab-nav">栏目单页内容</li>
+</ul>
+    <div class="kl-tab-div-block">
+        <div class="kl-tab-div"><table width="98%" border="1" align="center" cellpadding="0" cellspacing="0" style=" margin:10px auto;border-collapse:collapse; text-align:center;">
+
+<tr bgcolor="#E7E7E7" class="biaotou">
+<td height="28" colspan="3" background="images/tbg.gif" style="padding-left:10px;">
+	<span>分类栏目管理<<<a href="cats_list.asp" class="coolbg">分类列表</a>>>更改分类</a></span> &nbsp;
+</td>
+</tr>
+
+  <tr>
+    <td align="left"> 分类ID：</td>
+    <td align="left">{{cat_id}}</td>
+  </tr>
+  <tr>
+    <td align="left" width="100"> 分类名字：</td>
+    <td align="left"><input name="cat_name"  value="{{cat_name}}" /></td>
+  </tr>
+    <tr align="left">
+    <td width="90">图片展示：</td>
+    <td><input name="cat_pic" id="pic" type="text"  value="{{cat_pic}}" />
+    <input type="button" onclick="window.open('uploadimg/index.asp','newwindow','width=500,height=80')" value="本地上传" style="width:70px;cursor:pointer;"><input id="delimg" type="button" style="display:none;"  value="删除本张图片"><img id="picimg" width="20" height="20" style="display:none;" src=""  /></td>
+  </tr>
+    <tr>
+    <td width="100px" align="left">显示/隐藏：</td>
+    <td align="left"> <input name="cat_show" type="text"  value="{{cat_show}}" size="5" maxlength="1" />&nbsp;显示(1)隐藏(0)</td>
+  </tr>
+    <tr>
+    <td align="left" width="100"> 内容类型：</td>
+    <td align="left">
+    {{type_name}}<input type="hidden" name="type_id" value="{{typeid}}" />
+    </td>
+  </tr>
+
+    <tr>
+    <td align="left"> 排序：</td>
+    <td align="left"><input name="sort"  value="{{sort}}" /></td>
+  </tr>
+     <tr>
+    <td  colspan="2"align="center"><input type="hidden" name="act" value="updtcat"  />
+    <input type="hidden" name="cat_id" value="{{cat_id}}"  />
+    <a href="javascript:updatecatsform.submit();" class="coolbg">更新</a>
+    <a href="javascript:window.history.go(-1);" class="coolbg">返回</a></td>
+  </tr>
+
+</table></div>
+        <div class="kl-tab-div"><table width="98%" style=" border-collapse:collapse; text-align:left;" border="0">
+  <tr>
+  	<td width="10%">封面模板：</td>
+    <td><input name="cat_index" type="text" value="{{cat_index}}" style="width:200px; height:20px;" /></td>
+  </tr>
+  <tr>
+  	<td width="10%">列表模板：</td>
+    <td><input name="cat_list" type="text" value="{{cat_list}}" style="width:200px; height:20px;" /></td>
+  </tr>
+  <tr>
+  	<td width="10%">文章模板：</td>
+    <td><input name="cat_article" type="text" value="{{cat_article}}" style="width:200px; height:20px;" /></td>
+  </tr>
+  <tr>
+  	<td width="10%">seo标题：</td>
+    <td><input name="cat_seotitle" type="text" value="{{cat_seotitle}}" style="width:300px; height:30px;" /></td>
+  </tr>
+  <tr>
+  	<td width="10%">seo关键字：</td>
+    <td><textarea name="cat_seokeys"  style="width:400px; height:30px;">{{cat_seokeys}}</textarea></td>
+  </tr>
+  <tr>
+  	<td width="10%">seo描述：</td>
+    <td><input name="cat_seodescr" type="text" value="{{cat_seodescr}}" style="width:600px; height:50px;"  /></td>
+  </tr>
+  <tr><td align="center" colspan="2">   <a href="javascript:updatecatsform.submit();" class="coolbg">更新</a>
+    <a href="javascript:window.history.go(-1);" class="coolbg">返回</a></td></tr>
+</table></div>
+        <div class="kl-tab-div"><table width="98%" style=" border-collapse:collapse;" border="0">
+  <tr>
+    <td>说明：栏目内容是替代原来栏目单独页的更灵活的方式，如果下面有内容的话，这个分类的封面将直接显示这个内容模板</td>
+  </tr>
+  <tr>
+  <td>
+
+  <textarea name="cat_content" style="width:99%;height:400px;visibility:hidden;">{{cat_content}}</textarea>
+  </td>
+  </tr>
+  <tr><td align="center">    <a href="javascript:updatecatsform.submit();" class="coolbg">更新</a>
+    <a href="javascript:window.history.go(-1);" class="coolbg">返回</a></td></tr>
+</table></div>
+    </div>
+</div>
+  </form>
+
+<script>
+$(function(){
+$.klplugin={
+	/////////////////////////////////////////////////////tab切换特效/////////////////////////////////////////////
+	runtab:function(options){
+					var defaults={
+						'navhoverclsname':'navhovercls',//nav显示时候拥有的类
+						'divshowclsname':'divshowcls',//div显示的时候拥有的类
+						'model':'mouseover'//tab的切换模式，默认为mouseover
+						};
+					var opts = $.extend(defaults, options); 
+					
+					$(".kl-tab .kl-tab-div").hide();
+					$(".kl-tab .kl-tab-div:first-child").show();
+					$(".kl-tab .kl-tab-nav").bind(opts.model,function(){
+								var obj=$(this);
+								 //查找要显示的div索引
+								 obj.parents(".kl-tab").find(".kl-tab-nav").each(function(i) {
+									if($(this).html()==obj.html()){
+										//设置hover类
+										obj.parents(".kl-tab").find(".kl-tab-nav").removeClass(opts.navhoverclsname);
+										obj.addClass(opts.navhoverclsname);
+										//隐藏掉所有的tabdiv
+										obj.parents(".kl-tab").find(".kl-tab-div").hide();
+										obj.parents(".kl-tab").find(".kl-tab-div").removeClass(opts.divshowclsname);
+										
+										obj.parents(".kl-tab").find(".kl-tab-div").eq(i).addClass(opts.divshowclsname);
+										obj.parents(".kl-tab").find(".kl-tab-div").eq(i).show();
+										}			 
+								 });
+					});
+		}
+	};
+$.klplugin.runtab({
+		'navhoverclsname':'a',//nav显示时候拥有的类
+		'divshowclsname':'b',//div显示的时候拥有的类
+		'model':'click'
+		});
+
+$("#delimg").bind("click",function(){
+	if(confirm("确认要删除?")){
+	$.get("uploadimg/index.asp",{
+									act:'delimg',
+									imgpath:$("#pic").val()
+										},function(data){
+								if(data==1){
+									alert('删除成功！');
+									}else{
+									alert('文件删除错误！');
+										}
+									$("#pic").val('');
+									$("#pic").change();
+		});
+	}
+	});
+$("#pic").bind("change",function(){
+	if($(this).val()!=""){
+		$("#delimg").show();
+		$("#picimg").show();
+		$("#picimg").attr("src",$(this).val());
+		}else{
+		$("#delimg").hide();
+		$("#picimg").hide();	
+			}
+	});
+
+});
+function cha(){
+	$("#pic").change();
+	}
+</script>
+</body>
+</html>
