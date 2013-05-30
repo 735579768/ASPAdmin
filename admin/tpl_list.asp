@@ -7,7 +7,7 @@
 '判断要包含的文件是否存在
 				temstr=""
 				set FSO = createobject("Scripting.FileSystemObject")
-				filepath=server.mappath("/templates/tpl.ini")
+				filepath=server.mappath("/"&TPL_PATH&"tpl.ini")
 				if FSO.FileExists(filepath) then
 					'读取包含的文件并替换标签
 					set oFile = FSO.OpenTextFile(filepath, 1)
