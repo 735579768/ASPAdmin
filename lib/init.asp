@@ -1,5 +1,5 @@
-<!--#INCLUDE file="common/safe.asp"-->
 <!--#INCLUDE FILE="config.asp"-->
+<!--#INCLUDE file="common/safe.asp"-->
 <!--#INCLUDE FILE="../admin/lib/lang.asp"-->
 <!--#INCLUDE FILE="common/Functions.asp"-->
 <!--#INCLUDE file="common/md5.asp"-->
@@ -8,24 +8,24 @@
 <!--#INCLUDE FILE="db.class.asp"-->
 <!--#INCLUDE FILE="json.asp"-->
 <%
-'³õÊ¼»¯Ä£°åÒýÇæ
+'åˆå§‹åŒ–æ¨¡æ¿å¼•æ“Ž
 set tpl=New ASPTemplate
-'ÉèÖÃÄ£°åÄ¿Â¼
+'è®¾ç½®æ¨¡æ¿ç›®å½•
 tpl.SetTemplatesDir(TPL_PATH)
 
 set fs=Server.CreateObject("Scripting.FileSystemObject") 
 if fs.FileExists(server.MapPath(tpl.p_templates_dir & getRunFileName()&".html")) then
-	tpl.SetTemplateFile getRunFileName()&".html" 'ÉèÖÃÄ£°åÎÄ¼þ
+	tpl.SetTemplateFile getRunFileName()&".html" 'è®¾ç½®æ¨¡æ¿æ–‡ä»¶
 end if
 set fs=nothing
 
-'³õÊ¼»¯Êý¾Ý¿âdbÀà
+'åˆå§‹åŒ–æ•°æ®åº“dbç±»
 Set db = new AspDb 
 db.dbConn=Oc(CreatConn("ACCESS",Sql_Data,"","","")) 
-'²éÑ¯Êý¾Ý²âÊÔ
+'æŸ¥è¯¢æ•°æ®æµ‹è¯•
 'set rs=db.GetRecordBySQL("select * from kj_admin") 
 
-'³õÊ¼»¯Ò³Ãæ±êÌâ£¬¹Ø¼ü×Ö£¬ÃèÊö
+'åˆå§‹åŒ–é¡µé¢æ ‡é¢˜ï¼Œå…³é”®å­—ï¼Œæè¿°
 set rs=db.query("select meta_value from kl_meta where meta_key='cfg_system'")
 set obj=toObject(rs(0)&"")
 'arr=toArray(rs(0)&"")

@@ -1,7 +1,7 @@
 <%
 class AspTplPlug
-	private tpl_str'Ä£°å×Ö·û´®
-	private	p_regexp'ÕıÔò¶ÔÏó
+	private tpl_str'æ¨¡æ¿å­—ç¬¦ä¸²
+	private	p_regexp'æ­£åˆ™å¯¹è±¡
 	 Property Let templatestr(str)
 		tpl_str=str
 	 End Property 
@@ -20,18 +20,18 @@ class AspTplPlug
 	End function
 '//////////////////////////////////loop code start///////////////////////////////////////////////////
 '===============================================================================
-'loopÍòÄÜÑ­»·
+'loopä¸‡èƒ½å¾ªç¯
 '===============================================================================
 	Function loopsql()
 		p_regexp.Pattern =  "<\!--\{loop([\s\S]*?)\}-->([\s\S]*?)<\!--\{/loop\}-->" 
 		p_regexp.Global = true
-		'²éÑ¯Ä£°åÖĞµÄËùÓĞloop¿é
+		'æŸ¥è¯¢æ¨¡æ¿ä¸­çš„æ‰€æœ‰loopå—
 		set matches=p_regexp.Execute(tpl_str)
 		if matches.count>0 then 
 		redim looparr(Matches.count)
-			'Ñ­»·´¦Àíloop¿é
+			'å¾ªç¯å¤„ç†loopå—
 			for i=0 to Matches.count-1
-			'È¡loop¿éÖĞµÄ²ÎÊı
+			'å–loopå—ä¸­çš„å‚æ•°
 				temsql=getloopparam(Matches(i),"loop","sql")
 				temnum=getloopparam(Matches(i),"loop","num")
 				temiterator=getloopparam(Matches(i),"loop","iterator")
@@ -40,22 +40,22 @@ class AspTplPlug
 				if temnum="" then:temnum=0:else:temnum=Cint(temnum):end if
 				if temtitlelen="" then:temtitlelen=30:else:temtitlelen=Cint(temtitlelen):end if
 				if temcontentlen="" then:temcontentlen=30:else:temcontentlen=Cint(temcontentlen):end if
-				'´¦Àíµ¥¸öloopÖĞµÄÄÚÈİ
+				'å¤„ç†å•ä¸ªloopä¸­çš„å†…å®¹
 				vostr=volist(Matches(i).SubMatches(1),temsql,temnum,temiterator,temtitlelen,temcontentlen)
-				'°ÑÕâ¸öloop¿éÖĞµÄÄÚÈİ»»ÎªÖ¸¶¨µÄÄÚÈİ
+				'æŠŠè¿™ä¸ªloopå—ä¸­çš„å†…å®¹æ¢ä¸ºæŒ‡å®šçš„å†…å®¹
 				tpl_str=replace(tpl_str,Matches(i),vostr)
 			next
 		end if
 '		For Each Match in Matches      ' Iterate Matches collection
-'			xh_str= Match.SubMatches(0) 'È¡³öÑ­»·ÄÚÈİ
+'			xh_str= Match.SubMatches(0) 'å–å‡ºå¾ªç¯å†…å®¹
 '		Next
 		'echo looparr(1)(0)
 	End Function	
 '===============================================================================
-'È¡±êÇ©ÖĞµÄ²ÎÊı
-'@param str°üº¬±êÇ©µÄ×Ö·û´®
-'@param tag±êÇ©
-'@param key²ÎÊıËùÔÚµÄ¼üÖµ
+'å–æ ‡ç­¾ä¸­çš„å‚æ•°
+'@param stråŒ…å«æ ‡ç­¾çš„å­—ç¬¦ä¸²
+'@param tagæ ‡ç­¾
+'@param keyå‚æ•°æ‰€åœ¨çš„é”®å€¼
 '===============================================================================	
 	Function getloopparam(str,tag,key)
 		str1=""
@@ -64,30 +64,30 @@ class AspTplPlug
 		reg.Pattern =  "<\!--\{"&tag&"([\s\S]*?)"&key&"=\'([\s\S]*?)\'([\s\S]*?)\}-->" 
 		set ms=reg.Execute(str)
 		if ms.count>0 then
-		str1=ms(0).SubMatches(1)'È¡sqlÓï¾ä
+		str1=ms(0).SubMatches(1)'å–sqlè¯­å¥
 		end if
 		set reg=nothing
 		getloopparam=str1
 	End Function
 '===============================================================================
-'Ñ­»·µ¥¸öloopÖĞµÄÄÚÈİ²¢·µ»Ø´¦Àí¹ıµÄÄÚÈİ
+'å¾ªç¯å•ä¸ªloopä¸­çš„å†…å®¹å¹¶è¿”å›å¤„ç†è¿‡çš„å†…å®¹
 '===============================================================================	
 	Function volist(str,sql,num,iterator,titlelen,contentlen)
-		str1=""'Ò»¸ö¿é×îÖÕ´¦ÀíºÃºó·ÅµÄ±äÁ¿
-		str2=""'Ñ­»·×Ö¶ÎÌæ»»Ê±ÓÃµ½µÄ
+		str1=""'ä¸€ä¸ªå—æœ€ç»ˆå¤„ç†å¥½åæ”¾çš„å˜é‡
+		str2=""'å¾ªç¯å­—æ®µæ›¿æ¢æ—¶ç”¨åˆ°çš„
 		set vors=db.query(sql)
 		if num=0 then num=vors.recordcount
 		if num>vors.recordcount then num=vors.recordcount
-		'È¡²éÑ¯Êı¾İ¼¯µÄ×Ö¶Î
+		'å–æŸ¥è¯¢æ•°æ®é›†çš„å­—æ®µ
 		fieldarr=getTableField(sql)
 			if vors.recordcount>0 then
-			'Ñ­»·¼ÇÂ¼¼¯
+			'å¾ªç¯è®°å½•é›†
 				for i=0 to num-1
 					if vors.eof  then exit for
 					str2=str
-					'µü´úĞòºÅ
+					'è¿­ä»£åºå·
 					str2=replace(str2,"{{"&iterator&"}}",i+1)
-					'Ñ­»·¼ÇÂ¼¼¯ÖĞµÄ×Ö¶Î²¢Ìæ»»ÎªÖ¸¶¨µÄÖµ
+					'å¾ªç¯è®°å½•é›†ä¸­çš„å­—æ®µå¹¶æ›¿æ¢ä¸ºæŒ‡å®šçš„å€¼
 					for j=0 to ubound(fieldarr)-1
 						fieldstr=fieldarr(j)(0)
 	if instr(fieldstr,"content")>0 then: str2=replace(str2,"{{infocontent}}",left(removehtml(vors(fieldstr)&""),contentlen)	):end if
@@ -102,7 +102,7 @@ class AspTplPlug
 		set vors=nothing
 		volist=str1
 	End Function	
-'ÕıÔò×îÖÕÊä³öµÄÄ£°å×Ö·û´®
+'æ­£åˆ™æœ€ç»ˆè¾“å‡ºçš„æ¨¡æ¿å­—ç¬¦ä¸²
 	Function regtplstr()
 		for each a in regarr 
 			ta=split(a,"##",2)
@@ -111,7 +111,7 @@ class AspTplPlug
 				tpl_str= p_regexp.Replace(tpl_str,ta(1))	
 			end if
 		next
-		'Î±¾²Ì¬
+		'ä¼ªé™æ€
 	End Function
 '//////////////////////////////////loop code end///////////////////////////////////////////////////
 end class

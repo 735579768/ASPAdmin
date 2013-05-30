@@ -1,20 +1,20 @@
 <%
 '==========================================================================
-'ÎÄ¼şÃû³Æ£ºAspDb.class.asp
-'¹¦¡¡¡¡ÄÜ£ºÊı¾İ¿â²Ù×÷Àà
-'×÷¡¡¡¡Õß£ºcoldstone (coldstone[ÔÚ]qq.com)
-'³ÌĞò°æ±¾£ºv1.0.5
-'Íê³ÉÊ±¼ä£º2005.09.23
-'ĞŞ¸ÄÊ±¼ä£º2007.10.30
-'°æÈ¨ÉùÃ÷£º¿ÉÒÔÔÚÈÎÒâ×÷Æ·ÖĞÊ¹ÓÃ±¾³ÌĞò´úÂë£¬µ«Çë±£Áô´Ë°æÈ¨ĞÅÏ¢¡£
-'          Èç¹ûÄãĞŞ¸ÄÁË³ÌĞòÖĞµÄ´úÂë²¢µÃµ½¸üºÃµÄÓ¦ÓÃ£¬Çë·¢ËÍÒ»·İ¸øÎÒ£¬Ğ»Ğ»¡£
+'æ–‡ä»¶åç§°ï¼šAspDb.class.asp
+'åŠŸã€€ã€€èƒ½ï¼šæ•°æ®åº“æ“ä½œç±»
+'ä½œã€€ã€€è€…ï¼šcoldstone (coldstone[åœ¨]qq.com)
+'ç¨‹åºç‰ˆæœ¬ï¼šv1.0.5
+'å®Œæˆæ—¶é—´ï¼š2005.09.23
+'ä¿®æ”¹æ—¶é—´ï¼š2007.10.30
+'ç‰ˆæƒå£°æ˜ï¼šå¯ä»¥åœ¨ä»»æ„ä½œå“ä¸­ä½¿ç”¨æœ¬ç¨‹åºä»£ç ï¼Œä½†è¯·ä¿ç•™æ­¤ç‰ˆæƒä¿¡æ¯ã€‚
+'          å¦‚æœä½ ä¿®æ”¹äº†ç¨‹åºä¸­çš„ä»£ç å¹¶å¾—åˆ°æ›´å¥½çš„åº”ç”¨ï¼Œè¯·å‘é€ä¸€ä»½ç»™æˆ‘ï¼Œè°¢è°¢ã€‚
 '==========================================================================
 
-''Dim a : a = CreatConn(0, "master", "localhost", "sa", "")	'MSSQLÊı¾İ¿â
-'Dim a : a = CreatConn(1, "../db24olzzcn/#$%&zzccdb.mdb", "", "", "")	'AccessÊı¾İ¿â
+''Dim a : a = CreatConn(0, "master", "localhost", "sa", "")	'MSSQLæ•°æ®åº“
+'Dim a : a = CreatConn(1, "../db24olzzcn/#$%&zzccdb.mdb", "", "", "")	'Accessæ•°æ®åº“
 ''Dim a : a = CreatConn(1, "E:\MyWeb\Data\%TestDB%.mdb", "", "", "mdbpassword")
 'Dim Conn
-''OpenConn()	'ÔÚ¼ÓÔØÊ±¾Í½¨Á¢µÄÄ¬ÈÏÁ¬½Ó¶ÔÏóConn,Ä¬ÈÏÊ¹ÓÃÊı¾İ¿âa
+''OpenConn()	'åœ¨åŠ è½½æ—¶å°±å»ºç«‹çš„é»˜è®¤è¿æ¥å¯¹è±¡Conn,é»˜è®¤ä½¿ç”¨æ•°æ®åº“a
 'Sub OpenConn : Set Conn = Oc(a) : End Sub
 'Sub CloseConn : Co(Conn) : End Sub
 
@@ -24,8 +24,8 @@ Function Oc(ByVal Connstr)
 	Set objConn = Server.CreateObject("ADODB.Connection")
 	objConn.Open Connstr
 	If Err.number <> 0 Then
-		Response.Write("<div id=""DBError"">ÍøÕ¾Î¬»¤ÖĞ... ÇëÉÔºó·ÃÎÊ£¡</div>")
-		'Response.Write("´íÎóĞÅÏ¢£º" & Err.Description)
+		Response.Write("<div id=""DBError"">ç½‘ç«™ç»´æŠ¤ä¸­... è¯·ç¨åè®¿é—®ï¼</div>")
+		'Response.Write("é”™è¯¯ä¿¡æ¯ï¼š" & Err.Description)
 		objConn.Close
 		Set objConn = Nothing
 		Response.End
@@ -61,8 +61,8 @@ Class Aspdb
 	Private idbErr
 	
 	Private Sub Class_Initialize()
-		debug = true					'µ÷ÊÔÄ£Ê½ÊÇ·ñ¿ªÆô
-		idbErr = "³öÏÖ´íÎó£º"
+		debug = true					'è°ƒè¯•æ¨¡å¼æ˜¯å¦å¼€å¯
+		idbErr = "å‡ºç°é”™è¯¯ï¼š"
 		If IsObject(Conn) Then
 			Set idbConn = Conn
 		End If
@@ -70,7 +70,7 @@ Class Aspdb
 	
 	Private Sub Class_Terminate()
 		Set idbConn = Nothing
-		If debug And idbErr<>"³öÏÖ´íÎó£º" Then Response.Write(idbErr)
+		If debug And idbErr<>"å‡ºç°é”™è¯¯ï¼š" Then Response.Write(idbErr)
 	End Sub
 	
 	Public Property Let dbConn(pdbConn)
@@ -107,8 +107,8 @@ Class Aspdb
 			Loop
 		End If
 		If Err.number <> 0 Then
-			idbErr = idbErr & "ÎŞĞ§µÄ²éÑ¯Ìõ¼ş£¡<br />"
-			If debug Then idbErr = idbErr & "´íÎóĞÅÏ¢£º"& Err.Description
+			idbErr = idbErr & "æ— æ•ˆçš„æŸ¥è¯¢æ¡ä»¶ï¼<br />"
+			If debug Then idbErr = idbErr & "é”™è¯¯ä¿¡æ¯ï¼š"& Err.Description
 			Response.End()
 			Exit Function
 		End If
@@ -127,8 +127,8 @@ Class Aspdb
 			.Source = wGetRecord(TableName,FieldsList,Condition,OrderField,ShowN)
 			.Open 
 			If Err.number <> 0 Then
-				idbErr = idbErr & "ÎŞĞ§µÄ²éÑ¯Ìõ¼ş£¡<br />"
-				If debug Then idbErr = idbErr & "´íÎóĞÅÏ¢£º"& Err.Description
+				idbErr = idbErr & "æ— æ•ˆçš„æŸ¥è¯¢æ¡ä»¶ï¼<br />"
+				If debug Then idbErr = idbErr & "é”™è¯¯ä¿¡æ¯ï¼š"& Err.Description
 				.Close
 				Set rstRecordList = Nothing
 				Response.End()
@@ -172,8 +172,8 @@ Class Aspdb
 			.Source = strSelect
 			.Open 
 			If Err.number <> 0 Then
-				idbErr = idbErr & "ÎŞĞ§µÄ²éÑ¯Ìõ¼ş£¡<br />"
-				If debug Then idbErr = idbErr & "´íÎóĞÅÏ¢£º"& Err.Description
+				idbErr = idbErr & "æ— æ•ˆçš„æŸ¥è¯¢æ¡ä»¶ï¼<br />"
+				If debug Then idbErr = idbErr & "é”™è¯¯ä¿¡æ¯ï¼š"& Err.Description
 				.Close
 				Set rstRecordList = Nothing
 				Response.End()
@@ -195,8 +195,8 @@ Class Aspdb
 			.Source = strSelect
 			.Open 
 			If Err.number <> 0 Then
-				idbErr = idbErr & "ÎŞĞ§µÄ²éÑ¯Ìõ¼ş£¡<br />"
-				If debug Then idbErr = idbErr & "´íÎóĞÅÏ¢£º"& Err.Description
+				idbErr = idbErr & "æ— æ•ˆçš„æŸ¥è¯¢æ¡ä»¶ï¼<br />"
+				If debug Then idbErr = idbErr & "é”™è¯¯ä¿¡æ¯ï¼š"& Err.Description
 				.Close
 				Set rstRecordDetail = Nothing
 				Response.End()
@@ -210,9 +210,9 @@ Class Aspdb
 		On Error Resume Next
 		DoExecute(wAddRecord(TableName,ValueList))
 		If Err.number <> 0 Then
-			idbErr = idbErr & "Ğ´ÈëÊı¾İ¿â³ö´í£¡<br />"
-			If debug Then idbErr = idbErr & "´íÎóĞÅÏ¢£º"& Err.Description
-			'DoExecute "ROLLBACK TRAN Tran_Insert"	'Èç¹û´æÔÚÌí¼ÓÊÂÎñ£¨ÊÂÎñ¹ö»Ø£©
+			idbErr = idbErr & "å†™å…¥æ•°æ®åº“å‡ºé”™ï¼<br />"
+			If debug Then idbErr = idbErr & "é”™è¯¯ä¿¡æ¯ï¼š"& Err.Description
+			'DoExecute "ROLLBACK TRAN Tran_Insert"	'å¦‚æœå­˜åœ¨æ·»åŠ äº‹åŠ¡ï¼ˆäº‹åŠ¡æ»šå›ï¼‰
 			AddRecord = 0
 			Exit Function
 		End If
@@ -231,9 +231,9 @@ Class Aspdb
 		On Error Resume Next
 		DoExecute(wUpdateRecord(TableName,Condition,ValueList))
 		If Err.number <> 0 Then
-			idbErr = idbErr & "¸üĞÂÊı¾İ¿â³ö´í£¡<br />"
-			If debug Then idbErr = idbErr & "´íÎóĞÅÏ¢£º"& Err.Description
-			'DoExecute "ROLLBACK TRAN Tran_Update"	'Èç¹û´æÔÚÌí¼ÓÊÂÎñ£¨ÊÂÎñ¹ö»Ø£©
+			idbErr = idbErr & "æ›´æ–°æ•°æ®åº“å‡ºé”™ï¼<br />"
+			If debug Then idbErr = idbErr & "é”™è¯¯ä¿¡æ¯ï¼š"& Err.Description
+			'DoExecute "ROLLBACK TRAN Tran_Update"	'å¦‚æœå­˜åœ¨æ·»åŠ äº‹åŠ¡ï¼ˆäº‹åŠ¡æ»šå›ï¼‰
 			UpdateRecord = 0
 			Exit Function
 		End If
@@ -260,9 +260,9 @@ Class Aspdb
 		Sql = Sql & ")"
 		DoExecute(Sql)
 		If Err.number <> 0 Then
-			idbErr = idbErr & "É¾³ıÊı¾İ³ö´í£¡<br />"
-			If debug Then idbErr = idbErr & "´íÎóĞÅÏ¢£º"& Err.Description
-			'DoExecute "ROLLBACK TRAN Tran_Delete"	'Èç¹û´æÔÚÌí¼ÓÊÂÎñ£¨ÊÂÎñ¹ö»Ø£©
+			idbErr = idbErr & "åˆ é™¤æ•°æ®å‡ºé”™ï¼<br />"
+			If debug Then idbErr = idbErr & "é”™è¯¯ä¿¡æ¯ï¼š"& Err.Description
+			'DoExecute "ROLLBACK TRAN Tran_Delete"	'å¦‚æœå­˜åœ¨æ·»åŠ äº‹åŠ¡ï¼ˆäº‹åŠ¡æ»šå›ï¼‰
 			DeleteRecord = 0 
 			Exit Function
 		End If
@@ -286,9 +286,9 @@ Class Aspdb
 		On Error Resume Next
 		Dim rstGetValue,Sql,BaseCondition,arrTemp,arrStr,TempStr,i
 		TempStr = "" : arrStr = ""
-		'¸ø³öSQLÌõ¼şÓï¾ä
+		'ç»™å‡ºSQLæ¡ä»¶è¯­å¥
 		BaseCondition = ValueToSql(TableName,Condition,1)
-		'¶ÁÈ¡Êı¾İ
+		'è¯»å–æ•°æ®
 		Set rstGetValue = Server.CreateObject("ADODB.Recordset")
 		Sql = "Select "&GetFieldNames&" From ["&TableName&"] Where "&BaseCondition
 		rstGetValue.Open Sql,idbConn,3,3
@@ -305,8 +305,8 @@ Class Aspdb
 			End If
 		End If
 		If Err.number <> 0 Then
-			idbErr = idbErr & "»ñÈ¡Êı¾İ³ö´í£¡<br />"
-			If debug Then idbErr = idbErr & "´íÎóĞÅÏ¢£º"& Err.Description
+			idbErr = idbErr & "è·å–æ•°æ®å‡ºé”™ï¼<br />"
+			If debug Then idbErr = idbErr & "é”™è¯¯ä¿¡æ¯ï¼š"& Err.Description
 			rstGetValue.close()
 			Set rstGetValue = Nothing
 			Exit Function
@@ -380,8 +380,8 @@ Class Aspdb
 				Next
 			End With
 			If Err.number <> 0 Then
-				idbErr = idbErr & "Éú³ÉSQLÓï¾ä³ö´í£¡<br />"
-				If debug Then idbErr = idbErr & "´íÎóĞÅÏ¢£º"& Err.Description
+				idbErr = idbErr & "ç”ŸæˆSQLè¯­å¥å‡ºé”™ï¼<br />"
+				If debug Then idbErr = idbErr & "é”™è¯¯ä¿¡æ¯ï¼š"& Err.Description
 				rsTemp.close()
 				Set rsTemp = Nothing
 				Exit Function

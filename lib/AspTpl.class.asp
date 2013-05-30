@@ -52,7 +52,7 @@ class ASPTemplate
 		p_var_tag_o = "\{\{"
 		p_var_tag_c = "\}\}"
 
-		p_templates_dir = "templates/"
+		p_templates_dir = "tpl/"
 		set p_variables_list = createobject("Scripting.Dictionary")
 		set p_blocks_list = createobject("Scripting.Dictionary")
 		set p_blocks_name_list = createobject("Scripting.Dictionary")

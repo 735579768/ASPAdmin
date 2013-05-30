@@ -1,6 +1,6 @@
 <%
 '///////////////////////////////////////////
-'È¡Êı¾İ±íÖĞµÄ×Ö¶Î
+'å–æ•°æ®è¡¨ä¸­çš„å­—æ®µ
 '///////////////////////////////////////////
 	Function getTableField(sql)
 		on error resume next
@@ -21,7 +21,7 @@
 '		end if
 	End Function
 '///////////////////////////////////////////
-'È¡Ìí¼ÓĞÅÏ¢±íµ¥Ò³Ãæ
+'å–æ·»åŠ ä¿¡æ¯è¡¨å•é¡µé¢
 '///////////////////////////////////////////
 	function getAddForm(cat_id)
 		sql="select b.tpl_addform from kl_cats as a inner join kl_content_types as b on a.type_id=b.type_id where a.cat_id="&cat_id
@@ -30,7 +30,7 @@
 		getAddForm=a
 	End function
 '///////////////////////////////////////////
-'Êä³ö´íÎó
+'è¾“å‡ºé”™è¯¯
 '///////////////////////////////////////////
 	Function echoErr()
 		echo("Error code: " & CStr(Err.Number) & "<br>Error Description: " & Err.Description)
@@ -38,7 +38,7 @@
 		die("")
 	End function
 '///////////////////////////////////////////
-'È¡±à¼­ĞÅÏ¢±íµ¥Ò³Ãæ
+'å–ç¼–è¾‘ä¿¡æ¯è¡¨å•é¡µé¢
 '///////////////////////////////////////////
 	function getEditForm(cat_id)
 		sql="select b.tpl_editform from kl_cats as a inner join kl_content_types as b on a.type_id=b.type_id where a.cat_id="&cat_id
@@ -47,7 +47,7 @@
 		getEditForm=a
 	End function
 '///////////////////////////////////////////
-'È¡ÎÄÕÂÄ£°å
+'å–æ–‡ç« æ¨¡æ¿
 '///////////////////////////////////////////
 	Function getArticleTpl(arcid)
 		sql="select * from (kl_archives as a inner join kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on b.type_id=c.type_id where a.id="&arcid
@@ -69,7 +69,7 @@
 		getArticleTpl=a
 	End Function
 '///////////////////////////////////////////
-'È¡·ÖÀà·âÃæÄ£°å
+'å–åˆ†ç±»å°é¢æ¨¡æ¿
 '///////////////////////////////////////////
 	Function getCatIndexTpl(catid)
 		set m=db.getRecord("kl_cats","cat_index","cat_id="&catid,"",0)
@@ -78,7 +78,7 @@
 		getCatIndexTpl=a
 	End Function
 '///////////////////////////////////////////
-'È¡·ÖÀà·âÃæÄ£°å
+'å–åˆ†ç±»å°é¢æ¨¡æ¿
 '///////////////////////////////////////////
 	Function getCatListTpl(catid)
 		set m=db.getRecord("kl_cats","cat_list","cat_id="&catid,"",0)
@@ -87,7 +87,7 @@
 		getCatListTpl=a
 	End Function
 '///////////////////////////////////////////
-'Í¨¹ısqlÓï¾äÉèÖÃÄ£°å±äÁ¿
+'é€šè¿‡sqlè¯­å¥è®¾ç½®æ¨¡æ¿å˜é‡
 '///////////////////////////////////////////
 	Function setTplVarBySql(sql)
 		on error resume next
@@ -103,8 +103,8 @@
 		set funcrs=nothing
 	End Function	
 '///////////////////////////////////////////
-'Ö¸ÉèÖÃÄ£°å±äÁ¿
-'@param arr ¼üÖµÊı×é 
+'æŒ‡è®¾ç½®æ¨¡æ¿å˜é‡
+'@param arr é”®å€¼æ•°ç»„ 
 '///////////////////////////////////////////
 	Function setVarArr(arr)
 		if isarray(arr) then
@@ -120,10 +120,10 @@
 
 	End Function
 '///////////////////////////////////////////
-'Ñ­»·¿éÊä³ö
-'@param block ÒªÊä³öµÄ¿é
-'@param sqlstr ²éÑ¯Êı¾İµÄsqlÓï¾ä
-'@param arr Ò»¸ö¼üÖµÊı×é£¬Èç"key:valu"  ¶ÔÓ¦µÄÊı¾İ¸ñÊ½Îª tpl.SetVariable key,funcrs(valu)&""
+'å¾ªç¯å—è¾“å‡º
+'@param block è¦è¾“å‡ºçš„å—
+'@param sqlstr æŸ¥è¯¢æ•°æ®çš„sqlè¯­å¥
+'@param arr ä¸€ä¸ªé”®å€¼æ•°ç»„ï¼Œå¦‚"key:valu"  å¯¹åº”çš„æ•°æ®æ ¼å¼ä¸º tpl.SetVariable key,funcrs(valu)&""
 '///////////////////////////////////////////
 	Function listBlock(block,sqlstr,arr)
 	on error resume next
@@ -145,32 +145,32 @@
 		loop
 	set funcrs=nothing
 	End Function'////////////////////////////////////////////////////////////////////////////////////////////////////////////
-'Ñ­»·¿éÊä³ö,ºóÃæ´ø·ÖÒ³ÏÔÊ¾
-'@param block ÒªÊä³öµÄ¿é
-'@param sqlstr ²éÑ¯Êı¾İµÄsqlÓï¾ä
-'@param arr Ò»¸ö¼üÖµÊı×é£¬Èç"key:valu"  ¶ÔÓ¦µÄÊı¾İ¸ñÊ½Îª tpl.SetVariable key,funcrs(valu)&""
-'@param pagesÒ³ÃæµÄ´óĞ¡
+'å¾ªç¯å—è¾“å‡º,åé¢å¸¦åˆ†é¡µæ˜¾ç¤º
+'@param block è¦è¾“å‡ºçš„å—
+'@param sqlstr æŸ¥è¯¢æ•°æ®çš„sqlè¯­å¥
+'@param arr ä¸€ä¸ªé”®å€¼æ•°ç»„ï¼Œå¦‚"key:valu"  å¯¹åº”çš„æ•°æ®æ ¼å¼ä¸º tpl.SetVariable key,funcrs(valu)&""
+'@param pagesé¡µé¢çš„å¤§å°
 '///////////////////////////////////////////
 	Function listBlockPage(block,sqlstr,arr,pages)
-				''´´½¨¶ÔÏó
+				''åˆ›å»ºå¯¹è±¡
 			Set mypage=new xdownpage
-			''µÃµ½Êı¾İ¿âÁ¬½Ó
+			''å¾—åˆ°æ•°æ®åº“è¿æ¥
 			mypage.getconn=db.idbconn
-			''sqlÓï¾ä
+			''sqlè¯­å¥
 			mypage.getsql=sqlstr
-			''ÉèÖÃÃ¿Ò»Ò³µÄ¼ÇÂ¼ÌõÊı¾İÎª5Ìõ
+			''è®¾ç½®æ¯ä¸€é¡µçš„è®°å½•æ¡æ•°æ®ä¸º5æ¡
 			mypage.pagesize=pages
-			''·µ»ØRecordset
+			''è¿”å›Recordset
 			set funcrs=mypage.getrs()
-			''ÏÔÊ¾·ÖÒ³ĞÅÏ¢£¬Õâ¸ö·½·¨¿ÉÒÔ£¬ÔÚset funcrs=mypage.getrs()ÒÔºó,¿ÉÔÚÈÎÒâÎ»ÖÃµ÷ÓÃ£¬¿ÉÒÔµ÷ÓÃ¶à´Î
+			''æ˜¾ç¤ºåˆ†é¡µä¿¡æ¯ï¼Œè¿™ä¸ªæ–¹æ³•å¯ä»¥ï¼Œåœ¨set funcrs=mypage.getrs()ä»¥å,å¯åœ¨ä»»æ„ä½ç½®è°ƒç”¨ï¼Œå¯ä»¥è°ƒç”¨å¤šæ¬¡
 			'mypage.showpage()
 			'
-			''ÏÔÊ¾Êı¾İ
+			''æ˜¾ç¤ºæ•°æ®
 			'Response.Write("<br/>")
 			on error resume next
 				tpl.UpdateBlock block
 			for i=1 to mypage.pagesize
-			''ÕâÀï¾Í¿ÉÒÔ×Ô¶¨ÒåÏÔÊ¾·½Ê½ÁË
+			''è¿™é‡Œå°±å¯ä»¥è‡ªå®šä¹‰æ˜¾ç¤ºæ–¹å¼äº†
 				if not funcrs.eof then 
 			'        response.write funcrs(0) & "<br/>"
 						 for j=0 to ubound(arr)
@@ -192,14 +192,14 @@
 			set funcrs=nothing
 	End Function
 '/////////////////////////////////////////////////////////////////////////////////////////////////////////
-'Ñ­»·¿éÊä³ö
-'@param block ÒªÊä³öµÄ¿é
-'@param sqlstr ²éÑ¯Êı¾İµÄsqlÓï¾ä
-'@param tablename Êı¾İ±íÃû×Ö	
+'å¾ªç¯å—è¾“å‡º
+'@param block è¦è¾“å‡ºçš„å—
+'@param sqlstr æŸ¥è¯¢æ•°æ®çš„sqlè¯­å¥
+'@param tablename æ•°æ®è¡¨åå­—	
 '///////////////////////////////////////////
 	Function loopBlock(block,sqlstr)
 		on error resume next
-		'È¡±íÖĞµÄ×Ö¶ÎÖµ
+		'å–è¡¨ä¸­çš„å­—æ®µå€¼
 		sz=getTableField(sqlstr)
 		set funcrs=db.query(sqlstr)
 				tpl.UpdateBlock block
@@ -218,34 +218,34 @@
 		set funcrs=nothing
 	End Function
 '////////////////////////////////////////////////////////////////////////////////////////////////////////////
-'Ñ­»·¿éÊä³ö,ºóÃæ´ø·ÖÒ³ÏÔÊ¾
-'@param block ÒªÊä³öµÄ¿é
-'@param sqlstr ²éÑ¯Êı¾İµÄsqlÓï¾ä
-'@param arr Ò»¸ö¼üÖµÊı×é£¬Èç"key:valu"  ¶ÔÓ¦µÄÊı¾İ¸ñÊ½Îª tpl.SetVariable key,funcrs(valu)&""
-'@param pagesÒ³ÃæµÄ´óĞ¡
+'å¾ªç¯å—è¾“å‡º,åé¢å¸¦åˆ†é¡µæ˜¾ç¤º
+'@param block è¦è¾“å‡ºçš„å—
+'@param sqlstr æŸ¥è¯¢æ•°æ®çš„sqlè¯­å¥
+'@param arr ä¸€ä¸ªé”®å€¼æ•°ç»„ï¼Œå¦‚"key:valu"  å¯¹åº”çš„æ•°æ®æ ¼å¼ä¸º tpl.SetVariable key,funcrs(valu)&""
+'@param pagesé¡µé¢çš„å¤§å°
 '///////////////////////////////////////////
 	Function loopBlockPage(block,sqlstr,pagesizes)
-				''´´½¨¶ÔÏó
+				''åˆ›å»ºå¯¹è±¡
 			Set mypage=new xdownpage
-			''µÃµ½Êı¾İ¿âÁ¬½Ó
+			''å¾—åˆ°æ•°æ®åº“è¿æ¥
 			mypage.getconn=db.idbconn
-			''sqlÓï¾ä
+			''sqlè¯­å¥
 			mypage.getsql=sqlstr
-			''ÉèÖÃÃ¿Ò»Ò³µÄ¼ÇÂ¼ÌõÊı¾İÎª5Ìõ
+			''è®¾ç½®æ¯ä¸€é¡µçš„è®°å½•æ¡æ•°æ®ä¸º5æ¡
 			mypage.pagesize=pagesizes
-			''·µ»ØRecordset
+			''è¿”å›Recordset
 			set funcrs=mypage.getrs()
-			''ÏÔÊ¾·ÖÒ³ĞÅÏ¢£¬Õâ¸ö·½·¨¿ÉÒÔ£¬ÔÚset funcrs=mypage.getrs()ÒÔºó,¿ÉÔÚÈÎÒâÎ»ÖÃµ÷ÓÃ£¬¿ÉÒÔµ÷ÓÃ¶à´Î
+			''æ˜¾ç¤ºåˆ†é¡µä¿¡æ¯ï¼Œè¿™ä¸ªæ–¹æ³•å¯ä»¥ï¼Œåœ¨set funcrs=mypage.getrs()ä»¥å,å¯åœ¨ä»»æ„ä½ç½®è°ƒç”¨ï¼Œå¯ä»¥è°ƒç”¨å¤šæ¬¡
 			'mypage.showpage()
 			'
-			''ÏÔÊ¾Êı¾İ
+			''æ˜¾ç¤ºæ•°æ®
 			'Response.Write("<br/>")
 			on error resume next
-					'È¡±íÖĞµÄ×Ö¶ÎÖµ
+					'å–è¡¨ä¸­çš„å­—æ®µå€¼
 			sz=getTableField(sqlstr)
 				tpl.UpdateBlock block
 			for i=1 to mypage.pagesize
-			''ÕâÀï¾Í¿ÉÒÔ×Ô¶¨ÒåÏÔÊ¾·½Ê½ÁË
+			''è¿™é‡Œå°±å¯ä»¥è‡ªå®šä¹‰æ˜¾ç¤ºæ–¹å¼äº†
 				if not funcrs.eof then 
 			'        response.write funcrs(0) & "<br/>"
 					 for j=0 to ubound(sz)-1
@@ -265,31 +265,31 @@
 			set funcrs=nothing
 	End Function
 '/////////////////////////////////////////////////////////////////////////////////////////////////////////
-'url×ªÏò
+'urlè½¬å‘
 '///////////////////////////////////////////
 	Function reurl(url)
 		response.Redirect(url)
 	End Function 
 '///////////////////////////////////////////
-'Êä³öjsÌáÊ¾¿òµ½Ç°Ì¨
+'è¾“å‡ºjsæç¤ºæ¡†åˆ°å‰å°
 '///////////////////////////////////////////
 	Function getJsAlert(str)
 		getJsAlert="<script>alert("""&str&""");</script>"
 	End Function
 '///////////////////////////////////////////
-'µ¯³öjsÌáÊ¾¿òµ½Ç°Ì¨
+'å¼¹å‡ºjsæç¤ºæ¡†åˆ°å‰å°
 '///////////////////////////////////////////
 	function AlertMsg(str)
 		echo "<script>alert('"&str&"');</script>"
 	end function
 '///////////////////////////////////////////
-'¼ò»¯È¡²ÎÊı²Ù×÷
+'ç®€åŒ–å–å‚æ•°æ“ä½œ
 '///////////////////////////////////////////
 	function G(str)
 		G=getparam(str)
 	end function
 '///////////////////////////////////////////
-'È¡µ±Ç°ÎÄ¼şÃû£¬×éºÏ³ÉÄ£°å
+'å–å½“å‰æ–‡ä»¶åï¼Œç»„åˆæˆæ¨¡æ¿
 '///////////////////////////////////////////
 	function getRunFileName()
 		dim str:str=Request.ServerVariables("Script_Name")
@@ -300,7 +300,7 @@
 		getRunFileName=f
 	end function
 '///////////////////////////////////////////
-'ÅĞ¶ÏÊÇ²»ÊÇºóÌ¨µÄÇëÇó
+'åˆ¤æ–­æ˜¯ä¸æ˜¯åå°çš„è¯·æ±‚
 '///////////////////////////////////////////
 	function isadmin()
 		dim str:str=Request.ServerVariables("Script_Name")
@@ -311,7 +311,7 @@
 		end if
 	end function
 '///////////////////////////////////////////
-'µ÷ÊÔÊä³öĞÅÏ¢
+'è°ƒè¯•è¾“å‡ºä¿¡æ¯
 '///////////////////////////////////////////
 	function dump(str)
 		response.Write "<pre style='color:red'>"
@@ -319,28 +319,28 @@
 		response.Write "</pre>"
 	end function
 '///////////////////////////////////////////
-'Êä³öĞÅÏ¢
+'è¾“å‡ºä¿¡æ¯
 '///////////////////////////////////////////
 	function echo(str)
 		response.Write str
 	end function
 '///////////////////////////////////////////
-'ÍË³ö³ÌĞò
+'é€€å‡ºç¨‹åº
 '///////////////////////////////////////////
 	function die(str)
 		echo str
 		response.End()
 	End function
 '///////////////////////////////////////////
-'È¡urlÖĞµÄÇëÇó²ÎÊı
+'å–urlä¸­çš„è¯·æ±‚å‚æ•°
 '///////////////////////////////////////////
 	Function getparam(str)
 		str1=request(str)
-		getparam=replace(str1,":","£º")
+		getparam=replace(str1,":","ï¼š")
 		'getparam=mydecodeurl(replace(request(str),"$","%"))&"888"
 	End Function
 '///////////////////////////////////////////
-'Éú³É±àºÅ
+'ç”Ÿæˆç¼–å·
 '///////////////////////////////////////////
 	function getbh()
 		Randomize
@@ -349,14 +349,14 @@
 		getbh=rndname
 	end function
 '///////////////////////////////////////////
-'¹¦ÄÜ·µ»Ø±»js±àÂë¹ıµÄºº×Ö´«µİÇëÇóurl²ÎÊı¾Í¿ÉÒÔ
+'åŠŸèƒ½è¿”å›è¢«jsç¼–ç è¿‡çš„æ±‰å­—ä¼ é€’è¯·æ±‚urlå‚æ•°å°±å¯ä»¥
 '///////////////////////////////////////////
 	function getParamByJs(str)
 		str=request(str)
 		getParamByJs=mydecodeurl(replace(str,"$","%"))
 	end function
 '///////////////////////////////////////////
-'¹ıÂËSQL·Ç·¨×Ö·û²¢¸ñÊ½»¯html´úÂë
+'è¿‡æ»¤SQLéæ³•å­—ç¬¦å¹¶æ ¼å¼åŒ–htmlä»£ç 
 '///////////////////////////////////////////
 	function filtersql(fString)
 		if isnull(fString) then
@@ -364,11 +364,11 @@
 		exit function
 		else
 		fString=trim(fString)
-		'fString=replace(fString,">","¡·")
-		'fString=replace(fString,"<","¡¶")
+		'fString=replace(fString,">","ã€‹")
+		'fString=replace(fString,"<","ã€Š")
 		fString=replace(fString,"'","""")
-		fString=replace(fString,";","£»")
-		fString=replace(fString,"--","¡ª")
+		fString=replace(fString,";","ï¼›")
+		fString=replace(fString,"--","â€”")
 		'fString=server.htmlencode(fString)
 		filtersql=fString
 		end if	
@@ -378,21 +378,21 @@
 	Function NoSqlHack(FS_inputStr)
 		Dim f_NoSqlHack_AllStr,f_NoSqlHack_Str,f_NoSqlHack_i,Str_InputStr
 		Str_InputStr=FS_inputStr
-		'Ä¿Ç°ÓÃ×îÑÏµÄ¹ıÂË·½Ê½
+		'ç›®å‰ç”¨æœ€ä¸¥çš„è¿‡æ»¤æ–¹å¼
 		f_NoSqlHack_AllStr="dbcc|alter|drop|* |and|exec|or|insert|select|delete|update|count|master|truncate|declare|char|mid(|chr|set |where|xp_cmdshell"
 		f_NoSqlHack_Str = Split(f_NoSqlHack_AllStr,"|")
 	
 		For f_NoSqlHack_i=LBound(f_NoSqlHack_Str) To Ubound(f_NoSqlHack_Str)
 			If Instr(LCase(Str_InputStr),f_NoSqlHack_Str(f_NoSqlHack_i))<>0 Then
 				If f_NoSqlHack_Str(f_NoSqlHack_i)="'" Then f_NoSqlHack_Str(f_NoSqlHack_i)=" \' "
-				Response.Write "<html><title>¾¯¸æ</title><body bgcolor=""EEEEEE"" leftmargin=""60"" topmargin=""30""><font style=""font-size:16px;font-weight:bolder;color:blue;""><li>ÄúÌá½»µÄÊı¾İÓĞ¶ñÒâ×Ö·û</li></font><font style=""font-size:14px;font-weight:bolder;color:red;""><br><li>ÄúµÄÊı¾İÒÑ¾­±»¼ÇÂ¼!</li><br><li>ÄúµÄIP£º"&Request.ServerVariables("Remote_Addr")&"</li><br><li>²Ù×÷ÈÕÆÚ£º"&Now&"</li></font></body></html><!--Powered by Foosun Inc.,AddTime:"&now&"-->"
+				Response.Write "<html><title>è­¦å‘Š</title><body bgcolor=""EEEEEE"" leftmargin=""60"" topmargin=""30""><font style=""font-size:16px;font-weight:bolder;color:blue;""><li>æ‚¨æäº¤çš„æ•°æ®æœ‰æ¶æ„å­—ç¬¦</li></font><font style=""font-size:14px;font-weight:bolder;color:red;""><br><li>æ‚¨çš„æ•°æ®å·²ç»è¢«è®°å½•!</li><br><li>æ‚¨çš„IPï¼š"&Request.ServerVariables("Remote_Addr")&"</li><br><li>æ“ä½œæ—¥æœŸï¼š"&Now&"</li></font></body></html><!--Powered by Foosun Inc.,AddTime:"&now&"-->"
 				Response.End
 			End if
 		Next
 		NoSqlHack = Replace(Replace(Str_InputStr,"'","''"),"%27","''")
 	End Function
 '///////////////////////////////////////////
-'¼ì²â´«µİµÄ²ÎÊıÊÇ·ñÎªÊı×ÖĞÍ
+'æ£€æµ‹ä¼ é€’çš„å‚æ•°æ˜¯å¦ä¸ºæ•°å­—å‹
 '///////////////////////////////////////////
 	Function Chkrequest(Para)
 	Chkrequest=False
@@ -401,7 +401,7 @@
 	End If
 	End Function
 '///////////////////////////////////////////
-'¼ì²â´«µİµÄ²ÎÊıÊÇ·ñÎªÈÕÆÚĞÍ
+'æ£€æµ‹ä¼ é€’çš„å‚æ•°æ˜¯å¦ä¸ºæ—¥æœŸå‹
 '///////////////////////////////////////////
 	Function Chkrequestdate(Para)
 	Chkrequestdate=False
@@ -411,7 +411,7 @@
 	End Function
 
 '///////////////////////////////////////////
-'¹ıÂËSQL·Ç·¨×Ö·û
+'è¿‡æ»¤SQLéæ³•å­—ç¬¦
 '///////////////////////////////////////////
 	Function checkStr(Chkstr)
 		dim Str:Str=Chkstr
@@ -428,18 +428,18 @@
 
 
 
-'¸Ãº¯Êı×÷ÓÃ£º°´Ö¸¶¨²ÎÊı¸ñÊ½»¯ÏÔÊ¾Ê±¼ä¡£
-'numformat=1:½«Ê±¼ä×ª»¯Îªyyyy-mm-dd hh:nn¸ñÊ½¡£
-'numformat=2:½«Ê±¼ä×ª»¯Îªyyyy-mm-dd¸ñÊ½¡£
-'numformat=3:½«Ê±¼ä×ª»¯Îªhh:nn¸ñÊ½¡£
-'numformat=4:½«Ê±¼ä×ª»¯ÎªyyyyÄêmmÔÂddÈÕ hhÊ±nn·Ö¸ñÊ½¡£
-'numformat=5:½«Ê±¼ä×ª»¯ÎªyyyyÄêmmÔÂddÈÕ¸ñÊ½¡£
-'numformat=6:½«Ê±¼ä×ª»¯ÎªhhÊ±nn·Ö¸ñÊ½¡£
-'numformat=7:½«Ê±¼ä×ª»¯ÎªyyyyÄêmmÔÂddÈÕ ĞÇÆÚ¡Á¸ñÊ½¡£
-'numformat=8:½«Ê±¼ä×ª»¯Îªyymmdd¸ñÊ½¡£
-'numformat=9:½«Ê±¼ä×ª»¯Îªmmdd¸ñÊ½¡£
+'è¯¥å‡½æ•°ä½œç”¨ï¼šæŒ‰æŒ‡å®šå‚æ•°æ ¼å¼åŒ–æ˜¾ç¤ºæ—¶é—´ã€‚
+'numformat=1:å°†æ—¶é—´è½¬åŒ–ä¸ºyyyy-mm-dd hh:nnæ ¼å¼ã€‚
+'numformat=2:å°†æ—¶é—´è½¬åŒ–ä¸ºyyyy-mm-ddæ ¼å¼ã€‚
+'numformat=3:å°†æ—¶é—´è½¬åŒ–ä¸ºhh:nnæ ¼å¼ã€‚
+'numformat=4:å°†æ—¶é—´è½¬åŒ–ä¸ºyyyyå¹´mmæœˆddæ—¥ hhæ—¶nnåˆ†æ ¼å¼ã€‚
+'numformat=5:å°†æ—¶é—´è½¬åŒ–ä¸ºyyyyå¹´mmæœˆddæ—¥æ ¼å¼ã€‚
+'numformat=6:å°†æ—¶é—´è½¬åŒ–ä¸ºhhæ—¶nnåˆ†æ ¼å¼ã€‚
+'numformat=7:å°†æ—¶é—´è½¬åŒ–ä¸ºyyyyå¹´mmæœˆddæ—¥ æ˜ŸæœŸÃ—æ ¼å¼ã€‚
+'numformat=8:å°†æ—¶é—´è½¬åŒ–ä¸ºyymmddæ ¼å¼ã€‚
+'numformat=9:å°†æ—¶é—´è½¬åŒ–ä¸ºmmddæ ¼å¼ã€‚
 	function Formatdate(shijian,numformat)
-		dim ystr,mstr,dstr,hstr,nstr '±äÁ¿º¬Òå·Ö±ğÎªÄê×Ö·û´®£¬ÔÂ×Ö·û´®£¬ÈÕ×Ö·û´®£¬Ê±×Ö·û´®£¬·Ö×Ö·û´®
+		dim ystr,mstr,dstr,hstr,nstr 'å˜é‡å«ä¹‰åˆ†åˆ«ä¸ºå¹´å­—ç¬¦ä¸²ï¼Œæœˆå­—ç¬¦ä¸²ï¼Œæ—¥å­—ç¬¦ä¸²ï¼Œæ—¶å­—ç¬¦ä¸²ï¼Œåˆ†å­—ç¬¦ä¸²
 		
 		if isnull(shijian) then
 		numformat=0
@@ -482,24 +482,24 @@
 		case 3
 		formatdate=hstr&":"&nstr
 		case 4
-		formatdate=ystr&"Äê"&mstr&"ÔÂ"&dstr&"ÈÕ "&hstr&"Ê±"&nstr&"·Ö"
+		formatdate=ystr&"å¹´"&mstr&"æœˆ"&dstr&"æ—¥ "&hstr&"æ—¶"&nstr&"åˆ†"
 		
 		case 5
-		formatdate=ystr&"Äê"&mstr&"ÔÂ"&dstr&"ÈÕ" 
+		formatdate=ystr&"å¹´"&mstr&"æœˆ"&dstr&"æ—¥" 
 		case 6
-		formatdate=hstr&"Ê±"&nstr&"·Ö"
+		formatdate=hstr&"æ—¶"&nstr&"åˆ†"
 		case 7
-		formatdate=ystr&"Äê"&mstr&"ÔÂ"&dstr&"ÈÕ "&WeekdayName(Weekday(shijian))
+		formatdate=ystr&"å¹´"&mstr&"æœˆ"&dstr&"æ—¥ "&WeekdayName(Weekday(shijian))
 		case 8
 		formatdate=right(ystr,2)&mstr&dstr
 		case 9
-		formatdate=mstr&"ÔÂ"&dstr&"ÈÕ"
+		formatdate=mstr&"æœˆ"&dstr&"æ—¥"
 		end select
 	end function
 
 '///////////////////////////////////////////
 '///////////////////////////////////////////
-	function bin2str(binstr)                 '½«bin2str¶ş½øÊı×ª»¯Îª×Ö·û´®
+	function bin2str(binstr)                 'å°†bin2sträºŒè¿›æ•°è½¬åŒ–ä¸ºå­—ç¬¦ä¸²
 		dim varlen, clow, ccc, skipflag
 		skipflag = 0
 		ccc = ""
@@ -520,13 +520,13 @@
 		bin2str = ccc
 	end function
 
-	function str2bin(str)             '½«×Ö·û´®×ª»¯Îª¶ş½øÖÆÊı
+	function str2bin(str)             'å°†å­—ç¬¦ä¸²è½¬åŒ–ä¸ºäºŒè¿›åˆ¶æ•°
 		for i = 1 to len(str)
 			str2bin = str2bin & chrb(asc(mid(str, i, 1)))
 		next
 	end function
 '///////////////////////////////////////////
-'°üº¬ÎÄ¼ş
+'åŒ…å«æ–‡ä»¶
 '///////////////////////////////////////////
 	Function include(filename)
 		Dim re,content,fso,f,aspStart,aspEnd
@@ -550,7 +550,7 @@
 		set re=nothing
 	End Function 
 '///////////////////////////////////////////
-'Ïú»Ùcookies
+'é”€æ¯cookies
 '///////////////////////////////////////////
 	function destroyCookies()
 		session.abandon
@@ -559,7 +559,7 @@
 		Response.Cookies("U_pwd").Expires=now-100 
 	end function
 '///////////////////////////////////////////
-'·µ»Ø¿Í»§¶ËµÄip	
+'è¿”å›å®¢æˆ·ç«¯çš„ip	
 '///////////////////////////////////////////
 	Function getIP() 
 		Dim strIPAddr 
@@ -576,13 +576,13 @@
 	End Function
 '///////////////////////////////////////////
 '///////////////////////////////////////////
-'===============================aspµ÷ÊÔº¯Êı==================================
+'===============================aspè°ƒè¯•å‡½æ•°==================================
 	function dump(a)
 	debug(a)
 	end function
 	function debug(a)
 		if IsArray(a)  then
-			response.write "=================µ÷ÊÔÊä³ö==================<br />"
+			response.write "=================è°ƒè¯•è¾“å‡º==================<br />"
 			for i=lbound(a) to ubound(a)-1
 					if IsArray(a(i)) then
 					response.write """"&i&"""=><br />"
@@ -595,15 +595,15 @@
 			next
 			response.write "============================================<br />"
 		else
-			response.write "=================µ÷ÊÔÊä³ö==================<br />"
+			response.write "=================è°ƒè¯•è¾“å‡º==================<br />"
 			response.write "<b style='color:red;'>"&a&"</b><br />"
 			response.write "============================================<br />"
 			
 		end if
 	end function
 '====================================================================================
-'¹¦ÄÜ£ºÉ¾³ıÎÄ¼ş£¨Í¼Æ¬£©
-'²ÎÊı£º@filestr  ÎÄ¼şÂ·¾¶£¬(¿ÉÒÔÓÃÏà¶ÔÂ·¾¶)
+'åŠŸèƒ½ï¼šåˆ é™¤æ–‡ä»¶ï¼ˆå›¾ç‰‡ï¼‰
+'å‚æ•°ï¼š@filestr  æ–‡ä»¶è·¯å¾„ï¼Œ(å¯ä»¥ç”¨ç›¸å¯¹è·¯å¾„)
 	Function DeleteFile(FileStr)
 		   Dim FSO
 		   On Error Resume Next
@@ -621,21 +621,21 @@
 		   End If
 	End Function
 '****************************************************
-'¹ı³ÌÃû£ºRemoveHTML
-'×÷  ÓÃ£º¹ıÂËHTML±êÇ©
-'²Î  Êı£ºstrHTML
+'è¿‡ç¨‹åï¼šRemoveHTML
+'ä½œ  ç”¨ï¼šè¿‡æ»¤HTMLæ ‡ç­¾
+'å‚  æ•°ï¼šstrHTML
 '****************************************************
 	Function RemoveHTML(strHTML)
 	 Dim objRegExp, Match, Matches 
 	 Set objRegExp = New Regexp
 	 objRegExp.IgnoreCase = True
 	 objRegExp.Global = True
-	 'È¡±ÕºÏµÄ<>
+	 'å–é—­åˆçš„<>
 	 objRegExp.Pattern = "<(.*?)>|\s+?"
-	 '½øĞĞÆ¥Åä
+	 'è¿›è¡ŒåŒ¹é…
 	 strHTML=objRegExp.replace(strHTML,"")
 '	 Set Matches=objRegExp.Execute(strHTML)
-'	 ' ±éÀúÆ¥Åä¼¯ºÏ£¬²¢Ìæ»»µôÆ¥ÅäµÄÏîÄ¿
+'	 ' éå†åŒ¹é…é›†åˆï¼Œå¹¶æ›¿æ¢æ‰åŒ¹é…çš„é¡¹ç›®
 '	 For Each Match in Matches 
 '	 strHtml=Replace(strHTML,Match.Value,"")
 '	 Next

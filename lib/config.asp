@@ -1,35 +1,37 @@
+<%@LANGUAGE="VBSCRIPT" CODEPAGE="65001"%>
 <%
 '////////////////////////////////////
-'初始化系统的配置参数
+'config file
 '//////////////////////////////////
 'on error resume next 
 on error goto 0
 session("APP")="true"
-'字符集设置
+
 'Response.Addheader "Content-Type","text/html; charset=utf-8" 
 
-'数据库配置
-const Sql_Server = "127.0.0.1" '数据库服务器地址 
-const Sql_User = "" '数据库登录名 
-const Sql_Pass = "" '数据库密码 
-const Sql_Data = "/admin/#data/#aspadmindata.mdb" '数据库名
+'database config
+const Sql_Server = "127.0.0.1" 'server
+const Sql_User = "" 'datauser 
+const Sql_Pass = "" 'datapwd
+const Sql_Data = "/admin/#data/#aspadmindata.mdb" '鏁版嵁搴撳悕
 const suffix ="kl_"
 
-'后台文件夹目录
+'admin dir name
 const adminDir="admin"
 
 
-'登陆id保存 权限操作超级管理员(0)  普通管理员(1)  
+
 dim login_id
 login_id=0
 
 
-'模板配置
+'tpl dir
 dim TPL_PATH
-	TPL_PATH="templates/"
+	TPL_PATH="tpl/"
 	
-'��ģ���������ʱ���������滻��һ���滻�м���##����
-redim regarr(2)
+'在模板最终输出时进行正则替换第一组替换中间用##隔开
+redim regarr(3)
 regarr(0)="cat\.asp\?cat_id\=(\d+)##cat-$1.html"
 regarr(1)="view\.asp\?id\=(\d+)##view-$1.html"
+regarr(2)="charset=gb2312##charset=utf-8"
 %>

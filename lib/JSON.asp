@@ -1,7 +1,7 @@
 <%
 '
 '	VBS JSON 2.0.3
-'	Copyright (c) 2009 Tuðrul Topuz
+'	Copyright (c) 2009 Tué¤½ul Topuz
 '	Under the MIT (MIT-LICENSE.txt) license.
 '
 
