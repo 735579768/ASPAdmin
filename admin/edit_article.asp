@@ -1,33 +1,26 @@
 <!--#include file="lib/AdminInIt.asp"-->
 <%
-'tpl.SetTemplatesDir("")
-'包含文件
-'tpl.setVariableFile "TOP_HTML","public/top.html"
-'tpl.setVariableFile "FOOTER_HTML","public/footer.html"
-'Generate the page
-
-
 ''更新文章
 	if G("isupdtarticle")="true" then
 		id=G("id")
 		cat_id=G("cat_id")
-		sql="select data_table as datatable from kl_cats as a inner join kl_content_types as b on a.type_id=b.type_id where a.cat_id="&cat_id
-		set rs=db.query(sql)
-		datatable=rs("datatable")
-				set uprs=server.createobject("adodb.recordset")
-				uprs.open "select * from "&datatable&" where id="&id,db.idbconn,0,2
+			set uprs=server.createobject("adodb.recordset")
+			uprs.open "select * from kl_archives where id="&id,db.idbconn,0,2
 			on error resume next
 			err.clear
+		'delete pic start
+		set temrs=db.query("select arcpic from kl_archives where id="&id)
+		if not temrs.eof  then
+			tempic=trim(temrs("arcpic")&"")
+			set temrs=nothing
+			if arcpic<>"" and trim(G("arcpic"))<>tempic then
+					DeleteFile(tempic )
+			end if
+		end if
+		'delete pic send
 				for each key in request.Form()
 					 if key<>"id" and key<>"isupdtarticle" then
 						val=G(key)
-'						if not isnumeric(val) then
-'							val="'"&val&"'"
-'						end if
-						'echo val&"<br>"
-						'echo key&"<br>"
-					'	echo key&"<br>"
-					'	echo val
 						uprs(key)=val
 					 end if
 				next
@@ -38,35 +31,6 @@
 				else
 					AlertMsg(UPDATE_SUCCESS_STR)
 				end if
-'		dim arctitle,type_id,cat_id,arcpic,arccontent,arcauthor,arcsource,arckeys
-'		arctitle=G("arctitle")
-'		type_id=G("type_id")
-'		cat_id=G("cat_id")
-'		arcpic=G("arcpic")
-'		arcauthor=G("arcauthor")
-'		arcsource=G("arcsource")
-'		arckeys=G("arckeys")
-'		arctpl=G("arctpl")
-'		
-'		'删除原来的图片
-'		set temrs=db.query("select arcpic from kl_archives where id="&G("id"))
-'		if not temrs.eof  then
-'			tempic=trim(temrs("arcpic")&"")
-'			set temrs=nothing
-'			if arcpic<>"" and trim(arcpic)<>tempic then
-'					DeleteFile(tempic )
-'			end if
-'		end if
-'		
-'		arccontent=G("arccontent")
-'		arcflag=Ucase(G("arcflag"))
-'		arcupdate=FormatDate(now,1)
-'		dim result:result=db.UpdateRecord("kl_archives","ID="&G("id"),array("arctitle:"&arctitle,"arcflag:"&arcflag,"type_id:"&type_id,"cat_id:"&cat_id,"arcpic:"&arcpic,"arccontent:"&arccontent,"uddate:"&arcupdate,"arcauthor:"&arcauthor,"arcsource:"&arcsource,"arckeys:"&arckeys,"arctpl:"&arctpl))
-'		if result<>0 then
-'			AlertMsg(UPDATE_SUCCESS_STR)
-'		else
-'			AlertMsg(UPDATE_FAIL_STR)
-'		end if
 	end if
 '输出模板默认数据
 	id=G("id")

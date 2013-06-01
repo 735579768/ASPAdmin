@@ -3,6 +3,13 @@
 <%
 catid=G("cat_id")
 if catid="" then reurl("/") end if
+'判断分类是不是单页面
+sql="select cat_single,cat_content from kl_cats where cat_id="&catid
+set rs=db.query(sql)
+if  cstr(rs("cat_single"))="1" then 
+	tpl.show(cstr(rs("cat_content")))
+	die()
+end if
 '设定指定的模板
 tpl.SetTemplateFile getCatIndexTpl(catid)
 '设置本分类中的信息

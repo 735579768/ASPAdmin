@@ -17,22 +17,6 @@ td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; 
 .kl-tab .kl-tab-div{ width:100%;}
 </style>
 <body>
-<script charset="utf-8" src="editor/kindeditor-min.js"></script>
-<script charset="utf-8" src="editor/lang/zh_CN.js"></script>
-<script>
-			var editor;
-			KindEditor.ready(function(K) {
-					editor = K.create('textarea[name="catcontent"]', {
-					'allowFileManager' : true,
-					'uploadJson': 'editor/asp/upload_json.asp',
-					'fileManagerJson': 'editor/asp/file_manager_json.asp',
-//					'imageUploadJson':'../../../uploads',
-					'allowFlashUpload':true,
-					'allowFileManager':true,
-					'afterBlur':function(){this.sync();}
-				});
-			});
-		</script>
 <form action="" id="addchildcatsform" method="post">
 <div class="kl-tab">
 <ul class="kl-tab-nav-block">
@@ -117,7 +101,7 @@ td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; 
   <tr>
   <td>
 
-  <textarea name="catcontent" style="width:99%;height:600px;visibility:hidden;"></textarea>
+  <textarea name="catcontent" style="width:99%;height:600px;"></textarea>
   </td>
   </tr>
   <tr>

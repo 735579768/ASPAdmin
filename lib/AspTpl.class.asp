@@ -535,6 +535,12 @@ class ASPTemplate
     private sub debugPrint( sText )
         response.write sText + "<br />"
     end sub
+	public sub show(str)
+	on error goto 0
+		p_template=str
+		b=varToNull()
+		response.write b
+	end sub
 	'===============================================================================
 	'输出模板文件
 	'===============================================================================
