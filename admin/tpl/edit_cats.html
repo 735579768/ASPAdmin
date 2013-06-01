@@ -39,7 +39,7 @@
     <td align="left"><input name="cat_name"  value="{{cat_name}}" /></td>
   </tr>
     <tr align="left">
-    <td width="90">图片展示：</td>
+    <td width="90">分类图片展示：</td>
     <td><input name="cat_pic" id="pic" type="text"  value="{{cat_pic}}" />
     <input type="button" onclick="window.open('uploadimg/index.asp','newwindow','width=500,height=80')" value="本地上传" style="width:70px;cursor:pointer;"><input id="delimg" type="button" style="display:none;"  value="删除本张图片"><img id="picimg" width="20" height="20" style="display:none;" src=""  /></td>
   </tr>
@@ -105,7 +105,7 @@
   <tr>
   <td>
 
-  <textarea name="cat_content" style="width:99%;height:600px;">{{cat_content}}</textarea>
+  <textarea name="cat_content" style="width:99%;height:400px;">{{cat_content}}</textarea>
   </td>
   </tr>
   <tr><td align="center">    <a href="javascript:updatecatsform.submit();" class="coolbg">更新</a>
@@ -180,6 +180,14 @@ $("#pic").bind("change",function(){
 		$("#picimg").hide();	
 			}
 	});
+//正则掉textarea
+           //var re = /###textarea(.*?)###([\s\S]*?)###\/textarea###/g; 
+		   var catcontent=$("textarea[name='cat_content']").val();
+		   var re = /###textarea(.*?)###/g;               // 创建正则表达式模式。    var arr;
+			var catcontent = catcontent.replace(re,"<textarea$1>");
+		   var re = /###\/textarea###/g;               // 创建正则表达式模式。    var arr;
+			var catcontent = catcontent.replace(re,"</textarea>");
+			$("textarea[name='cat_content']").val(catcontent);
 
 });
 function cha(){

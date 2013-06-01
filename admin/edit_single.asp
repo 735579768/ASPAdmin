@@ -9,6 +9,7 @@ if G("act")="updsingle" then
 	uprs("pagecontent")=pagecontent
 	uprs.update
 	uprs.close
+	set uprs=nothing
 end if
 sql="select * from kl_single where id="&id
 setTplVarBySql sql

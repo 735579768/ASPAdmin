@@ -7,7 +7,7 @@ if catid="" then reurl("/") end if
 sql="select cat_single,cat_content from kl_cats where cat_id="&catid
 set rs=db.query(sql)
 if  cstr(rs("cat_single"))="1" then 
-	tpl.show(cstr(rs("cat_content")))
+	tpl.show(htmldecode(cstr(rs("cat_content"))))
 	die()
 end if
 '设定指定的模板

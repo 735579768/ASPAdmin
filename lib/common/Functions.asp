@@ -1,4 +1,14 @@
 <%
+'===========================================
+'处理模板中的textarea
+'===========================================
+	Function convertTextarea(str)
+		Set p_regexp = New RegExp   
+		p_regexp.IgnoreCase = True
+		p_regexp.Global = True
+		p_regexp.Pattern="<textarea(.*?)>([\s\S]*?)</textarea>"
+		convertTextarea=p_regexp.replace(str,"###textarea$1###$2###/textarea###")
+	End Function
 '///////////////////////////////////////////
 '取数据表中的字段
 '///////////////////////////////////////////
@@ -643,6 +653,38 @@
 	 RemoveHTML=strHTML
 	 Set objRegExp = Nothing
 	End Function
+'****************************************************
+'过程名：htmlencode
+'作  用：过滤HTML标签
+'参  数：strHTML
+'****************************************************
+	function    HTMLEncode2(fString)   
+	   fString    =    replace(fString,    ">",    "&gt;")   
+	   fString    =    replace(fString,    "<",    "&lt;")   
+	   fString    =    Replace(fString,    CHR(32),    "&nbsp;")   
+	   fString    =    Replace(fString,    CHR(34),    "&quot;")   
+	   fString    =    Replace(fString,    CHR(39),    "&#39;")   
+	   fString    =    Replace(fString,    CHR(13),    "")   
+	   fString    =    Replace(fString,    CHR(10)    &    CHR(10),    "</P><P>")   
+	   fString    =    Replace(fString,    CHR(10),    "<BR>")   
+	   HTMLEncode2    =    fString   
+   end    function   
+'****************************************************
+'过程名：htmldecode
+'作  用：过滤HTML标签
+'参  数：strHTML
+'****************************************************
+	function    HTMLDecode(fString)   
+	   fString    =    replace(fString,    "&gt;",    ">")   
+	   fString    =    replace(fString,    "&lt;",    "<")   
+	   fString    =    Replace(fString,"&nbsp;",chr(32))   
+	   fString    =    Replace(fString,"&quot;",chr(34))   
+	   fString    =    Replace(fString,"&#39;",chr(39))   
+	   fString    =    Replace(fString,    "",    CHR(13))   
+	   fString    =    Replace(fString,    "</P><P>",    CHR(10)    &    CHR(10))   
+	   fString    =    Replace(fString,    "<BR>",    CHR(10))   
+	   HTMLDecode    =    fString   
+   end    function
 %>
 <script language="javascript" type="text/javascript" runat="server">
 function mydecodeurl(s){return decodeURIComponent(s);}

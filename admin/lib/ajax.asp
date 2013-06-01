@@ -1,5 +1,6 @@
 <%
 on error resume next
+tpl.setdisplaystate(true)'不让模板输出内容
 dim ajaxstr
 dim id:id=G("id")
 '处理删除后台菜单请求
@@ -46,14 +47,6 @@ dim id:id=G("id")
 			ajaxstr=1
 		end if
 	end if
-''单个移到回收站文章
-'	if G("action")="delarticle" then
-'		id=G("id")
-'		result=db.UpdateRecord("kl_archives","id="&id,array("recycling:1"))
-'		if result<>0 then
-'			ajaxstr=1
-'		end if
-'	end if
 echo ajaxstr
 die("")
 %>

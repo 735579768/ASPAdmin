@@ -46,6 +46,19 @@ tpl.setVariable "arctpl",rs("cat_article")&""
 tpl.setVariable "cat_name",rs("cat_name")&""
 tpl.setVariable "type_name",rs("type_name")&""
 tpl.setVariable "type_id",rs("typeid")&""
+
+
+uname=Request.Cookies("U_name")&""
+set nirs=db.query("select top 1 * from kl_admin where username='"&uname&"'")
+val=cstr(nirs("nicheng")&"")
+if val="" then
+	val=uname
+end if
+set nirs=nothing
+tpl.setVariable "author",val
+tpl.setVariable "source","http://"&cstr(Request.ServerVariables("SERVER_NAME"))
+
+
 'tpl.SetVariable "typeidsel",getContentTypeSel()
 tpl.SetVariable "catidsel",getArcCatSel()
 

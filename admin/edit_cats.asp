@@ -13,9 +13,7 @@ if G("act")="updtcat" then
 				uprs("cat_seokeys")=G("cat_seokeys")
 				uprs("cat_seodescr")=G("cat_seodescr")
 				uprs("cat_single")=G("cat_single")
-				uprs("cat_content")=G("cat_content")
-				uprs("cat_name")=G("cat_name")
-				uprs("cat_name")=G("cat_name")	
+				uprs("cat_content")=request("cat_content")
 				cat_index=G("cat_index")
 				cat_list=G("cat_list")
 				cat_article=G("cat_article")
@@ -44,15 +42,18 @@ set rs=db.query(sql)
 cat_index=rs("cat_index")&""
 cat_list=rs("cat_list")&""
 cat_article=rs("cat_article")&""
+cat_content=convertTextarea(rs("cat_content")&"")'转换其中的textarea
+
 if rs("cat_single")="0" then tpl.setvariable "sel0","checked='checked'"
 if rs("cat_single")="1" then tpl.setvariable "sel1","checked='checked'"
+
 if cat_index="" then cat_index=rs("tpl_index")&"" end if
 if cat_list="" then cat_list=rs("tpl_list")&"" end if
 if cat_article="" then cat_article=rs("tpl_article")&"" end if
-setVarArr(array("cat_index:"&cat_index,"cat_list:"&cat_list,"cat_article:"&cat_article))
 setTplVarBySql(sql)
+setVarArr(array("cat_index:"&cat_index,"cat_list:"&cat_list,"cat_article:"&cat_article,"cat_content:"&cat_content))
+
 
 tpl.Parse
-'Destroy our objects
 set tpl = nothing
 %>

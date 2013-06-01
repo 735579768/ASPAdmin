@@ -8,7 +8,6 @@ class AspTplPlug
 	 Property Get templatestr
 		templatestr=tpl_str
 	 End Property 
-
 	private sub class_Initialize
 		Set p_regexp = New RegExp
 		p_regexp.Global = true

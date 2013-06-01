@@ -40,7 +40,6 @@
 	if arctpl="" then arctpl=rs("tpl_article")&"" end if
 	tpl.SetVariable "id",rs("id")&""
 	
-	'setVarArr(array("id:"&id,"id:"&id,"id:"&id,"id:"&id,"id:"&id,"id:"&id,"id:"&id,"id:"&id,"id:"&id,))
 	tpl.SetVariable "arcauthor",rs("arcauthor")&""
 	tpl.SetVariable "arctitle",rs("arctitle")&""
 	tpl.SetVariable "arcpic",rs("arcpic")&""

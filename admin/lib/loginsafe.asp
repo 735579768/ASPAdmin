@@ -96,15 +96,6 @@ end if
 					Session("admin_id")=rs("id")'保存管理员在数据表中的id值
 					Session("adminqxid")=rs("qx_id")'保存管理员在数据表中的权限id值
 					Session.Timeout=30
-'					Response.Cookies("adminid")=rs("id")
-'					Response.Cookies("U_name")=Uname
-'					Response.Cookies("U_pwd")=md5(Upwd,32)
-'					
-'					Response.Cookies("adminid")=rs("id")
-'					Response.Cookies("U_name")=Request.Cookies("U_name")
-'					Response.Cookies("U_pwd")=Request.Cookies("U_pwd")
-'					Response.Cookies("U_name").Expires=now()+1/24
-'					Response.Cookies("U_pwd").Expires=now()+1/24
 					yanzhengCookies=true
 				end if
 			end if

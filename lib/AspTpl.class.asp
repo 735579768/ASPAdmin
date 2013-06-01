@@ -40,6 +40,9 @@ class ASPTemplate
 	' Directory containing HTML templates
 	public p_templates_dir
 	
+	public sub setdisplaystate(str)
+		displaytpl=str
+	end sub
 	'===============================================================================
 	' Name: class_Initialize
 	' Purpose: Constructor

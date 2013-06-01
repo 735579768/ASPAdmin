@@ -27,4 +27,7 @@ const NOIMG="无图"
 const NAVHIDDEN="导航隐藏中..."
 const NAVSHOW="导航显示中..."
 const UPDATESUCCESS="更新成功"
+const UPDATEFAIL="更新失败"
+const ADDSUCCESS="添加成功"
+const ADDFAIL="添加失败"
 %>
