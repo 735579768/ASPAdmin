@@ -26,4 +26,5 @@ const AJAX_NODELMENU="菜单下面还有子菜单不能删除！0.0"	'不能删�
 const NOIMG="无图"
 const NAVHIDDEN="导航隐藏中..."
 const NAVSHOW="导航显示中..."
+const UPDATESUCCESS="更新成功"
 %>

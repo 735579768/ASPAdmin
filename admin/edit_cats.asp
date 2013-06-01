@@ -36,7 +36,7 @@ if G("act")="updtcat" then
 		uprs.update
 		uprs.close
 		set uprs=nothing
-		AlertMsg("分类更新成功!")
+		AlertMsg(UPDATESUCCESS)
 end if
 'Generate the page
 sql="select a.type_id as typeid ,* from "&suffix&"cats as a inner join kl_content_types as b on a.type_id=b.type_id where a.cat_id="&cat_id
