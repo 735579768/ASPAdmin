@@ -6,219 +6,320 @@
 <meta name="keywords" content="{{cfg_keywords}}" />
 <meta name="description" content="{{cfg_description}}" />
 <link rel="stylesheet" type="text/css" href="/css/index.css">
+<script src="/js/jquery-1.4.2.min.js" type="text/javascript"></script>
+<script src="/js/common.js" type="text/javascript"></script>
 </head>
 <body>
 {{include file="public/header.html"}}
-<div class="banner_bot">
-	<ul class="qie_smallpic">  
-          
-         <li>
-        	<dl>
-            <dt><a href="cat.asp?cat_id=39">固体饮料系列>></a></dt>
-          <!--{loop sql='select top 2 * from kl_archives where cat_id=39 order by fbdate desc' titlelen='5'}-->   
-            <dd><a href="view.asp?id={{id}}">{{infotitle}}</a></dd>
-           <!--{/loop}-->
-            </dl>
-            
-        </li>
-         <li>
-        	<dl>
-            <dt><a href="cat.asp?cat_id=38">借用茶系列>></a></dt>
-          <!--{loop sql='select top 2 * from kl_archives where cat_id=38 order by fbdate desc' titlelen='5'}-->   
-            <dd><a href="view.asp?id={{id}}">{{infotitle}}</a></dd>
-           <!--{/loop}-->
-            </dl>
-            
-        </li>
-        <li>
-        	<dl>
-            <dt><a href="cat.asp?cat_id=40">颗粒系列>></a></dt>
-          <!--{loop sql='select top 2 * from kl_archives where cat_id=40 order by fbdate desc' titlelen='5'}-->   
-            <dd><a href="view.asp?id={{id}}">{{infotitle}}</a></dd>
-           <!--{/loop}-->
-            </dl>
-            
-        </li>
-        <li>
-        	<dl>
-            <dt><a href="cat.asp?cat_id=41">胶囊系列>></a></dt>
-          <!--{loop sql='select top 2 * from kl_archives where cat_id=41 order by fbdate desc' titlelen='5'}-->   
-            <dd><a href="view.asp?id={{id}}">{{infotitle}}</a></dd>
-           <!--{/loop}-->
-            </dl>
-            
-        </li>
-        <li>
-        	<dl>
-            <dt><a href="cat.asp?cat_id=42">片剂系列>></a></dt>
-          <!--{loop sql='select top 2 * from kl_archives where cat_id=42 order by fbdate desc' titlelen='5'}-->   
-            <dd><a href="view.asp?id={{id}}">{{infotitle}}</a></dd>
-           <!--{/loop}-->
-            </dl>
-            
-        </li>
-    
-      </ul>
+<div class="container">
+    <div class="left">
+    	<dl>
+          <dt class="title">产品分类</dt>
+          <dd><a href="#">全钢防静电地板>></a></dd>
+            <dd><a href="#">PVC防静电地板>></a></dd>
+            <dd><a href="#">陶瓷防静电地板>></a></dd>
+            <dd><a href="#">网络地板>></a></dd>
+            <dd><a href="#">铝合金地板>></a></dd>
+            <dd><a href="#"> 防静电通风板>></a></dd>
+            <dd><a href="#"> 复合防静电地板>></a></dd>
+            <dd><a href="#"> 硫酸钙活动地板>></a></dd>
+            <dd><a href="#">地板装饰面>></a></dd>
+            <dd><a href="#">  静电地板配件>></a></dd>
+        </dl>
+        <dl>
+          <dt class="title">新闻资讯</dt>
+          <dd><a href="#">全钢防静电地板</a></dd>
+            <dd><a href="#">PVC防静电地板</a></dd>
+            <dd><a href="#">陶瓷防静电地板</a></dd>
+            <dd><a href="#">网络地板</a></dd>
+            <dd><a href="#">铝合金地板</a></dd>
+            <dd><a href="#"> 防静电通风板</a></dd>
+            <dd><a href="#"> 复合防静电地板</a></dd>
+            <dd><a href="#"> 硫酸钙活动地板</a></dd>
+            <dd><a href="#">地板装饰面</a></dd>
+            <dd><a href="#">  静电地板配件</a></dd>
+        </dl>
+        <dl>
+          <dt class="title">最新产品</dt>
+          <dd><a href="#">全钢防静电地板</a></dd>
+            <dd><a href="#">PVC防静电地板</a></dd>
+            <dd><a href="#">陶瓷防静电地板</a></dd>
+            <dd><a href="#">网络地板</a></dd>
+            <dd><a href="#">铝合金地板</a></dd>
+            <dd><a href="#"> 防静电通风板</a></dd>
+            <dd><a href="#"> 复合防静电地板</a></dd>
+            <dd><a href="#"> 硫酸钙活动地板</a></dd>
+            <dd><a href="#">地板装饰面</a></dd>
+            <dd><a href="#">  静电地板配件</a></dd>
+        </dl>
+        <dl>
+          <dt class="title">近期案例</dt>
+          <dd><a href="#">全钢防静电地板</a></dd>
+            <dd><a href="#">PVC防静电地板</a></dd>
+            <dd><a href="#">陶瓷防静电地板</a></dd>
+            <dd><a href="#">网络地板</a></dd>
+            <dd><a href="#">铝合金地板</a></dd>
+            <dd><a href="#"> 防静电通风板</a></dd>
+            <dd><a href="#"> 复合防静电地板</a></dd>
+            <dd><a href="#"> 硫酸钙活动地板</a></dd>
+            <dd><a href="#">地板装饰面</a></dd>
+            <dd><a href="#">  静电地板配件</a></dd>
+        </dl>
+        <dl>
+          <dt class="title">联系方式</dt>
+          <dd class="lxwm">
+          	<img src="/images/tel.jpg" height="19" width="152" />
+            <div class="f">
+TEL ：13693718118 13384039660<br />
 
-</div>
-<script type="text/javascript">
-$(function(){
-	$(".qie_smallpic dl").bind('mouseover',function(){
-			$(".qie_smallpic li").removeClass('hover');
-			$(this).parent().addClass('hover');
-		});
-	
-	});
-</script>
-<!--head的开始-->
-<div id="head">
-	<div class="cp1">
-			<ul>
-				<li><img src="images/img1.png" width="142" height="120" /></li>
-				<li><h4 style="color:#0D7A21;border-bottom:1px solid #E7E7E7;padding-bottom:6px;width:130px;font-size:13px; font-weight:800;"><!--{loop sql='select top 1 * from kl_cats where cat_id=48'}-->{{cat_name}}<!--{/loop}-->>></h4><br />
-       <!--{loop sql='select top 4 * from kl_archives where cat_id=48'}-->
-		<a href="view.asp?id={{id}}">{{arctitle}}<a>
-        <!--{/loop}-->
-	</ul>
-	</div>
-	<div class="cp1">
-		<ul>
-			<li><img src="images/img2.png" width="142" height="120" /></li>
-			<li><h4 style="color:#0D7A21;border-bottom:1px solid #E7E7E7;padding-bottom:6px;width:130px;font-size:13px;font-weight:800;"><!--{loop sql='select top 1 * from kl_cats where cat_id=49'}-->{{cat_name}}<!--{/loop}-->>></h4><br />
-       <!--{loop sql='select top 4 * from kl_archives where cat_id=49'}-->
-		<a href="view.asp?id={{id}}">{{arctitle}}<a><br />
-        <!--{/loop}-->
-		</ul>
-	</div>
-	<div class="cp1">
-		<ul>
-			<li><img src="images/img3.jpg" width="142" height="120" /></li>
-			<li><h4 style="color:#0D7A21;border-bottom:1px solid #E7E7E7;padding-bottom:6px;width:130px;font-size:13px;font-weight:800;"><!--{loop sql='select top 1 * from kl_cats where cat_id=50'}-->{{cat_name}}<!--{/loop}-->>></h4><br />
-       <!--{loop sql='select top 4 * from kl_archives where cat_id=50'}-->
-		<a href="view.asp?id={{id}}">{{arctitle}}<a>
-        <!--{/loop}-->
-		</ul>
-	</div>
+Email：hongmudan888@126.com<br />
 
-</div>
-<!--main的开始-->
-<div id="main">
-	<!--left的开始-->
-	<div class="left">
-    <!--new_box的开始-->
-		<div class="new_box">
-			<div class="bt_box">
-				新闻动态
-			  <a href="#" class="more" style="cursor:pointer;"><img src="images/more.png" /></a>
-			</div>
-            
-            
-            
-			<div class="new_nr">
-            	<div class="nr1">
-                <!--{loop sql='select top 2 * from kl_archives as a inner join kl_cats as b on a.cat_id=b.cat_id   where a.cat_id=30 or b.parent_id=30 order by fbdate desc' titlelen='10' contentlen='30'}-->
-                	<div style="float:left;"><div class="tp"><img src="{{arcpic}}" width="116" height="79" /> </div>
-                    <div class="desc">
-                    	<strong><a href="view.asp?id={{id}}">{{infotitle}}</a></strong><br />{{infocontent}}
-                        <span style="color:#5A9112;"><a href="view.asp?id={{id}}">[详细内容]</a></span>
-                    </div>
-                    </div>
-                   <!--{/loop}-->
-                <div class="nr2">跨国制药联手研究益母草碱功晓</div>
-                <div class="nr3">
-                	<ul>
-                     <!--{loop sql='select top 4 * from (select top 6 * from kl_archives as a inner join kl_cats as b on a.cat_id=b.cat_id   where a.cat_id=30 or b.parent_id=30 order by fbdate asc) where a.cat_id=30 or b.parent_id=30 order by fbdate desc ' titlelen='16'}-->
-                    	<li><a href="view.asp?id={{id}}">{{infotitle}}</a>{{fbdate}}</li>
-                        <!--{/loop}-->
-                    </ul>
-                </div>
-            
-            </div>
-		
-		</div>
-		<div class="new_box">
-			<div class="bt_box">
-				健康常识
-			  <a href="#" class="more" style="cursor:pointer;"><img src="images/more.png" /></a>
-			</div>
-            
-            
-            
-			<div class="new_nr">
-            	<div class="nr1">
-                <!--{loop sql='select top 2 * from kl_archives as a inner join kl_cats as b on a.cat_id=b.cat_id   where a.cat_id=29 or b.parent_id=29 order by fbdate desc' titlelen='10' contentlen='30'}-->
-                	<div style="float:left;"><div class="tp"><img src="{{arcpic}}" width="116" height="79" /> </div>
-                    <div class="desc">
-                    	<strong><a href="view.asp?id={{id}}">{{infotitle}}</a></strong><br />{{infocontent}}
-                        <span style="color:#5A9112;"><a href="view.asp?id={{id}}">[详细内容]</a></span>
-                    </div>
-                    </div>
-                   <!--{/loop}-->
-                </div>
-                <div class="nr2">跨国制药联手研究益母草碱功晓</div>
-                <div class="nr3">
-                	<ul>
-                     <!--{loop sql='select top 4 * from (select top 6 * from kl_archives as a inner join kl_cats as b on a.cat_id=b.cat_id   where a.cat_id=29 or b.parent_id=29 order by fbdate asc) where a.cat_id=29 or b.parent_id=29 order by fbdate desc ' titlelen='16'}-->
-                    	<li><a href="view.asp?id={{id}}">{{infotitle}}</a>{{fbdate}}</li>
-                        <!--{/loop}-->
-                    </ul>
-                </div>
-            
-            </div>
-		
-		</div>
-	
-	</div></div>
-	<!--right的开始-->
-	<div class="right">
-    <!--cpzs的开始-->
-    	<div class="cpzs_box">
-        	<div class="cpzs_bt">
-            	<div class="bt_mc">产品展示</div>
-                <a href="cat.asp?cat_id=28" class="more"><img src="images/more.gif" /></a>
-            </div>
-            <div class="cpzs_nr_box">
-                <!--{loop sql='select top 2 * from kl_archives as a inner join kl_cats as b on a.cat_id=b.cat_id   where a.cat_id=28 or b.parent_id=28 order by fbdate desc' titlelen='10' contentlen='30'}-->
-            	<div class="cpzs_nr1">
-                	<div class="cpzs_pic">
-                        <a href="view.asp?id={{id}}" class="pic"><img src="{{arcpic}}" /></a>
-                        <p><a href="view.asp?id={{id}}">{{infotitle}}</a></p>
-                    </div>
-                    <div class="ljxq"><a href="view.asp?id={{id}}"></a></div>
-                    
-                </div>
-                 <!--{/loop}-->
-            </div>
-        
-        </div>
-        <!--oem的开始-->
+网 址：http://www.hongmudan.com</div>
 
-      <div class="oem">
-        	<div class="oem_bt">
-            	<ul>
-                	<li><img src="images/bt_tb.png" /></li>
-                    <li style="color:#3C9612; font-size:14px; font-family:'微软雅黑'; font-weight:800;">OEM代工</li>
-                    <li><a href="#">荷叶决明固体饮料</a></li>
-                    <li><a href="#">刀豆枸杞固体饮料</a></li>
-                    <li><a href="#">荷叶决明固体饮料</a></li>
-                </ul>
-                <a href="cat.asp?cat_id=26" class="more"><img src="images/more.gif" /></a>
-            </div>
-            
-            
-            <div class="oem_nr">
-                            <!--{loop sql='select top 2 * from kl_archives as a inner join kl_cats as b on a.cat_id=b.cat_id   where a.cat_id=26 or b.parent_id=26 order by fbdate desc' titlelen='10' contentlen='30'}-->
-             	<div class="oem_nr1">
-                	<div class="oem_tp"><a href="view.asp?id={{id}}" class="pic"><img src="{{arcpic}}" /></a></div>
-                    <p><a href="view.asp?id={{id}}">{{infotitle}}</a></p>
-                </div>
- <!--{/loop}-->
-                
-            </div>
-        </div>
-    
-    
+          </dd>
+        </dl>
     </div>
+    <div class="right">
+      	<div class="dabox">
+    	<div class="title">公司信息</div>
+        <div class="content">
+			<div class="gsimg"><img  src="/images/1.jpg" width="150" height="100"/></div>
+            <div class="gsdescr">常州市鸿海地板有限公司前身：1986年03月2日成立、武进市兴新计算机设备厂、1990年06月8日成立、武进崔桥高科技设备附件厂、1994年06月28日成立、常州市远川机房设备附件厂、1997年07月28日成立、常州市远川机房设备有限公司。 
+     常州市鸿海地板有限公司，是一家集开发、研制、生产、销售、安装为一体的制造公司。主要产品有：防静电地板、抗静电地板、全钢网络地板、PVC地板、静电地板、防静电瓷砖地板、陶瓷全钢地板、通风地板、OA网络地板、铝合金地板、净化房专用PVC……<a href="#" class="red">[查看详细说明]</a></div>
+        </div>
+        </div>
+    	<div class="dabox">
+    	<div class="title">推荐产品</div>
+        <div class="content">
+            <div class="box">
+        		<div class="imgbox">
+                	<a href="#"><img src="/images/1.jpg" width="138" height="130" /></a>
+                </div>
+              <a class="smtitle" href="#">标题</a>
+            </div>
+            <div class="box">
+        		<div class="imgbox">
+                	<a href="#"><img src="/images/2.jpg" width="138" height="130" /></a>
+                </div>
+              <a class="smtitle" href="#">标题</a>
+            </div>
+            <div class="box">
+        		<div class="imgbox">
+                	<a href="#"><img src="/images/3.jpg" width="138" height="130" /></a>
+                </div>
+              <a class="smtitle" href="#">标题</a>
+            </div>
+            <div class="box">
+        		<div class="imgbox">
+                	<a href="#"><img src="/images/2.jpg" width="138" height="130" /></a>
+                </div>
+              <a class="smtitle" href="#">标题</a>
+            </div>
+            <div class="box">
+        		<div class="imgbox">
+                	<a href="#"><img src="/images/3.jpg" width="138" height="130" /></a>
+                </div>
+              <a class="smtitle" href="#">标题</a>
+            </div>
+            <div class="box">
+        		<div class="imgbox">
+                	<a href="#"><img src="/images/2.jpg" width="138" height="130" /></a>
+                </div>
+              <a class="smtitle" href="#">标题</a>
+            </div>
+            <div class="box">
+        		<div class="imgbox">
+                	<a href="#"><img src="/images/1.jpg" width="138" height="130" /></a>
+                </div>
+              <a class="smtitle" href="#">标题</a>
+            </div>
+            <div class="box">
+        		<div class="imgbox">
+                	<a href="#"><img src="/images/3.jpg" width="138" height="130" /></a>
+                </div>
+              <a class="smtitle" href="#">标题</a>
+            </div>
+        </div>
+        </div>
+        <div class="dabox">
+    	<div class="title">工程案例</div>
+        <div class="content">
+            <div class="box">
+        		<div class="imgbox">
+                	<a href="#"><img src="/images/1.jpg" width="138" height="130" /></a>
+                </div>
+              <a class="smtitle" href="#">标题</a>
+            </div>
+            <div class="box">
+        		<div class="imgbox">
+                	<a href="#"><img src="/images/2.jpg" width="138" height="130" /></a>
+                </div>
+              <a class="smtitle" href="#">标题</a>
+            </div>
+            <div class="box">
+        		<div class="imgbox">
+                	<a href="#"><img src="/images/3.jpg" width="138" height="130" /></a>
+                </div>
+              <a class="smtitle" href="#">标题</a>
+            </div>
+            <div class="box">
+        		<div class="imgbox">
+                	<a href="#"><img src="/images/2.jpg" width="138" height="130" /></a>
+                </div>
+              <a class="smtitle" href="#">标题</a>
+            </div>
+            <div class="box">
+        		<div class="imgbox">
+                	<a href="#"><img src="/images/3.jpg" width="138" height="130" /></a>
+                </div>
+              <a class="smtitle" href="#">标题</a>
+            </div>
+            <div class="box">
+        		<div class="imgbox">
+                	<a href="#"><img src="/images/2.jpg" width="138" height="130" /></a>
+                </div>
+              <a class="smtitle" href="#">标题</a>
+            </div>
+            <div class="box">
+        		<div class="imgbox">
+                	<a href="#"><img src="/images/1.jpg" width="138" height="130" /></a>
+                </div>
+              <a class="smtitle" href="#">标题</a>
+            </div>
+            <div class="box">
+        		<div class="imgbox">
+                	<a href="#"><img src="/images/3.jpg" width="138" height="130" /></a>
+                </div>
+              <a class="smtitle" href="#">标题</a>
+            </div>
+        </div>
+        </div>
+        <div class="dabox">
+    	<div class="title">企业荣誉</div>
+        <div class="content">
+            <div class="box">
+        		<div class="imgbox">
+                	<a href="#"><img src="/images/1.jpg" width="138" height="130" /></a>
+                </div>
+              <a class="smtitle" href="#">标题</a>
+            </div>
+            <div class="box">
+        		<div class="imgbox">
+                	<a href="#"><img src="/images/2.jpg" width="138" height="130" /></a>
+                </div>
+              <a class="smtitle" href="#">标题</a>
+            </div>
+            <div class="box">
+        		<div class="imgbox">
+                	<a href="#"><img src="/images/3.jpg" width="138" height="130" /></a>
+                </div>
+              <a class="smtitle" href="#">标题</a>
+            </div>
+            <div class="box">
+        		<div class="imgbox">
+                	<a href="#"><img src="/images/2.jpg" width="138" height="130" /></a>
+                </div>
+              <a class="smtitle" href="#">标题</a>
+            </div>
+            <div class="box">
+        		<div class="imgbox">
+                	<a href="#"><img src="/images/3.jpg" width="138" height="130" /></a>
+                </div>
+              <a class="smtitle" href="#">标题</a>
+            </div>
+            <div class="box">
+        		<div class="imgbox">
+                	<a href="#"><img src="/images/2.jpg" width="138" height="130" /></a>
+                </div>
+              <a class="smtitle" href="#">标题</a>
+            </div>
+            <div class="box">
+        		<div class="imgbox">
+                	<a href="#"><img src="/images/1.jpg" width="138" height="130" /></a>
+                </div>
+              <a class="smtitle" href="#">标题</a>
+            </div>
+            <div class="box">
+        		<div class="imgbox">
+                	<a href="#"><img src="/images/3.jpg" width="138" height="130" /></a>
+                </div>
+              <a class="smtitle" href="#">标题</a>
+            </div>
+        </div>
+        </div>
+    </div>
+    <ul class="imglist21">
+		    <style type="text/css">
+				<!--
+				#demo {
+				overflow:hidden;
+				width:1000px; margin-left:10px; height:150px;
+				}
+				#indemo {
+				float: left;
+				width: 800%;
+				}
+				#demo1 {
+				float: left;
+				}
+				#demo2 {
+				float: left;
+				}
+				-->
+				</style>
+                <div class="title">产品展示</div>
+				<div id="demo">
+				<div id="indemo">
+				<div id="demo1">
+				
+            <li><a href="#"><img src="/images/1.jpg" alt="直铺式防静电陶瓷砖"><span class="imgtit">直铺式防静电陶瓷砖</span></a></li>
+            <li><a href="#"><img src="/images/2.jpg" alt="直铺式防静电陶瓷砖"><span class="imgtit">直铺式防静电陶瓷砖</span></a></li>
+            <li><a href="#"><img src="/images/1.jpg" alt="直铺式防静电陶瓷砖"><span class="imgtit">直铺式防静电陶瓷砖</span></a></li>
+            <li><a href="#"><img src="/images/3.jpg" alt="直铺式防静电陶瓷砖"><span class="imgtit">直铺式防静电陶瓷砖</span></a></li>
+            <li><a href="#"><img src="/images/2.jpg" alt="直铺式防静电陶瓷砖"><span class="imgtit">直铺式防静电陶瓷砖</span></a></li>
+            <li><a href="#"><img src="/images/1.jpg" alt="直铺式防静电陶瓷砖"><span class="imgtit">直铺式防静电陶瓷砖</span></a></li>
+            <li><a href="#"><img src="/images/3.jpg" alt="直铺式防静电陶瓷砖"><span class="imgtit">直铺式防静电陶瓷砖</span></a></li>
+            <li><a href="#"><img src="/images/1.jpg" alt="直铺式防静电陶瓷砖"><span class="imgtit">直铺式防静电陶瓷砖</span></a></li>
+			
+				</div>
+				<div id="demo2">
+				
+				<div id="demo1">
+				
+            <li><a href="#"><img src="/images/1.jpg" alt="直铺式防静电陶瓷砖"><span class="imgtit">直铺式防静电陶瓷砖</span></a></li>
+            <li><a href="#"><img src="/images/2.jpg" alt="直铺式防静电陶瓷砖"><span class="imgtit">直铺式防静电陶瓷砖</span></a></li>
+            <li><a href="#"><img src="/images/1.jpg" alt="直铺式防静电陶瓷砖"><span class="imgtit">直铺式防静电陶瓷砖</span></a></li>
+            <li><a href="#"><img src="/images/3.jpg" alt="直铺式防静电陶瓷砖"><span class="imgtit">直铺式防静电陶瓷砖</span></a></li>
+            <li><a href="#"><img src="/images/2.jpg" alt="直铺式防静电陶瓷砖"><span class="imgtit">直铺式防静电陶瓷砖</span></a></li>
+            <li><a href="#"><img src="/images/1.jpg" alt="直铺式防静电陶瓷砖"><span class="imgtit">直铺式防静电陶瓷砖</span></a></li>
+            <li><a href="#"><img src="/images/3.jpg" alt="直铺式防静电陶瓷砖"><span class="imgtit">直铺式防静电陶瓷砖</span></a></li>
+            <li><a href="#"><img src="/images/1.jpg" alt="直铺式防静电陶瓷砖"><span class="imgtit">直铺式防静电陶瓷砖</span></a></li>
+			
+				</div>
+				</div>
+				</div>
+				</div>
+				<script>
+				<!--
+				var speed=10; //数字越大速度越慢
+				var tab=document.getElementById("demo");
+				var tab1=document.getElementById("demo1");
+				var tab2=document.getElementById("demo2");
+				tab2.innerHTML=tab1.innerHTML;
+				function Marquee(){
+				if(tab2.offsetWidth-tab.scrollLeft<=0)
+				tab.scrollLeft-=tab1.offsetWidth
+				else{
+				tab.scrollLeft++;
+				}
+				}
+				var MyMar=setInterval(Marquee,speed);
+				tab.onmouseover=function() {clearInterval(MyMar)};
+				tab.onmouseout=function() {MyMar=setInterval(Marquee,speed)};
+				-->
+				</script> 
+        </ul>
+</div>
 {{include file="public/footer.html"}}
 </body>
 </html>

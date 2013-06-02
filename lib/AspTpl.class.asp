@@ -34,7 +34,7 @@ class ASPTemplate
 	private p_blocks_name_list
 	private	p_regexp
 	private p_parsed_blocks_list
-
+	private p_charset
 	private p_boolSubMatchesAllowed
 	
 	' Directory containing HTML templates
@@ -52,7 +52,7 @@ class ASPTemplate
 		displaytpl=false
 		p_print_errors = FALSE
 		p_unknowns = "keep"
-
+		p_charset="UTF-8"
 		p_var_tag_o = "\{\{"
 		p_var_tag_c = "\}\}"
 
@@ -143,10 +143,11 @@ class ASPTemplate
 				set FSO = createobject("Scripting.FileSystemObject")
 			if FSO.FileExists(server.mappath(p_templates_dir & m_filestr)) then
 				'读取包含的文件并替换标签
-				set oFile = FSO.OpenTextFile(server.mappath(p_templates_dir & m_filestr), 1)
-				temstr = oFile.ReadAll
-				oFile.Close
-				set oFile = nothing
+				temstr=ReadFromTextFile(p_templates_dir & m_filestr,p_charset)
+'				set oFile = FSO.OpenTextFile(server.mappath(p_templates_dir & m_filestr), 1)
+'				temstr = oFile.ReadAll
+'				oFile.Close
+'				set oFile = nothing
 				if haveinclude(temstr) then temstr=includefile(temstr)	end if  '递归包含文件
 				str=replace(str,s_str,temstr)'替换模板中的包含标签
 			else
@@ -569,7 +570,7 @@ class ASPTemplate
 		p_regexp.Pattern = "{{\S*}}"    
 		a= p_regexp.Replace(a, "")			 '把没有赋值的变量标签替换成空
 		'p_regexp.Pattern = "([\s]*)\r*(\n)"  '去掉所有换行
-		p_regexp.Pattern = "\r*(\n)([\s*])\r*(\n)"  '去掉空行
+		p_regexp.Pattern ="\r*\n\s*\r*\n"  '去掉空行
 		a= p_regexp.Replace(a, vbCrLf)	
 		'使用扩展先进行处理
 		set tplplug=New AspTplPlug
@@ -661,6 +662,39 @@ class ASPTemplate
 		p_template=tplplug.templatestr
 		set tplplug=nothing
 	End Function
+	'=====================================================
+	'函数名称:ReadTextFile 
+	'作用:利用AdoDb.Stream对象来读取UTF-8格式的文本文件 
+	'====================================================
+	function ReadFromTextFile (FileUrl,CharSet) 
+		dim str 
+		set stm=server.CreateObject("adodb.stream") 
+		stm.Type=2 '以本模式读取 
+		stm.mode=3 
+		stm.charset=CharSet 
+		stm.open 
+		stm.loadfromfile server.MapPath(FileUrl) 
+		str=stm.readtext 
+		stm.Close 
+		set stm=nothing 
+		ReadFromTextFile=str 
+	end function 
+	'================================================== 
+	'函数名称:WriteToTextFile 
+	'作用:利用AdoDb.Stream对象来写入UTF-8格式的文本文件 
+	'===================================================
+	Sub WriteToTextFile (FileUrl,byval Str,CharSet) 
+		set stm=server.CreateObject("adodb.stream") 
+		stm.Type=2 '以本模式读取 
+		stm.mode=3 
+		stm.charset=CharSet 
+		stm.open 
+		stm.WriteText str 
+		stm.SaveToFile server.MapPath(FileUrl),2 
+		stm.flush 
+		stm.Close 
+		set stm=nothing 
+	end Sub 
 end class
 
 
