@@ -47,5 +47,12 @@ background: url(../images/allbtbg2.gif) #EFF7D0;
 cursor: pointer;
 }
 .red{ color:#F00;}
+.lanmu dd.senondmenu{ height:auto; padding:0px 0px; _width:auto; line-height:auto;}
+.lanmu dd.senondmenu dl{ margin:0px; padding:0px;}
 .green{ color:#0f0;}
 input,select{border:solid 1px #ccc;}
+.senondmenu,dd.senondmenu{ display:inline-block; _padding-left:0px;}
+dd.senondmenu .lanmu dt{ padding-left:80px}
+dd.senondmenu .lanmu dd{ padding-left:130px;}
+dd.senondmenu .lanmu dt .left{ width:490px;}
+dd.senondmenu .lanmu dd .left{ width:440px;}

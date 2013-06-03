@@ -26,7 +26,6 @@
 		set srs=nothing
 		if selrs.recordcount>0 then 
 			do while not selrs.eof
-			
 				if selid=selrs("cat_id")&"" then
 				str=str&"<option value='"&selrs("cat_id")&"' selected>"&selrs("cat_name")&"</option>"				
 				else
@@ -34,28 +33,65 @@
 				end if
 			
 				'查询二级分类start
-				set selrss=db.GetRecordBySQL("select cat_id,cat_name from kl_cats where parent_id="&selrs("cat_id")&" order by sort asc")
+				str=str&catoptions(selrs("cat_id"))
+				'set selrss=db.GetRecordBySQL("select cat_id,cat_name from kl_cats where parent_id="&selrs("cat_id")&" order by sort asc")
+'				if selrss.recordcount>0 then 
+'					do while not selrss.eof
+'						
+'						if selid=selrss("cat_id")&"" then
+'							str=str&"<option value='"&selrss("cat_id")&"' selected><b style='color:#ccc;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>"&selrss("cat_name")&"</option>"				
+'						else
+'							str=str&"<option value='"&selrss("cat_id")&"'><b style='color:#ccc;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>"&selrss("cat_name")&"</option>"
+'						end if
+'					
+'					selrss.movenext
+'					loop
+'					set selrss=nothing
+'				end if
+				'查询二级分类end
+				
+			selrs.movenext
+			loop
+			
+		end if
+		str=str&"</select>"
+		getArcCatSel=str
+		set selrs=nothing
+		set selrss=nothing
+	end function
+	
+	function ischildcat(catid)
+	
+		set rstem=db.query("select * from kl_cats where cat_id="&catid)
+		if rstem.recordcount>0 then
+			ischildcat=true
+		else
+			ischildcat=false
+		end if
+	end function
+	'定义一个变量输出空格用
+	kongge="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+	function catoptions(catid)
+	'kongge=kongge&"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+		str=""
+		set selrss=db.GetRecordBySQL("select cat_id,cat_name from kl_cats where parent_id="&catid&" order by sort asc")
 				if selrss.recordcount>0 then 
 					do while not selrss.eof
-						
+						'递归输出
+						if ischildcat(selrss("cat_id")) then
+							str=str&catoptions(selrss("cat_id"))
+						end if
 						if selid=selrss("cat_id")&"" then
-							str=str&"<option value='"&selrss("cat_id")&"' selected><b style='color:#ccc;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>"&selrss("cat_name")&"</option>"				
+							str=str&"<option value='"&selrss("cat_id")&"' selected style=' padding-left:30px;' >"&kongge&selrss("cat_name")&"</option>"				
 						else
-							str=str&"<option value='"&selrss("cat_id")&"'><b style='color:#ccc;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>"&selrss("cat_name")&"</option>"
+							str=str&"<option value='"&selrss("cat_id")&"' style='padding-left:30px;'>"&kongge&selrss("cat_name")&"</option>"
 						end if
 					
 					selrss.movenext
 					loop
 					set selrss=nothing
 				end if
-				'查询二级分类end
-			selrs.movenext
-			loop
-		end if
-		str=str&"</select>"
-		getArcCatSel=str
-		set selrs=nothing
-		set selrss=nothing
+				catoptions=str
 	end function
 '输出内容模型sel
 	function getContentTypeSel()
