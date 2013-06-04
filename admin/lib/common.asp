@@ -1,4 +1,4 @@
-<%
+﻿<%
 '输出所有文章分类
 	function getArcCatSel()
 		'检查当前是否有默认的id传过来
@@ -180,5 +180,33 @@
 				end if
 		str=str&"</select>"
 		getsinglesel=str	
+	end function
+	
+	'更改父分类
+	Function catparentsel(catid)
+		'查询它的父分类
+		set zrs=db.query("select parent_id from kl_cats where cat_id="&catid)
+		prentid=zrs("parent_id")&""
+		set zrs=nothing
+		restr=""
+		fsql="select * from kl_cats where cat_id<>"&catid
+		set frs=db.query(fsql)
+		if frs.recordcount>0 then
+			restr="<select name=parent_id>"
+				if parentid=0 then
+					restr=restr&"<option value='0' selected>顶级分类</option>"
+				end if
+			do while not frs.eof
+				if prentid=frs("cat_id")&"" then
+				restr=restr&"<option value='"&frs("cat_id")&"' selected>"&frs("cat_name")&"</option>"				
+				else
+				restr=restr&"<option value='"&frs("cat_id")&"'>"&frs("cat_name")&"</option>"
+				end if
+				frs.movenext
+			loop
+			restr=restr&"</select>"
+		end if
+		set frs=nothing
+		catparentsel=restr
 	end function
 %>

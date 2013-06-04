@@ -1,4 +1,4 @@
-<!--#include file="lib/AdminInIt.asp"-->
+﻿<!--#include file="lib/AdminInIt.asp"-->
 <%
 dim cat_id:cat_id=G("cat_id")
 if G("act")="updtcat" then
@@ -7,6 +7,7 @@ if G("act")="updtcat" then
 				uprs("cat_name")=G("cat_name")
 				uprs("sort")=G("sort")
 				uprs("type_id")=G("type_id")
+				uprs("parent_id")=G("parent_id")
 				uprs("cat_show")=G("cat_show")
 				uprs("cat_pic")=G("cat_pic")
 				uprs("cat_seotitle")=G("cat_seotitle")
@@ -51,7 +52,8 @@ if cat_index="" then cat_index=rs("tpl_index")&"" end if
 if cat_list="" then cat_list=rs("tpl_list")&"" end if
 if cat_article="" then cat_article=rs("tpl_article")&"" end if
 setTplVarBySql(sql)
-setVarArr(array("cat_index:"&cat_index,"cat_list:"&cat_list,"cat_article:"&cat_article,"cat_content:"&cat_content))
+parentidsel=catparentsel(cat_id)
+setVarArr(array("cat_index:"&cat_index,"cat_list:"&cat_list,"cat_article:"&cat_article,"cat_content:"&cat_content,"parentidsel:"&parentidsel))
 
 
 tpl.Parse

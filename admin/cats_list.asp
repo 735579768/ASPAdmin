@@ -54,11 +54,13 @@ td {
 </dl>
 
 <%
+dim menujibie
+ menujibie=1
 sql="select cat_id from kl_cats where parent_id=0 order by sort asc "
 set xhrs=db.query(sql)
 if xhrs.recordcount>0 then
 	do while not xhrs.eof
-		call getcattree(xhrs("cat_id"))
+		call getcatlist(xhrs("cat_id"))
 	xhrs.movenext
 	loop
 end if
@@ -148,8 +150,9 @@ function getarcnum(catid)
 	set bbbb=nothing
 end function
 
+
 '无限分类调用函数
-Function getcattree(catid)
+Function getcatlist(catid)
 sqlstr="select a.cat_name as catname,a.type_id as typeid,* from kl_cats as a inner join kl_content_types as b on a.type_id=b.type_id   where a.cat_id="&catid&" order by sort asc "
 set wraprs=db.query(sqlstr) 
 cid1=wraprs("cat_id")&""'分类id
@@ -187,9 +190,10 @@ navshow1=getcatshow(wraprs("cat_show")&"")
 			do while not neirs.eof
 
 		'如果有子菜单就去输出子菜单
-		if isparentcat(neirs("catid")) then 
-			echo "<dd class='senondmenu' style='_padding-left:0px;'>"
-			 call getcattree(neirs("catid"))
+		if isparentcat(neirs("catid")) then
+		menujibie=menujibie+1 
+			echo "<dd class='menujibie"&cstr(menujibie)&"' style='_padding-left:0px;'>"
+			 call getcatlist(neirs("catid"))
 			echo "</dd>"
 		else
 			cid2=neirs("catid")&""'分类id
