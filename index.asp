@@ -1,6 +1,5 @@
 <!--#include file="lib/init.asp"-->
+<!--#include file="inc/common.asp"-->
 <%
-'reurl("admin")
-'包含文件
-'Generate the page
+tpl.display("index.html")
 %>

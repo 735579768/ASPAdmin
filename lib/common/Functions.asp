@@ -1,4 +1,13 @@
 <%
+
+'取分类封面模板在前台使用
+'///////////////////////////////////////////
+	Function getCatTpl(catid)
+		set m=db.table("kl_cats").fild("cat_index").where("cat_id="&catid).sel()
+		a=m("cat_index")&""
+		set m=nothing
+		getCatTpl=a
+	End Function
 '===========================================
 '处理模板中的textarea
 '===========================================

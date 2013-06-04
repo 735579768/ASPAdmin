@@ -81,10 +81,10 @@
 						if ischildcat(selrss("cat_id")) then
 							str=str&catoptions(selrss("cat_id"))
 						end if
-						if selid=selrss("cat_id")&"" then
-							str=str&"<option value='"&selrss("cat_id")&"' selected style=' padding-left:30px;' >"&kongge&selrss("cat_name")&"</option>"				
+						if G("cat_id")=selrss("cat_id")&"" then
+							str=str&"<option value='"&selrss("cat_id")&"' selected  >"&kongge&selrss("cat_name")&"</option>"				
 						else
-							str=str&"<option value='"&selrss("cat_id")&"' style='padding-left:30px;'>"&kongge&selrss("cat_name")&"</option>"
+							str=str&"<option value='"&selrss("cat_id")&"' >"&kongge&selrss("cat_name")&"</option>"
 						end if
 					
 					selrss.movenext

@@ -61,4 +61,20 @@ $(function() {
 		//$("#focus .btn span").removeClass("on").eq(index).addClass("on"); //为当前的按钮切换到选中的效果
 		$("#focus .btn span").stop(true,false).animate({"opacity":"0.4"},300).eq(index).stop(true,false).animate({"opacity":"1"},300); //为当前的按钮切换到选中的效果
 	}
+	
+	
+	
+	//自适应图片
+	$(".imgbox img").bind("load",function(){
+		//138 * 130
+        var w=$(this).width();
+		var h=$(this).height();
+		if(w>h){
+			if(w>138) $(this).attr('width',138);
+			}else{
+			if(h>130) $(this).attr('height',130);	
+				}
+				
+		});
+
 });

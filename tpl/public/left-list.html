@@ -1,0 +1,18 @@
+        <dl>
+          <dt class="title">产品分类</dt>
+            <!--{loop name="catlist" var="var"}-->
+            <dd><a href="cat.asp?catid={$var.cat_id}" title="{$var.cat_name}">{$var.cat_name}</a></dd>
+            <!--{/loop}-->
+        </dl>
+        <dl>
+          <dt class="title">最新产品</dt>
+            <!--{loop name="productlist" var="var"}-->
+            <dd><a href="view.asp?id={$var.id}" title="{$var.arctitle}">{$var.arctitle}</a></dd>
+            <!--{/loop}-->
+        </dl>
+        <dl>
+          <dt class="title">近期案例</dt>
+            <!--{loop name="anlilist" var="var"}-->
+            <dd><a href="view.asp?id={$var.id}" title="{$var.arctitle}">{$var.arctitle}</a></dd>
+            <!--{/loop}-->
+        </dl>

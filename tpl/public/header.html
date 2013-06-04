@@ -5,16 +5,10 @@
     </div>
     <div class="nav">
     	<ul class="navul">
-        	<li><a href="#">首页</a></li>
-            <li><a href="#">公司简介</a></li>
-            <li><a href="#">新闻资讯</a></li>
-            <li><a href="#">产品展示</a></li>
-            <li><a href="#">工程案例</a></li>
-            <li><a href="#">企业荣誉</a></li>
-            <li><a href="#">客户服务</a></li>
-            <li><a href="#">客户留言</a></li>
-            <li><a href="#">联系我们</a></li>
-            
+        	<li><a href="/">首页</a></li>
+            <!--{loop name="navlist" var="var"}-->
+            <li><a href="cat.asp?catid={$var.cat_id}">{$var.cat_name}</a></li>
+            <!--{/loop}-->
       </ul>
   </div>
 </div>

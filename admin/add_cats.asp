@@ -23,6 +23,9 @@ if G("act")="add" then
 				cat_index=G("cat_index")
 				cat_list=G("cat_list")
 				cat_article=G("cat_article")
+				uprs("cat_index")=cat_index
+				uprs("cat_list")=cat_list
+				uprs("cat_article")=cat_article
 				if cat_index="" or cat_list="" or cat_article="" then
 					set tplrs=db.query("select * from kl_content_types where type_id="&G("type_id"))
 					if cat_index="" then uprs("cat_index")=tplrs("tpl_index")&""

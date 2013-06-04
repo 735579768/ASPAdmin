@@ -1,14 +1,14 @@
 <!--#include file="lib/init.asp"-->
+<!--#include file="inc/common.asp"-->
 <%
 id=G("id")
 if id="" then reurl("/") end if
-'包含文件
-'Generate the page
+set rs=db.table("kl_archives").where("id="&id).jin("kl_cats on kl_archives.cat_id=kl_cats.cat_id").sel()
+rsarr=db.rsToArr(rs)
+set arcobj=rsarr(0)
+tpl.assign "arcinfo",arcobj
+
 '设定指定的模板
-tpl.SetTemplateFile getArticleTpl(id)
-sql="select * from (kl_archives as a inner join kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on b.type_id=c.type_id where a.id="&id
-setTplVarBySql(sql)
-tpl.Parse
-'Destroy our objects
-set tpl = nothing
+tplfile=getarticleTpl(id)
+tpl.display(tplfile)
 %>
