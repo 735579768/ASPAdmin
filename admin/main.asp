@@ -15,11 +15,11 @@ tpl.SetVariable "arcnocount",rs("arcnocount")&""'回收站文章
 set rs=nothing
 
 
-sql="select top 5 * from kl_archives order by uddate desc"
+sql="select top 5 * from kl_archives order by uddate desc,id desc"
 arr=array("arctitle:arctitle","uddate:uddate")
-listblock "arclist",sql,arr
+loopblock "arclist",sql
 
-sql="select top 5 * from kl_admin_log order by logintime desc"
+sql="select top 5 * from kl_admin_log order by logintime desc,id desc"
 loopblock "adminlog",sql
 tpl.Parse
 'Destroy our objects

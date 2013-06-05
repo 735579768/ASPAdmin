@@ -26,7 +26,7 @@ body{font-family:Arial, Helvetica, sans-serif,"宋体";margin:0px;padding:0px;}
 .indexbox{border-top: #e9f2f9 10px solid;border-bottom: #e9f2f9 10px solid;padding: 10px 20px;Unknown property name.over-flow: hidden;}
 .box1{ width:48%; padding:0px 5px;}
 .box1 h3{ font-size:20px; margin:10px 0px; font-weight:lighter;}
-.box1 ul li{ display:block; height:20px; margin:2px 0px;}
+.box1 ul li{ display:block; height:20px; margin:2px 0px; overflow:hidden;}
 </style>
 <script type="text/javascript">
 
@@ -198,7 +198,7 @@ case 7:$(".zhou span:eq(1)").html("日");$(".zhou span:last").html("SUN").css("co
 <h3>最近更新文章</h3>
 <ul>
 <!-- BEGIN arclist -->
-	<li>{{arctitle}}<span style="float:right;">{{uddate}}</span></li>
+	<li><span style="float:left;">{{uddate}}</span>{{arctitle}}</li>
 <!-- END arclist -->
 </ul>
 </div>
