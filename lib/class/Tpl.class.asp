@@ -1,4 +1,4 @@
-<%
+﻿<%
 '===================================================
 '===author 赵克立
 '===blog:http://zhaokeli.com/
@@ -545,9 +545,9 @@ class AspTpl
 							for each m in temm
 								c=isHaveFilteFunc(m)
 								if isarray(c) then
-									restr=p_reg.replace(restr,filtervar(temobjarr(i)(k),c(1),c(2)) )
+									restr=replace(restr,m,filtervar(temobjarr(i)(k),c(1),c(2)) )
 								else
-									restr=p_reg.replace(restr,temobjarr(i)(k))
+									restr=replace(restr,m,temobjarr(i)(k))
 								end if
 							next
 						next

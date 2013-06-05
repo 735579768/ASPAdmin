@@ -60,6 +60,7 @@ sql="select cat_id from kl_cats where parent_id=0 order by sort asc "
 set xhrs=db.query(sql)
 if xhrs.recordcount>0 then
 	do while not xhrs.eof
+		menujibie=1
 		call getcatlist(xhrs("cat_id"))
 	xhrs.movenext
 	loop
@@ -191,7 +192,7 @@ navshow1=getcatshow(wraprs("cat_show")&"")
 
 		'如果有子菜单就去输出子菜单
 		if isparentcat(neirs("catid")) then
-		menujibie=menujibie+1 
+				menujibie=menujibie+1 
 			echo "<dd class='menujibie"&cstr(menujibie)&"' style='_padding-left:0px;'>"
 			 call getcatlist(neirs("catid"))
 			echo "</dd>"
