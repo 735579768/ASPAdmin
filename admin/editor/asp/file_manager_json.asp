@@ -26,6 +26,7 @@ rootPath = "/uploads/"
 '根目录URL，可以指定绝对路径，比如 http://www.yoursite.com/attached/
 'rootUrl = aspUrl & "../attached/"
 rootUrl ="/uploads/"
+
 '图片扩展名
 fileTypes = "gif,jpg,jpeg,png,bmp"
 
@@ -119,7 +120,7 @@ Next
 ReDim fileList(fileCount)
 i = 0
 For Each file in folder.Files
-	fileExt = mid(file.name, InStrRev(file.name, ".") + 1)
+	fileExt = lcase(mid(file.name, InStrRev(file.name, ".") + 1))
 	isDir = False
 	hasFile = False
 	filesize = file.size

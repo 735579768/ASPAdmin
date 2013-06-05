@@ -19,11 +19,13 @@ Dim upload, file, fso, ranNum, hash, ymd, mm, dd, result
 aspUrl = Request.ServerVariables("SCRIPT_NAME")
 aspUrl = left(aspUrl, InStrRev(aspUrl, "/"))
 
+
 '文件保存目录路径
 savePath = "/uploads/"
 '文件保存目录URL
 'saveUrl = aspUrl & "/uploads/"
 saveUrl ="/uploads/"
+
 '定义允许上传的文件扩展名
 imageExtStr = "gif|jpg|jpeg|png|bmp"
 flashExtStr = "swf|flv"

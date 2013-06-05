@@ -9,16 +9,19 @@
 
 KindEditor.plugin('insertfile', function(K) {
 	var self = this, name = 'insertfile',
+		allowFileUpload = K.undef(self.allowFileUpload, true),
 		allowFileManager = K.undef(self.allowFileManager, false),
+		formatUploadUrl = K.undef(self.formatUploadUrl, true),
 		uploadJson = K.undef(self.uploadJson, self.basePath + 'php/upload_json.php'),
+		extraParams = K.undef(self.extraFileUploadParams, {}),
+		filePostName = K.undef(self.filePostName, 'imgFile'),
 		lang = self.lang(name + '.');
-	
 	self.plugin.fileDialog = function(options) {
 		var fileUrl = K.undef(options.fileUrl, 'http://'),
 			fileTitle = K.undef(options.fileTitle, ''),
 			clickFn = options.clickFn;
 		var html = [
-			'<div style="padding:10px 20px;">',
+			'<div style="padding:20px;">',
 			'<div class="ke-dialog-row">',
 			'<label for="keUrl" style="width:60px;">' + lang.url + '</label>',
 			'<input type="text" id="keUrl" name="url" class="ke-input-text" style="width:160px;" /> &nbsp;',
@@ -39,7 +42,6 @@ KindEditor.plugin('insertfile', function(K) {
 		var dialog = self.createDialog({
 			name : name,
 			width : 450,
-			height : 180,
 			title : self.lang(name),
 			body : html,
 			yesBtn : {
@@ -57,10 +59,6 @@ KindEditor.plugin('insertfile', function(K) {
 					}
 					clickFn.call(self, url, title);
 				}
-			},
-			beforeRemove : function() {
-				viewServerBtn.remove();
-				uploadbutton.remove();
 			}
 		}),
 		div = dialog.div;
@@ -69,32 +67,40 @@ KindEditor.plugin('insertfile', function(K) {
 			viewServerBtn = K('[name="viewServer"]', div),
 			titleBox = K('[name="title"]', div);
 
-		var uploadbutton = K.uploadbutton({
-			button : K('.ke-upload-button', div)[0],
-			fieldName : 'imgFile',
-			url : K.addParam(uploadJson, 'dir=file'),
-			afterUpload : function(data) {
-				dialog.hideLoading();
-				if (data.error === 0) {
-					var url = K.formatUrl(data.url, 'absolute');
-					urlBox.val(url);
-					if (self.afterUpload) {
-						self.afterUpload.call(self, url);
+		if (allowFileUpload) {
+			var uploadbutton = K.uploadbutton({
+				button : K('.ke-upload-button', div)[0],
+				fieldName : filePostName,
+				url : K.addParam(uploadJson, 'dir=file'),
+				extraParams : extraParams,
+				afterUpload : function(data) {
+					dialog.hideLoading();
+					if (data.error === 0) {
+						var url = data.url;
+						if (formatUploadUrl) {
+							url = K.formatUrl(url, 'absolute');
+						}
+						urlBox.val(url);
+						if (self.afterUpload) {
+							self.afterUpload.call(self, url, data, name);
+						}
+						alert(self.lang('uploadSuccess'));
+					} else {
+						alert(data.message);
 					}
-					alert(self.lang('uploadSuccess'));
-				} else {
-					alert(data.message);
+				},
+				afterError : function(html) {
+					dialog.hideLoading();
+					self.errorDialog(html);
 				}
-			},
-			afterError : function(html) {
-				dialog.hideLoading();
-				self.errorDialog(html);
-			}
-		});
-		uploadbutton.fileBox.change(function(e) {
-			dialog.showLoading(self.lang('uploadLoading'));
-			uploadbutton.submit();
-		});
+			});
+			uploadbutton.fileBox.change(function(e) {
+				dialog.showLoading(self.lang('uploadLoading'));
+				uploadbutton.submit();
+			});
+		} else {
+			K('.ke-upload-button', div).hide();
+		}
 		if (allowFileManager) {
 			viewServerBtn.click(function(e) {
 				self.loadPlugin('filemanager', function() {
@@ -104,6 +110,9 @@ KindEditor.plugin('insertfile', function(K) {
 						clickFn : function(url, title) {
 							if (self.dialogs.length > 1) {
 								K('[name="url"]', div).val(url);
+								if (self.afterSelectFile) {
+									self.afterSelectFile.call(self, url);
+								}
 								self.hideDialog();
 							}
 						}
@@ -121,7 +130,7 @@ KindEditor.plugin('insertfile', function(K) {
 	self.clickToolbar(name, function() {
 		self.plugin.fileDialog({
 			clickFn : function(url, title) {
-				var html = '<a href="' + url + '" data-ke-src="' + url + '" target="_blank">' + title + '</a>';
+				var html = '<a class="ke-insertfile" href="' + url + '" data-ke-src="' + url + '" target="_blank">' + title + '</a>';
 				self.insertHtml(html).hideDialog().focus();
 			}
 		});
