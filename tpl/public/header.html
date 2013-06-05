@@ -1,7 +1,8 @@
 <div class="header">
 	<div class="top">
     	<div class="tool"></div>
-    	<h1>明阳防静电地板</h1>
+        <div class="logon"><img src="/images/logon.png" alt="明阳防静电地板" title="明阳防静电地板" width="300" height="80" /></div>
+    	
     </div>
     <div class="nav">
     	<ul class="navul">
@@ -12,6 +13,17 @@
       </ul>
   </div>
 </div>
+<script>
+$(function(){
+	$(".navul li").bind("mouseover",function(){
+		$(".navul li").removeClass("navhover");
+		$(this).addClass("navhover");
+		});
+	$(".navul li").bind("mouseout",function(){
+		$(this).addClass("navhover");
+		});
+	});
+</script>
 <div class="header_banner mt10">
 			<!--flash begin-->
 			<div id="flashBg">
