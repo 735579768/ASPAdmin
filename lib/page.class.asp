@@ -331,4 +331,8 @@ End class
 '         exit for
 '    end if
 'next
+'.pagenav,.pagenav a,.pagenav font{ font-size:12px; color:#666;text-align: center;}
+'.pagenav a:hover,.pagenav a:hover font{ color:#000;}
+'.pagenav a{ display:inline-block; height:20px; height:20px; padding:0px 5px; line-height:20px;}
+'导航样式
 %>

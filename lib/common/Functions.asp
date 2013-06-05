@@ -1,5 +1,18 @@
 <%
-
+'==============================
+'查询类的顶级分类id
+'=============================
+	function getTopCat(catid)
+		set furs=db.table("kl_cats").where("cat_id="&catid).sel()
+		'echo db.getlastsql()
+		parentid=furs("parent_id")&""
+		temid=furs("cat_id")&""
+		if parentid<>"0" then
+			getTopcat=getTopcat(parentid)
+		else
+			getTopcat=temid
+		end if
+	end function
 '取分类封面模板在前台使用
 '///////////////////////////////////////////
 	Function getCatTpl(catid)
