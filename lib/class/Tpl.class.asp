@@ -21,7 +21,7 @@ class AspTpl
 	private p_charset
 	public  p_tpl_dir	
 	private sub class_Initialize
-		debug=false
+		debug=true
 		p_charset="UTF-8"
 		p_var_l = "\{\$"
 		p_var_r = "\}"
@@ -70,7 +70,6 @@ class AspTpl
 	'功能主要是解析模板中的全局变量
 	'==================================================
 	private Function jiexivar(str)
-
 		a=p_var_list.keys
 		p_reg.Pattern =  p_var_l & "(\S*?)" & p_var_r 
 		set matches=p_reg.execute(str)
@@ -94,8 +93,7 @@ class AspTpl
 			else
 			'没有过滤器
 					'判断是不是对象，也就是有键值的情况
-					num=instr(a.submatches(0),".")
-								
+					num=instr(a.submatches(0),".")		
 					if num>0 then
 						'取出对象 和键
 						temobj=mid(a.submatches(0),1,num-1)
@@ -332,7 +330,9 @@ class AspTpl
 			else
 				p_var_list(key)=val
 			end if
-			
+		if err.number<>0 then
+			echo err.description
+		end if
 	End sub
 	'==================================================
 	'把数组组合成键值对象
@@ -434,15 +434,15 @@ class AspTpl
 				case 0:'致命错误
 					kl_err="Error Description:"&err.description
 					response.Write errstr&"<br>"
-					response.Write kl_err
+					response.Write kl_err&"<br>"
 					response.End()	
 				case 1:'一般错误
 					kl_err="Error Description:"&err.description
 					response.Write errstr&"<br>"
-					response.Write kl_err
+					response.Write kl_err&"<br>"
 				case else:'其它
 					response.Write errstr&"<br>"
-					response.Write("")
+					response.Write("<br>")
 			end select
 		end if
 		err.clear
