@@ -32,6 +32,19 @@ td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; 
 					'allowPreviewEmoticons':true,
 					'afterBlur':function(){this.sync();}
 				});
+								//////////////////////////////////////////
+			K('#image1').click(function() {
+					editor.loadPlugin('image', function() {
+						editor.plugin.imageDialog({
+							imageUrl : K('#url1').val(),
+							clickFn : function(url, title, width, height, border, align) {
+								K('#url1').val(url);
+								editor.hideDialog();
+							}
+						});
+					});
+				});
+				/////////////////////////////////////////
 			});
 		</script>
 <form action="" id="addchildcatsform" method="post">
@@ -59,8 +72,7 @@ td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; 
   </tr>
   <tr align="left">
     <td width="90">分类图片展示：</td>
-    <td><input name="cat_pic" id="pic" type="text"  value="">
-    <input type="button" onclick="window.open('uploadimg/index.asp','newwindow','width=500,height=80')" value="本地上传" style="width:70px;cursor:pointer;"><input id="delimg" type="button" style="display:none;"  value="删除本张图片"><img id="picimg" width="20" height="20" style="display:none;" src=""  /></td>
+    <td><input name="cat_pic" type="text" id="url1" value="{{cat_pic}}" style="width:200px" /> <input type="button" id="image1" value="选择图片" /></td>
   </tr>
   <tr>
     <td width="100px">显示/隐藏：</td>

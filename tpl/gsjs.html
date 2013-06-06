@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>{$arcinfo.arctitle}|{$arcinfo.cat_name}}|{$indexseo.cfg_webname}</title>
-<meta name="keywords" content="{$arcinfo.arckeys}" />
-<meta name="description" content="{$arcinfo.arcdescr}" />
+<title>{$catinfo.cat_name}|{$indexseo.cfg_webname}</title>
+<meta name="keywords" content="{$catinfo.cat_seokeys}" />
+<meta name="description" content="{$catinfo.cat_seodescr}" />
 <link rel="stylesheet" type="text/css" href="/css/index.css">
 <script src="/js/jquery-1.4.2.min.js" type="text/javascript"></script>
 <script src="/js/common.js" type="text/javascript"></script>
@@ -14,17 +14,13 @@
 <!--{include file="public/header.html"}-->
 <div class="container">
 <div class="left">
-        <!--{include file="public/left-list.html"}-->
+       <!--{include file="public/left-list.html"}-->
 </div>
 <div class="right">
-		<div class="dabox">
-    	<div class="title"><img src="/images/title_ico.gif" height="12" width="21" /><span>{$arcinfo.cat_name}->{$arcinfo.arctitle}</span></div>
+<div class="dabox">
+    	<div class="title"><img src="/images/title_ico.gif" height="12" width="21" /><span>{$catinfo.cat_name}</span></div>
         <div class="content">
-        <div class="goodtitle">{$arcinfo.arctitle}</div>
-        <div class="goodimg"><img src="{$arcinfo.arcpic}"  /></div>
-        <div class="gooddetail">{$arcinfo.arccontent}</div>
-            
-            
+        {$catinfo.cat_singlecontent}
         </div>
         </div>
 </div>

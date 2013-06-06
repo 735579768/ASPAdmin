@@ -17,15 +17,30 @@ td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; 
 <script charset="utf-8" src="editor/lang/zh_CN.js"></script>
 <script>
 			var editor;
+			KindEditor.options.filterMode = false;
 			KindEditor.ready(function(K) {
 					editor = K.create('textarea[name="arccontent"]', {
 					'allowFileManager' : true,
 					'uploadJson': 'editor/asp/upload_json.asp',
 					'fileManagerJson': 'editor/asp/file_manager_json.asp',
 //					'imageUploadJson':'../../../uploads',
+					'filterMode':false,
 					'allowFlashUpload':true,
 					'allowFileManager':true
 				});
+								//////////////////////////////////////////
+								K('#image1').click(function() {
+					editor.loadPlugin('image', function() {
+						editor.plugin.imageDialog({
+							imageUrl : K('#url1').val(),
+							clickFn : function(url, title, width, height, border, align) {
+								K('#url1').val(url);
+								editor.hideDialog();
+							}
+						});
+					});
+				});
+				/////////////////////////////////////////
 			});
 		</script>
 <body>
@@ -72,8 +87,7 @@ td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; 
   <tr>
     <td>
     <span class="biaotou">视频</span>图片展示：</td>
-    <td><input name="arcpic" id="pic" type="text"  value="{{arcpic}}" style="width:388px">
-    <input type="button" onclick="window.open('uploadimg/index.asp','newwindow','width=500,height=80')" value="本地上传" style="width:70px;cursor:pointer;"><input id="delimg" type="button" style="display:none;"  value="删除本张图片"><img id="picimg" width="50" height="50" style="display:none;" src=""  />
+    <td><input name="arcpic" type="text" id="url1" value="{{arcpic}}" style="width:388px" /> <input type="button" id="image1" value="选择图片" />
     </td>
   </tr>
   <!--内容-->

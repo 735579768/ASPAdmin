@@ -12,21 +12,17 @@ rsarr=db.rsToArr(rs)
 set catobj=rsarr(0)
 tpl.assign "catinfo",catobj
 '查询分类的子类
-set rs=db.where("parent_id="&catid).table("kl_cats").sel()
+set rs=db.where("parent_id="&gettopcat(catid)).table("kl_cats").sel()
 rsarr=db.rsToArr(rs)
 tpl.assign "childcatlist",rsarr
 
 
 '输出分类下内容
-set rs=db.table("kl_archives").where("cat_id="&catid).order("fbdate desc").top(12).sel()
+set rs=db.table("kl_archives").jin("kl_cats on kl_archives.cat_id=kl_cats.cat_id").where("kl_archives.cat_id="&catid&" or kl_cats.parent_id="&catid).order("fbdate desc,id desc").top(12).sel()
 goodslist=db.rsToArr(rs)
 tpl.assign "goodslist",goodslist
 
 
-if catid="29" then 
-
-
-end if
 
 
 if  cat_single=1 then 
