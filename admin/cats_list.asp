@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script src="js/jquery-1.8.1.min.js" type="text/javascript"></script>
-<import file="Js.jquery-1#8#1#min" />
+<script src="js/common.js" type="text/javascript"></script>
 <link href="css/main.css" rel="stylesheet" type="text/css" />
 <title>添加信息</title>
 </head>
@@ -54,8 +54,9 @@ td {
 </dl>
 
 <%
-dim menujibie
+dim menujibie,icoimgid
  menujibie=1
+ icoimgid=1
 sql="select cat_id from kl_cats where parent_id=0 order by sort asc "
 set xhrs=db.query(sql)
 if xhrs.recordcount>0 then
@@ -68,15 +69,7 @@ end if
 %>
 
 <script type="text/javascript">
-function zall(){
-	$('.jiajian').attr('src','images/jian.gif');
-	$('.lanmu dd,.lanmu .senondmenu').show();
-	}
-function hall(){
-	$('.jiajian').attr('src','images/jia.gif');
-	$('.lanmu dd,.lanmu .senondmenu').hide();
-	}
-hall();
+
 $(function(){
 		$(".lanmu dd").bind("mouseover",function(){
 			$(this).css('background','#FBFCE2');
@@ -84,14 +77,22 @@ $(function(){
 		$(".lanmu dd").bind("mouseout",function(){
 			$(this).css('background','#ffffff');
 		});
-	$('.lanmu .jiajian').bind('click',function(){
+	
+	
+	$('.jiajian').bind('click',function(){
 		var a=$(this).attr('src')
 		if(a=='images/jia.gif'){
+			$(this).attr('state',1);
 			$(this).attr('src','images/jian.gif');
+			bianlistate();
+			$(this).parent().parent().parent().children('dd').show();
 			}else{
-			$(this).attr('src','images/jia.gif');	
+			$(this).attr('state',0);
+			$(this).attr('src','images/jia.gif');
+			bianlistate();
+			$(this).parent().parent().parent().children('dd').hide();	
 				}
-		$(this).parent().parent().parent().children('dd,div').toggle();
+		
 		});
 //ajax删除前台菜单
 	$(".delcat").bind("click",function(){
@@ -120,7 +121,62 @@ $(function(){
 		$(".catdaimg").bind("mouseout",function(){
 			$(this).hide();
 			});
+		//查询栏目打开状态start
+		//1是打开啦0是还没有打开 
+		var menustate=null
+		menustate=readCookie("menustate")
+		if (menustate==""){
+			hall();
+			bianlistate()
+		}else{
+			obje=eval("a={"+menustate+"}");
+			for(var i in obje){
+				//1是打开啦0是还没有打开 
+				if(obje[i]===1){
+					$("#"+i).parent().parent().parent().children('dd').show();
+					$("#"+i).attr('src','images/jian.gif');
+					$("#"+i).attr('state',1);
+					}else{
+					$("#"+i).parent().parent().parent().children('dd').hide();
+					$("#"+i).attr('src','images/jia.gif');
+					$("#"+i).attr('state',0);	
+						}
+				}
+				bianlistate()
+			}
+		//查询栏目打开状态start
+		//writeCookie("test","text");
+		//alert(readCookie("test"))
 	})
+	//遍历节点状态写成json保存到cookies
+function bianlistate(){
+	statestr=""
+		$(".jiajian").each(function(index, element) {
+            if(index==1){
+				statestr=$(".jiajian").eq(index-1).attr("stateid")+":"+$(".jiajian").eq(index-1).attr("state")
+				}else{
+				statestr+=","+$(".jiajian").eq(index-1).attr("stateid")+":"+$(".jiajian").eq(index-1).attr("state")
+				}
+        });
+			writeCookie("menustate",statestr,10);
+			console.log(statestr);
+	}
+function zall(){
+	$('.jiajian').attr('src','images/jian.gif');
+	$('.lanmu dd,.lanmu .senondmenu').show();
+	$('.jiajian').each(function(index, element) {
+    $(this).eq(index-1).attr('state',1); 
+    });
+	bianlistate();
+	}
+function hall(){
+	$('.jiajian').attr('src','images/jia.gif');
+	$('.lanmu dd,.lanmu .senondmenu').hide();
+	$('.jiajian').each(function(index, element) {
+     $(this).eq(index-1).attr('state',0); 
+    });
+	bianlistate();
+	}
 </script>
 </body>
 </html>
@@ -164,13 +220,12 @@ sort1=wraprs("sort")&""
 havepic1=getcatimg(wraprs("cat_pic")&"")
 navshow1=getcatshow(wraprs("cat_show")&"")
 
-
-
+icoimgid=icoimgid+1
 %>
 	<dl class='lanmu'>
 		<dt>
         	<div class='left'>
-                <img class='jiajian' src='images/jian.gif' width='9' height='9' />
+                <img class='jiajian' stateid="icoimg<%=icoimgid%>" state="0" id="icoimg<%=icoimgid%>" src='images/jian.gif' width='9' height='9' />
                 栏目：<u><a title='点击查看此分类下文章' href='article_list.asp?cat_id=<%=cid1%>' target='_self'><%=cname1%></a></u>
                 <span class='red'>(ID:<%=cid1%>,文档数:<%=arcnum1%>)</span>(<%=wraprs("type_sxname")%>)
             </div>
@@ -195,6 +250,7 @@ navshow1=getcatshow(wraprs("cat_show")&"")
 				menujibie=menujibie+1 
 			echo "<dd class='menujibie"&cstr(menujibie)&"' style='_padding-left:0px;'>"
 			 call getcatlist(neirs("catid"))
+			 menujibie=menujibie-1 
 			echo "</dd>"
 		else
 			cid2=neirs("catid")&""'分类id

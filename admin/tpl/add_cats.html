@@ -17,12 +17,30 @@ td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; 
 .kl-tab .kl-tab-div{ width:100%;}
 </style>
 <body>
+<script charset="utf-8" src="editor/kindeditor-min.js"></script>
+<script charset="utf-8" src="editor/lang/zh_CN.js"></script>
+<script>
+			var editor;
+			KindEditor.ready(function(K) {
+					editor = K.create('textarea[name="cat_singlecontent"]', {
+					'allowFileManager' : true,
+					'uploadJson': 'editor/asp/upload_json.asp',
+					'fileManagerJson': 'editor/asp/file_manager_json.asp',
+//					'imageUploadJson':'../../../uploads',
+					'allowFlashUpload':true,
+					'allowFileManager':true,
+					'allowPreviewEmoticons':true,
+					'afterBlur':function(){this.sync();}
+				});
+			});
+		</script>
 <form action="" id="addchildcatsform" method="post">
 <div class="kl-tab">
 <ul class="kl-tab-nav-block">
 	<li class="kl-tab-nav">基本信息</li>
     <li class="kl-tab-nav">高级选项</li>
-    <li class="kl-tab-nav">栏目单页内容</li>
+    <li class="kl-tab-nav">栏目模板</li>
+    <li class="kl-tab-nav">栏目内容</li>
 </ul>
     <div class="kl-tab-div-block">
         <div class="kl-tab-div"><table width="98%" style=" margin:10px auto;border-collapse:collapse;" border="1" cellspacing="0" cellpadding="0">
@@ -108,6 +126,20 @@ td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; 
     <td align="center"><a href="javascript:tjyanzheng();" class="coolbg">添加分类</a>
     <a href="javascript:window.history.go(-1);" class="coolbg">返回</a></td></tr>
 </table></div>
+<div class="kl-tab-div">
+<table width="98%"  border="0">
+  <tr>
+    <td>栏目内容在页面中用{$cat_singlecontent}就可以调用</td>
+  </tr>
+  <tr>
+    <td><textarea name="cat_singlecontent" style="width:100%;height:400px;visibility:hidden;"></textarea></td>
+  </tr>
+    <tr>
+    <td align="center"><a href="javascript:tjyanzheng();" class="coolbg">添加分类</a>
+    <a href="javascript:window.history.go(-1);" class="coolbg">返回</a></td></tr>
+</table>
+
+</div>
     </div>
 </div>
 
