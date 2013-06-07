@@ -107,3 +107,53 @@ a{ text-decoration:none; color:#000;}
 .goodimg img{ width:200px; height:200px;}
 .gooddetail{ padding:0px 30px; line-height:25px;}
 .gooddetail *{ font-size:12px; margin:0px; padding:0px;}
+
+/*网上留言代码的开始*/
+
+.nr{}
+.nr .online{ margin-left:127px;}
+.nr .online .tv{ float:left; margin-right:33px; display:inline;}
+.nr .online .tv_ms{ width:400px; height:70px; float:left; overflow:hidden; margin-bottom:15px; display:inline;}
+.nr .online .tv_ms p{ color:#9D9D9D; line-height:21px;}
+
+ .nr .question{ width:653px; height:347px; background:url(../images/form_bg.png) no-repeat 0px 78px; margin:0px 0px 50px 50px;}
+.nr .question .form{ width:580px; height:346px; border:1px solid #D5D5D5; margin-left:60px;}
+.nr .question .form .table{ padding:27px 0 0 40px; }
+.nr .question .form table{ line-height:40px; font-size:13px; font-weight:800; color:#5B5B5B;}
+.question .form table .width300{ width:300px; height:33px; border:1px solid #D5D5D5;}
+.question .form table .tj{ width:86px; height:31px; background:url(../images/button.jpg) no-repeat; cursor:pointer; margin-left:80px;border: none;}
+.qie_smallpic dl{ width:170px; height:90px; padding-left:40px; overflow:hidden;}
+.qie_smallpic dl a{ text-decoration:none; color:#FFF;}
+.qie_smallpic dl dt{ height:25px; line-height:25px; font-size:18px; font-weight:bolder;}
+.qie_smallpic dl dd{ height:15px; line-height:15px; font-size:12px; font-weight:bold;}
+.qie_smallpic dl dt,.qie_smallpic dl dd{ text-align:left; overflow:hidden;margin:2px 0px;; display:inline-block;}
+.qie_smallpic .hover dl{ background:#D9F1CD; color:#5cc21f;}
+.qie_smallpic .hover dl a{color:#5cc21f;}
+.question {
+width: 653px;
+height: 347px;
+background: url(../images/form_bg.png) no-repeat 0px 78px;
+margin: 0px 0px 50px 50px;
+}
+
+
+/*联系我们代码的开始*/
+
+.kl-tab{ width:996px; margin:10px auto; text-align:left;}
+.kl-tab .left_bt{ width:195px;  float:left;}
+.oem_box{ border:1px solid #F1F1F1; width:195px;}
+.oem_box .oem_bt{ background:url(../images/oem_bt.png) no-repeat;  height:46px; width:195px; border-bottom:2px #41B15D solid; color:#41B15D; font-size:14px; font-weight:800; line-height:46px;}
+.oem_box .oem_list{}
+.oem_box .oem_list ul{ width:195px;}
+.oem_box .oem_list li{ width:195px; height:48px; border-bottom:1px solid #F1F1F1;}
+.oem_box .oem_list li a{ width:195px; height:48px; display:block; color:#8f8f8f; line-height:48px; font-size:14px; font-weight:800; text-align:center;}
+.oem_box .oem_list a:hover{color:#676767; background:url(../images/list_hover.png) no-repeat; width:195px; height:48px;}
+.left_bt .img{ margin-top:10px;}
+
+
+ .nr{}
+ .nr .lxwm{}
+ .nr .lxwm .add{float:left; margin:50px 0 0 40px; display:inline; }
+.nr .lxwm .add p{ margin:10px; color:#717171;}
+ .nr .lxwm_pic{ float:right; margin:50px 100px 0 0; display:inline;}
+ .nr .map{margin:-10px 0 50px 40px;}

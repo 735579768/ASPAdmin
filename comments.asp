@@ -2,7 +2,7 @@
 <%
 set rs=server.CreateObject("adodb.recordset")
 sql="select * from kl_comments"
-rs.open sql,db.idbconn,1,3
+rs.open sql,db.kl_conn,1,3
 rs.addNew
 				for each key in request.Form()
 						val=G(key)

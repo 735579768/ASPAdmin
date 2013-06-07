@@ -1,3 +1,4 @@
+<!--#INCLUDE FILE="Tag.class.asp"-->
 <%
 '===================================================
 '===author 赵克立
@@ -123,9 +124,10 @@ class AspTpl
 	end Function
 	'==================================================
 	'判断变量有否有过滤器
+	'@param a一个完整的变量标签({$a|left=10}) 或{$a}
 	'返回值：有过滤器的情况下返回一个数据 包含变量键名，函数名，参数，否则返回false
 	'==================================================
-	private Function isHaveFilteFunc(a)
+	public Function isHaveFilteFunc(a)
 			Set re = New RegExp 
 			re.IgnoreCase = True
 			re.Global = True
@@ -399,6 +401,11 @@ class AspTpl
 		p_tpl_content=foreachTag(p_tpl_content)
 		p_tpl_content=looptag(p_tpl_content)
 		p_tpl_content=jiexiShortTag(p_tpl_content)
+		'扩展cms内容输出标签
+		set tpltag=new QuickTag
+		p_tpl_content=tpltag.run(p_tpl_content)
+		set tpltag=nothing
+		'扩展cms内容输出标签
 		p_tpl_content=jiexivar(p_tpl_content)
 		p_tpl_content=Endjiexi(p_tpl_content)
 		jiexiTpl=p_tpl_content
@@ -453,7 +460,7 @@ class AspTpl
 	'@param funcname处理函数
 	'@param param函数的参数字符串
 	'===============================================================================	
-	private Function filterVar(val,funcname,param)
+	public Function filterVar(val,funcname,param)
 			Select Case funcname
 				case "left" 
 						set fireg=new regExp
@@ -472,7 +479,7 @@ class AspTpl
 	'@param str包含标签中键的字符串
 	'@param key参数所在的键值
 	'===============================================================================	
-	Function getTagParam(str,key)
+	public Function getTagParam(str,key)
 		str1=""
 		p_reg.Pattern ="([\s\S]*?)"&key&"=[\""|\']([\s\S]*?)[\""|\']([\s\S]*?)"	
 		set ms=p_reg.Execute(str)
