@@ -368,7 +368,7 @@
 '///////////////////////////////////////////
 	Function getparam(str)
 		str1=request(str)
-		getparam=replace(str1,":","：")
+		getparam=str1'replace(str1,";",";")
 		'getparam=mydecodeurl(replace(request(str),"$","%"))&"888"
 	End Function
 '///////////////////////////////////////////

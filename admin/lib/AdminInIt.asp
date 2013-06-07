@@ -14,6 +14,13 @@ set fs=nothing
 '初始化数据库db类
 Set db = new AspDb 
 db.dbConn=Oc(CreatConn("ACCESS",Sql_Data,"","","")) 
+
+'=======================初始化新模板类和数据库
+set newtpl=New ASPtpl
+'设置模板目录
+'tpl.SetTemplatesDir(TPL_PATH)
+'初始化数据库db类
+Set newdb = new Accessdb
 %>
 <!--#INCLUDE FILE="common.asp"-->
 <!--#INCLUDE FILE="loginsafe.asp"-->
