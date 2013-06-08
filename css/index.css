@@ -98,7 +98,7 @@ a{ text-decoration:none; color:#000;}
 .pagenav a:hover,.pagenav a:hover font{ color:#000;}
 .pagenav a{ display:inline-block; height:20px; height:20px; padding:0px 5px; line-height:20px;}
 
-.newslist{}
+.newslist{padding: 10px 20px;}
 .newslist li{ height:25px; margin:5px 0px; line-height:25px; padding-left:10px; background:url(/images/ico.jpg) no-repeat 0px center}
 .newslist li a{ display:inline-block; float:left; overflow:hidden;}
 .newslist li span{ display:inline-block; float:right;}

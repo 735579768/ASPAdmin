@@ -22,7 +22,7 @@ class AspTpl
 	private p_charset
 	public  p_tpl_dir	
 	private sub class_Initialize
-		debug=true
+		debug=false
 		p_charset="UTF-8"
 		p_var_l = "\{\$"
 		p_var_r = "\}"

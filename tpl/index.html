@@ -10,9 +10,6 @@
 <script src="/js/common.js" type="text/javascript"></script>
 </head>
 <body>
-<!--{arclist catid="" parentid="29,31"}-->
-{$arctitle}
-<!--{/arclist}-->
 <!--{include file="public/header.html"}-->
 <div class="container">
     <div class="left">
@@ -46,9 +43,9 @@ Email：hongmudan888@126.com<br />
         <!--{arclist parentid="29" num="8"}-->
             <div class="box">
         		<div class="imgbox">
-                	<a href="#"><img src="{$arcpic}" width="138" height="130" /></a>
+                	<a href="view.asp?id={$id}" target="_blank"><img src="{$arcpic}" width="138" height="130" /></a>
                 </div>
-              <a class="smtitle" href="#">{$arctitle}</a>
+              <a href="view.asp?id={$id}" target="_blank" class="smtitle">{$arctitle}</a>
             </div>
             <!--{/arclist}-->
         </div>
@@ -179,33 +176,21 @@ Email：hongmudan888@126.com<br />
 				}
 				-->
 				</style>
-                <div class="title">产品展示</div>
+                <div class="title"><img src="/images/title_ico.gif" height="12" width="21" /><span>产品展示</span></div>
 				<div id="demo">
 				<div id="indemo">
 				<div id="demo1">
-				
-            <li><a href="#"><img src="/images/1.jpg" alt="直铺式防静电陶瓷砖"><span class="imgtit">直铺式防静电陶瓷砖</span></a></li>
-            <li><a href="#"><img src="/images/2.jpg" alt="直铺式防静电陶瓷砖"><span class="imgtit">直铺式防静电陶瓷砖</span></a></li>
-            <li><a href="#"><img src="/images/1.jpg" alt="直铺式防静电陶瓷砖"><span class="imgtit">直铺式防静电陶瓷砖</span></a></li>
-            <li><a href="#"><img src="/images/3.jpg" alt="直铺式防静电陶瓷砖"><span class="imgtit">直铺式防静电陶瓷砖</span></a></li>
-            <li><a href="#"><img src="/images/2.jpg" alt="直铺式防静电陶瓷砖"><span class="imgtit">直铺式防静电陶瓷砖</span></a></li>
-            <li><a href="#"><img src="/images/1.jpg" alt="直铺式防静电陶瓷砖"><span class="imgtit">直铺式防静电陶瓷砖</span></a></li>
-            <li><a href="#"><img src="/images/3.jpg" alt="直铺式防静电陶瓷砖"><span class="imgtit">直铺式防静电陶瓷砖</span></a></li>
-            <li><a href="#"><img src="/images/1.jpg" alt="直铺式防静电陶瓷砖"><span class="imgtit">直铺式防静电陶瓷砖</span></a></li>
-			
+			<!--{arclist sql="select * from kl_archives  where type_id=2 and hometj=1" num="8"}-->
+            <li><a href="#"><img src="{$arcpic}" alt="{$arctitle}"><span class="imgtit">{$arctitle}</span></a></li>
+            <!--{/arclist}-->
 				</div>
 				<div id="demo2">
 				
 				<div id="demo1">
 				
-            <li><a href="#"><img src="/images/1.jpg" alt="直铺式防静电陶瓷砖"><span class="imgtit">直铺式防静电陶瓷砖</span></a></li>
-            <li><a href="#"><img src="/images/2.jpg" alt="直铺式防静电陶瓷砖"><span class="imgtit">直铺式防静电陶瓷砖</span></a></li>
-            <li><a href="#"><img src="/images/1.jpg" alt="直铺式防静电陶瓷砖"><span class="imgtit">直铺式防静电陶瓷砖</span></a></li>
-            <li><a href="#"><img src="/images/3.jpg" alt="直铺式防静电陶瓷砖"><span class="imgtit">直铺式防静电陶瓷砖</span></a></li>
-            <li><a href="#"><img src="/images/2.jpg" alt="直铺式防静电陶瓷砖"><span class="imgtit">直铺式防静电陶瓷砖</span></a></li>
-            <li><a href="#"><img src="/images/1.jpg" alt="直铺式防静电陶瓷砖"><span class="imgtit">直铺式防静电陶瓷砖</span></a></li>
-            <li><a href="#"><img src="/images/3.jpg" alt="直铺式防静电陶瓷砖"><span class="imgtit">直铺式防静电陶瓷砖</span></a></li>
-            <li><a href="#"><img src="/images/1.jpg" alt="直铺式防静电陶瓷砖"><span class="imgtit">直铺式防静电陶瓷砖</span></a></li>
+			<!--{arclist sql="select * from kl_archives  where type_id=2 and hometj=1" num="8"}-->
+            <li><a href="#"><img src="{$arcpic}" alt="{$arctitle}"><span class="imgtit">{$arctitle}</span></a></li>
+            <!--{/arclist}-->
 			
 				</div>
 				</div>

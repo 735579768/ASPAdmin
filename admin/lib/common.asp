@@ -9,13 +9,13 @@
 			  selid =cstr(selrs("cat_id"))
 			end if
 			
-			if G("cat_id")<>"" then  
+			if G("cat_id")<>"" and G("cat_id")<>"0" then  
 				selid =G("cat_id")
 				set srs=db.query("select type_id from kl_cats where cat_id="&selid)
 				typeid=srs("type_id")
 			end if
-			
-			if typeid<>"" then 
+			'编辑文章时进行类型过滤
+			if typeid<>"" and G("id")<>"" then 
 				sql="select cat_id,cat_name from kl_cats where parent_id=0 and type_id="&typeid&" order by sort asc"
 			else
 				sql="select cat_id,cat_name from kl_cats where parent_id=0 order by sort asc"
@@ -24,35 +24,29 @@
 		dim str:str="<select id='cat_id' name='cat_id' style='width:200px;'>"
 		set selrs=db.GetRecordBySQL(sql)
 		set srs=nothing
+				str=str&"<option value='0' >全部分类</option>"	
 		if selrs.recordcount>0 then 
 			do while not selrs.eof
-				if selid=selrs("cat_id")&"" then
-				str=str&"<option value='"&selrs("cat_id")&"' selected>"&selrs("cat_name")&"</option>"				
+				kongge=0
+				childbool=ischildcat(selrs("cat_id"))
+				selstyle=""
+				if childbool then
+					selstyle=" style='color:#ccc;' "
 				else
-				str=str&"<option value='"&selrs("cat_id")&"'>"&selrs("cat_name")&"</option>"
+					selstyle=" "
+				end if
+				if selid=selrs("cat_id")&"" then
+				str=str&"<option value='"&selrs("cat_id")&"' "&selstyle&" selected>"&selrs("cat_name")&"</option>"				
+				else
+				str=str&"<option value='"&selrs("cat_id")&"'  "&selstyle&" >"&selrs("cat_name")&"</option>"
 				end if
 			
 				'查询二级分类start
-				str=str&catoptions(selrs("cat_id"))
-				'set selrss=db.GetRecordBySQL("select cat_id,cat_name from kl_cats where parent_id="&selrs("cat_id")&" order by sort asc")
-'				if selrss.recordcount>0 then 
-'					do while not selrss.eof
-'						
-'						if selid=selrss("cat_id")&"" then
-'							str=str&"<option value='"&selrss("cat_id")&"' selected><b style='color:#ccc;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>"&selrss("cat_name")&"</option>"				
-'						else
-'							str=str&"<option value='"&selrss("cat_id")&"'><b style='color:#ccc;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>"&selrss("cat_name")&"</option>"
-'						end if
-'					
-'					selrss.movenext
-'					loop
-'					set selrss=nothing
-'				end if
-				'查询二级分类end
-				
+				if childbool then
+					str=str&catoptions(selrs("cat_id"))
+				end if
 			selrs.movenext
 			loop
-			
 		end if
 		str=str&"</select>"
 		getArcCatSel=str
@@ -61,36 +55,46 @@
 	end function
 	
 	function ischildcat(catid)
-	
-		set rstem=db.query("select * from kl_cats where cat_id="&catid)
+		set rstem=db.query("select * from kl_cats where parent_id="&catid)
 		if rstem.recordcount>0 then
 			ischildcat=true
 		else
 			ischildcat=false
 		end if
+		set rstem=nothing
 	end function
 	'定义一个变量输出空格用
-	kongge="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+	jiange=12
+	kongge=0
 	function catoptions(catid)
-	'kongge=kongge&"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+	kongge=kongge+jiange
 		str=""
 		set selrss=db.GetRecordBySQL("select cat_id,cat_name from kl_cats where parent_id="&catid&" order by sort asc")
 				if selrss.recordcount>0 then 
 					do while not selrss.eof
-						'递归输出
-						if ischildcat(selrss("cat_id")) then
-							str=str&catoptions(selrss("cat_id"))
+						child2=ischildcat(selrss("cat_id"))
+						selstyle2=""
+						if child2 then
+							selstyle2=" style='color:#ccc;' "
+						else
+							selstyle2=" "
 						end if
 						if G("cat_id")=selrss("cat_id")&"" then
-							str=str&"<option value='"&selrss("cat_id")&"' selected  >"&kongge&selrss("cat_name")&"</option>"				
+							str=str&"<option value='"&selrss("cat_id")&"' "&selstyle2&" selected  >"&String(kongge,"-")&selrss("cat_name")&"</option>"				
 						else
-							str=str&"<option value='"&selrss("cat_id")&"' >"&kongge&selrss("cat_name")&"</option>"
+							str=str&"<option value='"&selrss("cat_id")&"' "&selstyle2&" >"&String(kongge,"-")&selrss("cat_name")&"</option>"
 						end if
-					
+						'递归输出
+						if child2 then
+							'kongge=kongge+10
+							str=str&catoptions(selrss("cat_id"))
+							
+						end if					
 					selrss.movenext
 					loop
 					set selrss=nothing
 				end if
+				kongge=kongge-jiange
 				catoptions=str
 	end function
 '输出内容模型sel
@@ -103,19 +107,20 @@
 		  selid =cstr(selrs("type_id"))
 		end if
 		if G("type_id")<>"" then  selid =G("type_id")
-		if G("cat_id")<>"" then 
+		if G("cat_id")<>"" and G("id")<>"" then 
 			  set selrs=db.query("select type_id from kl_cats where cat_id="&G("cat_id"))
 			  selid =cstr(selrs("type_id"))
 		end if
 		'输出sel表单
-		dim str:str="<select id='cat_id' name='type_id' style='width:200px;'>"
+		dim str:str="<select id='type_id' name='type_id' style='width:150px;'>"
 		set selrs=db.GetRecordBySQL("select * from kl_content_types")
+			str=str&"<option value='0' >全部类型</option>"
 		if selrs.recordcount>0 then 
 			do while not selrs.eof
 				if selid=selrs("type_id")&"" then
-				str=str&"<option value='"&selrs("type_id")&"' selected>"&selrs("type_name")&"|内容模型</option>"				
+				str=str&"<option value='"&selrs("type_id")&"' selected>"&selrs("type_name")&"|内容类型</option>"				
 				else
-				str=str&"<option value='"&selrs("type_id")&"'>"&selrs("type_name")&"|内容模型</option>"
+				str=str&"<option value='"&selrs("type_id")&"'>"&selrs("type_name")&"|内容类型</option>"
 				end if
 				selrs.movenext
 			loop

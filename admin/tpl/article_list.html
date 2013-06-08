@@ -25,6 +25,30 @@ cursor: pointer;
 .catimg{ position:relative; display:inline-block;}
 .catimg span{ background:#fff; border:solid 1px #ccc; padding:5px;}
 .catimg .catdaimg{ display:none; position:absolute; left:12px; top:10px; z-index:999;}
+.catimg{ float:left; display:inline-block; width:12px; height:12px; margin-left:5px;}
+u{ float:left; display:inline-block;}
+input[type="text"], input[type="password"] {
+border-width: 1px;
+border-style: solid;
+border-color: #707070 #CECECE #CECECE #707070;
+padding: 2px 4px;
+height: 18px;
+line-height: 18px;
+vertical-align: middle;
+}
+input[type="button"],input[type="submit"], input[type="reset"] {
+border: none;
+border-right: 1px solid #ACACAC;
+border-bottom: 1px solid #ACACAC;
+background-color: #F1F8B4;
+padding: 2px;
+padding-right: 5px;
+padding-left: 5px;
+background: url(../images/allbtbg2.gif) #EFF7D0;
+cursor: pointer;
+}
+select{ padding:2px;}
+#type_id{ width:100px;}
 </style>
 </head>
 <body>
@@ -33,10 +57,15 @@ cursor: pointer;
 <table width="98%" border="0" cellpadding="2" cellspacing="1"  align="center">
 <TR class="biaotou"><TD>
 <form  name="sear1"  id="sear" style="float:left;" action="" method="">
-{{selcatid}}&nbsp;<a href="javascript:void(0);" onclick="sear1.submit();" class="coolbg">过滤</a>
-</form>
-<form  name="sear2"  id="sear" style="float:left;" action="" method="">
-标题搜索：<input  name="keywords" value="{{keywords}}" size="30" />&nbsp;<a href="javascript:void(0);" onclick="sear2.submit();" class="coolbg">搜索</a>
+类型：{{seltypeid}}分类：{{selcatid}}&nbsp;
+首页推荐：<select name="hometj" id="hometj">
+<option value="2">全部</option>
+<option value="1" style="color:red;">已推荐</option>
+<option value="0">未推荐</option>
+</select>
+标题搜索：<input  name="keywords"  type="text" value="{{keywords}}" size="30" />
+
+&nbsp;<a href="javascript:void(0);" onclick="sear1.submit();" class="coolbg">搜索</a>
 <a href="javascript:window.history.go(-1);" class="coolbg">返回</a>
 </form>
 </TD></TR>
@@ -65,7 +94,7 @@ cursor: pointer;
 <td>{{id}}</td>
 <td><input  type="checkbox" class="np checkid"  value="{{id}}" /></td>
 <td align="left">
-	<a href="/view.asp?id={{id}}" target="_blank"><u title="{{title}}">{{arctitle}}{{flagstr}}{{haveimg}}</u></a>
+	<a href="/view.asp?id={{id}}" target="_blank"><u title="{{title}}">{{arctitle}}{{flagstr}}</u>{{haveimg}}</a>
 </td>
 <td>{{fbdate}}</td>
 <td>{{uddate}}</td>
@@ -99,26 +128,15 @@ cursor: pointer;
 <script type="text/javascript">
 //删除文章
 $(function(){
-/*	$(".delarticle").bind("click",function(){
-		if(!confirm('确认删除?'))return false;
-		var obj=$(this);
-		var valu=obj.prev().val();
-		$.get("./",{
-				'act':'ajax',
-				'action':'delarticle',
-				'id':valu
-			},function(data){
-				if(data==1){
-						alert('删除成功！');
-						obj.parent().parent().parent().remove();
-						window.location.onload();
-					}else{
-						alert(data);
-						
-						}
-				});
-		});*/
-
+	$('#cat_id').bind('change',function(){
+		$('#sear').submit();
+		});
+	$('#hometj').bind('change',function(){
+		$('#sear').submit();
+		});
+	$('#type_id').bind('change',function(){
+		$('#sear').submit();
+		});
 		//选择文章id
 		$(".checkid").bind("click",function(){
 				setBatchIdStr();

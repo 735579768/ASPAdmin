@@ -50,9 +50,24 @@ td {
 
 <dl class="lanmu">
 <dt><a href="javascript:zall();" class="coolbg zhankai">全部展开</a>
-<a href="javascript:hall();" class="coolbg hebing">全部合并</a></dt>
+<a href="javascript:hall();" class="coolbg hebing">全部合并</a>
+<form name="addmsg" action="add_article.asp" id="addmsg" style="display:inline; margin-left:130px;">
+请选择分类：<%=getArcCatSel()%>
+<a href='javascript:tjaddmsg();'  id="addmsgbtn"  title='在此分类下添加信息'  class='coolbg red'>添加信息</a> 
+</form>
+</dt>
 </dl>
-
+<script type="text/javascript">
+function tjaddmsg(){
+	if($('#cat_id').val()=="0"){
+				alert('请首先选择分类，再添加信息!');
+				return false;
+			}else{
+				document.addmsg.submit();
+				//$('#addmsg').submit();
+				}
+	}
+</script>
 <%
 dim menujibie,icoimgid
  menujibie=1
@@ -159,7 +174,6 @@ function bianlistate(){
 				}
         });
 			writeCookie("menustate",statestr,10);
-			console.log(statestr);
 	}
 function zall(){
 	$('.jiajian').attr('src','images/jian.gif');

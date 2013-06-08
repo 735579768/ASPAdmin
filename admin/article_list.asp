@@ -30,17 +30,28 @@ end if
 
 '表单过滤分类条件
 tpl.setvariable "selcatid",getArcCatSel()
-guolv=""
-if G("cat_id")<>"" then
-	guolv=" and a.cat_id="&G("cat_id")	
+tpl.setvariable "seltypeid",getContentTypeSel()
+where=" where recycling=0 "
+'搜索类型
+if G("type_id")<>"0" and G("type_id")<>""  then
+	where=where&" and a.type_id="&G("type_id")&" "	
+end if
+'搜索分类
+if G("cat_id")<>"0" and G("cat_id")<>""  then
+	where=where&" and a.cat_id="&G("cat_id")&" "	
 end if
 '搜索关键字
-keywords=""
 if G("keywords")<>"" then
-keywords=" and a.arctitle like '%"&G("keywords")&"%'"
-tpl.SetVariable "keywords",G("keywords")
+	where=where&" and a.arctitle like '%"&G("keywords")&"%' "
+	tpl.SetVariable "keywords",G("keywords")
 end if
-sqlstr="SELECT a.id,a.cat_id as catid,a.arctitle,a.fbdate,a.arcflag,a.uddate,b.cat_name,c.type_name,a.arccontent,a.arcpic,a.recycling,a.archits,* from (kl_archives as a inner join  kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on b.type_id=c.type_id  where recycling=0 "& keywords &" "& guolv &" order by fbdate desc"
+'搜索首页推荐
+if G("hometj")<>"" and G("hometj")<>"2" then
+	where=where&" and hometj="&G("hometj")&" "
+end if
+
+
+sqlstr="SELECT a.id,a.cat_id as catid,a.arctitle,a.fbdate,a.arcflag,a.uddate,b.cat_name,c.type_name,a.arccontent,a.arcpic,a.recycling,a.archits,* from (kl_archives as a inner join  kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on b.type_id=c.type_id   "& where &" order by fbdate desc"
 
 '//////////////////////////////////////////////////////////////////////////////////////////
 '创建对象
