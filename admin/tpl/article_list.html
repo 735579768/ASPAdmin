@@ -29,14 +29,18 @@ cursor: pointer;
 </head>
 <body>
 <!--搜索信息-->
-<form  name="sear" id="sear" action="" method="">
+
 <table width="98%" border="0" cellpadding="2" cellspacing="1"  align="center">
 <TR class="biaotou"><TD>
-{{selcatid}}&nbsp;<a href="javascript:void(0);" onclick="sear.submit();" class="coolbg">过滤</a>
+<form  name="sear1"  id="sear" style="float:left;" action="" method="">
+{{selcatid}}&nbsp;<a href="javascript:void(0);" onclick="sear1.submit();" class="coolbg">过滤</a>
+</form>
+<form  name="sear2"  id="sear" style="float:left;" action="" method="">
+标题搜索：<input  name="keywords" value="{{keywords}}" size="30" />&nbsp;<a href="javascript:void(0);" onclick="sear2.submit();" class="coolbg">搜索</a>
 <a href="javascript:window.history.go(-1);" class="coolbg">返回</a>
+</form>
 </TD></TR>
 </table>
-</form>
 <form name="batchdel" id="batchdel" action="">
 <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#cfcfcf" align="center">
 <tr class="biaotou" bgcolor="#E7E7E7">
@@ -53,7 +57,7 @@ cursor: pointer;
 <td width="10%">更新时间</td>
 <td width="7%">类目</td>
 <td width="7%">内容模型</td>
-<td width="8%">点击</td>
+<td width="8%">首页推荐</td>
 <td width="10%">操作</td>
 </tr>
 <!-- BEGIN arclist -->
@@ -67,7 +71,7 @@ cursor: pointer;
 <td>{{uddate}}</td>
 <td>{{cat_name}}</td>
 <td>{{type_name}}</td>
-<td>{{archits}}</td>
+<td>{{tuijian}}</td>
 <td>
       <a href="edit_article.asp?id={{id}}&cat_id={{cat_id}}"><img src="images/edit.png" title="编辑属性" alt="编辑属性" onclick=";" style="cursor:pointer" border="0" width="16" height="16"></a>
     <a href="/view.asp?id={{id}}" target="_blank"><img src="images/check.gif" title="预览" alt="预览" onclick="" style="cursor:pointer" border="0" width="16" height="16"></a>

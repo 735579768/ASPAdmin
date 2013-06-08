@@ -30,17 +30,16 @@ class QuickTag
 		end sub
 		'运行本类中的标签解析
 		public Function run(str)
-			tplstr=str
-			arclisttag()
+			tplstr=arclisttag(str)
 			run=tplstr
 		end function
 		'=======================================
 		'<arclist catid="1,2,3">
 		'</arclist>
 		'=======================================
-		private sub arclisttag()
+		private Function arclisttag(str)
 			tagreg.Pattern=p_tag_l & "arclist\s*?(.*?)\s*?"& p_tag_r  &"([\s\S]*?)"& p_tag_l & "/arclist"& p_tag_r
-			Set Matches = tagreg.Execute(tplstr)
+			Set Matches = tagreg.Execute(str)
 			for each m in matches
 				catidlist=tplobj.getTagParam(m.submatches(0),"catid")
 				parentidlist=tplobj.getTagParam(m.submatches(0),"parentid")
@@ -91,8 +90,9 @@ class QuickTag
 				else
 					echo "parentid and sql and catid  is should not null in arclist at that time"
 				end if
-				tplstr=replace(tplstr,m,liststr2)
+				str=replace(str,m,liststr2)
 			next
-		end sub
+			arclisttag=str
+		end Function
 end class
 %>

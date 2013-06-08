@@ -67,7 +67,7 @@ class ASPTemplate
 		
 	end sub
 	Private Sub Class_Terminate()
-		if not displaytpl then Parse
+		'if not displaytpl then Parse
 	End Sub
 	
 	'===============================================================================

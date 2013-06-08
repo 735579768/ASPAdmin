@@ -1,6 +1,13 @@
 <!--#include file="lib/AdminInIt.asp"-->
 <!--#include file="../lib/page.class.asp"-->
 <%
+act=G("act")
+if act="arctj" then
+db.query("update kl_archives set hometj=1 where id="&G("id"))
+end if
+if act="arcnotj" then
+db.query("update kl_archives set hometj=0 where id="&G("id"))
+end if
 '移动回收站
 if act="huishousingle" then
 		id=G("id")
@@ -27,6 +34,13 @@ guolv=""
 if G("cat_id")<>"" then
 	guolv=" and a.cat_id="&G("cat_id")	
 end if
+'搜索关键字
+keywords=""
+if G("keywords")<>"" then
+keywords=" and a.arctitle like '%"&G("keywords")&"%'"
+tpl.SetVariable "keywords",G("keywords")
+end if
+sqlstr="SELECT a.id,a.cat_id as catid,a.arctitle,a.fbdate,a.arcflag,a.uddate,b.cat_name,c.type_name,a.arccontent,a.arcpic,a.recycling,a.archits,* from (kl_archives as a inner join  kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on b.type_id=c.type_id  where recycling=0 "& keywords &" "& guolv &" order by fbdate desc"
 
 '//////////////////////////////////////////////////////////////////////////////////////////
 '创建对象
@@ -34,7 +48,7 @@ Set mypage=new xdownpage
 '得到数据库连接
 mypage.getconn=db.idbconn
 'sql语句
-mypage.getsql="SELECT a.id,a.cat_id as catid,a.arctitle,a.fbdate,a.arcflag,a.uddate,b.cat_name,c.type_name,a.arccontent,a.arcpic,a.recycling,a.archits from (kl_archives as a inner join  kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on b.type_id=c.type_id  where recycling=0  "& guolv &" order by fbdate desc"
+mypage.getsql=sqlstr
 '设置每一页的记录条数据为5条
 mypage.pagesize=15
 '返回Recordset
@@ -59,6 +73,11 @@ for i=1 to mypage.pagesize
 	tpl.SetVariable "type_name",rs("type_name")&""
 	tpl.SetVariable "arccontent",rs("arccontent")&""
 	tpl.SetVariable "archits",rs("archits")&""
+	if cstr(rs("hometj"))=0 then
+		tpl.SetVariable "tuijian","<a  href='?page="&G("page")&"&act=arctj&id="&rs("id")&"' >未推荐</a>"
+	else
+		tpl.SetVariable "tuijian","<a style='color:red;' href='?page="&G("page")&"&act=arcnotj&id="&rs("id")&"' >已推荐</a>"
+	end if
 		'组合文章属性
 		arcsx=rs("arcflag")&""
 		arr=split(arcsx,",")

@@ -102,7 +102,9 @@ a{ text-decoration:none; color:#000;}
 .newslist li{ height:25px; margin:5px 0px; line-height:25px; padding-left:10px; background:url(/images/ico.jpg) no-repeat 0px center}
 .newslist li a{ display:inline-block; float:left; overflow:hidden;}
 .newslist li span{ display:inline-block; float:right;}
-.goodtitle{ text-align:center; font-weight:bolder; font-size:20px; padding:20px; border-bottom:dashed 1px #ededed;}
+.goodtitle{ text-align:center; font-weight:bolder; font-size:18px; padding:5px; border:dashed 1px #ccc; background:#f9f9f9;margin: 10px 0px;}
+.goodxx{ text-align:center;}
+.goodxx span{ display:inline-block; margin:0 5px;}
 .goodimg{ text-align:center; border-bottom:dashed 1px #ededed; padding:20px;}
 .goodimg img{ width:200px; height:200px;}
 .gooddetail{ padding:0px 30px; line-height:25px;}

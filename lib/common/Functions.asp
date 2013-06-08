@@ -505,7 +505,7 @@
 		
 		select case numformat
 		case 0
-		formatdate=""
+		formatdate=ystr&"-"&mstr&"-"&dstr&" "&hstr&"-"&nstr 
 		case 1
 		formatdate=ystr&"-"&mstr&"-"&dstr&" "&hstr&":"&nstr 
 		case 2
