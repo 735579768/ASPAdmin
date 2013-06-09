@@ -5,11 +5,11 @@ Fy_Cl = 1 '处理方式：1=提示信息,2=转向页面,3=先提示再转向
 Fy_Zx = "index.Asp" '出错时转向的页面 
 '---定义部份 尾------ 
 
-On Error Resume Next 
+'bakon error resume next 
 Fy_Url=Request.ServerVariables("QUERY_STRING") 
 Fy_a=split(Fy_Url,"&") 
 redim Fy_Cs(ubound(Fy_a)) 
-On Error Resume Next 
+'bakon error resume next 
 for Fy_x=0 to ubound(Fy_a) 
 Fy_Cs(Fy_x) = left(Fy_a(Fy_x),instr(Fy_a(Fy_x),"=")-1) 
 Next 

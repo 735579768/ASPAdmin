@@ -19,7 +19,7 @@
 'Sub CloseConn : Co(Conn) : End Sub
 
 Function Oc(ByVal Connstr)
-	On Error Resume Next
+	'bakon error resume next
 	Dim objConn
 	Set objConn = Server.CreateObject("ADODB.Connection")
 	objConn.Open Connstr
@@ -34,7 +34,7 @@ Function Oc(ByVal Connstr)
 End Function
 
 Sub Co(obj)
-	On Error Resume Next
+	'bakon error resume next
 	Set obj = Nothing
 End Sub
 
@@ -90,7 +90,7 @@ Class Aspdb
 	End Property
 
 	Public Function AutoID(ByVal TableName)
-		On Error Resume Next
+		'bakon error resume next
 		Dim m_No,Sql, m_FirTempNo
 		Set m_No=Server.CreateObject("adodb.recordset")
 		Sql="SELECT * FROM ["&TableName&"]"
@@ -117,7 +117,7 @@ Class Aspdb
 	End Function
 
 	Public Function GetRecord(ByVal TableName,ByVal FieldsList,ByVal Condition,ByVal OrderField,ByVal ShowN)
-		On Error Resume Next
+		'bakon error resume next
 		Dim rstRecordList
 		Set rstRecordList=Server.CreateObject("adodb.recordset")
 			With rstRecordList
@@ -162,7 +162,7 @@ Class Aspdb
 		 set Query=GetRecordBySQL(strSelect)
 	end function 
 	Public Function GetRecordBySQL(ByVal strSelect)
-		On Error Resume Next
+		'bakon error resume next
 		Dim rstRecordList
 		Set rstRecordList=Server.CreateObject("adodb.recordset")
 			With rstRecordList
@@ -184,7 +184,7 @@ Class Aspdb
 	End Function
 
 	Public Function GetRecordDetail(ByVal TableName,ByVal Condition)
-		On Error Resume Next
+		'bakon error resume next
 		Dim rstRecordDetail, strSelect
 		Set rstRecordDetail=Server.CreateObject("adodb.recordset")
 		With rstRecordDetail
@@ -207,7 +207,7 @@ Class Aspdb
 	End Function
 
 	Public Function AddRecord(ByVal TableName, ByVal ValueList)
-		On Error Resume Next
+		'bakon error resume next
 		DoExecute(wAddRecord(TableName,ValueList))
 		If Err.number <> 0 Then
 			idbErr = idbErr & "写入数据库出错！<br />"
@@ -228,7 +228,7 @@ Class Aspdb
 	End Function
 
 	Public Function UpdateRecord(ByVal TableName,ByVal Condition,ByVal ValueList)
-		On Error Resume Next
+		'bakon error resume next
 		DoExecute(wUpdateRecord(TableName,Condition,ValueList))
 		If Err.number <> 0 Then
 			idbErr = idbErr & "更新数据库出错！<br />"
@@ -249,7 +249,7 @@ Class Aspdb
 	End Function
 
 	Public Function DeleteRecord(ByVal TableName,ByVal IDFieldName,ByVal IDValues)
-		On Error Resume Next
+		'bakon error resume next
 		Dim Sql
 		Sql = "Delete From ["&TableName&"] Where ["&IDFieldName&"] In ("
 		If IsArray(IDValues) Then
@@ -270,7 +270,7 @@ Class Aspdb
 	End Function
 	
 	Public Function wDeleteRecord(ByVal TableName,ByVal IDFieldName,ByVal IDValues)
-		On Error Resume Next
+		'bakon error resume next
 		Dim Sql
 		Sql = "Delete From ["&TableName&"] Where ["&IDFieldName&"] In ("
 		If IsArray(IDValues) Then
@@ -283,7 +283,7 @@ Class Aspdb
 	End Function 
 
 	Public Function ReadTable(ByVal TableName,ByVal Condition,ByVal GetFieldNames)
-		On Error Resume Next
+		'bakon error resume next
 		Dim rstGetValue,Sql,BaseCondition,arrTemp,arrStr,TempStr,i
 		TempStr = "" : arrStr = ""
 		'给出SQL条件语句

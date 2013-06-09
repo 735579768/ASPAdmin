@@ -49,6 +49,10 @@ cursor: pointer;
 }
 select{ padding:2px;}
 #type_id{ width:100px;}
+.pagenav,.pagenav a,.pagenav font{ font-size:12px; color:#666;text-align: center;}
+.pagenav a:hover,.pagenav a:hover font{ color:#000; background:#ebebeb;}
+.pagenav a,.pagenav font{ display:inline-block; height:20px; height:20px; padding:0px 6px; line-height:20px;border: 1px solid #E7ECF0;}
+.pagenav a font{ margin:0px; padding:0px; border:none;}
 </style>
 </head>
 <body>
@@ -115,9 +119,9 @@ select{ padding:2px;}
   <a href="javascript:void(0)" onclick="batchdel.submit();" class="coolbg">&nbsp;“∆µΩªÿ ’’æ&nbsp;</a></td>
 </tr>
 
-<tr align="right" bgcolor="#F9FCEF">
+<tr align="right" bgcolor="#ffffff">
 <td height="30" colspan="9" align="center">
-	<span>{{pagenav}}</span></td>
+	<span class="pagenav">{{pagenav}}</span></td>
 </tr>
 </table>
 <input type="hidden" name="batchid" id="batchidstr" value="" />

@@ -42,7 +42,7 @@ Class Accessdb
 	'功能：查询记录集
 	'==================================
 	Function query(sqlstr)
-		on error resume next
+		'bakon error resume next
 		err.clear
 		if sqlstr<>"" then kl_sql=sqlstr
 		set kl_rs=server.CreateObject("adodb.recordset")
@@ -57,7 +57,7 @@ Class Accessdb
 	'功能：把记录集转成键值对数组
 	'==================================
 	Function rsToArr(rss)
-	on error resume next
+	'bakon error resume next
 	err.clear
 		num=rss.recordcount
 		redim klvalarr(num)
@@ -109,7 +109,7 @@ Class Accessdb
 	'功能：查询数据
 	'==================================
 	Function sel()
-		'on error resume next
+		''bakon error resume next
 		dim top ,fild,where,jin,table,order
 		if kl_sqlkey.Exists("top") then top=cstr(kl_sqlkey("top"))
 		if kl_sqlkey.Exists("fild") then fild=cstr(kl_sqlkey("fild"))

@@ -149,7 +149,7 @@ Class jsCore
 				limiter = ""
 			End If 
 
-			On Error Resume Next
+			'bakon error resume next
 			rendered = RenderArray(arr, depth + 1, parent & index & "," )
 
 			If Err = 9 Then

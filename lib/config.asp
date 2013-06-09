@@ -3,7 +3,7 @@
 '////////////////////////////////////
 'config file
 '//////////////////////////////////
-'on error resume next 
+''bakon error resume next 
 on error goto 0
 session("APP")="true"
 

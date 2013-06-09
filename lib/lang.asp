@@ -18,7 +18,7 @@ const pg_end="尾页"
 const pg_totalmsg=""
 const pg_yeci="页次:"
 const pg_yegong="页 共:"
-const pg_tiaojilu="条记录 "
+const pg_tiaojilu="条 "
 const pg_tiaomy="条/每页 "
 const AJAX_NODELMENU="菜单下面还有子菜单不能删除！0.0"	'不能删除有子菜单的菜单
 

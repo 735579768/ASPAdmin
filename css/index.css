@@ -159,3 +159,9 @@ margin: 0px 0px 50px 50px;
 .nr .lxwm .add p{ margin:10px; color:#717171;}
  .nr .lxwm_pic{ float:right; margin:50px 100px 0 0; display:inline;}
  .nr .map{margin:-10px 0 50px 40px;}
+ 
+ 
+.pagenav,.pagenav a,.pagenav font{ font-size:12px; color:#666;text-align: center;}
+.pagenav a:hover,.pagenav a:hover font{ color:#000; background:#ebebeb;}
+.pagenav a,.pagenav font{ display:inline-block; height:20px; height:20px; padding:0px 6px; line-height:20px;border: 1px solid #E7ECF0;}
+.pagenav a font{ margin:0px; padding:0px; border:none;}

@@ -35,7 +35,7 @@
 '取数据表中的字段
 '///////////////////////////////////////////
 	Function getTableField(sql)
-		on error resume next
+		'bakon error resume next
 		err.clear
 		set fieldrs=server.createobject("adodb.recordset")
 		fieldrs.open sql,db.idbconn,1,1
@@ -122,7 +122,7 @@
 '通过sql语句设置模板变量
 '///////////////////////////////////////////
 	Function setTplVarBySql(sql)
-		on error resume next
+		'bakon error resume next
 		set funcrs=db.query(sql)
 		sz=gettablefield(sql)
 		for i=0 to ubound(sz)-1
@@ -158,7 +158,7 @@
 '@param arr 一个键值数组，如"key:valu"  对应的数据格式为 tpl.SetVariable key,funcrs(valu)&""
 '///////////////////////////////////////////
 	Function listBlock(block,sqlstr,arr)
-	on error resume next
+	'bakon error resume next
 	set funcrs=db.query(sqlstr)
 			tpl.UpdateBlock block
 		do while not funcrs.eof
@@ -199,7 +199,7 @@
 			'
 			''显示数据
 			'Response.Write("<br/>")
-			on error resume next
+			'bakon error resume next
 				tpl.UpdateBlock block
 			for i=1 to mypage.pagesize
 			''这里就可以自定义显示方式了
@@ -230,7 +230,7 @@
 '@param tablename 数据表名字	
 '///////////////////////////////////////////
 	Function loopBlock(block,sqlstr)
-		on error resume next
+		'bakon error resume next
 		'取表中的字段值
 		sz=getTableField(sqlstr)
 		set funcrs=db.query(sqlstr)
@@ -272,7 +272,7 @@
 			'
 			''显示数据
 			'Response.Write("<br/>")
-			on error resume next
+			'bakon error resume next
 					'取表中的字段值
 			sz=getTableField(sqlstr)
 				tpl.UpdateBlock block
@@ -638,7 +638,7 @@
 '参数：@filestr  文件路径，(可以用相对路径)
 	Function DeleteFile(FileStr)
 		   Dim FSO
-		   On Error Resume Next
+		   'bakon error resume next
 		   Set FSO = CreateObject("Scripting.FileSystemObject")
 			If FSO.FileExists(Server.MapPath(FileStr)) Then
 				FSO.DeleteFile Server.MapPath(FileStr), True

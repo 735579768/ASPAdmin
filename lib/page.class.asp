@@ -189,6 +189,7 @@ End function
 Private Function ShowFirstPrv()
  Dim Str_tmp,int_prvpage
  If int_curpage=1 Then
+ 	int_prvpage=1
   str_tmp="<a href="""&XD_sURL & "1" & """>" & Btn_First&"</a> <a href=""" & XD_sURL & CStr(int_prvpage) & """>" & Btn_Prev&"</a>"
  Else
   int_prvpage=int_curpage-1
@@ -230,8 +231,24 @@ Private Function showNumBtn()
 '  end if
 '  str_tmp=str_tmp & "[<a "&style&" href=""" & XD_sURL & CStr(i) & """>"&i&"</a>] "
 ' Next
-';on error goto 0
+curpage=cstr(G("page"))
+if curpage="" then curpage=1
 str_tmp=""
+For i=1 to 5
+  a=curpage
+  b=a-i
+  if b>0 then str_tmp=str_tmp & "<a "&style&" href=""" & XD_sURL & b & """>"&b&"</a> "
+  if b<=1 then exit for
+Next
+ str_tmp=str_tmp & "<a style='color:red;' href=""" & XD_sURL &curpage & """>"&curpage&"</a> "
+For i=1 to 5
+  a=curpage
+  b=a+i
+  if b<=int_totalpage then str_tmp=str_tmp & "<a "&style&" href=""" & XD_sURL & b & """>"&b&"</a> "
+  if b>int_totalpage then exit for
+Next
+';on error goto 0
+'str_tmp=""
 'str_tmp=str_tmp & "[<a style='color:#f00;' href=""" & XD_sURL &G("page") & """>"&i&"</a>] "
  showNumBtn=str_tmp
 End Function

@@ -3,7 +3,7 @@
 <%
 '添加文章
 	if G("isaddarticle")="true" then
-'		on error resume next
+'		'bakon error resume next
 		err.clear
 		cat_id=G("cat_id")
 		sql="select b.data_table as datatable from kl_cats as a inner join kl_content_types as b on a.type_id=b.type_id where a.cat_id="&cat_id

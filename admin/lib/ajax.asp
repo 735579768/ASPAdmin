@@ -1,5 +1,5 @@
 <%
-on error resume next
+'bakon error resume next
 tpl.setdisplaystate(true)'不让模板输出内容
 dim ajaxstr
 dim id:id=G("id")

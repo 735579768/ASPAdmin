@@ -70,7 +70,7 @@ class AspTpl
 	'解析模板变量
 	'功能主要是解析模板中的全局变量
 	'==================================================
-	private Function jiexivar(str)
+	public Function jiexivar(str)
 		a=p_var_list.keys
 		p_reg.Pattern =  p_var_l & "(\S*?)" & p_var_r 
 		set matches=p_reg.execute(str)
@@ -150,7 +150,7 @@ class AspTpl
 	'==================================================
 	'解析if标签
 	'==================================================	
-	private Function iftag(str)
+	Public Function iftag(str)
 		regtag=p_tag_l & "if\s+?(.*?)\s*?"& p_tag_r  &"([\s\S]*?)"& p_tag_l & "/if"& p_tag_r
 		p_reg.Pattern=regtag
 		Set Matches = p_reg.Execute(str)
@@ -167,7 +167,7 @@ class AspTpl
 	'==================================================
 	'解析ifelse标签
 	'==================================================	
-	private Function ifElseTag(str)
+	Public Function ifElseTag(str)
 		regtag=p_tag_l & "if\s+?(.*?)\s*?"& p_tag_r  &"([\s\S]*?)"& p_tag_l & "else"& p_tag_r & "([\s\S]*?)"& p_tag_l & "/if"& p_tag_r
 		p_reg.Pattern=regtag
 		'p_tpl_content=p_reg.execute(p_tpl_content,"it is if ")
@@ -187,7 +187,7 @@ class AspTpl
 	'解析foreach标签
 	'功能解析一维数组
 	'==================================================	
-	private Function foreachTag(str)
+	Public Function foreachTag(str)
 
 		p_reg.Pattern=p_tag_l & "foreach([\s\S]*?)" & p_tag_r&"([\s\S]*?)" & p_tag_l & "/foreach" &p_tag_r
 		Set Matches = p_reg.Execute(str)
@@ -357,7 +357,7 @@ class AspTpl
 	'在设置模板的时候首先把里面的包含标签替换
 	'===============================================================================
 	private function includefile(str)
-		on error resume next
+		'bakon error resume next
 		p_reg.Pattern =  p_tag_l & "include(\s+?)file=[\""|\'](\S*?)[\""|\'](\s*?)" & p_tag_r 
 		set matches=p_reg.Execute(str)
 		if matches.count<1 then includefile=str end if
@@ -484,7 +484,7 @@ class AspTpl
 		p_reg.Pattern ="([\s\S]*?)"&key&"=[\""|\']([\s\S]*?)[\""|\']([\s\S]*?)"	
 		set ms=p_reg.Execute(str)
 		if ms.count>0 then
-		str1=ms(0).SubMatches(1)'取sql语句
+		str1=jiexivar(ms(0).SubMatches(1))'取sql语句
 		end if
 		set ms=nothing
 		getTagParam=str1
@@ -493,7 +493,7 @@ class AspTpl
 	'函数名称:ReadTextFile 
 	'作用:利用AdoDb.Stream对象来读取UTF-8格式的文本文件 
 	'====================================================
-	function ReadFromTextFile (FileUrl,CharSet) 
+	Public function ReadFromTextFile (FileUrl,CharSet) 
 		dim str 
 		set stm=server.CreateObject("adodb.stream") 
 		stm.Type=2 '以本模式读取 
@@ -510,7 +510,7 @@ class AspTpl
 	'函数名称:WriteToTextFile 
 	'作用:利用AdoDb.Stream对象来写入UTF-8格式的文本文件 
 	'===================================================
-	Sub WriteToTextFile (FileUrl,byval Str,CharSet) 
+	Public Sub WriteToTextFile (FileUrl,byval Str,CharSet) 
 		set stm=server.CreateObject("adodb.stream") 
 		stm.Type=2 '以本模式读取 
 		stm.mode=3 
@@ -525,7 +525,7 @@ class AspTpl
 	'===============================================================================
 	'清空没有替换的变量
 	'===============================================================================	
-	Function Endjiexi(str)
+	Public Function Endjiexi(str)
 		p_reg.Pattern = "\'#\'|""#"""    
 		str= p_reg.Replace(str, "'javascript:void(0);'")			 '去掉锚点		
 		p_reg.Pattern = p_var_l&"\S*"&p_var_r    
@@ -539,7 +539,7 @@ class AspTpl
 	' 
 	'===================================================
 	private function looptag(str)
-		on error resume next
+		'bakon error resume next
 		p_reg.Pattern=p_tag_l & "loop(.*?)" & p_tag_r&"([\s\S]*?)" & p_tag_l & "/loop" &p_tag_r
 		set matches=p_reg.execute(str)
 		for each match in matches
@@ -549,31 +549,33 @@ class AspTpl
 				temobjarr=p_var_list(temname)'对象数组
 				temvar=getTagParam(Match.SubMatches(0),"var")'循环时用的变量对象
 				str1=""'处理过的内容
-				for i=0 to ubound(temobjarr)-1
-						restr=Match.SubMatches(1)'loop的内容
-						if not isobject(temobjarr(i)) then exit for
-						'set obj=temobj(objkey)
-						'替换迭代变量
-							p_reg.Pattern =p_var_l &iteration& p_var_r
-							restr=p_reg.replace(restr,i+1)
-						'替换键值变量
-						for each k in temobjarr(i).keys'循环对象obj中元素并替换成值
-							zhvar=p_var_l & temvar& "." & k &"(.*?)"& p_var_r
-							p_reg.Pattern = zhvar
-							set temm=p_reg.execute(restr)
-							for each m in temm
-								c=isHaveFilteFunc(m)
-								if isarray(c) then
-									restr=replace(restr,m,filtervar(temobjarr(i)(k),c(1),c(2)) )
-								else
-									restr=replace(restr,m,temobjarr(i)(k))
-								end if
+				if isarray(temobjarr) then
+					for i=0 to ubound(temobjarr)-1
+							restr=Match.SubMatches(1)'loop的内容
+							if not isobject(temobjarr(i)) then exit for
+							'set obj=temobj(objkey)
+							'替换迭代变量
+								p_reg.Pattern =p_var_l &iteration& p_var_r
+								restr=p_reg.replace(restr,i+1)
+							'替换键值变量
+							for each k in temobjarr(i).keys'循环对象obj中元素并替换成值
+								zhvar=p_var_l & temvar& "." & k &"(.*?)"& p_var_r
+								p_reg.Pattern = zhvar
+								set temm=p_reg.execute(restr)
+								for each m in temm
+									c=isHaveFilteFunc(m)
+									if isarray(c) then
+										restr=replace(restr,m,filtervar(temobjarr(i)(k),c(1),c(2)) )
+									else
+										restr=replace(restr,m,temobjarr(i)(k))
+									end if
+								next
 							next
-						next
-						restr=jiexivar(restr)'在解析短标签前把里面的全局变量解析成数据
-						restr=jiexiShortTag(restr)'处理短标签
-						str1=str1&restr
-				next
+							restr=jiexivar(restr)'在解析短标签前把里面的全局变量解析成数据
+							restr=jiexiShortTag(restr)'处理短标签
+							str1=str1&restr
+					next
+				end if
 				str=replace(str,match,str1)
 		next
 		looptag=str
@@ -583,7 +585,6 @@ class AspTpl
 	'======================================
 	private Function jiexiShortTag(str)
 		'处理eq短标签
-		str=cattag(str)
 		jiexiShortTag=eqtag(str)
 		
 	end Function
@@ -607,32 +608,6 @@ class AspTpl
 		end if
 		eqtag=str
 		set p_eqreg=nothing
-	end function
-	'==========================================================================================
-	'自定义从数据库查询的标签
-	'=========================================================================================
-	private function cattag(str)
-		str1=""
-		Set catreg = New RegExp 
-		catreg.IgnoreCase = True
-		catreg.Global = True
-		catreg.Pattern ="<cat([\s\S]*?)>([\s\S]*?)</cat>"
-		set eqm=catreg.execute(str)
-		if eqm.count>0 then
-			for each m in eqm		
-				temparam=getTagParam(m.SubMatches(0),"id")
-				str1=m.submatches(1)
-				set catrs=db.table("kl_cats").top("1").where("cat_id="&temparam).sel()
-					for each a in catrs.fields
-						catreg.Pattern =p_var_l&a.name&p_var_r
-						str1=catreg.replace(str1,catrs(a.name)&"")
-					next 
-				set catrs=nothing
-				str=replace(str,m,str1)
-			next
-		end if
-		set catreg=nothing
-		cattag=str
 	end function
 end class
 %>

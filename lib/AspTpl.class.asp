@@ -130,7 +130,7 @@ class ASPTemplate
 	'在设置模板的时候首先把里面的包含标签替换
 	'===============================================================================
 	private function includefile(str)
-		on error resume next
+		'bakon error resume next
 		p_regexp.IgnoreCase = True
 		p_regexp.Global = True
 		p_regexp.Pattern =  p_var_tag_o & "include(\s+?)file=\""(\S+?)\""(\s*?)" & p_var_tag_c 
@@ -186,7 +186,9 @@ class ASPTemplate
 			'response.write server.mappath(p_templates_dir & inFileName)
 			if FSO.FileExists(server.mappath(p_templates_dir & inFileName)) then
 				set oFile = FSO.OpenTextFile(server.mappath(p_templates_dir & inFileName), 1)
+				if not oFile.atendofstream then 
 				p_template = oFile.ReadAll
+				end if
 				oFile.Close
 				set oFile = nothing
 			else
@@ -288,7 +290,7 @@ class ASPTemplate
 
 	public property get GetOutput
 	call preTpl()
-	on error resume next
+	'bakon error resume next
 		Dim Matches, match, MatchName
 		
 		'Replace the variables in the template
@@ -596,7 +598,7 @@ class ASPTemplate
 	public function makehtml(htmlfile)
 			dim fs,f
 			set fs=Server.CreateObject("Scripting.FileSystemObject") 
-			on error resume next
+			'bakon error resume next
 			set f=fs.CreateTextFile(Replace(server.MapPath(htmlfile),"\","/"),true)
 			f.write(GetOutput)
 			f.close

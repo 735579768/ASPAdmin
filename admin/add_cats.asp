@@ -4,7 +4,7 @@
 'cat如果为0则添加顶级类，不为0则为这个分类的父id
 dim parent_id:parent_id=G("parent_id")
 if G("act")="add" then
-				on error resume next
+				'bakon error resume next
 				err.clear
 				set uprs=server.createobject("adodb.recordset")
 				uprs.open "select * from kl_cats",db.idbconn,1,3

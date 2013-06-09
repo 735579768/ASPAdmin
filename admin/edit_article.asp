@@ -6,7 +6,7 @@
 		cat_id=G("cat_id")
 			set uprs=server.createobject("adodb.recordset")
 			uprs.open "select * from kl_archives where id="&id,db.idbconn,0,2
-			on error resume next
+			'bakon error resume next
 			err.clear
 		'delete pic start
 		set temrs=db.query("select arcpic from kl_archives where id="&id)

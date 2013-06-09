@@ -484,7 +484,7 @@ Class UploadFileEx
 	End Sub
 	
 	Public Function SaveToFile(ByVal Path , byval tOption, byval OverWrite)
-		On Error Resume Next
+		'bakon error resume next
 		Dim IsP 
 		IsP = (InStr(Path, ":") = 2)
 		If Not IsP Then Path = Server.MapPath(Path)
