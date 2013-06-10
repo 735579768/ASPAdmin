@@ -1,3 +1,49 @@
+<style type="text/css">
+*{margin:0;padding:0;list-style-type:none;}
+a,img{border:0; vertical-align:top;}
+/* KeFuDiv */
+.KeFuDiv{position:absolute;height:160px;width:118px;}
+.KeFuList{background:url(images/mid001.gif);}
+.KeFuTitle{margin-left:9px;font-size:12px;width:101px;height:20px;line-height:20px;text-align:center;}
+.KeFuItem{text-align:center;margin-top:8px;font-size:12px;}
+</style>
+<div id="KeFuDiv" class="KeFuDiv">
+	<div>
+		<img src="images/up_001.gif" height="55" border="0" usemap="#Map" style="cursor:move;" onmousedown="MoveDiv(KeFuDiv,event);" title="拖动" />
+		<map name="Map" id="Map">
+			<area shape="circle" coords="105,10,8" href="javascript:" onclick="KeFuDiv.style.display='none';" title="关闭"/>
+		</map>
+	</div>
+
+	<div class="KeFuList">
+		<div class="KeFuTitle">在线客服</div>
+		<div class="KeFuItem">
+<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=735579768&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:735579768:41" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+		</div>
+        <div class="KeFuItem">
+<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=735579768&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:735579768:41" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+		</div>
+        <div class="KeFuItem">
+<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=735579768&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:735579768:41" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+		</div>
+        <div class="KeFuItem">
+<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=735579768&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:735579768:41" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+		</div>
+	</div>
+
+	<div><img src="images/bot_001.gif" border="0"></div>
+</div><!--KeFuDiv end-->
+
+<script type="text/javascript" src="js/online.js"></script>
+<script type="text/javascript">
+//初始位置
+gID("KeFuDiv").style.top = (document.documentElement.clientHeight - gID("KeFuDiv").offsetHeight)/2 +"px";
+gID("KeFuDiv").style.left = document.documentElement.clientWidth - gID("KeFuDiv").offsetWidth -20+"px";
+//开始滚动
+ScrollDiv('KeFuDiv');
+</script>
+<!--演示内容结束-->
+
 <div class="header">
 	<div class="top">
     	<div class="tool"></div>

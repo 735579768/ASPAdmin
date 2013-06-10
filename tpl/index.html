@@ -13,7 +13,24 @@
 <!--{include file="public/header.html"}-->
 <div class="container">
     <div class="left">
-         <!--{include file="public/left-list.html"}-->   	
+                 <dl>
+          <dt class="title"><img src="/images/title_ico.gif" height="12" width="21" /><span>产品分类</span></dt>
+            <!--{loop name="catlist" var="var"}-->
+            <dd><a href="cat.asp?catid={$var.cat_id}" title="{$var.cat_name}">{$var.cat_name}</a></dd>
+            <!--{/loop}-->
+        </dl>
+        <dl>
+          <dt class="title"><img src="/images/title_ico.gif" height="12" width="21" /><span>最新产品</span></dt>
+            <!--{loop name="productlist" var="var"}-->
+            <dd><a href="view.asp?id={$var.id}" title="{$var.arctitle}">{$var.arctitle}</a></dd>
+            <!--{/loop}-->
+        </dl>
+        <dl>
+          <dt class="title"><img src="/images/title_ico.gif" height="12" width="21" /><span>近期案例</span></dt>
+            <!--{loop name="anlilist" var="var"}-->
+            <dd><a href="view.asp?id={$var.id}" title="{$var.arctitle}">{$var.arctitle}</a></dd>
+            <!--{/loop}-->
+        </dl> 	
         <dl>
           <dt class="title"><img src="/images/title_ico.gif" height="12" width="21" /><span>联系方式</span></dt>
           <dd class="lxwm">
@@ -40,7 +57,7 @@ Email：hongmudan888@126.com<br />
     	<div class="dabox">
     	<div class="title"><img src="/images/title_ico.gif" height="12" width="21" /><span>推荐产品</span></div>
         <div class="content">
-        <!--{arclist parentid="29" num="8"}-->
+        <!--{arclist catid="29" parentid="29" num="8" hometj="1"}-->
             <div class="box">
         		<div class="imgbox">
                 	<a href="view.asp?id={$id}" target="_blank"><img src="{$arcpic}" width="138" height="130" /></a>
@@ -53,107 +70,27 @@ Email：hongmudan888@126.com<br />
         <div class="dabox">
     	<div class="title"><img src="/images/title_ico.gif" height="12" width="21" /><span>工程案例</span></div>
         <div class="content">
+        <!--{arclist catid="28" parentid="28" num="8"}-->
             <div class="box">
         		<div class="imgbox">
-                	<a href="#"><img src="/images/1.jpg" width="138" height="130" /></a>
+                	<a href="view.asp?id={$id}" target="_blank"><img src="{$arcpic}" width="138" height="130" /></a>
                 </div>
-              <a class="smtitle" href="#">标题</a>
+              <a href="view.asp?id={$id}" target="_blank" class="smtitle">{$arctitle}</a>
             </div>
-            <div class="box">
-        		<div class="imgbox">
-                	<a href="#"><img src="/images/2.jpg" width="138" height="130" /></a>
-                </div>
-              <a class="smtitle" href="#">标题</a>
-            </div>
-            <div class="box">
-        		<div class="imgbox">
-                	<a href="#"><img src="/images/3.jpg" width="138" height="130" /></a>
-                </div>
-              <a class="smtitle" href="#">标题</a>
-            </div>
-            <div class="box">
-        		<div class="imgbox">
-                	<a href="#"><img src="/images/2.jpg" width="138" height="130" /></a>
-                </div>
-              <a class="smtitle" href="#">标题</a>
-            </div>
-            <div class="box">
-        		<div class="imgbox">
-                	<a href="#"><img src="/images/3.jpg" width="138" height="130" /></a>
-                </div>
-              <a class="smtitle" href="#">标题</a>
-            </div>
-            <div class="box">
-        		<div class="imgbox">
-                	<a href="#"><img src="/images/2.jpg" width="138" height="130" /></a>
-                </div>
-              <a class="smtitle" href="#">标题</a>
-            </div>
-            <div class="box">
-        		<div class="imgbox">
-                	<a href="#"><img src="/images/1.jpg" width="138" height="130" /></a>
-                </div>
-              <a class="smtitle" href="#">标题</a>
-            </div>
-            <div class="box">
-        		<div class="imgbox">
-                	<a href="#"><img src="/images/3.jpg" width="138" height="130" /></a>
-                </div>
-              <a class="smtitle" href="#">标题</a>
-            </div>
+            <!--{/arclist}-->
         </div>
         </div>
         <div class="dabox">
     	<div class="title"><img src="/images/title_ico.gif" height="12" width="21" /><span>企业荣誉</span></div>
         <div class="content">
+        <!--{arclist catid="26" parentid="26" num="8"}-->
             <div class="box">
         		<div class="imgbox">
-                	<a href="#"><img src="/images/1.jpg" width="138" height="130" /></a>
+                	<a href="view.asp?id={$id}" target="_blank"><img src="{$arcpic}" width="138" height="130" /></a>
                 </div>
-              <a class="smtitle" href="#">标题</a>
+              <a href="view.asp?id={$id}" target="_blank" class="smtitle">{$arctitle}</a>
             </div>
-            <div class="box">
-        		<div class="imgbox">
-                	<a href="#"><img src="/images/2.jpg" width="138" height="130" /></a>
-                </div>
-              <a class="smtitle" href="#">标题</a>
-            </div>
-            <div class="box">
-        		<div class="imgbox">
-                	<a href="#"><img src="/images/3.jpg" width="138" height="130" /></a>
-                </div>
-              <a class="smtitle" href="#">标题</a>
-            </div>
-            <div class="box">
-        		<div class="imgbox">
-                	<a href="#"><img src="/images/2.jpg" width="138" height="130" /></a>
-                </div>
-              <a class="smtitle" href="#">标题</a>
-            </div>
-            <div class="box">
-        		<div class="imgbox">
-                	<a href="#"><img src="/images/3.jpg" width="138" height="130" /></a>
-                </div>
-              <a class="smtitle" href="#">标题</a>
-            </div>
-            <div class="box">
-        		<div class="imgbox">
-                	<a href="#"><img src="/images/2.jpg" width="138" height="130" /></a>
-                </div>
-              <a class="smtitle" href="#">标题</a>
-            </div>
-            <div class="box">
-        		<div class="imgbox">
-                	<a href="#"><img src="/images/1.jpg" width="138" height="130" /></a>
-                </div>
-              <a class="smtitle" href="#">标题</a>
-            </div>
-            <div class="box">
-        		<div class="imgbox">
-                	<a href="#"><img src="/images/3.jpg" width="138" height="130" /></a>
-                </div>
-              <a class="smtitle" href="#">标题</a>
-            </div>
+            <!--{/arclist}-->
         </div>
         </div>
     </div>

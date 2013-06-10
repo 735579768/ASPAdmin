@@ -106,8 +106,8 @@
 		  set selrs=db.query("select type_id from kl_archives where id="&G("id"))
 		  selid =cstr(selrs("type_id"))
 		end if
-		if G("type_id")<>"" then  selid =G("type_id")
-		if G("cat_id")<>"" and G("id")<>"" then 
+		if G("type_id")<>"" and G("type_id")<>"0" then  selid =G("type_id")
+		if G("cat_id")<>"" and G("id")<>"" and  G("cat_id")<>"0" then 
 			  set selrs=db.query("select type_id from kl_cats where cat_id="&G("cat_id"))
 			  selid =cstr(selrs("type_id"))
 		end if

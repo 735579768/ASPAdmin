@@ -15,13 +15,13 @@ navlist=db.rsToArr(rs)
 tpl.assign "navlist",navlist
 
 '输出最新产品
-set rs=db.table("kl_archives").order("fbdate desc").top(10).sel()
+set rs=db.table("kl_archives").order("fbdate desc,id desc").top(10).sel()
 productlist=db.rsToArr(rs)
 tpl.assign "productlist",productlist
 
 
 '输出最新案例
-set rs=db.table("kl_archives").where("cat_id=28").order("fbdate desc").top(10).sel()
+set rs=db.table("kl_archives").where("cat_id=28").order("fbdate desc,id desc").top(10).sel()
 anlilist=db.rsToArr(rs)
 tpl.assign "anlilist",anlilist
 

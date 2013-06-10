@@ -48,9 +48,9 @@ end if
 '搜索首页推荐
 if G("hometj")<>"" and G("hometj")<>"2" then
 	where=where&" and hometj="&G("hometj")&" "
+	if G("hometj")="0" then tpl.SetVariable "hometj0","selected"
+	if G("hometj")="1" then tpl.SetVariable "hometj1","selected"
 end if
-
-
 sqlstr="SELECT a.id,a.cat_id as catid,a.arctitle,a.fbdate,a.arcflag,a.uddate,b.cat_name,c.type_name,a.arccontent,a.arcpic,a.recycling,a.archits,* from (kl_archives as a inner join  kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on b.type_id=c.type_id   "& where &" order by fbdate desc"
 
 '//////////////////////////////////////////////////////////////////////////////////////////
@@ -85,9 +85,9 @@ for i=1 to mypage.pagesize
 	tpl.SetVariable "arccontent",rs("arccontent")&""
 	tpl.SetVariable "archits",rs("archits")&""
 	if cstr(rs("hometj"))=0 then
-		tpl.SetVariable "tuijian","<a  href='?page="&G("page")&"&act=arctj&id="&rs("id")&"' >未推荐</a>"
+		tpl.SetVariable "tuijian","<a  href='?page="&G("page")&"&act=arctj&type_id="&G("type_id")&"&cat_id="&G("cat_id")&"&hometj="&G("hometj")&"&id="&rs("id")&"' >未推荐</a>"
 	else
-		tpl.SetVariable "tuijian","<a style='color:red;' href='?page="&G("page")&"&act=arcnotj&id="&rs("id")&"' >已推荐</a>"
+		tpl.SetVariable "tuijian","<a style='color:red;' href='?page="&G("page")&"&act=arcnotj&type_id="&G("type_id")&"&cat_id="&G("cat_id")&"&hometj="&G("hometj")&"&id="&rs("id")&"' >已推荐</a>"
 	end if
 		'组合文章属性
 		arcsx=rs("arcflag")&""

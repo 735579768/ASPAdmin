@@ -16,10 +16,10 @@ const pg_prev="前一页"
 const pg_next="下一页"
 const pg_end="尾页"
 const pg_totalmsg=""
-const pg_yeci="页次:"
-const pg_yegong="页 共:"
+const pg_yeci=" 页次:"
+const pg_yegong=" 页 共:"
 const pg_tiaojilu="条 "
-const pg_tiaomy="条/每页 "
+const pg_tiaomy=" 条/每页 "
 const AJAX_NODELMENU="菜单下面还有子菜单不能删除！0.0"	'不能删除有子菜单的菜单
 
 '分类列表提示字符定义
