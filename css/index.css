@@ -22,7 +22,10 @@ a{ text-decoration:none; color:#000;}
 .header{ width:100%;}
 .header .top{ height:100px; margin:0 auto;}
 .header .top .logon,
-.header .top .tool{ height:20px; width:1000px; margin:0 auto; }
+.header .top .tool{ height:26px; width:1000px; margin:0 auto; }
+.header .top .tool{ background:#f3f3f3;border-bottom: 1px solid #E3E3E3;width:100%;}
+.header .top .tool .op{ width:1000px; margin:0 auto;}
+.header .top .tool .op a{ display:inline-block; float:right; height:26px; width:60px; line-height:26px;}
 .header .nav{ background:url(/images/nav_bg.png) repeat-x;; color:#FFF;}
 .header .nav,.header .nav .navul,.header .nav .navul li{ height:40px;line-height:40px;}
 .header .nav .navul{ width:1000px;margin:0 auto;text-align: center;}
@@ -167,3 +170,4 @@ margin: 0px 0px 50px 50px;
 .pagenav a font{ margin:0px; padding:0px; border:none;}
 
 .ahover{ background:#ededed; color:#000;}
+

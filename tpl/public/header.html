@@ -42,19 +42,26 @@ gID("KeFuDiv").style.left = document.documentElement.clientWidth - gID("KeFuDiv"
 //开始滚动
 ScrollDiv('KeFuDiv');
 </script>
-<!--演示内容结束-->
+<!--客服内容结束-->
 
 <div class="header">
 	<div class="top">
-    	<div class="tool"></div>
-        <div class="logon"><img src="/images/logon.png" alt="明阳防静电地板" title="明阳防静电地板" width="300" height="80" /></div>
+    	<div class="tool">
+        <div class="op">
+        <a href="javascript:void(0)" onclick="shoucang(document.title,window.location)">加入收藏</a>
+         <a href="javascript:void(0)" onclick="SetHome(this,window.location)">设为首页&nbsp;|</a>
+        <a href="/">返回首页&nbsp;|</a>
+       </div>
+
+        </div>
+        <div class="logon"><img src="/images/logon.png" alt="明阳防静电地板" title="明阳防静电地板" width="300" height="60" /></div>
     	
     </div>
     <div class="nav">
     	<ul class="navul">
         	<li><a href="/">首页</a></li>
             <!--{loop name="navlist" var="var"}-->
-            <li><a href="cat.asp?catid={$var.cat_id}">{$var.cat_name}</a></li>
+            <li<eq {$catinfo.cat_id}={$var.cat_id}> class="navhover" </eq>><a href="cat.asp?catid={$var.cat_id}">{$var.cat_name}</a></li>
             <!--{/loop}-->
       </ul>
   </div>
