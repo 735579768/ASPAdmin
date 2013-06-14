@@ -120,6 +120,8 @@ class AspTpl
 					end if
 			end if 
 		next
+		p_reg.Pattern = p_var_l&"\S*"&p_var_r    
+		str= p_reg.Replace(str, "")			 '把没有赋值的变量标签替换成空
 		jiexivar=str
 	end Function
 	'==================================================
@@ -528,8 +530,6 @@ class AspTpl
 	Public Function Endjiexi(str)
 		p_reg.Pattern = "\'#\'|""#"""    
 		str= p_reg.Replace(str, "'javascript:void(0);'")			 '去掉锚点		
-		p_reg.Pattern = p_var_l&"\S*"&p_var_r    
-		str= p_reg.Replace(str, "")			 '把没有赋值的变量标签替换成空
 		p_reg.Pattern = "\r*\n\s*\r*\n"  '去掉空行
 		str= p_reg.Replace(str, vbCrLf)
 		Endjiexi=str	
@@ -592,6 +592,7 @@ class AspTpl
 	'模板eq短标签替换
 	'============================
 	private function eqtag(str)
+		on error resume next
 		Set p_eqreg = New RegExp 
 		p_eqreg.Pattern ="<eq([\s\S]*?)>([\s\S]*?)</eq>"
 		p_eqreg.IgnoreCase = True
