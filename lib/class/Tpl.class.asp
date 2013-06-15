@@ -592,7 +592,6 @@ class AspTpl
 	'模板eq短标签替换
 	'============================
 	private function eqtag(str)
-		on error resume next
 		Set p_eqreg = New RegExp 
 		p_eqreg.Pattern ="<eq([\s\S]*?)>([\s\S]*?)</eq>"
 		p_eqreg.IgnoreCase = True
@@ -600,11 +599,20 @@ class AspTpl
 		set eqm=p_eqreg.execute(str)
 		if eqm.count>0 then
 			for each m in eqm
-				if eval(m.submatches(0)) then
-					str=replace(str,m,m.submatches(1))
-				else
+				on error resume next
+				err.clear
+				bol=eval(m.submatches(0))
+				if err.number<>0 then
+					err.clear
 					str=replace(str,m,"")
+				else
+					if bol then
+						str=replace(str,m,m.submatches(1))
+					else
+						str=replace(str,m,"")
+					end if				
 				end if
+
 			next
 		end if
 		eqtag=str
