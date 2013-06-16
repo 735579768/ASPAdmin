@@ -7,7 +7,8 @@ font-size:12px;
 font-family:"microsoft yahei","宋体", Arial;
 margin:0;
 padding:0;
-background:url(../images/bg.jpg) repeat;
+/*background:url(../images/bg1.jpg) repeat;*/
+background:#ededed;
 }
 div,p,img,h1,h2,h3,h4,h5,h6,ul,li,ol,dl,dt,dd
 {
@@ -34,7 +35,9 @@ a{ text-decoration:none; color:#000;}
 .header .nav .navul li.navhover{background:url(../images/nav_hover.png) no-repeat; color:#000;}
 .header .nav .navul li.navhover a{ color:#000;}
 .header .nav .navul li a{ color:#FFF; font-size:14px; font-weight:bold;}
-
+.header .top .tel{ display:block; float:right; margin-top:20px; _display:inline;}
+.header .top .logon{ height:73px; overflow:hidden;  overflow:hidden;}
+.header .top .logon .logimg{ float:left;}
 		/*********************************************/
  .header_banner{ width:100%;height:404px;margin:10px auto;overflow:hidden;}
 		#flash { width:100%; height:404px; overflow:hidden; margin:0 auto; clear:both;padding:0px;}
@@ -50,7 +53,7 @@ a{ text-decoration:none; color:#000;}
 .title{font-size:14px; color:#F00; font-weight:bolder;height:38px; line-height:38px; background:url(/images/title_bg.jpg) repeat-x; /*padding-left:20px;*/}
 .title img{ display:inline-block;margin: 14px 10px auto 10px;}
 .title span{ height:38px; line-height:38px; display:inline-block;}
-.container{ width:1000px; margin:0 auto;}
+.container{ width:1000px; margin:0 auto; background:#fff;border: solid 1px #CCC;padding-bottom: 50px;}
 .container .left{ width:240px; float:left; _display:inline; overflow:hidden;}
 .container .left dt a{  width:240px; }
 .container .left dd{ height:20px; line-height:20px; margin:5px auto; font-size:14px; width:210px; overflow:hidden;padding-left: 30px; background:url(/images/ico.jpg) no-repeat 10px center;}
@@ -79,7 +82,7 @@ a{ text-decoration:none; color:#000;}
 .imglist2 li a:hover img { border-color: #c00;}
 .imglist2 li span.imgtit { display: block; float: left; width: 110px; height: 32px; line-height: 32px; cursor: pointer; }
 .imglist2 li a:hover { color: #C00; }
-.imglist21 { overflow: hidden; width: 998px; border: solid 1px #CCC; }
+.imglist21 { overflow: hidden; width: 998px;  }
 .imglist21 li { display: inline; float: left; width: 110px; height: 150px; margin-right: 20px;margin-top: 20px; overflow: hidden; }
 .imglist21 li a { overflow: hidden; display: block; float: left; width: 110px; height: 150px; color: #61646b; }
 .imglist21 li a img { display: block; float: left; width: 106px; height: 81px; margin: 0 auto; padding: 1px; border: 1px solid #DDD; background: #FFF; }

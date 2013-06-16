@@ -1,9 +1,12 @@
 <!--#INCLUDE FILE="../../lib/init.asp"-->
 <%
 '初始化模板引擎
+'set tpl=nothing
 set tpl=New ASPTemplate
 '设置模板目录
-tpl.SetTemplatesDir(TPL_PATH)
+'tpl.SetTemplatesDir(TPL_PATH)
+'设置模板目录
+'tpl.SetTemplatesDir(TPL_PATH&"/"&themes)
 
 set fs=Server.CreateObject("Scripting.FileSystemObject") 
 if fs.FileExists(server.MapPath(tpl.p_templates_dir & getRunFileName()&".html")) then

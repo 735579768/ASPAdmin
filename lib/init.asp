@@ -15,7 +15,7 @@
 '初始化模板引擎
 set tpl=New ASPtpl
 '设置模板目录
-'tpl.SetTemplatesDir(TPL_PATH)
+tpl.p_tpl_dir=TPL_PATH&"/"&themes
 '初始化数据库db类
 Set db = new Accessdb
 

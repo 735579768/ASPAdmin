@@ -18,7 +18,7 @@ const suffix ="kl_"
 
 'admin dir name
 const adminDir="admin"
-
+const themes="default"
 
 
 dim login_id
@@ -27,7 +27,7 @@ login_id=0
 
 'tpl dir
 dim TPL_PATH
-	TPL_PATH="tpl/"
+	TPL_PATH="tpl"
 	
 '在模板最终输出时进行正则替换第一组替换中间用##隔开
 redim regarr(3)
