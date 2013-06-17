@@ -31,7 +31,7 @@ if  cat_single=1 then
 	die("")
 end if
 '设定指定的模板
-tplfile=getCatTpl(catid)
+tplfile=getCatTpl(G("catid"))
 tpl.display(tplfile)
 '判断分类是不是单页面
 
