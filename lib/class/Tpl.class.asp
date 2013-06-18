@@ -629,7 +629,7 @@ class AspTpl
 	'======================================
 	'对语法中的短标签进行处理，新加的短标签也加在这里
 	'======================================
-	private Function jiexiShortTag(str)
+	public Function jiexiShortTag(str)
 		'处理eq短标签
 		jiexiShortTag=eqtag(str)
 		
