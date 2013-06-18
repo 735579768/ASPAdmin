@@ -348,8 +348,11 @@ End class
 '         exit for
 '    end if
 'next
+'.pagenav{ margin:10px 0px;}
 '.pagenav,.pagenav a,.pagenav font{ font-size:12px; color:#666;text-align: center;}
-'.pagenav a:hover,.pagenav a:hover font{ color:#000;}
-'.pagenav a{ display:inline-block; height:20px; height:20px; padding:0px 5px; line-height:20px;}
+'.pagenav a:hover,.pagenav a:hover font{ color:#000; background:#ebebeb;}
+'.pagenav a,.pagenav font{ display:inline-block; height:20px; height:20px; padding:0px 6px; line-height:20px;border: 1px solid #E7ECF0;}
+'.pagenav a font{ margin:0px; padding:0px; border:none;}
+'.ahover{ background:#ededed; color:#000;}
 '导航样式
 %>

@@ -51,6 +51,7 @@ td {
 <dl class="lanmu">
 <dt><a href="javascript:zall();" class="coolbg zhankai">全部展开</a>
 <a href="javascript:hall();" class="coolbg hebing">全部合并</a>
+<a href="add_cats.asp?parent_id=0&type_id=1" class="coolbg hebing">添加顶级分类</a>
 <form name="addmsg" action="add_article.asp" id="addmsg" style="display:inline; margin-left:130px;">
 请选择分类：<%=getArcCatSel()%>
 <a href='javascript:tjaddmsg();'  id="addmsgbtn"  title='在此分类下添加信息'  class='coolbg red'>添加信息</a> 

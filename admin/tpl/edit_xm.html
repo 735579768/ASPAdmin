@@ -17,35 +17,50 @@ td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; 
 <script charset="utf-8" src="editor/lang/zh_CN.js"></script>
 <script>
 			var editor;
+			KindEditor.options.filterMode = false;
 			KindEditor.ready(function(K) {
 					editor = K.create('textarea[name="arccontent"]', {
 					'allowFileManager' : true,
 					'uploadJson': 'editor/asp/upload_json.asp',
 					'fileManagerJson': 'editor/asp/file_manager_json.asp',
 //					'imageUploadJson':'../../../uploads',
+					'filterMode':false,
 					'allowFlashUpload':true,
 					'allowFileManager':true
 				});
+								//////////////////////////////////////////
+								K('#image1').click(function() {
+					editor.loadPlugin('image', function() {
+						editor.plugin.imageDialog({
+							imageUrl : K('#url1').val(),
+							clickFn : function(url, title, width, height, border, align) {
+								K('#url1').val(url);
+								editor.hideDialog();
+							}
+						});
+					});
+				});
+				/////////////////////////////////////////
 			});
 		</script>
 <body>
-<form action="edit_article.asp" id="addarc" method="post">
+<form action="" id="addarc" method="post">
 <table width="98%" style="border-collapse:collapse; margin-bottom:50px;" border="1" cellspacing="0" cellpadding="0">
  <tr>
  	<td height="28" colspan="2" align="center" class="biaotou">更新项目信息&lt;&lt;<a href="javascript:window.history.go(-1);" class="coolbg">返回</a></td>
  </tr>
  <tr width="10%">
     <td><span class="biaotou">项目</span>发布者：</td>
-    <td><input name="arcauthor" type="text"   value="{{arcauthor}}" style="width:100px"></td>
+    <td><input name="arcauthor" type="text"  value="{{arcauthor}}" style="width:100px"></td>
   </tr>
   <tr width="10%">
     <td><span class="biaotou">项目</span>来源：</td>
-    <td><input name="arcsource" type="text"   value="{{arcsource}}" style="width:200px"></td>
+    <td><input name="arcsource" type="text"  value="{{arcsource}}" style="width:200px"></td>
   </tr>
  <!---信息标题-->
   <tr>
     <td><span class="biaotou">项目</span>标题：</td>
-    <td><input name="arctitle" type="text"   value="{{arctitle}}" style="width:388px">
+    <td><input name="arctitle" type="text"  value="{{arctitle}}" style="width:388px">
 
 </td>
   </tr>
@@ -72,8 +87,7 @@ td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; 
   <tr>
     <td>
     <span class="biaotou">项目</span>图片展示：</td>
-    <td><input name="arcpic" id="pic" type="text"  value="{{arcpic}}" style="width:388px">
-    <input type="button" onclick="window.open('uploadimg/index.asp','newwindow','width=500,height=80')" value="本地上传" style="width:70px;cursor:pointer;"><input id="delimg" type="button" style="display:none;"  value="删除本张图片"><img id="picimg" width="50" height="50" style="display:none;" src=""  />
+    <td><input name="arcpic" type="text" id="url1" value="{{arcpic}}" style="width:388px" /> <input type="button" id="image1" value="选择图片" />
     </td>
   </tr>
   <!--内容-->
@@ -83,7 +97,7 @@ td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; 
       (关键字用','号分开)</td>
   </tr>
   <tr width="10%">
-    <td>描述：</td>
+    <td>项目描述：</td>
     <td><textarea name="arcdescr" cols="70" rows="3"  style="width:400px">{{arcdescr}}</textarea>
       (项目描述)</td>
   </tr>
