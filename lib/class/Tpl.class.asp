@@ -71,7 +71,7 @@ class AspTpl
 	'功能主要是解析模板中的全局变量
 	'==================================================
 	public Function jiexivar(str)
-		bakstr=str
+		on error resume next
 		a=p_var_list.keys
 		p_reg.Pattern =  p_var_l & "(\S*?)" & p_var_r 
 		set matches=p_reg.execute(str)
@@ -102,7 +102,7 @@ class AspTpl
 						objkey=mid(a.submatches(0),num+1)
 						if p_var_list.Exists(temobj) then
 							if isobject(p_var_list(temobj)) then
-								str=replace(str,a,p_var_list(temobj)(objkey))
+							  str=replace(str,a,p_var_list(temobj)(objkey))
 							else
 								echoerr 1,"键"&temobj&"的值不是对象,在输出"&temobj&"."&temkey&"时出错"	
 							end if
@@ -123,13 +123,7 @@ class AspTpl
 		next
 		p_reg.Pattern = p_var_l&"\S*"&p_var_r    
 		str= p_reg.Replace(str, "")			 '把没有赋值的变量标签替换成空
-		if str="" then
-			jiexivar=bakstr
-			echoerr 1,"AspTpl class error:at jiexivar sub"
-		else
-			jiexivar=str
-		end if
-		
+		jiexivar=str
 	end Function
 	'==================================================
 	'判断变量有否有过滤器
@@ -144,6 +138,7 @@ class AspTpl
 			re.Pattern =  p_var_l &  "(\S*?)\|(\S*?)\=(\S*?)"  & p_var_r 
 			set Ms=re.execute(a)
 			'处理有过滤器的情况
+
 			if Ms.count>0 then
 				redim arr(3) 
 				arr(0)=Ms(0).SubMatches(0)'变量键名
@@ -160,7 +155,6 @@ class AspTpl
 	'解析if标签
 	'==================================================	
 	Public Function iftag(str)
-		bakstr=str
 		regtag=p_tag_l & "if\s+?(.*?)\s*?"& p_tag_r  &"([\s\S]*?)"& p_tag_l & "/if"& p_tag_r
 		p_reg.Pattern=regtag
 		Set Matches = p_reg.Execute(str)
@@ -172,19 +166,12 @@ class AspTpl
 				str=replace(str,Match,"")			
 			end if
 		next
-		if str="" then
-			ifTag=bakstr
-			echoerr 1,"AspTpl class error:at iftag sub"
-		else
-			ifTag=str
-		end if		
-		
+		ifTag=str
 	End function
 	'==================================================
 	'解析ifelse标签
 	'==================================================	
 	Public Function ifElseTag(str)
-		bakstr=str
 		regtag=p_tag_l & "if\s+?(.*?)\s*?"& p_tag_r  &"([\s\S]*?)"& p_tag_l & "else"& p_tag_r & "([\s\S]*?)"& p_tag_l & "/if"& p_tag_r
 		p_reg.Pattern=regtag
 		'p_tpl_content=p_reg.execute(p_tpl_content,"it is if ")
@@ -198,19 +185,14 @@ class AspTpl
 				str=jiexiShortTag(str)
 			end if
 		next
-		if str="" then
-			ifElseTag=bakstr
-			echoerr 1,"AspTpl class error:at ifElsetag sub"
-		else
-			ifElseTag=str
-		end if	
+		ifElseTag=str
 	end Function
 	'==================================================
 	'解析foreach标签
 	'功能解析一维数组
 	'==================================================	
 	Public Function foreachTag(str)
-		bakstr=str
+
 		p_reg.Pattern=p_tag_l & "foreach([\s\S]*?)" & p_tag_r&"([\s\S]*?)" & p_tag_l & "/foreach" &p_tag_r
 		Set Matches = p_reg.Execute(str)
 		For Each Match in Matches  
@@ -241,12 +223,7 @@ class AspTpl
 			end if
 				
 		next
-		if str="" then
-			foreachTag=bakstr
-			echoerr 1,"AspTpl class error:at foreachTag sub"
-		else
-			foreachTag=str
-		end if						
+		foreachTag=str					
 	End Function
 	'==================================================
 	'用数组解析foreach中的字符串
@@ -410,6 +387,7 @@ class AspTpl
 	private function haveinclude(str)
 		p_reg.IgnoreCase = True
 		p_reg.Global = True
+
 		p_reg.Pattern =  p_tag_l &  "include(\s+?)file=\""(\S+?)\""(\s*?)"  & p_tag_r 
 		set matches=p_reg.Execute(str)
 		if matches.count<1 then
@@ -430,13 +408,7 @@ class AspTpl
 		
 		'扩展cms内容输出标签
 		set tpltag=new QuickTag
-		p_tpl_contentbak=p_tpl_content'备份
-		str=tpltag.run(p_tpl_content)
-		if str<>"" then
-			p_tpl_content=str
-		else
-			p_tpl_content=p_tpl_contentbak
-		end if
+		p_tpl_content=tpltag.run(p_tpl_content)
 		set tpltag=nothing
 		'扩展cms内容输出标签
 		p_tpl_content=jiexiShortTag(p_tpl_content)
@@ -478,11 +450,9 @@ class AspTpl
 					response.Write kl_err&"<br>"
 					response.End()	
 				case 1:'一般错误
-					response.Write "<div class='error'>"
 					kl_err="Error Description:"&err.description
 					response.Write errstr&"<br>"
 					response.Write kl_err&"<br>"
-					response.Write "</div>"
 				case else:'其它
 					response.Write errstr&"<br>"
 					response.Write("<br>")
@@ -497,7 +467,8 @@ class AspTpl
 	'@param param函数的参数字符串
 	'===============================================================================	
 	public Function filterVar(val,funcname,param)
-			Select Case funcname
+	
+			Select Case trim(funcname)
 				case "left" 
 						set fireg=new regExp
 						fireg.IgnoreCase = True
@@ -506,8 +477,14 @@ class AspTpl
 						val=fireg.replace(val,"")
 						set fireg=nothing
 						filterVar=left(val,Cint(param))
-				case "empty" if val="" then:filtervar=param:end if
-				case else 	filtervar=val
+				case "empty" 
+						if val="" then
+							filtervar=param
+						else
+							filtervar=val
+						end if
+				case else 
+						filtervar=val
 			end select
 	End Function
 	'===============================================================================
@@ -562,24 +539,17 @@ class AspTpl
 	'清空没有替换的变量
 	'===============================================================================	
 	Public Function Endjiexi(str)
-		bakstr=str
 		p_reg.Pattern = "\'#\'|""#"""    
 		str= p_reg.Replace(str, "'javascript:void(0);'")			 '去掉锚点		
 		p_reg.Pattern = "\r*\n\s*\r*\n"  '去掉空行
 		str= p_reg.Replace(str, vbCrLf)
-		if str="" then
-			Endjiexi=bakstr
-			echoerr 1,"AspTpl class error:at Endjiexi sub"
-		else
-			Endjiexi=str
-		end if	
+		Endjiexi=str	
 	End Function
 	'================================================== 
 	'函数名称:looptag 
 	' 
 	'===================================================
 	private function looptag(str)
-		bakstr=str
 		'bakon error resume next
 		p_reg.Pattern=p_tag_l & "loop(.*?)" & p_tag_r&"([\s\S]*?)" & p_tag_l & "/loop" &p_tag_r
 		set matches=p_reg.execute(str)
@@ -619,12 +589,7 @@ class AspTpl
 				end if
 				str=replace(str,match,str1)
 		next
-		if str="" then
-			looptag=bakstr
-			echoerr 1,"AspTpl class error:at looptag sub"
-		else
-			looptag=str
-		end if	
+		looptag=str
 	End Function
 	'======================================
 	'对语法中的短标签进行处理，新加的短标签也加在这里
@@ -638,6 +603,7 @@ class AspTpl
 	'模板eq短标签替换
 	'============================
 	private function eqtag(str)
+		'str=jiexivar(str)
 		Set p_eqreg = New RegExp 
 		p_eqreg.Pattern ="<eq([\s\S]*?)>([\s\S]*?)</eq>"
 		p_eqreg.IgnoreCase = True

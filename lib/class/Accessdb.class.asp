@@ -42,7 +42,7 @@ Class Accessdb
 	'功能：查询记录集
 	'==================================
 	Function query(sqlstr)
-		'bakon error resume next
+		on error resume next
 		err.clear
 		if sqlstr<>"" then kl_sql=sqlstr
 		set kl_rs=server.CreateObject("adodb.recordset")

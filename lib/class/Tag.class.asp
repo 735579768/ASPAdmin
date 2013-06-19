@@ -132,7 +132,7 @@ class QuickTag
 		set eqm=catreg.execute(str)
 		if eqm.count>0 then
 			for each m in eqm		
-				temparam=getTagParam(m.SubMatches(0),"id")
+				temparam=tplobj.getTagParam(m.SubMatches(0),"id")
 				str1=m.submatches(1)
 				set catrs=db.table("kl_cats").top("1").where("cat_id="&temparam).sel()
 					for each a in catrs.fields
