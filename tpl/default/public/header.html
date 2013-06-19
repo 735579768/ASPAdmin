@@ -1,3 +1,4 @@
+
 <style type="text/css">
 *{margin:0;padding:0;list-style-type:none;}
 a,img{border:0; vertical-align:top;}
@@ -43,7 +44,7 @@ gID("KeFuDiv").style.left = document.documentElement.clientWidth - gID("KeFuDiv"
 ScrollDiv('KeFuDiv');
 </script>
 <!--客服内容结束-->
-
+<div class="container">
 <div class="header">
 	<div class="top">
     	<div class="tool">
@@ -80,50 +81,45 @@ $(function(){
 </script>
 <div class="header_banner mt10">
 			<!--flash begin-->
-			<div id="flashBg">
-			<div id="flashLine">
-			<div id="flash">
-			<a href="/" target="_blank" id="flash1" style="background-image: url(images/banner20120827-1.jpg); display: none; background-position: 50% 50%; background-repeat: no-repeat no-repeat;"></a>
-			<a href="/" target="_blank" id="flash2" style="background-image: url(images/banner20120827-2.jpg); display: none; background-position: 50% 50%; background-repeat: no-repeat no-repeat;"></a>
-			<a href="/" target="_blank" id="flash3" style="background-image: url(images/banner20120827-3.jpg); display: block; background-position: 50% 50%; background-repeat: no-repeat no-repeat;"></a>
-            <a href="/" target="_blank" id="flash4" style="background-image: url(images/banner20120827-4.jpg); display: none; background-position: 50% 50%; background-repeat: no-repeat no-repeat;"></a>
-			<div class="flash_bar">
-			<div class="no" id="f1" onclick="changeflash(1)"></div>
-			<div class="no" id="f2" onclick="changeflash(2)"></div>
-			<div class="dq" id="f3" onclick="changeflash(3)"></div>	<div class="no" id="f4" onclick="changeflash(4)"></div>
-			</div>
-			</div>
-			</div>
-			</div>
-			<script>
-			var currentindex=1;
-			function changeflash(i) {	
-			currentindex=i;
-			for (j=1;j<=4;j++){
-			if (j==i) 
-			{$("#flash"+j).fadeIn("normal");
-			$("#flash"+j).css("display","block");
-			$("#f"+j).removeClass();
-			$("#f"+j).addClass("dq");
-			}
-			else
-			{$("#flash"+j).css("display","none");
-			$("#f"+j).removeClass();
-			$("#f"+j).addClass("no");}
-			}}
-			function startAm(){
-			timerID = setInterval("timer_tick()",5000);
-			}
-			function stopAm(){
-			clearInterval(timerID);
-			}
-			function timer_tick() {
-			currentindex=currentindex>=4?1:currentindex+1;
-			changeflash(currentindex);}
-			$(document).ready(function(){
-			$(".flash_bar div").mouseover(function(){stopAm();}).mouseout(function(){startAm();});
-			startAm();
-			});
-			</script>
+<script language=javascript>
+var focus_width=699
+var focus_height=268
+var text_height=0
+var swf_height = focus_height+text_height
+var pics = '';
+var links = '';
+var texts = '';
+var _timeOut_=500;
+var show_text = true; //是否显示焦点文字
+var timeOut=_timeOut_;
+var timeOut2=_timeOut_/1;//onmouseout img后需要切换的时间
+var now=0;              //第一张图
+var target="_blank";   //打开方式
+var button_on ='on'; //当前焦点对应按钮的样式名
+var button_off ='';//非当前焦点对应按钮的样式名   
+ati('http://www.luoyang88.com', 'images/2009102113523258671.jpg', '图片6简述');							
+ati('http://www.luoyang88.com', 'images/200910211432658839.jpg', '图片5简述');
+ati('http://www.luoyang88.com', 'images/200910211431176769.jpg', '图片4简述');
+ati('http://www.luoyang88.com', 'images/20091021143447215.jpg', '图片3简述');
+ati('http://www.luoyang88.com', 'images/200910211425358147.jpg', '图片2简述');
+ati('http://www.luoyang88.com', 'images/2009102113554059385.jpg', '洛阳防静电地板，明阳地板，远川地板');
+document.write('<embed src="flashslide/pixviewer.swf" wmode="opaque" FlashVars="pics='+pics+'&links='+links+'&texts='+texts+'&borderwidth='+focus_width+'&borderheight='+focus_height+'&textheight='+text_height+'" menu="false" bgcolor="#FFFFFF" quality="high" width="'+ focus_width +'" height="'+ swf_height +'" allowScriptAccess="sameDomain" type="application/x-shockwave-flash"/>');
+function ati(url, img, title){
+	if(pics != ''){
+		pics = "|" + pics;
+		links = "|" + links;
+		texts = "|" + texts;
+	}
+	pics = escape(img) + pics;
+	links = escape(url) + links;
+	texts = title + texts;
+}
+</script>
 			<!--flash end-->
+        <dl>
+          <dt class="title"><img src="/images/title_ico.gif" height="12" width="21" /><span><cat id="70">{$cat_name}</cat></span></dt>
+            <!--{arclist catid="70"}-->
+            <dd><a href="view.asp?id={$id}" title="{$arctitle}">{$arctitle|left=16}</a></dd>
+            <!--{/arclist}-->
+        </dl>
    </div>

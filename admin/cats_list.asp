@@ -245,7 +245,15 @@ icoimgid=icoimgid+1
                 <span class='red'>(ID:<%=cid1%>,文档数:<%=arcnum1%>)</span>(<%=wraprs("type_sxname")%>)
             </div>
             <div class='right'> 
+            <%
+			if not isparentcat(cid1) then
+			%>
                 <a href='add_article.asp?cat_id=<%=cid1%>' title='在此分类下添加信息'  class='coolbg red'>添加信息</a> 
+                <%
+				else
+					echo "<div style='width:60px; height:25px; float:left;'></div>"
+				end if
+				%>
                 <a href='edit_cats.asp?cat_id=<%=cid1%>&type_id=<%=typeid1%>' class='coolbg'>更改</a>
                 <input type='hidden'  value='<%=cid1%>' />
                 <a href='javascript:void(0);' class='coolbg delcat'>删除</a>

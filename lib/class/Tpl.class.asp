@@ -160,7 +160,7 @@ class AspTpl
 		Set Matches = p_reg.Execute(str)
 		For Each Match in Matches  
 			if eval(jiexivar(Match.SubMatches(0))) then
-				str=replace(str,Match,jiexivar(Match.SubMatches(1)))
+				str=replace(str,Match,Match.SubMatches(1))
 				str=jiexiShortTag(str)
 			else
 				str=replace(str,Match,"")			
@@ -178,10 +178,10 @@ class AspTpl
 		Set Matches = p_reg.Execute(str)
 		For Each Match in Matches  
 			if eval(jiexivar(Match.SubMatches(0))) then
-				str=replace(str,Match,jiexivar(Match.SubMatches(1)))
+				str=replace(str,Match,Match.SubMatches(1))
 				str=jiexiShortTag(str)
 			else
-				str=replace(str,Match,jiexivar(Match.SubMatches(2)))
+				str=replace(str,Match,Match.SubMatches(2))
 				str=jiexiShortTag(str)
 			end if
 		next

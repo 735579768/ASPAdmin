@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+
+<body>
+<script language=javascript>
+var focus_width=699
+var focus_height=225
+var text_height=0
+var swf_height = focus_height+text_height
+var pics = '';
+var links = '';
+var texts = '';
+var _timeOut_=500;
+var show_text = true; //是否显示焦点文字
+var timeOut=_timeOut_;
+var timeOut2=_timeOut_/1;//onmouseout img后需要切换的时间
+var now=0;              //第一张图
+var target="_blank";   //打开方式
+var button_on ='on'; //当前焦点对应按钮的样式名
+var button_off ='';//非当前焦点对应按钮的样式名   
+ati('http://www.luoyang88.com', 'images/2009102113523258671.jpg', '图片6简述');							
+ati('http://www.luoyang88.com', 'images/200910211432658839.jpg', '图片5简述');
+ati('http://www.luoyang88.com', 'images/200910211431176769.jpg', '图片4简述');
+ati('http://www.luoyang88.com', 'images/20091021143447215.jpg', '图片3简述');
+ati('http://www.luoyang88.com', 'images/200910211425358147.jpg', '图片2简述');
+ati('http://www.luoyang88.com', 'images/2009102113554059385.jpg', '洛阳防静电地板，明阳地板，远川地板');
+document.write('<embed src="pixviewer.swf" wmode="opaque" FlashVars="pics='+pics+'&links='+links+'&texts='+texts+'&borderwidth='+focus_width+'&borderheight='+focus_height+'&textheight='+text_height+'" menu="false" bgcolor="#FFFFFF" quality="high" width="'+ focus_width +'" height="'+ swf_height +'" allowScriptAccess="sameDomain" type="application/x-shockwave-flash"/>');
+function ati(url, img, title){
+	if(pics != ''){
+		pics = "|" + pics;
+		links = "|" + links;
+		texts = "|" + texts;
+	}
+	pics = escape(img) + pics;
+	links = escape(url) + links;
+	texts = title + texts;
+}
+</script>
+</body>
+</html>
