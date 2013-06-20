@@ -66,6 +66,9 @@
 	'定义一个变量输出空格用
 	jiange=12
 	kongge=0
+	'===============================
+	'输出options
+	'=================================
 	function catoptions(catid)
 	kongge=kongge+jiange
 		str=""
