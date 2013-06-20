@@ -24,7 +24,7 @@ if Uname<>"" and Upwd<>"" and numcode<>"" Then
 	if numcode<>trim(Session("numcode")) then 
 		login("<script>alert('验证码错误！');</script>")
 	end if
-set rs=db.GetRecord(suffix & "admin","*","username='"&Uname&"'","",0)
+set rs=olddb.GetRecord(suffix & "admin","*","username='"&Uname&"'","",0)
 	if not rs.eof Then
 		dim md5pwd:md5pwd=md5(Upwd,32)
 		if rs("password")<> md5pwd Then
@@ -32,9 +32,9 @@ set rs=db.GetRecord(suffix & "admin","*","username='"&Uname&"'","",0)
 		else
 		'echo rs("password")&"--"&md5pwd
 			'更新登陆次数
-			result=db.UpdateRecord("kl_admin","id="&rs("id"),array("logintimes:"&(rs("logintimes")+1),"lastdate:"&now()))
+			result=olddb.UpdateRecord("kl_admin","id="&rs("id"),array("logintimes:"&(rs("logintimes")+1),"lastdate:"&now()))
 			'记录登陆日志
-			result=db.AddRecord("kl_admin_log",array("uname:"&rs("username"),"loginip:"&getip(),"qx_id:"&rs("qx_id")))
+			result=olddb.AddRecord("kl_admin_log",array("uname:"&rs("username"),"loginip:"&getip(),"qx_id:"&rs("qx_id")))
 			Session("admin_id")=rs("id")'保存管理员在数据表中的id值
 			Session("adminqxid")=rs("qx_id")'保存管理员在数据表中的权限id值
 			Session.Timeout=30
@@ -83,16 +83,16 @@ end if
 				yanzhengCookies=false
 		else
 			'验证cookies
-			set rs=db.GetRecord(suffix & "admin","*","username='"&Request.Cookies("U_name")&"'","",0)
+			set rs=olddb.GetRecord(suffix & "admin","*","username='"&Request.Cookies("U_name")&"'","",0)
 			if not rs.eof Then
 				if rs("password") <> Request.Cookies("U_pwd") Then
 					destroyCookies()
 					yanzhengCookies=false
 				else
 		'更新登陆次数
-					'result=db.UpdateRecord("kl_admin","id="&rs("id"),array("logintimes:"&(rs("logintimes")+1),"lastdate:"&now()))
+					'result=olddb.UpdateRecord("kl_admin","id="&rs("id"),array("logintimes:"&(rs("logintimes")+1),"lastdate:"&now()))
 					'记录登陆日志
-					'result=db.AddRecord("kl_admin_log",array("uname:"&rs("username"),"loginip:"&getip(),"qx_id:"&rs("qx_id")))
+					'result=olddb.AddRecord("kl_admin_log",array("uname:"&rs("username"),"loginip:"&getip(),"qx_id:"&rs("qx_id")))
 					Session("admin_id")=rs("id")'保存管理员在数据表中的id值
 					Session("adminqxid")=rs("qx_id")'保存管理员在数据表中的权限id值
 					Session.Timeout=30
@@ -102,11 +102,11 @@ end if
 		end if
 	end function
 	function login(errstr)	
-		tpl.SetTemplateFile "login.html" '设置模板文件
-		tpl.SetVariable "adminDir","/"&adminDir&"/"
-		tpl.setvariable "errstr",errstr
-		tpl.Parse
-		set tpl = nothing
+		oldtpl.SetTemplateFile "login.html" '设置模板文件
+		oldtpl.SetVariable "adminDir","/"&adminDir&"/"
+		oldtpl.setvariable "errstr",errstr
+		oldtpl.Parse
+		set oldtpl = nothing
 		die("")
 	end function
 %>

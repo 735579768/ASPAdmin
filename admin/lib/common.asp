@@ -4,14 +4,14 @@
 		'检查当前是否有默认的id传过来
 		dim selid,typeid,sql'定义默认选中的id
 			if G("id")<>"" then
-			'  set selrs=db.getrecord("kl_article","type_id",array("id:"&G("id")))
-			  set selrs=db.query("select cat_id,type_id from kl_archives where id="&G("id"))
+			'  set selrs=olddb.getrecord("kl_article","type_id",array("id:"&G("id")))
+			  set selrs=olddb.query("select cat_id,type_id from kl_archives where id="&G("id"))
 			  selid =cstr(selrs("cat_id"))
 			end if
 			
 			if G("cat_id")<>"" and G("cat_id")<>"0" then  
 				selid =G("cat_id")
-				set srs=db.query("select type_id from kl_cats where cat_id="&selid)
+				set srs=olddb.query("select type_id from kl_cats where cat_id="&selid)
 				typeid=srs("type_id")
 			end if
 			'编辑文章时进行类型过滤
@@ -22,7 +22,7 @@
 			end if
 		'输出sel表单
 		dim str:str="<select id='cat_id' name='cat_id' style='width:200px;'>"
-		set selrs=db.GetRecordBySQL(sql)
+		set selrs=olddb.GetRecordBySQL(sql)
 		set srs=nothing
 				str=str&"<option value='0' >全部分类</option>"	
 		if selrs.recordcount>0 then 
@@ -55,7 +55,7 @@
 	end function
 	
 	function ischildcat(catid)
-		set rstem=db.query("select * from kl_cats where parent_id="&catid)
+		set rstem=olddb.query("select * from kl_cats where parent_id="&catid)
 		if rstem.recordcount>0 then
 			ischildcat=true
 		else
@@ -72,7 +72,7 @@
 	function catoptions(catid)
 	kongge=kongge+jiange
 		str=""
-		set selrss=db.GetRecordBySQL("select cat_id,cat_name from kl_cats where parent_id="&catid&" order by sort asc")
+		set selrss=olddb.GetRecordBySQL("select cat_id,cat_name from kl_cats where parent_id="&catid&" order by sort asc")
 				if selrss.recordcount>0 then 
 					do while not selrss.eof
 						child2=ischildcat(selrss("cat_id"))
@@ -105,18 +105,18 @@
 	'检查当前是否有默认的id传过来
 		dim selid'定义默认选中的id
 		if G("id")<>"" then
-		'  set selrs=db.getrecord("kl_article","type_id",array("id:"&G("id")))
-		  set selrs=db.query("select type_id from kl_archives where id="&G("id"))
+		'  set selrs=olddb.getrecord("kl_article","type_id",array("id:"&G("id")))
+		  set selrs=olddb.query("select type_id from kl_archives where id="&G("id"))
 		  selid =cstr(selrs("type_id"))
 		end if
 		if G("type_id")<>"" and G("type_id")<>"0" then  selid =G("type_id")
 		if G("cat_id")<>"" and G("id")<>"" and  G("cat_id")<>"0" then 
-			  set selrs=db.query("select type_id from kl_cats where cat_id="&G("cat_id"))
+			  set selrs=olddb.query("select type_id from kl_cats where cat_id="&G("cat_id"))
 			  selid =cstr(selrs("type_id"))
 		end if
 		'输出sel表单
 		dim str:str="<select id='type_id' name='type_id' style='width:150px;'>"
-		set selrs=db.GetRecordBySQL("select * from kl_content_types")
+		set selrs=olddb.GetRecordBySQL("select * from kl_content_types")
 			str=str&"<option value='0' >全部类型</option>"
 		if selrs.recordcount>0 then 
 			do while not selrs.eof
@@ -136,7 +136,7 @@
 	function getSysMenusSel()
 			dim str
 			str="<select name=sysmenuid>"
-		set selrs=db.GetRecordBySQL("select * from kl_sysmenus where parent_menu_id=0 order by sort asc")
+		set selrs=olddb.GetRecordBySQL("select * from kl_sysmenus where parent_menu_id=0 order by sort asc")
 				if selrs.recordcount>0 then 
 					do while not selrs.eof
 							if G("sysmenuid")=selrs("sysmenuid")&"" then
@@ -155,7 +155,7 @@
 	Function getQxsel()
 			dim str
 			str="<select name=qx_id>"
-		set selrs=db.GetRecordBySQL("select * from kl_admin_qx")
+		set selrs=olddb.GetRecordBySQL("select * from kl_admin_qx")
 				if selrs.recordcount>0 then 
 					do while not selrs.eof
 							if G("qx_id")=selrs("qx_id")&"" then
@@ -174,7 +174,7 @@
 	function getsinglesel()
 			dim str
 			str="<select name=singleid>"
-		set selrs=db.GetRecordBySQL("select * from kl_single")
+		set selrs=olddb.GetRecordBySQL("select * from kl_single")
 				if selrs.recordcount>0 then 
 					do while not selrs.eof
 							if G("singleid")=selrs("id")&"" then
@@ -193,12 +193,12 @@
 	'更改父分类
 	Function catparentsel(catid)
 		'查询它的父分类
-		set zrs=db.query("select parent_id from kl_cats where cat_id="&catid)
+		set zrs=olddb.query("select parent_id from kl_cats where cat_id="&catid)
 		prentid=zrs("parent_id")&""
 		set zrs=nothing
 		restr=""
 		fsql="select * from kl_cats where cat_id<>"&catid
-		set frs=db.query(fsql)
+		set frs=olddb.query(fsql)
 		if frs.recordcount>0 then
 			restr="<select name=parent_id>"
 				if parentid=0 then

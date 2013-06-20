@@ -1,17 +1,17 @@
 <!--#include file="lib/AdminInIt.asp"-->
 <%
-'tpl.SetTemplatesDir("")
+'oldtpl.SetTemplatesDir("")
 '包含文件
-'tpl.setVariableFile "TOP_HTML","public/top.html"
-'tpl.setVariableFile "FOOTER_HTML","public/footer.html"
+'oldtpl.setVariableFile "TOP_HTML","public/top.html"
+'oldtpl.setVariableFile "FOOTER_HTML","public/footer.html"
 
 'Generate the page
-set rs=db.query("select count(*) as arccount from kl_archives")
-tpl.SetVariable "arccount",rs("arccount")&""'有效文章
-set rs=db.query("select count(*) as arcyescount from kl_archives where recycling=0")
-tpl.SetVariable "arcyescount",rs("arcyescount")&""'有效文章
-set rs=db.query("select count(*) as arcnocount from kl_archives where recycling=1")
-tpl.SetVariable "arcnocount",rs("arcnocount")&""'回收站文章
+set rs=olddb.query("select count(*) as arccount from kl_archives")
+oldtpl.SetVariable "arccount",rs("arccount")&""'有效文章
+set rs=olddb.query("select count(*) as arcyescount from kl_archives where recycling=0")
+oldtpl.SetVariable "arcyescount",rs("arcyescount")&""'有效文章
+set rs=olddb.query("select count(*) as arcnocount from kl_archives where recycling=1")
+oldtpl.SetVariable "arcnocount",rs("arcnocount")&""'回收站文章
 set rs=nothing
 
 
@@ -21,7 +21,7 @@ loopblock "arclist",sql
 
 sql="select top 5 * from kl_admin_log order by logintime desc,id desc"
 loopblock "adminlog",sql
-tpl.Parse
+oldtpl.Parse
 'Destroy our objects
-set tpl = nothing
+set oldtpl = nothing
 %>

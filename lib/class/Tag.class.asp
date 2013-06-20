@@ -16,7 +16,11 @@ class QuickTag
 		private tplobj
 		private sub class_Initialize
 			'接收模板类对象
-			set tplobj=tpl
+			if isobject(newtpl) then
+				set tplobj=newtpl
+			else
+				set tplobj=tpl
+			end if
 			p_var_l = "\{\$"
 			p_var_r = "\}"
 			p_tag_l = "<\!--\{"
@@ -74,7 +78,7 @@ class QuickTag
 								mypage.pagesize=cInt(pgsize)
 								set arcrs=mypage.getrs()
 								pagenav=mypage.getshowpage()
-								tpl.assign pgnav,pagenav&""
+								tplobj.assign pgnav,pagenav&""
 					else
 						set arcrs=db.query(runsql)
 						pgsize=arcrs.recordcount

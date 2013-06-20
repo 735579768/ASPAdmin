@@ -1,16 +1,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script src="js/jquery-1.8.1.min.js" language="javascript" type="text/javascript"></script>
 <link href="css/main.css" rel="stylesheet" type="text/css" />
-<title>Ìí¼ÓĞÅÏ¢</title>
+<title>æ·»åŠ ä¿¡æ¯</title>
 </head>
 <style>
 .biaotou{background:url(images/tbg.gif) repeat-x; height:28px;}
 table{ border-color:#FBFCE2;}
 table td table td,table td table{ border:none; text-align:left; line-height:28px; height:28px;}
-td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; font-family:"ËÎÌå";background-color: #FFF;}
+td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; font-family:"å®‹ä½“";background-color: #FFF;}
 .sx{ text-align:center; margin:0px; padding:0px;}
 </style>
 <script charset="utf-8" src="editor/kindeditor-min.js"></script>
@@ -48,68 +48,68 @@ td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; 
 <form action="" id="addarc" method="post">
 <table width="98%" style="border-collapse:collapse; margin-bottom:50px;" border="1" cellspacing="0" cellpadding="0">
  <tr>
- 	<td height="28" colspan="2" align="center" class="biaotou">ÄÚÈİÌí¼Ó&gt;&gt;<a href="javascript:window.history.go(-1);" class="coolbg">·µ»Ø</a></td>
+ 	<td height="28" colspan="2" align="center" class="biaotou">å†…å®¹æ·»åŠ &gt;&gt;<a href="javascript:window.history.go(-1);" class="coolbg">è¿”å›</a></td>
  </tr>
   <tr width="10%">
-    <td>×÷Õß£º</td>
-    <td><input name="arcauthor" type="text"  value="{{author}}" style="width:100px"></td>
+    <td>ä½œè€…ï¼š</td>
+    <td><input name="arcauthor" type="text"  value="{$author}" style="width:100px"></td>
   </tr>
    <tr width="10%">
-    <td>À´Ô´£º</td>
-    <td><input name="arcsource" type="text"   value="{{source}}" style="width:200px"></td>
+    <td>æ¥æºï¼š</td>
+    <td><input name="arcsource" type="text"   value="{$source}" style="width:200px"></td>
   </tr>
- <!---ĞÅÏ¢±êÌâ-->
+ <!---ä¿¡æ¯æ ‡é¢˜-->
   <tr width="10%">
-    <td>±êÌâ£º</td>
+    <td>æ ‡é¢˜ï¼š</td>
     <td><input name="arctitle" type="text"   value="" style="width:388px"></td>
   </tr>
-  <!--ĞÅÏ¢·ÖÀà-->
+  <!--ä¿¡æ¯åˆ†ç±»-->
   <tr>
-    <td width="90">ÊÓÆµÊôĞÔ£º</td>
+    <td width="90">è§†é¢‘å±æ€§ï¼š</td>
     <td>
-    <input name="arcflag"  value="" /><span style="color:#f00;">(Ê¹ÓÃ¸ñÊ½(C,H))×¢ÒâÓÃ´óĞ´</span>
-    <label for="c">1¡¢Ê×Ò³ÍÆ¼ö(C)</label>
-    <label for="c">2¡¢Í·Ìõ(H)</label>
+    <input name="arcflag"  value="" /><span style="color:#f00;">(ä½¿ç”¨æ ¼å¼(C,H))æ³¨æ„ç”¨å¤§å†™</span>
+    <label for="c">1ã€é¦–é¡µæ¨è(C)</label>
+    <label for="c">2ã€å¤´æ¡(H)</label>
     </td>
   </tr>
      <tr>
-    <td width="90">ĞÅÏ¢·ÖÀà£º</td>
+    <td width="90">ä¿¡æ¯åˆ†ç±»ï¼š</td>
     <td>
-{{catidsel}}<span class="red">(Ö»ÄÜÔÚÍ¬ÑùĞÅÏ¢ÀàĞÍÏÂ¸ü¸ÄËùÊô·ÖÀà)</span></td>
+{$catidsel}<span class="red">(åªèƒ½åœ¨åŒæ ·ä¿¡æ¯ç±»å‹ä¸‹æ›´æ”¹æ‰€å±åˆ†ç±»)</span></td>
   </tr>
   <tr>
-    <td width="90">ÄÚÈİÄ£ĞÍ£º</td>
+    <td width="90">å†…å®¹æ¨¡å‹ï¼š</td>
     <td>
-    {{type_name}} <input type="hidden" name="type_id" value="{{type_id}}" /></td>
+    {$type_name} <input type="hidden" name="type_id" value="{$type_id}" /></td>
   </tr>
 
   <tr>
-    <td width="90">ÄÚÈİÄ£°å£º</td>
+    <td width="90">å†…å®¹æ¨¡æ¿ï¼š</td>
     <td>
-    <input type="text" name="arctpl" value="{{arctpl}}" /></td>
+    <input type="text" name="arctpl" value="{$arctpl}" /></td>
   </tr>
 
 
-  <!--Í¼Æ¬ĞÅÏ¢Õ¹Ê¾-->
+  <!--å›¾ç‰‡ä¿¡æ¯å±•ç¤º-->
   <tr>
-    <td width="90">Í¼Æ¬Õ¹Ê¾£º</td>
-    <td><input name="arcpic" type="text" id="url1" value="{{arcpic}}" style="width:388px" /> <input type="button" id="image1" value="Ñ¡ÔñÍ¼Æ¬" /></td>
+    <td width="90">å›¾ç‰‡å±•ç¤ºï¼š</td>
+    <td><input name="arcpic" type="text" id="url1" value="{$arcpic}" style="width:388px" /> <input type="button" id="image1" value="é€‰æ‹©å›¾ç‰‡" /></td>
   </tr>
-    <!--¹Ø¼ü×Ö-->
+    <!--å…³é”®å­—-->
     <tr width="10%">
-    <td>¹Ø¼ü×Ö£º</td>
+    <td>å…³é”®å­—ï¼š</td>
     <td><input name="arckeys" type="text"   value="" style="width:400px">
-      (¹Ø¼ü×ÖÓÃ','ºÅ·Ö¿ª)</td>
+      (å…³é”®å­—ç”¨','å·åˆ†å¼€)</td>
   </tr>
-    <!--¹Ø¼ü×Ö-->
+    <!--å…³é”®å­—-->
     <tr width="10%">
-    <td>ÃèÊö£º</td>
+    <td>æè¿°ï¼š</td>
     <td><textarea name="arcdescr" cols="70" rows="3"  style="width:400px"></textarea>
-      (ÊÓÆµÃèÊö)</td>
+      (è§†é¢‘æè¿°)</td>
   </tr>
-  <!--ÄÚÈİ-->
+  <!--å†…å®¹-->
   <tr>
-    <td>ÊÓÆµÄÚÈİ£º</td>
+    <td>è§†é¢‘å†…å®¹ï¼š</td>
     <td><textarea name="arccontent" style="width:710px;height:400px;visibility:hidden;"></textarea></td>
   </tr>
   <tr>
@@ -118,8 +118,8 @@ td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; 
   <tr>
     <td colspan="2" align="center">
     <input type="hidden" name="isaddarticle" value="true" />
-    <input type="submit"  value="Ìí¼ÓÊÓÆµ"  style="width:70px" class="coolbt checkform">
-    <input type="button"  value="·µ»Ø" onclick="window.history.go(-1);"  style="width:70px" class="coolbt">
+    <input type="submit"  value="æ·»åŠ è§†é¢‘"  style="width:70px" class="coolbt checkform">
+    <input type="button"  value="è¿”å›" onclick="window.history.go(-1);"  style="width:70px" class="coolbt">
     </td>
   </tr>
 </table>
@@ -127,15 +127,15 @@ td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; 
 <script>
 $(function(){
 $("#delimg").bind("click",function(){
-	if(confirm("È·ÈÏÒªÉ¾³ı?")){
+	if(confirm("ç¡®è®¤è¦åˆ é™¤?")){
 	$.get("uploadimg/index.asp",{
 									act:'delimg',
 									imgpath:$("#pic").val()
 										},function(data){
 								if(data==1){
-									alert('É¾³ı³É¹¦£¡');
+									alert('åˆ é™¤æˆåŠŸï¼');
 									}else{
-									alert('ÎÄ¼şÉ¾³ı´íÎó£¡');
+									alert('æ–‡ä»¶åˆ é™¤é”™è¯¯ï¼');
 										}
 									$("#pic").val('');
 									$("#pic").change();
@@ -154,11 +154,11 @@ $("#pic").bind("change",function(){
 	});
 $(".checknonull").bind("blur",function(){
 		if($(this).val()==''){
-			alert("ĞÅÏ¢²»ÄÜÎª¿Õ!");
+			alert("ä¿¡æ¯ä¸èƒ½ä¸ºç©º!");
 			return false;
 			}
 	});
-//±íµ¥Ìá½»ÑéÖ¤
+//è¡¨å•æäº¤éªŒè¯
 $("#addarc").submit(function(e) {
 	var i=0;
 	$(".checknonull").each(function(index, element) {
@@ -167,7 +167,7 @@ $("#addarc").submit(function(e) {
 			}
     });
 	if(i!=0){
-		alert('ĞÅÏ¢²»ÄÜÎª¿Õ£¡');
+		alert('ä¿¡æ¯ä¸èƒ½ä¸ºç©ºï¼');
 		return false;
 		}else{
 	    return true;

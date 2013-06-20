@@ -1,9 +1,9 @@
 <!--#include file="lib/AdminInIt.asp"-->
 <%
-'tpl.SetTemplatesDir("")
+'oldtpl.SetTemplatesDir("")
 '包含文件
-'tpl.setVariableFile "TOP_HTML","public/top.html"
-'tpl.setVariableFile "FOOTER_HTML","public/footer.html"
+'oldtpl.setVariableFile "TOP_HTML","public/top.html"
+'oldtpl.setVariableFile "FOOTER_HTML","public/footer.html"
 
 'Generate the page
 dim friend_id,friend_name,friend_url,sortrank,friend_weizhi,friend_email
@@ -17,9 +17,9 @@ if G("act")="updtfriend" then
 	friend_weizhi=G("friend_weizhi")
 	friend_email=G("friend_email")
 	show=G("show")
-	'echo db.wAddRecord("kl_friend_link",array("friend_name:"&friend_name,"sortrank:"&sortrank,"friend_url:"&friend_url,"friend_weizhi:"&friend_weizhi,"friend_email:"&friend_email))
-	'echo db.wUpdateRecord("kl_friend_link","friend_id="&friend_id,array("friend_name:"&friend_name,"sortrank:"&sortrank,"friend_url:"&friend_url,"friend_weizhi:"&friend_weizhi,"friend_email:"&friend_email))
-	dim result:result=db.UpdateRecord("kl_friend_link","friend_id="&friend_id,array("friend_name:"&friend_name,"sortrank:"&sortrank,"friend_url:"&friend_url,"friend_weizhi:"&friend_weizhi,"friend_email:"&friend_email,"show:"&show))
+	'echo olddb.wAddRecord("kl_friend_link",array("friend_name:"&friend_name,"sortrank:"&sortrank,"friend_url:"&friend_url,"friend_weizhi:"&friend_weizhi,"friend_email:"&friend_email))
+	'echo olddb.wUpdateRecord("kl_friend_link","friend_id="&friend_id,array("friend_name:"&friend_name,"sortrank:"&sortrank,"friend_url:"&friend_url,"friend_weizhi:"&friend_weizhi,"friend_email:"&friend_email))
+	dim result:result=olddb.UpdateRecord("kl_friend_link","friend_id="&friend_id,array("friend_name:"&friend_name,"sortrank:"&sortrank,"friend_url:"&friend_url,"friend_weizhi:"&friend_weizhi,"friend_email:"&friend_email,"show:"&show))
 		if result<>0 then
 			AlertMsg(UPDATE_SUCCESS_STR)
 		else
@@ -28,16 +28,16 @@ if G("act")="updtfriend" then
 end if
 
 	friend_id=G("friend_id")
-	set rs=db.getRecord("kl_friend_link","*","friend_id="&friend_id,"",0)
-	tpl.SetVariable "friend_id",rs("friend_id")&""
-	tpl.SetVariable "friend_name",rs("friend_name")&""
-	tpl.SetVariable "sortrank",rs("sortrank")&""
-	tpl.SetVariable "friend_url",rs("friend_url")&""
-	tpl.SetVariable "friend_weizhi",rs("friend_weizhi")&""
-	tpl.SetVariable "friend_email",rs("friend_email")&""
-	tpl.ParseBlock "friendlinklist"
+	set rs=olddb.getRecord("kl_friend_link","*","friend_id="&friend_id,"",0)
+	oldtpl.SetVariable "friend_id",rs("friend_id")&""
+	oldtpl.SetVariable "friend_name",rs("friend_name")&""
+	oldtpl.SetVariable "sortrank",rs("sortrank")&""
+	oldtpl.SetVariable "friend_url",rs("friend_url")&""
+	oldtpl.SetVariable "friend_weizhi",rs("friend_weizhi")&""
+	oldtpl.SetVariable "friend_email",rs("friend_email")&""
+	oldtpl.ParseBlock "friendlinklist"
 	
-tpl.Parse
+oldtpl.Parse
 'Destroy our objects
-set tpl = nothing
+set oldtpl = nothing
 %>

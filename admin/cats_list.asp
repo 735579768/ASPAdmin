@@ -75,7 +75,7 @@ dim menujibie,icoimgid
  menujibie=1
  icoimgid=1
 sql="select cat_id from kl_cats where parent_id=0 order by sort asc "
-set xhrs=db.query(sql)
+set xhrs=olddb.query(sql)
 if xhrs.recordcount>0 then
 	do while not xhrs.eof
 		menujibie=1
@@ -218,7 +218,7 @@ end function
 '查询分类文章数量
 function getarcnum(catid)
 	sql="select count(*) as  a from kl_archives where cat_id="&catid
-	set bbbb=db.query(sql)
+	set bbbb=olddb.query(sql)
 	getarcnum=bbbb("a")&""
 	set bbbb=nothing
 end function
@@ -227,7 +227,7 @@ end function
 '无限分类调用函数
 Function getcatlist(catid)
 sqlstr="select a.cat_name as catname,a.type_id as typeid,* from kl_cats as a inner join kl_content_types as b on a.type_id=b.type_id   where a.cat_id="&catid&" order by sort asc "
-set wraprs=db.query(sqlstr) 
+set wraprs=olddb.query(sqlstr) 
 cid1=wraprs("cat_id")&""'分类id
 cname1=wraprs("catname")&""'分类name
 typeid1=wraprs("typeid")&""'类型id
@@ -264,7 +264,7 @@ icoimgid=icoimgid+1
     	</dt>
 <%
 		sqlstr="select a.cat_id as catid,a.cat_name as catname,a.type_id as typeid,* from kl_cats as a inner join kl_content_types as b on a.type_id=b.type_id   where a.parent_id="&catid&" order by sort asc "
-		set neirs=db.query(sqlstr) 
+		set neirs=olddb.query(sqlstr) 
 		
 		if neirs.recordcount>0 then 
 			do while not neirs.eof
@@ -313,7 +313,7 @@ End function
 
 Function isparentcat(catid)
 	sqlstr="select * from kl_cats where  parent_id="&catid&" order by sort asc"
-	set krs=db.query(sqlstr)
+	set krs=olddb.query(sqlstr)
 	if krs.recordcount>0 then
 		isparentcat=true
 	else

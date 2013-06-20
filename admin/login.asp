@@ -1,7 +1,7 @@
 <%
-	tpl.SetTemplateFile "login.html" '设置模板文件
-	tpl.SetVariable "adminDir","/"
-	tpl.Parse
+	oldtpl.SetTemplateFile "login.html" '设置模板文件
+	oldtpl.SetVariable "adminDir","/"
+	oldtpl.Parse
 	'Destroy our objects
-	set tpl = nothing
+	set oldtpl = nothing
 %>

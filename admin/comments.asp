@@ -1,7 +1,6 @@
 <!--#include file="lib/AdminInIt.asp"-->
-<!--#include file="../lib/page.class.asp"-->
 <%
-'tpl.SetTemplatesDir("")
+'oldtpl.SetTemplatesDir("")
 '包含文件
 'Generate the page
 
@@ -11,7 +10,7 @@
 			arr=split(str,",")
 			result=""
 			for i=0 to ubound(arr)
-				result=db.DeleteRecord("kl_comments","id",arr(i))
+				result=olddb.DeleteRecord("kl_comments","id",arr(i))
 			next
 				if result=0 then
 					AlertMsg(CAOZUO_FAIL_STR)
@@ -19,16 +18,21 @@
 		end if	
 		
 	if G("act")="del" then
-		result=db.query("delete from kl_comments where id="&G("id"))
+		result=olddb.query("delete from kl_comments where id="&G("id"))
 '			if result=0 then
 '				AlertMsg(CAOZUO_FAIL_STR)
 '			end if
 	end if
 	
 	sql="select * from kl_comments order by fbdate desc "
-	loopBlockpage "commentllist",sql,20
+	'loopBlockpage "commentllist",sql,20
 
-tpl.Parse
+'oldtpl.Parse
 'Destroy our objects
-set tpl = nothing
+'set oldtpl = nothing
+
+
+newtpl.assign "sql",sql
+newtpl.assign "page",G("page")
+newtpl.display("comments.html")
 %>

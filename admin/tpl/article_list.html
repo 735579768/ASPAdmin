@@ -94,6 +94,7 @@ select{ padding:2px;}
 <td width="10%">操作</td>
 </tr>
 <!-- BEGIN arclist -->
+<!--{arclist sql="{$sql}" pagesize="20" pagenav="pagenav"}-->
 <tr align="center" bgcolor="#FFFFFF" onmousemove="javascript:this.bgColor='#FCFDEE';" onmouseout="javascript:this.bgColor='#FFFFFF';" height="25">
 <td>{{id}}</td>
 <td><input  type="checkbox" class="np checkid"  value="{{id}}" /></td>
@@ -110,6 +111,7 @@ select{ padding:2px;}
     <a href="/view.asp?id={{id}}" target="_blank"><img src="images/check.gif" title="预览" alt="预览" onclick="" style="cursor:pointer" border="0" width="16" height="16"></a>
     <a href="article_list.asp?id={{id}}&act=huishousingle&page={{page}}"><input type="hidden" value="{{id}}" /><img src="images/recycling.gif" title="移到回收站" alt="移到回收站" onclick=";" style="cursor:pointer" border="0" width="30" height="20" class="delarticle"></a></td>
 </tr>
+<!--{/arclist}-->
 <!-- END arclist -->
 <tr bgcolor="#ffffff">
   <td height="24" colspan="9">

@@ -1,12 +1,12 @@
 <!--#include file="lib/AdminInIt.asp"-->
 <%
-'tpl.SetTemplatesDir("")
+'oldtpl.SetTemplatesDir("")
 '包含文件
-'tpl.setVariableFile "TOP_HTML","public/top.html"
-'tpl.setVariableFile "FOOTER_HTML","public/footer.html"
+'oldtpl.setVariableFile "TOP_HTML","public/top.html"
+'oldtpl.setVariableFile "FOOTER_HTML","public/footer.html"
 
 'Generate the page
-tpl.Parse
+oldtpl.Parse
 'Destroy our objects
-set tpl = nothing
+set oldtpl = nothing
 %>

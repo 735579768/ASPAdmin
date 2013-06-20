@@ -158,6 +158,7 @@ End Sub
 '===================================================================
 Public function GetShowPage()
  Dim str_tmp
+
  XD_sURL = GetUrl()
  int_totalRecord=XD_RS.RecordCount
  If int_totalRecord<=0 Then
@@ -175,10 +176,12 @@ Public function GetShowPage()
  '==================================================================
  '显示分页信息，各个模块根据自己要求更改显求位置
  '==================================================================
- str_tmp=ShowFirstPrv
+ str_tmp="<div class='pagenav'>"
+ str_tmp=str_tmp&ShowFirstPrv
  str_tmp=str_tmp&showNumBtn
  str_tmp=str_tmp&ShowNextLast
  str_tmp=str_tmp&ShowPageInfo
+ str_tmp=str_tmp&"</div>"
 GetShowPage=str_tmp
 End function
 '====================================================================

@@ -7,7 +7,7 @@ if G("act")="add" then
 				'bakon error resume next
 				err.clear
 				set uprs=server.createobject("adodb.recordset")
-				uprs.open "select * from kl_cats",db.idbconn,1,3
+				uprs.open "select * from kl_cats",olddb.idbconn,1,3
 				uprs.addnew
 				uprs("parent_id")=parent_id
 				uprs("cat_name")=G("cat_name")
@@ -27,7 +27,7 @@ if G("act")="add" then
 				uprs("cat_list")=cat_list
 				uprs("cat_article")=cat_article
 				if cat_index="" or cat_list="" or cat_article="" then
-					set tplrs=db.query("select * from kl_content_types where type_id="&G("type_id"))
+					set tplrs=olddb.query("select * from kl_content_types where type_id="&G("type_id"))
 					if cat_index="" then uprs("cat_index")=tplrs("tpl_index")&""
 					if cat_list="" then uprs("cat_list")=tplrs("tpl_list")&""
 					if cat_article="" then uprs("cat_article")=tplrs("tpl_article")&""
@@ -47,22 +47,22 @@ if G("act")="add" then
 end if
 'Generate the page
 if parent_id<>0 then
-	set rs=db.query("select * from "&suffix&"cats where cat_id="&parent_id)
-	tpl.setvariable "parent_id",parent_id
-	tpl.setvariable "cat_name",rs("cat_name")&""
-	tpl.setvariable "cat_index",rs("cat_index")&""
-	tpl.setvariable "cat_list",rs("cat_list")&""
-	tpl.setvariable "cat_article",rs("cat_article")&""
+	set rs=olddb.query("select * from "&suffix&"cats where cat_id="&parent_id)
+	oldtpl.setvariable "parent_id",parent_id
+	oldtpl.setvariable "cat_name",rs("cat_name")&""
+	oldtpl.setvariable "cat_index",rs("cat_index")&""
+	oldtpl.setvariable "cat_list",rs("cat_list")&""
+	oldtpl.setvariable "cat_article",rs("cat_article")&""
 else
-	tpl.setvariable "cat_name","无"
-	tpl.setvariable "parent_id",parent_id
+	oldtpl.setvariable "cat_name","无"
+	oldtpl.setvariable "parent_id",parent_id
 end if
 
-tpl.setvariable "typeidsel",getContentTypeSel()
+oldtpl.setvariable "typeidsel",getContentTypeSel()
 'Generate the page
-tpl.Parse
+oldtpl.Parse
 'Destroy our objects
-set tpl = nothing
+set oldtpl = nothing
 
 '////////////////////////////////////////////////////////本页函数库///////////////////////////////////////////////////////////
 

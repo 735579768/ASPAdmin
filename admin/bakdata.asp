@@ -11,7 +11,7 @@ if act="bakdata" then
 	path2=server.MapPath("#data/#bak/"&curtime&".mdb")
 	fs.copyFile path1,path2,true
 	set fs=nothing
-	'set rs=db.GetRecord("kl_admin","*","id="&session("admin_id"),"",0)
+	'set rs=olddb.GetRecord("kl_admin","*","id="&session("admin_id"),"",0)
 	set rs=newdb.query("select * from kl_admin where id="&session("admin_id"))
 	adminname=rs("nicheng")
 	set rs =newdb.query("select * from kl_databak")

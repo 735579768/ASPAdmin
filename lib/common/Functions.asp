@@ -38,7 +38,7 @@
 		'bakon error resume next
 		err.clear
 		set fieldrs=server.createobject("adodb.recordset")
-		fieldrs.open sql,db.idbconn,1,1
+		fieldrs.open sql,olddb.idbconn,1,1
 		redim arr(fieldrs.fields.count)
 			for i=0 to fieldrs.fields.count - 1
 				'response.write(fieldrs.fields(i).name)
@@ -126,7 +126,7 @@
 		set funcrs=db.query(sql)
 		sz=gettablefield(sql)
 		for i=0 to ubound(sz)-1
-			 tpl.SetVariable sz(i)(0),funcrs(sz(i)(0))&""
+			 oldtpl.SetVariable sz(i)(0),funcrs(sz(i)(0))&""
 		next
 		if err.number<>0 then 
 				echo  die(Err.Description&":"&valu)
@@ -143,7 +143,7 @@
 		 for i=0 to ubound(arr)
 		 key=mid(arr(i),1,(instr(arr(i),":")-1))
 		 valu=mid(arr(i),instr(arr(i),":")+1)
-		 	tpl.SetVariable key,valu
+		 	oldtpl.SetVariable key,valu
 		 next
 		 	setvararr=true
 		 else
@@ -155,24 +155,24 @@
 '循环块输出
 '@param block 要输出的块
 '@param sqlstr 查询数据的sql语句
-'@param arr 一个键值数组，如"key:valu"  对应的数据格式为 tpl.SetVariable key,funcrs(valu)&""
+'@param arr 一个键值数组，如"key:valu"  对应的数据格式为 oldtpl.SetVariable key,funcrs(valu)&""
 '///////////////////////////////////////////
 	Function listBlock(block,sqlstr,arr)
 	'bakon error resume next
 	set funcrs=db.query(sqlstr)
-			tpl.UpdateBlock block
+			oldtpl.UpdateBlock block
 		do while not funcrs.eof
 			if funcrs.eof and funcrs.bof then exit do end if
 			 for i=0 to ubound(arr)
 				 key=mid(arr(i),1,(instr(arr(i),":")-1))
 				 valu=mid(arr(i),instr(arr(i),":")+1)
-				 tpl.SetVariable key,funcrs(valu)&""
+				 oldtpl.SetVariable key,funcrs(valu)&""
 			 next
 			if err.number<>0 then 
 				echo  die(Err.Description&":"&valu)
 				err.clear
 			end if
-			tpl.ParseBlock block
+			oldtpl.ParseBlock block
 			funcrs.movenext
 		loop
 	set funcrs=nothing
@@ -180,14 +180,14 @@
 '循环块输出,后面带分页显示
 '@param block 要输出的块
 '@param sqlstr 查询数据的sql语句
-'@param arr 一个键值数组，如"key:valu"  对应的数据格式为 tpl.SetVariable key,funcrs(valu)&""
+'@param arr 一个键值数组，如"key:valu"  对应的数据格式为 oldtpl.SetVariable key,funcrs(valu)&""
 '@param pages页面的大小
 '///////////////////////////////////////////
 	Function listBlockPage(block,sqlstr,arr,pages)
 				''创建对象
 			Set mypage=new xdownpage
 			''得到数据库连接
-			mypage.getconn=db.idbconn
+			mypage.getconn=olddb.idbconn
 			''sql语句
 			mypage.getsql=sqlstr
 			''设置每一页的记录条数据为5条
@@ -200,7 +200,7 @@
 			''显示数据
 			'Response.Write("<br/>")
 			'bakon error resume next
-				tpl.UpdateBlock block
+				oldtpl.UpdateBlock block
 			for i=1 to mypage.pagesize
 			''这里就可以自定义显示方式了
 				if not funcrs.eof then 
@@ -208,19 +208,19 @@
 						 for j=0 to ubound(arr)
 							 key=mid(arr(j),1,(instr(arr(j),":")-1))
 							 valu=mid(arr(j),instr(arr(j),":")+1)
-							 tpl.SetVariable key,funcrs(valu)&""
+							 oldtpl.SetVariable key,funcrs(valu)&""
 							if err.number<>0 then 
 								echo  die(Err.Description&":"&valu)
 								err.clear
 							end if
 						 next
-					tpl.ParseBlock block
+					oldtpl.ParseBlock block
 					funcrs.movenext
 				else
 					 exit for
 				end if
 			next
-			tpl.setvariable "pagenav",mypage.getshowpage()
+			oldtpl.setvariable "pagenav",mypage.getshowpage()
 			set funcrs=nothing
 	End Function
 '/////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -234,17 +234,17 @@
 		'取表中的字段值
 		sz=getTableField(sqlstr)
 		set funcrs=db.query(sqlstr)
-				tpl.UpdateBlock block
+				oldtpl.UpdateBlock block
 			do while not funcrs.eof
 				if funcrs.eof and funcrs.bof then exit do end if
 				 for i=0 to ubound(sz)-1
-					 tpl.SetVariable sz(i)(0),funcrs(sz(i)(0))&""
+					 oldtpl.SetVariable sz(i)(0),funcrs(sz(i)(0))&""
 				 next
 				if err.number<>0 then 
 					echo  die(Err.Description&":"&valu)
 					err.clear
 				end if
-				tpl.ParseBlock block
+				oldtpl.ParseBlock block
 				funcrs.movenext
 			loop
 		set funcrs=nothing
@@ -253,7 +253,7 @@
 '循环块输出,后面带分页显示
 '@param block 要输出的块
 '@param sqlstr 查询数据的sql语句
-'@param arr 一个键值数组，如"key:valu"  对应的数据格式为 tpl.SetVariable key,funcrs(valu)&""
+'@param arr 一个键值数组，如"key:valu"  对应的数据格式为 oldtpl.SetVariable key,funcrs(valu)&""
 '@param pages页面的大小
 '///////////////////////////////////////////
 	Function loopBlockPage(block,sqlstr,pagesizes)
@@ -275,25 +275,25 @@
 			'bakon error resume next
 					'取表中的字段值
 			sz=getTableField(sqlstr)
-				tpl.UpdateBlock block
+				oldtpl.UpdateBlock block
 			for i=1 to mypage.pagesize
 			''这里就可以自定义显示方式了
 				if not funcrs.eof then 
 			'        response.write funcrs(0) & "<br/>"
 					 for j=0 to ubound(sz)-1
-						 tpl.SetVariable sz(j)(0),funcrs(sz(j)(0))&""
+						 oldtpl.SetVariable sz(j)(0),funcrs(sz(j)(0))&""
 							if err.number<>0 then 
 								echo  die(Err.Description&":"&valu)
 								err.clear
 							end if
 					 next
-					tpl.ParseBlock block
+					oldtpl.ParseBlock block
 					funcrs.movenext
 				else
 					 exit for
 				end if
 			next
-			tpl.setvariable "pagenav",mypage.getshowpage()
+			oldtpl.setvariable "pagenav",mypage.getshowpage()
 			set funcrs=nothing
 	End Function
 '/////////////////////////////////////////////////////////////////////////////////////////////////////////
