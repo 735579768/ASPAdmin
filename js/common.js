@@ -63,7 +63,7 @@ $(function() {
 	}
 	
 	
-	
+	setInterval(autoimgWH(),100)
 	//自适应图片
 	$(".imgbox img").bind("load",function(){
 		//138 * 130
@@ -78,7 +78,22 @@ $(function() {
 		});
 
 });
-
+function autoimgWH(){
+	//自适应图片
+	autoW=138;
+	autoH=130;
+	$(".imgbox img").each(function(index, element) {
+		//138 * 130
+        var w=$(this).width();
+		var h=$(this).height();
+		if(w>h){
+			if(w>autoW) $(this).attr('width',autoW);
+			}else{
+			if(h>autoH) $(this).attr('height',autoH);	
+				}
+        
+    });
+	}
 
 // 设置为主页
 function SetHome(obj,vrl){
@@ -149,4 +164,4 @@ function correctPNG() // correctly handle PNG transparency in Win IE 5.5 & 6.
        } 
     }     
 } 
-window.attachEvent("onload", correctPNG); 
+if(window.attachEvent) window.attachEvent("onload", correctPNG); 

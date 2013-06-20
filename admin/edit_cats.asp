@@ -56,9 +56,21 @@ if cat_index="" then cat_index=rs("tpl_index")&"" end if
 if cat_list="" then cat_list=rs("tpl_list")&"" end if
 if cat_article="" then cat_article=rs("tpl_article")&"" end if
 setTplVarBySql(sql)
-parentidsel=catparentsel(cat_id)
-setVarArr(array("cat_index:"&cat_index,"cat_list:"&cat_list,"cat_article:"&cat_article,"cat_content:"&cat_content,"parentidsel:"&parentidsel))
+parentidsel=getArcCatSel()
+'parentidsel=catparentsel(cat_id)
+'======================
+'生成cat_id select 的js代码
+parentid=rs("parent_id")
+jssstr=""
 
+if parentid=0 then
+jsstr="<script>$(function(){$('#cat_id').attr('name','parent_id');$('#cat_id').append(""<option value='0'>顶级分类<option>"");$(""#cat_id option[value='0']"").attr('selected','true');});</script>"
+else
+jsstr="<script>$(function(){$('#cat_id').attr('name','parent_id');$(""#cat_id option[value='"&parentid&"']"").attr('selected','true');});</script>"
+end if
+
+'=====================
+setVarArr(array("cat_index:"&cat_index,"cat_list:"&cat_list,"cat_article:"&cat_article,"cat_content:"&cat_content,"parentidsel:"&parentidsel,"jsstr:"&jsstr))
 
 tpl.Parse
 set tpl = nothing

@@ -139,6 +139,8 @@ class AspTpl
 			set Ms=re.execute(a)
 			'处理有过滤器的情况
 
+
+
 			if Ms.count>0 then
 				redim arr(3) 
 				arr(0)=Ms(0).SubMatches(0)'变量键名
@@ -158,13 +160,21 @@ class AspTpl
 		regtag=p_tag_l & "if\s+?(.*?)\s*?"& p_tag_r  &"([\s\S]*?)"& p_tag_l & "/if"& p_tag_r
 		p_reg.Pattern=regtag
 		Set Matches = p_reg.Execute(str)
-		For Each Match in Matches  
-			if eval(jiexivar(Match.SubMatches(0))) then
-				str=replace(str,Match,Match.SubMatches(1))
-				str=jiexiShortTag(str)
-			else
-				str=replace(str,Match,"")			
-			end if
+		For Each Match in Matches 
+			on error resume next
+				err.clear
+				bol=eval(jiexivar(Match.SubMatches(0)))
+				if err.number<>0 then
+					err.clear
+					str=replace(str,Match,"")	
+				else
+					if bol then
+						str=replace(str,Match,Match.SubMatches(1))
+						str=jiexiShortTag(str)
+					else
+						str=replace(str,Match,"")	
+					end if				
+				end if
 		next
 		ifTag=str
 	End function

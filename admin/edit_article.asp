@@ -25,6 +25,7 @@
 					 end if
 				next
 				if(G("arcdescr")="") then uprs("arcdescr")=left(removehtml(G("arccontent")),30)
+				uprs("uddate")=FormatDate(now,2)
 				uprs.update
 				if err.number<>0 then
 					AlertMsg(UPDATE_FAIL_STR)

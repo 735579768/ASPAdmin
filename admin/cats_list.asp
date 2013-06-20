@@ -30,7 +30,7 @@ td {
 	font-family: "宋体";
 	background-color: #FFF;
 }
-.catimg{ position:relative; display:inline-block;}
+.catimg{ position:relative;display: inline-block;}
 .catimg span{ background:#fff; border:solid 1px #ccc; padding:5px;}
 .catimg .catdaimg{ display:none; position:absolute; left:-150px; top:0px; z-index:999;}
 
@@ -45,6 +45,7 @@ td {
 .lanmu dd .left{ width:480px; float:left;}
 .lanmu dd .right{ float:left;}
 .lanmu dt .jiajian{ display:block; float:left; margin:10px; cursor:pointer;}
+.haveimg{ display:inline-block;}
 </style>
 <body>
 
@@ -209,7 +210,7 @@ end function
 '判断分类封面是否有图
 function getcatimg(str)
 	if str<>"" then
-		getcatimg="<div class='catimg'><img class='haveimg' src='images/haveimg.gif' style='cursor:pointer;' width='12' height='12' alt='分类封面有图片显示' title='分类封面有图片显示' /><span class='catdaimg' ><img src='"&str&"' width='150' height='150' /></span></div>"
+		getcatimg="<span class='catimg'><img class='haveimg' style='display:inline-block; float:left;' src='images/haveimg.gif' style='cursor:pointer;' width='12' height='12' alt='分类封面有图片显示' title='分类封面有图片显示' /><span class='catdaimg' ><img src='"&str&"' width='150' height='150' /></span></span>"
 	else
 		getcatimg=NOIMG
 	end if
@@ -258,7 +259,7 @@ icoimgid=icoimgid+1
                 <input type='hidden'  value='<%=cid1%>' />
                 <a href='javascript:void(0);' class='coolbg delcat'>删除</a>
                 <a href='add_cats.asp?parent_id=<%=cid1%>&type_id=<%=typeid1%>' class='coolbg'>增加子类</a> 
-                (排序：<%=sort1%>)(<%=navshow1%>)(<%=havepic1%>)
+                (sort:<%=sort1%>)(<%=navshow1%>)(<%=havepic1%>)
             </div>
     	</dt>
 <%
@@ -295,7 +296,7 @@ icoimgid=icoimgid+1
                 <input type='hidden'  value='<%=cid2%>' />
                 <a href='javascript:void(0);' class='coolbg delcat'>删除</a>
                 <a href='add_cats.asp?parent_id=<%=cid2%>&type_id=<%=typeid2%>' class='coolbg'>增加子类</a> 
-                (排序：<%=sort2%>)(<%=navshow2%>)(<%=havepic2%>)
+                (sort:<%=sort2%>)(<%=navshow2%>)(<%=havepic2%>)
         </div>
     </dd>
     <%

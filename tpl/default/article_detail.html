@@ -43,7 +43,9 @@
         <div class="content">
         <div class="goodtitle">{$arcinfo.arctitle}</div>
         <div class="goodxx"><span>来源：{$arcinfo.arcsource}</span><span>编辑：{$arcinfo.arcauthor}</span><span>发布时间：{$arcinfo.fbdate}</span><span>浏览人次：{$arcinfo.archits}</span></div>
+        <!--{if "{$arcinfo.arcpic}"<>""}-->
         <div class="goodimg"><a href="{$arcinfo.arcpic}" rel="lightbox" title="{$arcinfo.arctitle}" ><img src="{$arcinfo.arcpic}"  /><span>点击看大图</span></a></div>
+        <!--{/if}-->
         <div class="gooddetail">{$arcinfo.arccontent}</div>
             
             
