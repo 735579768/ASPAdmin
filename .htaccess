@@ -1,0 +1,11 @@
+# Helicon ISAPI_Rewrite configuration file
+# Version 3.1.0.73
+
+<IfModule mod_rewrite.c>
+
+RewriteEngine on
+
+RewriteRule ^cat-(\d+?).html cat.asp?cat_id=$1
+RewriteRule ^view-(\d+?).html view.asp?id=$1
+
+</IfModule>
