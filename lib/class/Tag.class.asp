@@ -140,8 +140,23 @@ class QuickTag
 				str1=m.submatches(1)
 				set catrs=db.table("kl_cats").top("1").where("cat_id="&temparam).sel()
 					for each a in catrs.fields
-						catreg.Pattern =p_var_l&a.name&p_var_r
-						str1=catreg.replace(str1,catrs(a.name)&"")
+						catreg.Pattern = p_var_l &a.name &"(.*?)"& p_var_r
+						set mms=catreg.execute(str1)
+						
+						'遍历查出来的跟字段相似的变量，为啦查询是不是有过滤器
+									for each mm in mms
+									echo mm
+										'判断是不是有过滤器
+										c=tplobj.isHaveFilteFunc(mm)
+												'echo mm
+												if isarray(c) then
+												'有过滤器
+													str1=replace(str1,mm,tplobj.filterVar(cstr(catrs(c(0))),c(1),c(2)))
+												else
+												'没有过滤器
+													str1=replace(str1,mm,cstr(catrs(a.name )))
+												end if	
+									next 
 					next 
 				set catrs=nothing
 				str=replace(str,m,str1)
