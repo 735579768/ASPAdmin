@@ -9,6 +9,8 @@ const UPDATE_FAIL_STR="信息更新失败！"
 const CAOZUO_FAIL_STR="操作失败！"
 const NODELADMIN="系统固有管理员账户,禁止删除!"
 const EXISTADMIN="用户名已经存在!请用其它的用户名!"
+const YOUINDEXCONTENT="(<span class='red'>有封面内容</span>)"
+const MEIINDEXCONTENT=""
 
 'page string
 const pg_index="首页"

@@ -222,8 +222,14 @@ function getarcnum(catid)
 	getarcnum=bbbb("a")&""
 	set bbbb=nothing
 end function
-
-
+'查询分类是否有封面内容
+Function getcatindexcontent(catcontent)
+if catcontent<>"" then
+getcatindexcontent=YOUINDEXCONTENT
+else
+getcatindexcontent=MEIINDEXCONTENT
+end if
+end Function
 '无限分类调用函数
 Function getcatlist(catid)
 sqlstr="select a.cat_name as catname,a.type_id as typeid,* from kl_cats as a inner join kl_content_types as b on a.type_id=b.type_id   where a.cat_id="&catid&" order by sort asc "
@@ -235,6 +241,7 @@ arcnum1=getarcnum(wraprs("cat_id")&"")
 sort1=wraprs("sort")&""
 havepic1=getcatimg(wraprs("cat_pic")&"")
 navshow1=getcatshow(wraprs("cat_show")&"")
+catsinglecontent=getcatindexcontent(wraprs("cat_singlecontent")&"")
 
 icoimgid=icoimgid+1
 %>
@@ -243,7 +250,7 @@ icoimgid=icoimgid+1
         	<div class='left'>
                 <img class='jiajian' stateid="icoimg<%=icoimgid%>" state="0" id="icoimg<%=icoimgid%>" src='images/jian.gif' width='9' height='9' />
                 栏目：<u><a title='点击查看此分类下文章' href='article_list.asp?cat_id=<%=cid1%>' target='_self'><%=cname1%></a></u>
-                <span class='red'>(ID:<%=cid1%>,文档数:<%=arcnum1%>)</span>(<%=wraprs("type_sxname")%>)
+                <span class='red'>(ID:<%=cid1%>,文档数:<%=arcnum1%>)</span>(<%=wraprs("type_sxname")%>)<%=catsinglecontent%>
             </div>
             <div class='right'> 
             <%
@@ -284,11 +291,12 @@ icoimgid=icoimgid+1
 			sort2=neirs("sort")&""
 			havepic2=getcatimg(neirs("cat_pic")&"")
 			navshow2=getcatshow(neirs("cat_show")&"")
+			catsinglecontent2=getcatindexcontent(neirs("cat_singlecontent")&"")
 
 %>
     <dd>
     	<div class='left'>
-    		栏目：<u><a title='点击查看此分类下文章'  href='article_list.asp?cat_id=<%=cid2%>' target='_self'><%=cname2%></a></u><span class='red'>(ID:<%=cid2%>,文档数:<%=arcnum2%>)</span>(<%=neirs("type_sxname")%>)
+    		栏目：<u><a title='点击查看此分类下文章'  href='article_list.asp?cat_id=<%=cid2%>' target='_self'><%=cname2%></a></u><span class='red'>(ID:<%=cid2%>,文档数:<%=arcnum2%>)</span>(<%=neirs("type_sxname")%>)<%=catsinglecontent2%>
         </div>
         <div class='right'>
                     <a href='add_article.asp?cat_id=<%=cid2%>' title='在此分类下添加信息'  class='coolbg red'>添加信息</a> 
