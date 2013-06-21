@@ -145,7 +145,6 @@ class QuickTag
 						
 						'遍历查出来的跟字段相似的变量，为啦查询是不是有过滤器
 									for each mm in mms
-									echo mm
 										'判断是不是有过滤器
 										c=tplobj.isHaveFilteFunc(mm)
 												'echo mm
