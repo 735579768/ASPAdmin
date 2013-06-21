@@ -1,36 +1,29 @@
 <!--#include file="lib/AdminInIt.asp"-->
 <%
-'oldtpl.SetTemplatesDir("")
-'包含文件
-'oldtpl.setVariableFile "TOP_HTML","public/top.html"
-'oldtpl.setVariableFile "FOOTER_HTML","public/footer.html"
-dim type_id,type_name,tpl_index,tpl_list,tplarticle
 type_id=G("type_id")
-if G("act")="updmodel" then 	
-	data_table=G("data_table")
-	tpl_index=G("tpl_index")
-	tpl_list=G("tpl_list")
-	tpl_article=G("tpl_article")
-	type_name=G("type_name")
-	dim result:result=olddb.UpdateRecord("kl_content_types","type_id="& type_id,array("type_name:"&type_name,"data_table:"&data_table,"tpl_index:"&tpl_index,"tpl_list:"&tpl_list,"tpl_article:"&tpl_article))
-	'echo olddb.wupdaterecord("kl_content_types","type_id="& type_id,array("type_name:"&type_name,"tpl_index:"&tpl_index,"tpl_list:"&tpl_list,"tpl_article:"&tpl_article))
-	if result<>0 then
-		AlertMsg(UPDATE_SUCCESS_STR)
-	else
-		AlertMsg(UPDATE_FAIL_STR)
-	end if
+
+if G("act")="delmodel" then 	
+newdb.query("delete from kl_content_types where type_id="&type_id)
 end if
-'Generate the page
+if G("act")="updmodel" then 	
+on error resume next
+err.clear
+set rs=newdb.table("kl_content_types").where("type_id="&type_id).sel()'打开一个表的记录集
+rs("type_name")=G("type_name")
+rs("type_sxname")=G("type_sxname")
+rs("data_table")=G("data_table")
+rs("tpl_addform")=G("tpl_addform")
+rs("tpl_editform")=G("tpl_editform")
+rs("tpl_index")=G("tpl_index")
+rs("tpl_list")=G("tpl_list")
+rs("tpl_article")=G("tpl_article")
+rs.update
+if err.number<>0 then
+	AlertMsg(UPDATE_FAIL_STR)
+else
+	AlertMsg(UPDATE_SUCCESS_STR)
+end if
 
-'输出内容
-'echo olddb.wGetRecord("kl_content_types","type_id,type_name,type_index,type_list,type_article","type_id="&type_id,"type_id desc",0)
-'set rs=olddb.GetRecord("kl_content_types","type_id,type_name,tpl_index,tpl_list,tpl_article","type_id="&type_id,"type_id desc",0)
-
-	sql="select * from kl_content_types "
-	arr=array("type_id:type_id","type_name:type_name","data_table:data_table","tpl_index:tpl_index","tpl_list:tpl_list","tpl_article:tpl_article")
-	listBlock "contentmodellist",sql,arr
-	
-oldtpl.Parse
-'Destroy our objects
-set oldtpl = nothing
+end if
+newtpl.display("contentmodel_list.html")
 %>

@@ -49,7 +49,7 @@ td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; 
  	<td height="28" colspan="2" align="center" class="biaotou">更新文章信息&lt;&lt;<a href="javascript:window.history.go(-1);" class="coolbg">返回</a></td>
  </tr>
  <tr width="10%">
-    <td>作者：</td>
+    <td>编辑：</td>
     <td><input name="arcauthor" type="text"   value="{$arcinfo.arcauthor}" style="width:100px">
     </td>
   </tr>
@@ -59,7 +59,7 @@ td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; 
   </tr>
  <!---信息标题-->
   <tr>
-    <td>标题：</td>
+    <td>科技创新标题：</td>
     <td><input name="arctitle" type="text"   value="{$arcinfo.arctitle}" style="width:388px">
 
 </td>
@@ -75,7 +75,7 @@ td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; 
     <td>
 {$arcinfo.catidsel}<span class="red">(只能在同样信息类型下更改所属分类)</span></td>
   </tr>
-  <tr>
+  <tr  style="display:none;">
     <td width="90">内容模型：</td>
     <td>
     {$arcinfo.typename} <input type="hidden" name="type_id" value="{$arcinfo.typeid}" /></td>
@@ -83,23 +83,23 @@ td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; 
   <!--图片信息展示-->
   <tr>
     <td>
-    图片展示：</td>
+    科技创新图片展示：</td>
     <td><input name="arcpic" type="text" id="url1" value="{$arcinfo.arcpic}" style="width:388px" /> <input type="button" id="image1" value="选择图片" />
     </td>
   </tr>
   <!--内容-->
   <tr width="10%">
-    <td>关键字：</td>
+    <td>科技创新关键字：</td>
     <td><input name="arckeys" type="text"   value="{$arcinfo.arckeys}" style="width:400px">
       (关键字用','号分开)</td>
   </tr>
   <tr width="10%">
-    <td>文章描述：</td>
+    <td>科技创新文章描述：</td>
     <td><textarea name="arcdescr" cols="70" rows="3"  style="width:400px">{$arcinfo.arcdescr}</textarea>
       (文章描述)</td>
   </tr>
   <tr>
-    <td> 文章内容：</td>
+    <td> 科技创新内容：</td>
     <td><textarea name="arccontent" style="width:710px;height:400px;visibility:hidden;">{$arcinfo.arccontent}</textarea></td>
   </tr>
   <tr>
