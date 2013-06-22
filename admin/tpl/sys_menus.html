@@ -41,20 +41,20 @@ td{ height:23px; padding:2px; line-height:23px;}
     <td align="left" colspan="2">
     <form name="addlanmuform" id="addlanmuform" action="" method="post" onsubmit="" > 
         <input type="hidden" name="act" value="add" /> 
-      后台栏目：<input name="lanmu"  value="" size="10" />
+      后台栏目：<input name="lanmu"   type="text"   value="" size="10" />
         &nbsp;<input type="submit" value="添加" id="addlanmu"  class="coolbg"/> </form></td>
   </tr>
 <tr align="center" class="biaotou" >
     <td align="left" colspan="2">
      <form name="addchildlanmuform" id="addchildlanmuform" action="" method="post" >  
-     <input type="hidden" name="act" value="add" />
+     <input type="hidden"  name="act" value="add" />
     后台栏目：
 {{sysmenus}}
     子菜单：
-      <input name="childlanmu"  value="" size="10" />
+      <input   type="text"  name="childlanmu"  value="" size="10" />
         URL
         ：
-        <input name="childlanmuurl"  value="" size="20" />
+        <input  type="text" name="childlanmuurl"  value="" size="20" />
 &nbsp;<input type="submit" value="添加" id="addchildlanmu"  class="coolbg"/> &nbsp;</form></td>
   </tr>
 
@@ -71,7 +71,7 @@ td{ height:23px; padding:2px; line-height:23px;}
 	<dt><div class="left"><img class="jiajian" src="images/jian.gif" width="9" height="9" />栏目：{{menu1_name}}<span class="red">（ID:{{menu1_id}}）</span></div>
     <div class="right"> 
     <form action="" method="post">
-    <input name="sysmenu_name"  value="{{menu1_name}}" size="15" /> 
+    <input name="sysmenu_name"   type="text"   value="{{menu1_name}}" size="15" /> 
 	<input type="hidden" name="act" value="update" />
 	<input type="submit" value="更新" id="addchildlanmu"  class="coolbg"/>
     <input type="hidden" name="id" value="{{menu1_id}}" />
@@ -85,10 +85,10 @@ td{ height:23px; padding:2px; line-height:23px;}
     	菜单：{{menu2_name}}<span class="red">（ID:{{menu2_id}}）</span></div>
         <div class="right">
         <form action="" method="post">
-       <input name="sysmenu_name"  value="{{menu2_name}}" size="15" /> 
+       <input name="sysmenu_name"   type="text"   value="{{menu2_name}}" size="15" /> 
     URL
     ：
-    <input name="sysmenu_link"  value="{{menu2_link}}" size="20" />
+    <input name="sysmenu_link"   type="text"   value="{{menu2_link}}" size="20" />
     <input type="hidden" name="act" value="update" />
 	<input type="submit" value="更新" id="addchildlanmu"  class="coolbg"/>
     <input type="hidden" name="id" value="{{menu2_id}}" />

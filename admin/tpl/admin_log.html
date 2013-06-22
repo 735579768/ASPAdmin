@@ -48,7 +48,6 @@ table input{ text-align:center; border:none; height:22px; padding:2px;}
 </tr>
 <!-- BEGIN adminlist -->
 <!--{arclist sql="{$sql}" pagesize="20" pagenav="pagenav"}-->
-<form action="admin_log.asp" method="post">
 <tr align="center" bgcolor="#FFFFFF" onmousemove="javascript:this.bgColor='#FCFDEE';" onmouseout="javascript:this.bgColor='#FFFFFF';" height="25" >
 <td>{$id}</td>
 <td align="left">{$username}
@@ -58,10 +57,9 @@ table input{ text-align:center; border:none; height:22px; padding:2px;}
 <td>{$loginip}</td>
 <td>{$logintime}</td>
 <td>
-	<input type="hidden" name="id" value="{$id}" />
-    <input type="submit"  value="删除" class="coolbg" /></td>
+    <a href="?id={$id}" class="coolbg">删除</a>
+    </td>
 </tr>
-</form>
 <!--{/arclist}-->
 <!-- END adminlist -->
 <tr align="center" bgcolor="#FFFFFF"><td colspan="6"><div class="pagenav">{$pagenav}</div></td></tr>

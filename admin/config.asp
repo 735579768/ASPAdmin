@@ -1,9 +1,5 @@
 <!--#include file="lib/AdminInIt.asp"-->
 <%
-'oldtpl.SetTemplatesDir("")
-'包含文件
-'oldtpl.setVariableFile "TOP_HTML","public/top.html"
-'oldtpl.setVariableFile "FOOTER_HTML","public/footer.html"
 if G("upcfg")="true" then 
 	Set o = jsObject()
 	o("cfg_indexname")=G("cfg_indexname")
@@ -15,19 +11,37 @@ if G("upcfg")="true" then
 	o("cfg_keywords")=G("cfg_keywords")
 	o("cfg_description")=G("cfg_description")
 	o("cfg_beian")=G("cfg_beian")
-	result=olddb.UpdateRecord("kl_meta","meta_key='cfg_system'",array("meta_value:"&tojson(o)))
-	if result<>0 then 
+	o("cfg_thirdcode")=G("cfg_thirdcode")
+	set rs=newdb.table("kl_meta").where("meta_key='cfg_system'").sel()
+	rs("meta_value")=tojson(o)
+	rs.update
+	
+	'result=olddb.UpdateRecord("kl_meta","meta_key='cfg_system'",array("meta_value:"&tojson(o)))
+	if err.number=0 then 
 	 AlertMsg(UPDATE_SUCCESS_STR)
 	end if
+	set rs=nothing
 end if
 
-
-set rs=olddb.getRecord("kl_meta","meta_value","meta_key='cfg_system'","",0)
+set rs=newdb.table("kl_meta").fild("meta_value").where("meta_key='cfg_system'").sel()
 jsonstr=rs(0)
 set obj=toObject(jsonstr)
-setVarArr(array("cfg_indexname:"&obj.cfg_indexname,"cfg_webname:"&obj.cfg_webname,"cfg_arcdir:"&obj.cfg_arcdir,"cfg_medias_dir:"&obj.cfg_medias_dir,"cfg_df_style:"&obj.cfg_df_style,"cfg_powerby:"&obj.cfg_powerby,"cfg_keywords:"&obj.cfg_keywords,"cfg_description:"&obj.cfg_description,"cfg_beian:"&obj.cfg_beian))
-'Generate the page
-oldtpl.Parse
-'Destroy our objects
-set oldtpl = nothing
+newtpl.assign "cfg_indexname",obj.cfg_indexname
+newtpl.assign "cfg_webname",obj.cfg_webname
+newtpl.assign "cfg_arcdir",obj.cfg_arcdir
+newtpl.assign "cfg_medias_dir",obj.cfg_medias_dir
+newtpl.assign "cfg_df_style",obj.cfg_df_style
+newtpl.assign "cfg_powerby",obj.cfg_powerby
+newtpl.assign "cfg_keywords",obj.cfg_keywords
+newtpl.assign "cfg_description",obj.cfg_description
+newtpl.assign "cfg_beian",obj.cfg_beian
+newtpl.assign "cfg_thirdcode",obj.cfg_thirdcode
+newtpl.display("config.html")
+
+'set rs=olddb.getRecord("kl_meta","meta_value","meta_key='cfg_system'","",0)
+'jsonstr=rs(0)
+'set obj=toObject(jsonstr)
+'setVarArr(array("cfg_indexname:"&obj.cfg_indexname,"cfg_webname:"&obj.cfg_webname,"cfg_arcdir:"&obj.cfg_arcdir,"cfg_medias_dir:"&obj.cfg_medias_dir,"cfg_df_style:"&obj.cfg_df_style,"cfg_powerby:"&obj.cfg_powerby,"cfg_keywords:"&obj.cfg_keywords,"cfg_description:"&obj.cfg_description,"cfg_beian:"&obj.cfg_beian,"cfg_thirdcode:"&obj.cfg_thirdcode))
+'oldtpl.Parse
+'set oldtpl = nothing
 %>

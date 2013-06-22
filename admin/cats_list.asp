@@ -37,7 +37,7 @@ td {
 .lanmu{ margin:0 auto; }
 .lanmu,.lanmu dt,.lanmu dd{display:block;  width:100%; margin:0px; padding:0px;}
 .lanmu dt,.lanmu dd{ height:30px; line-height:30px;}
-.lanmu dt{ background:url(images/tbg.gif) repeat-x;padding:0px 40px;}
+.lanmu dt{ background:url(images/lanmubg.gif) repeat-x;padding:0px 40px;}
 .lanmu dd{padding:0px 90px;border-bottom: 1px dotted #BCBCBC;}
 .lanmu dt .left{ width:530px; float:left;}
 .lanmu dt .right{ float:left;}
@@ -50,7 +50,7 @@ td {
 <body>
 
 <dl class="lanmu">
-<dt><a href="javascript:zall();" class="coolbg zhankai">全部展开</a>
+<dt style=" background:url(images/tbg.gif) repeat-x;"><a href="javascript:zall();" class="coolbg zhankai">全部展开</a>
 <a href="javascript:hall();" class="coolbg hebing">全部合并</a>
 <a href="add_cats.asp?parent_id=0&type_id=1" class="coolbg hebing">添加顶级分类</a>
 <form name="addmsg" action="add_article.asp" id="addmsg" style="display:inline; margin-left:130px;">

@@ -312,7 +312,7 @@
 '弹出js提示框到前台
 '///////////////////////////////////////////
 	function AlertMsg(str)
-		echo "<script>alert('"&str&"');</script>"
+		echo "<script>alert('"&str&"');window.location.reload();</script>"
 	end function
 '///////////////////////////////////////////
 '简化取参数操作
