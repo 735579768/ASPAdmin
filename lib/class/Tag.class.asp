@@ -66,7 +66,7 @@ class QuickTag
 						if catidlist<>""  then where=where&" and kl_archives.cat_id in("&catidlist&") " 
 						if parentidlist<>""  then where=where&" and kl_cats.parent_id in("&parentidlist&") "
 					end if
-					runsql="select "&top&"  * from (kl_archives inner join kl_cats on kl_archives.cat_id=kl_cats.cat_id) inner join kl_content_types on kl_cats.type_id=kl_content_types.type_id where "& where &" "& hometj &" order by fbdate desc,id desc"
+					runsql="select "&top&" kl_cats.cat_id as catid, * from (kl_archives inner join kl_cats on kl_archives.cat_id=kl_cats.cat_id) inner join kl_content_types on kl_cats.type_id=kl_content_types.type_id where "& where &" "& hometj &" order by fbdate desc,id desc"
 				end if
 				if tplsql<>"" or catidlist<>"" or parentidlist<>"" then	
 					dim arcrs
@@ -110,7 +110,6 @@ class QuickTag
 									
 								next
 							arcrs.movenext
-							
 							liststr=tplobj.jiexivar(liststr)'在解析短标签前把里面的全局变量解析成数据
 							liststr=tplobj.jiexiShortTag(liststr)'处理短标签
 							liststr2=liststr2&liststr
