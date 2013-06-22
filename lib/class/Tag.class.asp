@@ -59,7 +59,7 @@ class QuickTag
 				runsql=tplsql'如果有sql语句就直接用sql语句
 				if num<>"" then top=" top "&num
 				if runsql="" then
-					where=" 1=1 "
+					where=" recycling=0 "
 					if catidlist<>"" and parentidlist<>"" then
 						where=where&" and(kl_archives.cat_id in("&catidlist&") or kl_cats.parent_id in("&parentidlist&"))" 
 					else
