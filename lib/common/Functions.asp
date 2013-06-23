@@ -312,6 +312,7 @@
 '弹出js提示框到前台
 '///////////////////////////////////////////
 	function AlertMsg(str)
+		str=replace(str,"'","""")
 		echo "<script>alert('"&str&"');window.location.reload();</script>"
 	end function
 '///////////////////////////////////////////
