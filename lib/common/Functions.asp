@@ -313,6 +313,10 @@
 '///////////////////////////////////////////
 	function AlertMsg(str)
 		echo "<script>alert('"&str&"');</script>"
+	end function
+'弹出js提示框到前台并刷新窗口
+'///////////////////////////////////////////
+	function AlertMsgreload(str)
 		echo "<script>alert('"&str&"');window.location.reload();</script>"
 	end function
 '///////////////////////////////////////////
