@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script src="js/jquery-1.8.1.min.js" type="text/javascript"></script>
 <script src="js/list.js" type="text/javascript"></script>
 <link href="css/main.css" rel="stylesheet" type="text/css" />
-<title>±à¼­·ÖÀàĞÅÏ¢</title>
+<title>ç¼–è¾‘åˆ†ç±»ä¿¡æ¯</title>
 <style>
 .kl-tab{}
 .kl-tab-nav{ cursor:pointer;display:block; height:30px; float:left;line-height: 30px;width: 100px;text-align: center;border-right: solid 1px #ccc;}
@@ -42,125 +42,126 @@
 						});
 					});
 				});
+
 				/////////////////////////////////////////
 			});
 		</script>
 <form name="updatecatsform" action="edit_cats.asp" method="post" style="margin:0 auto;">
 <div class="kl-tab">
 <ul class="kl-tab-nav-block">
-	<li class="kl-tab-nav">»ù±¾ĞÅÏ¢</li>
-    <li class="kl-tab-nav">¸ß¼¶Ñ¡Ïî</li>
-    <li class="kl-tab-nav">À¸Ä¿Ä£°å</li>
-    <li class="kl-tab-nav">À¸Ä¿ÄÚÈİ</li>
+	<li class="kl-tab-nav">åŸºæœ¬ä¿¡æ¯</li>
+    <li class="kl-tab-nav">é«˜çº§é€‰é¡¹</li>
+    <li class="kl-tab-nav">æ ç›®æ¨¡æ¿</li>
+    <li class="kl-tab-nav">æ ç›®å†…å®¹</li>
 </ul>
     <div class="kl-tab-div-block">
         <div class="kl-tab-div"><table width="98%" border="1" align="center" cellpadding="0" cellspacing="0" style=" margin:10px auto;border-collapse:collapse; text-align:center;">
 
 <tr bgcolor="#E7E7E7" class="biaotou">
 <td height="28" colspan="3" background="images/tbg.gif" style="padding-left:10px;">
-	<span>·ÖÀàÀ¸Ä¿¹ÜÀí<<<a href="cats_list.asp" class="coolbg">·ÖÀàÁĞ±í</a>>>¸ü¸Ä·ÖÀà</a></span> &nbsp;
+	<span>åˆ†ç±»æ ç›®ç®¡ç†<<<a href="cats_list.asp" class="coolbg">åˆ†ç±»åˆ—è¡¨</a>>>æ›´æ”¹åˆ†ç±»</a></span> &nbsp;
 </td>
 </tr>
 
   <tr>
-    <td align="left"> ·ÖÀàID£º</td>
-    <td align="left">{{cat_id}}</td>
+    <td align="left"> åˆ†ç±»IDï¼š</td>
+    <td align="left">{$catobj.cat_id}</td>
   </tr>
   <tr>
-    <td align="left" width="100"> ·ÖÀàÃû×Ö£º</td>
-    <td align="left"><input name="cat_name"  value="{{cat_name}}" /></td>
+    <td align="left" width="100"> åˆ†ç±»åå­—ï¼š</td>
+    <td align="left"><input name="cat_name" type="text" value="{$catobj.cat_name}" /></td>
   </tr>
    <tr>
-    <td align="left" width="100"> ¸¸·ÖÀà£º</td>
-    <td align="left">{{parentidsel}}(<span class="red">²»ÒªËæ±ã¸ü¸Ä</span>)</td>
+    <td align="left" width="100"> çˆ¶åˆ†ç±»ï¼š</td>
+    <td align="left">{$catobj.parentidsel}(<span class="red">ä¸è¦éšä¾¿æ›´æ”¹</span>)</td>
   </tr>
     <tr align="left">
-    <td width="90">·ÖÀàÍ¼Æ¬Õ¹Ê¾£º</td>
-    <td><input name="cat_pic" type="text" id="url1" value="{{cat_pic}}" style="width:200px" /> <input type="button" id="image1" value="Ñ¡ÔñÍ¼Æ¬" /></td>
+    <td width="90">åˆ†ç±»å›¾ç‰‡å±•ç¤ºï¼š</td>
+    <td><input name="cat_pic" type="text" id="url1" value="{$catobj.cat_pic}" style="width:200px" /> <input type="button" id="image1" value="é€‰æ‹©å›¾ç‰‡" /></td>
   </tr>
     <tr>
-    <td width="100px" align="left">ÏÔÊ¾/Òş²Ø£º</td>
-    <td align="left"> <input name="cat_show" type="text"  value="{{cat_show}}" size="5" maxlength="1" />&nbsp;ÏÔÊ¾(1)Òş²Ø(0)</td>
+    <td width="100px" align="left">æ˜¾ç¤º/éšè—ï¼š</td>
+    <td align="left"> <input name="cat_show" type="text"  value="{$catobj.cat_show}" size="5" maxlength="1" />&nbsp;æ˜¾ç¤º(1)éšè—(0)</td>
   </tr>
     <tr>
-    <td align="left" width="100"> ÄÚÈİÀàĞÍ£º</td>
+    <td align="left" width="100"> å†…å®¹ç±»å‹ï¼š</td>
     <td align="left">
-    {{type_name}}<input type="hidden" name="type_id" value="{{typeid}}" />
+    {$catobj.type_name}<input type="hidden" name="type_id" value="{$catobj.typeid}" />
     </td>
   </tr>
 
     <tr>
-    <td align="left"> ÅÅĞò£º</td>
-    <td align="left"><input name="sort"  type="text" value="{{sort}}" /></td>
+    <td align="left"> æ’åºï¼š</td>
+    <td align="left"><input name="sort"  type="text" value="{$catobj.sort}" /></td>
   </tr>
   <tr>
-    <td width="100px" align="left">·ÖÀàÊôĞÔ£º</td>
-    <td align="left"><input name="catflag" type="text"  value="{{catflag}}" />(1ÊÇ·âÃæÄÚÈİ2ÊÇÁĞ±íÄÚÈİ)</td>
+    <td width="100px" align="left">åˆ†ç±»å±æ€§ï¼š</td>
+    <td align="left"><input name="catflag" type="text"  value="{$catobj.catflag}" />(1æ˜¯å°é¢å†…å®¹2æ˜¯åˆ—è¡¨å†…å®¹)</td>
   </tr>
      <tr>
     <td  colspan="2"align="center"><input type="hidden" name="act" value="updtcat"  />
-    <input type="hidden" name="cat_id" value="{{cat_id}}"  />
-    <a href="javascript:updatecatsform.submit();" class="coolbg">¸üĞÂ</a>
-    <a href="javascript:window.history.go(-1);" class="coolbg">·µ»Ø</a></td>
+    <input type="hidden" name="cat_id" value="{$catobj.cat_id}"  />
+    <a href="javascript:updatecatsform.submit();" class="coolbg">æ›´æ–°</a>
+    <a href="javascript:window.history.go(-1);" class="coolbg">è¿”å›</a></td>
   </tr>
 
 </table></div>
         <div class="kl-tab-div"><table width="98%" style=" border-collapse:collapse; text-align:left;" border="0">
   <tr>
-  	<td width="10%">·âÃæÄ£°å£º</td>
-    <td><input name="cat_index" type="text" value="{{cat_index}}" style="width:200px; height:20px;" /></td>
+  	<td width="10%">å°é¢æ¨¡æ¿ï¼š</td>
+    <td><input name="cat_index" type="text" value="{$catobj.cat_index}" style="width:200px; height:20px;" /></td>
   </tr>
   <tr>
-  	<td width="10%">ÁĞ±íÄ£°å£º</td>
-    <td><input name="cat_list" type="text" value="{{cat_list}}" style="width:200px; height:20px;" /></td>
+  	<td width="10%">åˆ—è¡¨æ¨¡æ¿ï¼š</td>
+    <td><input name="cat_list" type="text" value="{$catobj.cat_list}" style="width:200px; height:20px;" /></td>
   </tr>
   <tr>
-  	<td width="10%">ÎÄÕÂÄ£°å£º</td>
-    <td><input name="cat_article" type="text" value="{{cat_article}}" style="width:200px; height:20px;" /></td>
+  	<td width="10%">æ–‡ç« æ¨¡æ¿ï¼š</td>
+    <td><input name="cat_article" type="text" value="{$catobj.cat_article}" style="width:200px; height:20px;" /></td>
   </tr>
   <tr>
-  	<td width="10%">seo±êÌâ£º</td>
-    <td><input name="cat_seotitle" type="text" value="{{cat_seotitle}}" style="width:300px; height:30px;" /></td>
+  	<td width="10%">seoæ ‡é¢˜ï¼š</td>
+    <td><input name="cat_seotitle" type="text" value="{$catobj.cat_seotitle}" style="width:300px; height:30px;" /></td>
   </tr>
   <tr>
-  	<td width="10%">seo¹Ø¼ü×Ö£º</td>
-    <td><textarea name="cat_seokeys"  style="width:400px; height:30px;">{{cat_seokeys}}</textarea></td>
+  	<td width="10%">seoå…³é”®å­—ï¼š</td>
+    <td><textarea name="cat_seokeys"  style="width:400px; height:30px;">{$catobj.cat_seokeys}</textarea></td>
   </tr>
   <tr>
-  	<td width="10%">seoÃèÊö£º</td>
-    <td><input name="cat_seodescr" type="text" value="{{cat_seodescr}}" style="width:600px; height:50px;"  /></td>
+  	<td width="10%">seoæè¿°ï¼š</td>
+    <td><input name="cat_seodescr" type="text" value="{$catobj.cat_seodescr}" style="width:600px; height:50px;"  /></td>
   </tr>
-  <tr><td align="center" colspan="2">   <a href="javascript:updatecatsform.submit();" class="coolbg">¸üĞÂ</a>
-    <a href="javascript:window.history.go(-1);" class="coolbg">·µ»Ø</a></td></tr>
+  <tr><td align="center" colspan="2">   <a href="javascript:updatecatsform.submit();" class="coolbg">æ›´æ–°</a>
+    <a href="javascript:window.history.go(-1);" class="coolbg">è¿”å›</a></td></tr>
 </table></div>
         <div class="kl-tab-div"><table width="98%" style=" border-collapse:collapse;" border="0">
   <tr>
-    <td>ËµÃ÷£ºÀ¸Ä¿ÄÚÈİÊÇÌæ´úÔ­À´À¸Ä¿µ¥¶ÀÒ³µÄ¸üÁé»îµÄ·½Ê½£¬Èç¹ûÏÂÃæÓĞÄÚÈİµÄ»°£¬Õâ¸ö·ÖÀàµÄ·âÃæ½«Ö±½ÓÏÔÊ¾Õâ¸öÄÚÈİÄ£°å</td>
+    <td>è¯´æ˜ï¼šæ ç›®å†…å®¹æ˜¯æ›¿ä»£åŸæ¥æ ç›®å•ç‹¬é¡µçš„æ›´çµæ´»çš„æ–¹å¼ï¼Œå¦‚æœä¸‹é¢æœ‰å†…å®¹çš„è¯ï¼Œè¿™ä¸ªåˆ†ç±»çš„å°é¢å°†ç›´æ¥æ˜¾ç¤ºè¿™ä¸ªå†…å®¹æ¨¡æ¿</td>
   </tr>
   <tr><td align="left">
-  <input type="radio" name="cat_single" value="1" {{sel1}} />
-  ÆôÓÃ×Ô¶¨ÒåÄ£°å
-  <input  name="cat_single" type="radio" value="0" {{sel0}} />
-  ²»ÆôÓÃ×Ô¶¨ÒåÄ£°å</td></tr>
+  <input type="radio" name="cat_single" value="1" {$catobj.sel1} />
+  å¯ç”¨è‡ªå®šä¹‰æ¨¡æ¿
+  <input  name="cat_single" type="radio" value="0" {$catobj.sel0} />
+  ä¸å¯ç”¨è‡ªå®šä¹‰æ¨¡æ¿</td></tr>
   <tr>
   <td>
 
-  <textarea name="cat_content" style="width:99%;height:400px;">{{cat_content}}</textarea>
+  <textarea name="cat_content" style="width:99%;height:400px;">{$catobj.cat_content}</textarea>
   </td>
   </tr>
-  <tr><td align="center">    <a href="javascript:updatecatsform.submit();" class="coolbg">¸üĞÂ</a>
-    <a href="javascript:window.history.go(-1);" class="coolbg">·µ»Ø</a></td></tr>
+  <tr><td align="center">    <a href="javascript:updatecatsform.submit();" class="coolbg">æ›´æ–°</a>
+    <a href="javascript:window.history.go(-1);" class="coolbg">è¿”å›</a></td></tr>
 </table></div>
 		<div class="kl-tab-div">
 <table width="98%" border="0">
   <tr>
-    <td>À¸Ä¿ÄÚÈİÔÚÒ³ÃæÖĞÓÃ{$catinfo.cat_singlecontent}¾Í¿ÉÒÔµ÷ÓÃ</td>
+    <td>æ ç›®å†…å®¹åœ¨é¡µé¢ä¸­ç”¨{$catinfo.cat_singlecontent}å°±å¯ä»¥è°ƒç”¨</td>
   </tr>
   <tr>
-    <td><textarea name="cat_singlecontent" style="width:100%;height:400px;visibility:hidden;">{{cat_singlecontent}}</textarea></td>
+    <td><textarea name="cat_singlecontent" style="width:100%;height:400px;visibility:hidden;">{$catobj.cat_singlecontent}</textarea></td>
   </tr>
-   <tr><td align="center">    <a href="javascript:updatecatsform.submit();" class="coolbg">¸üĞÂ</a>
-    <a href="javascript:window.history.go(-1);" class="coolbg">·µ»Ø</a></td></tr>
+   <tr><td align="center">    <a href="javascript:updatecatsform.submit();" class="coolbg">æ›´æ–°</a>
+    <a href="javascript:window.history.go(-1);" class="coolbg">è¿”å›</a></td></tr>
 </table>
 
 </div>
@@ -171,12 +172,12 @@
 <script>
 $(function(){
 $.klplugin={
-	/////////////////////////////////////////////////////tabÇĞ»»ÌØĞ§/////////////////////////////////////////////
+	/////////////////////////////////////////////////////tabåˆ‡æ¢ç‰¹æ•ˆ/////////////////////////////////////////////
 	runtab:function(options){
 					var defaults={
-						'navhoverclsname':'navhovercls',//navÏÔÊ¾Ê±ºòÓµÓĞµÄÀà
-						'divshowclsname':'divshowcls',//divÏÔÊ¾µÄÊ±ºòÓµÓĞµÄÀà
-						'model':'mouseover'//tabµÄÇĞ»»Ä£Ê½£¬Ä¬ÈÏÎªmouseover
+						'navhoverclsname':'navhovercls',//navæ˜¾ç¤ºæ—¶å€™æ‹¥æœ‰çš„ç±»
+						'divshowclsname':'divshowcls',//divæ˜¾ç¤ºçš„æ—¶å€™æ‹¥æœ‰çš„ç±»
+						'model':'mouseover'//tabçš„åˆ‡æ¢æ¨¡å¼ï¼Œé»˜è®¤ä¸ºmouseover
 						};
 					var opts = $.extend(defaults, options); 
 					
@@ -184,13 +185,13 @@ $.klplugin={
 					$(".kl-tab .kl-tab-div:first-child").show();
 					$(".kl-tab .kl-tab-nav").bind(opts.model,function(){
 								var obj=$(this);
-								 //²éÕÒÒªÏÔÊ¾µÄdivË÷Òı
+								 //æŸ¥æ‰¾è¦æ˜¾ç¤ºçš„divç´¢å¼•
 								 obj.parents(".kl-tab").find(".kl-tab-nav").each(function(i) {
 									if($(this).html()==obj.html()){
-										//ÉèÖÃhoverÀà
+										//è®¾ç½®hoverç±»
 										obj.parents(".kl-tab").find(".kl-tab-nav").removeClass(opts.navhoverclsname);
 										obj.addClass(opts.navhoverclsname);
-										//Òş²ØµôËùÓĞµÄtabdiv
+										//éšè—æ‰æ‰€æœ‰çš„tabdiv
 										obj.parents(".kl-tab").find(".kl-tab-div").hide();
 										obj.parents(".kl-tab").find(".kl-tab-div").removeClass(opts.divshowclsname);
 										
@@ -202,21 +203,24 @@ $.klplugin={
 		}
 	};
 $.klplugin.runtab({
-		'navhoverclsname':'a',//navÏÔÊ¾Ê±ºòÓµÓĞµÄÀà
-		'divshowclsname':'b',//divÏÔÊ¾µÄÊ±ºòÓµÓĞµÄÀà
+		'navhoverclsname':'a',//navæ˜¾ç¤ºæ—¶å€™æ‹¥æœ‰çš„ç±»
+		'divshowclsname':'b',//divæ˜¾ç¤ºçš„æ—¶å€™æ‹¥æœ‰çš„ç±»
 		'model':'click'
 		});
-
+var tabid=parseInt("{$catobj.tabid}");
+if(tabid!=""){
+	$('.kl-tab-nav-block .kl-tab-nav').eq(tabid).click();
+	}
 $("#delimg").bind("click",function(){
-	if(confirm("È·ÈÏÒªÉ¾³ı?")){
+	if(confirm("ç¡®è®¤è¦åˆ é™¤?")){
 	$.get("uploadimg/index.asp",{
 									act:'delimg',
 									imgpath:$("#pic").val()
 										},function(data){
 								if(data==1){
-									alert('É¾³ı³É¹¦£¡');
+									alert('åˆ é™¤æˆåŠŸï¼');
 									}else{
-									alert('ÎÄ¼şÉ¾³ı´íÎó£¡');
+									alert('æ–‡ä»¶åˆ é™¤é”™è¯¯ï¼');
 										}
 									$("#pic").val('');
 									$("#pic").change();
@@ -233,12 +237,12 @@ $("#pic").bind("change",function(){
 		$("#picimg").hide();	
 			}
 	});
-//ÕıÔòµôtextarea
+//æ­£åˆ™æ‰textarea
            //var re = /###textarea(.*?)###([\s\S]*?)###\/textarea###/g; 
 		   var catcontent=$("textarea[name='cat_content']").val();
-		   var re = /###textarea(.*?)###/g;               // ´´½¨ÕıÔò±í´ïÊ½Ä£Ê½¡£    var arr;
+		   var re = /###textarea(.*?)###/g;               // åˆ›å»ºæ­£åˆ™è¡¨è¾¾å¼æ¨¡å¼ã€‚    var arr;
 			var catcontent = catcontent.replace(re,"<textarea$1>");
-		   var re = /###\/textarea###/g;               // ´´½¨ÕıÔò±í´ïÊ½Ä£Ê½¡£    var arr;
+		   var re = /###\/textarea###/g;               // åˆ›å»ºæ­£åˆ™è¡¨è¾¾å¼æ¨¡å¼ã€‚    var arr;
 			var catcontent = catcontent.replace(re,"</textarea>");
 			$("textarea[name='cat_content']").val(catcontent);
 
@@ -247,6 +251,6 @@ function cha(){
 	$("#pic").change();
 	}
 </script>
-{{jsstr}}
+{$catobj.jsstr}
 </body>
 </html>

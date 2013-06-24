@@ -3,7 +3,7 @@
 dim cat_id:cat_id=G("cat_id")
 if G("act")="updtcat" then
 				set uprs=server.createobject("adodb.recordset")
-				uprs.open "select * from kl_cats where cat_id="&cat_id,olddb.idbconn,0,2
+				uprs.open "select * from kl_cats where cat_id="&cat_id,newdb.kl_conn,0,2
 				uprs("cat_name")=G("cat_name")
 				uprs("sort")=G("sort")
 				uprs("type_id")=G("type_id")
@@ -43,36 +43,35 @@ if G("act")="updtcat" then
 		AlertMsg(UPDATESUCCESS)
 end if
 'Generate the page
-sql="select a.type_id as typeid ,* from "&suffix&"cats as a inner join kl_content_types as b on a.type_id=b.type_id where a.cat_id="&cat_id
-set rs=olddb.query(sql)
+sql="select a.type_id as typeid ,* from kl_cats as a inner join kl_content_types as b on a.type_id=b.type_id where a.cat_id="&cat_id
+set rs=newdb.query(sql)
+set temrs=rs
+'echo rs("cat_name") 
+catarr=newdb.rsToArr(rs)
+set catobj=catarr(0)
+rs.movefirst
+parentid=rs("parent_id")
+catobj("cat_content")=convertTextarea(rs("cat_content")&"")'转换其中的textarea
+if rs("cat_single")="0" then catobj("sel0")="checked='checked'"
+if rs("cat_single")="1" then catobj("sel1")="checked='checked'"
 cat_index=rs("cat_index")&""
 cat_list=rs("cat_list")&""
 cat_article=rs("cat_article")&""
-cat_content=convertTextarea(rs("cat_content")&"")'转换其中的textarea
-
-if rs("cat_single")="0" then oldtpl.setvariable "sel0","checked='checked'"
-if rs("cat_single")="1" then oldtpl.setvariable "sel1","checked='checked'"
-
-if cat_index="" then cat_index=rs("tpl_index")&"" end if
-if cat_list="" then cat_list=rs("tpl_list")&"" end if
-if cat_article="" then cat_article=rs("tpl_article")&"" end if
-setTplVarBySql(sql)
-parentidsel=getArcCatSel()
-'parentidsel=catparentsel(cat_id)
+if cat_index="" then catobj("cat_index")=rs("tpl_index")&"" end if
+if cat_list="" then catobj("cat_list")=rs("tpl_list")&"" end if
+if cat_article="" then catobj("cat_article")=rs("tpl_article")&"" end if
+catobj("parentidsel")=getArcCatSel()
 '======================
 '生成cat_id select 的js代码
-parentid=rs("parent_id")
-jssstr=""
 
+jssstr=""
 if parentid=0 then
 jsstr="<script>$(function(){$('#cat_id').attr('name','parent_id');$('#cat_id').append(""<option value='0'>顶级分类<option>"");$(""#cat_id option[value='0']"").attr('selected','true');});</script>"
 else
 jsstr="<script>$(function(){$('#cat_id').attr('name','parent_id');$(""#cat_id option[value='"&parentid&"']"").attr('selected','true');});</script>"
 end if
-
-'=====================
-setVarArr(array("cat_index:"&cat_index,"cat_list:"&cat_list,"cat_article:"&cat_article,"cat_content:"&cat_content,"parentidsel:"&parentidsel,"jsstr:"&jsstr))
-
-oldtpl.Parse
-set oldtpl = nothing
+catobj("jsstr")=jsstr
+catobj("tabid")=G("tabid")
+newtpl.assign "catobj",catobj
+newtpl.display("edit_cats.html")
 %>

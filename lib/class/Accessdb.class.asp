@@ -11,6 +11,7 @@
 'const db_path="data/#aspadmindata.mdb"
 const db_pwd=""
 Class Accessdb
+	private autoform
 	public kl_conn
 	private kl_rs
 	private kl_sql
@@ -38,6 +39,16 @@ Class Accessdb
 		conn = kl_conn
 	End Property
 	'==================================
+	'属性
+	'功能：更新数据对象
+	'返回值：没有
+	'==================================
+	Public Property Let formdata(data)
+		If IsObject(data) Then
+			Set autoform = data
+		End If
+	End Property
+	'==================================
 	'query函数
 	'功能：查询记录集
 	'==================================
@@ -56,7 +67,7 @@ Class Accessdb
 	'rsToArr函数
 	'功能：把记录集转成键值对数组
 	'==================================
-	Function rsToArr(rss)
+	Function rsToArr(byval rss)
 	'bakon error resume next
 	err.clear
 		num=rss.recordcount
@@ -150,5 +161,41 @@ Class Accessdb
 	Function getlastsql()
 		getlastsql=kl_sql
 	end function
+	'==================================
+	'create函数
+	'功能：从form中取中指定格式的提交数据组合成一个数据对象
+	'返回值：一个dictionary对象
+	'==================================
+	Function create()
+		set autoform = server.CreateObject("Scripting.Dictionary")
+		for each key in request.Form
+			if instr(key,"auto_")<>0 then
+				k=replace(key,"auto_","")
+				autoform(k)=request.Form(key)
+			end if
+		next
+		set create=autoform
+	end Function
+	'==================================
+	'save函数
+	'功能：更新数据
+	'返回值：没有
+	'==================================
+	Function save()
+		if not kl_sqlkey.Exists("table") then echoErr 0 ,"<span style='color:red;'>sql table not is null;</span><br>"
+		set rs=sel()
+		d=autoform.keys
+		For i = 0 To autoform.Count -1 '重复数组。
+			on error resume next
+			err.clear
+			rs(d(i))=request.Form(d(i))
+			if err.number<>0 then
+				err.clear
+				echoErr 0 ,"<span style='color:red;'>update data err;<br>error deacr:"&err.description&"</span><br>"
+			end if
+ 		Next
+		rs.update
+		set autoform=nothing
+	End Function
 End Class
 %>

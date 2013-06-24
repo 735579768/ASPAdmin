@@ -1,5 +1,17 @@
 <%
 '==============================
+'给对象添加或重置项目和值
+'=============================
+	Function setitem(byval obj,itm,val)
+		if not isobject(obj) then
+			setitem=obj
+		else
+			if obj.Exists(itm) then obj.Remove(itm)
+			obj(itm)=val
+			set setitem=obj
+		end if
+	end Function
+'==============================
 '查询类的顶级分类id
 '=============================
 	function getTopCat(catid)
