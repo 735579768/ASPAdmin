@@ -65,7 +65,8 @@
 'oldtpl.Parse
 'set oldtpl = nothing
 
-
+newtpl.assign "typeidsel",getContentTypeSel()
+newtpl.assign "catidsel",getArcCatSel()
 set rs=newdb.query(sqlstr)
 edittpl=rs("tpl_editform")&""
 arr=newdb.rsToArr(rs)
