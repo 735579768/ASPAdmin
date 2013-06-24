@@ -40,9 +40,9 @@ if G("cat_id")<>"0" and G("cat_id")<>""  then
 	where=where&" and a.cat_id="&G("cat_id")&" "	
 end if
 '搜索关键字
-if G("keywords")<>"" then
-	where=where&" and a.arctitle like '%"&G("keywords")&"%' "
-	oldtpl.SetVariable "keywords",G("keywords")
+if trim(G("keywords"))<>"" then
+	where=where&" and a.arctitle like '%"&trim(G("keywords"))&"%' "
+	oldtpl.SetVariable "keywords",trim(G("keywords"))
 end if
 '搜索首页推荐
 if G("hometj")<>"" and G("hometj")<>"2" then
