@@ -19,6 +19,7 @@ if G("act")="add" then
 				uprs("cat_seokeys")=G("cat_seokeys")
 				uprs("cat_seodescr")=G("cat_seodescr")
 				uprs("cat_single")=G("cat_single")
+				uprs("catflag")=G("catflag")
 				uprs("cat_content")=request("cat_content")
 				cat_index=G("cat_index")
 				cat_list=G("cat_list")

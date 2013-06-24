@@ -14,6 +14,7 @@ if G("act")="updtcat" then
 				uprs("cat_seokeys")=G("cat_seokeys")
 				uprs("cat_seodescr")=G("cat_seodescr")
 				uprs("cat_single")=G("cat_single")
+				uprs("catflag")=G("catflag")
 				uprs("cat_singlecontent")=request("cat_singlecontent")
 				uprs("cat_content")=request("cat_content")
 				cat_index=G("cat_index")
