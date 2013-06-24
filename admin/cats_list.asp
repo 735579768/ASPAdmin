@@ -256,7 +256,7 @@ icoimgid=icoimgid+1
             <%
 			if not isparentcat(cid1) then
 			%>
-                <a href='add_article.asp?cat_id=<%=cid1%>' title='在此分类下添加信息'  class='coolbg red'>添加信息</a> 
+    <a href='add_article.asp?cat_id=<%=cid1%>' title='在此分类下添加信息'  class='coolbg red'>添加信息</a> 
                 <%
 				else
 					echo "<div style='width:60px; height:25px; float:left;'></div>"
@@ -291,6 +291,7 @@ icoimgid=icoimgid+1
 			sort2=neirs("sort")&""
 			havepic2=getcatimg(neirs("cat_pic")&"")
 			navshow2=getcatshow(neirs("cat_show")&"")
+			catflag2=neirs("catflag")&""
 			catsinglecontent2=getcatindexcontent(neirs("cat_singlecontent")&"")
 
 %>
@@ -299,7 +300,17 @@ icoimgid=icoimgid+1
     		栏目：<u><a title='点击查看此分类下文章'  href='article_list.asp?cat_id=<%=cid2%>' target='_self'><%=cname2%></a></u><span class='red'>(ID:<%=cid2%>,文档数:<%=arcnum2%>)</span>(<%=neirs("type_sxname")%>)<%=catsinglecontent2%>
         </div>
         <div class='right'>
-                    <a href='add_article.asp?cat_id=<%=cid2%>' title='在此分类下添加信息'  class='coolbg red'>添加信息</a> 
+        <%
+        if catflag2="1" then
+		%>
+          <a href='edit_cats.asp?cat_id=<%=cid2%>&type_id=<%=typeid2%>' title='在此分类下添加信息'  class='coolbg red'>封面内容</a>
+ 	<%
+	 else
+	 %>
+     <a href='add_article.asp?cat_id=<%=cid2%>' title='在此分类下添加信息'  class='coolbg red'>添加信息</a>
+   	<%
+	end if
+	 %>
                 <a href='edit_cats.asp?cat_id=<%=cid2%>&type_id=<%=typeid2%>' class='coolbg'>更改</a>
                 <input type='hidden'  value='<%=cid2%>' />
                 <a href='javascript:void(0);' class='coolbg delcat'>删除</a>
