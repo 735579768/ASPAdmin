@@ -303,7 +303,7 @@ icoimgid=icoimgid+1
         <%
         if catflag2="1" then
 		%>
-          <a href='edit_cats.asp?cat_id=<%=cid2%>&type_id=<%=typeid2%>' title='在此分类下添加信息'  class='coolbg red'>封面内容</a>
+          <a href='edit_cats.asp?cat_id=<%=cid2%>&type_id=<%=typeid2%>' title='添加栏目内容'  class='coolbg red' style="color:green;">封面内容</a>
  	<%
 	 else
 	 %>
