@@ -190,10 +190,12 @@ class QuickTag
 	'=========================================================================================	
 	Function getcat(catid,jiange)
 		str=""
+		if catid<>"" then
 		set catrs=db.table("kl_cats").top("1").where("cat_id="&catid).sel()
 		if catrs.recordcount>0 then
 		if catrs("parent_id")<>0 then str=str&getcat(catrs("parent_id"),jiange)
 		str=str&"<a href='cat.asp?catid="&catrs("cat_id")&"'>"&jiange&catrs("cat_name")&"</a>"
+		end if
 		end if
 		getcat=str
 	end Function
