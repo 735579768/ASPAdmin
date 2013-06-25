@@ -1,5 +1,6 @@
 <!--#include file="lib/AdminInIt.asp"-->
 <%
+on error resume next
 if G("upcfg")="true" then 
 	Set o = jsObject()
 	o("cfg_indexname")=G("cfg_indexname")
