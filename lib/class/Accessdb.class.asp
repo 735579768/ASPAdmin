@@ -179,23 +179,68 @@ Class Accessdb
 	'==================================
 	'save函数
 	'功能：更新数据
-	'返回值：没有
+	'返回值：true
 	'==================================
 	Function save()
 		if not kl_sqlkey.Exists("table") then echoErr 0 ,"<span style='color:red;'>sql table not is null;</span><br>"
+		if not kl_sqlkey.Exists("where") then echoErr 0 ,"<span style='color:red;'>sql where not is null in save data ;</span><br>"
 		set rs=sel()
 		d=autoform.keys
 		For i = 0 To autoform.Count -1 '重复数组。
 			on error resume next
 			err.clear
-			rs(d(i))=request.Form(d(i))
-			if err.number<>0 then
-				err.clear
-				echoErr 0 ,"<span style='color:red;'>update data err;<br>error deacr:"&err.description&"</span><br>"
+			if instr(d(i),"auto_")<>0 then
+				fie=replace(d(i),"auto_","")
+				rs(fie)=request.Form(d(i))
+				if err.number<>0 then
+					err.clear
+					echoErr 0 ,"<span style='color:red;'>update data err;<br>error deacr:"&err.description&"</span><br>"
+				end if
 			end if
  		Next
 		rs.update
 		set autoform=nothing
+		save=true
 	End Function
+	'==================================
+	'add函数
+	'功能：添加数据
+	'返回值：true
+	'==================================	
+	Function add()
+		if not kl_sqlkey.Exists("table") then echoErr 0 ,"<span style='color:red;'>sql table not is null;</span><br>"
+		set rs=sel()
+		rs.addnew
+		d=autoform.keys
+		For i = 0 To autoform.Count -1 '重复数组。
+			on error resume next
+			err.clear
+			if instr(d(i),"auto_")<>0 then
+				fie=replace(d(i),"auto_","")
+				rs(fie)=request.Form(d(i))
+				if err.number<>0 then
+					err.clear
+					echoErr 0 ,"<span style='color:red;'>update data err;<br>error deacr:"&err.description&"</span><br>"
+				end if
+			end if
+ 		Next
+		rs.update
+		set autoform=nothing
+		add=true	
+	End function
+	'==================================
+	'add函数
+	'功能：添加数据
+	'返回值：true
+	'==================================		
+	Function delete()
+		if not kl_sqlkey.Exists("table") then echoErr 0 ,"<span style='color:red;'>sql table not is null;</span><br>"
+		if not kl_sqlkey.Exists("where") then echoErr 0 ,"<span style='color:red;'>sql where not is null in save data ;</span><br>"
+		set rs=sel()
+		rs.delete
+		rs.update
+		set autoform=nothing
+		add=true	
+	End function
 End Class
 %>
