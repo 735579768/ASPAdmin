@@ -36,6 +36,7 @@ class QuickTag
 		public Function run(str)
 			str=arclisttag(str)
 			str=cattag(str)
+			str=positiontag(str)
 			run=str
 		end function
 		'=======================================
@@ -163,5 +164,38 @@ class QuickTag
 		set catreg=nothing
 		cattag=str
 	end function
+	'==========================================================================================
+	'返回当前位置
+	'=========================================================================================
+	Function positiontag(str)
+		str1=""
+		Set catreg = New RegExp 
+		catreg.IgnoreCase = True
+		catreg.Global = True
+		catreg.Pattern ="<position([\s\S]*?)/>"
+		set eqm=catreg.execute(str)
+		if eqm.count>0 then
+			for each m in eqm		
+				temid=tplobj.getTagParam(m.SubMatches(0),"id")
+				temjiange=tplobj.getTagParam(m.SubMatches(0),"jiange")
+				str1=getcat(temid,temjiange)
+				str=replace(str,m,str1)
+			next
+		end if
+		set catreg=nothing
+		positiontag=str	
+	end Function
+	'==========================================================================================
+	'返回当前位置字符串
+	'=========================================================================================	
+	Function getcat(catid,jiange)
+		str=""
+		set catrs=db.table("kl_cats").top("1").where("cat_id="&catid).sel()
+		if catrs.recordcount>0 then
+		if catrs("parent_id")<>0 then str=str&getcat(catrs("parent_id"),jiange)
+		str=str&"<a href='cat.asp?catid="&catrs("cat_id")&"'>"&jiange&catrs("cat_name")&"</a>"
+		end if
+		getcat=str
+	end Function
 end class
 %>
