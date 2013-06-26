@@ -83,6 +83,7 @@ for i=1 to mypage.pagesize
 	oldtpl.SetVariable "type_name",rs("type_name")&""
 	oldtpl.SetVariable "arccontent",rs("arccontent")&""
 	oldtpl.SetVariable "archits",rs("archits")&""
+	oldtpl.SetVariable "recyclingurl","article_list.asp?id="&rs("id")&"&act=huishousingle&page="&G("page")&"&hometj="&G("hometj")&"&cat_id="&G("cat_id")
 	if cstr(rs("hometj"))=0 then
 		oldtpl.SetVariable "tuijian","<a  href='?page="&G("page")&"&act=arctj&type_id="&G("type_id")&"&cat_id="&G("cat_id")&"&hometj="&G("hometj")&"&id="&rs("id")&"' >未推荐</a>"
 	else

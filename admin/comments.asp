@@ -19,18 +19,9 @@
 		
 	if G("act")="del" then
 		result=olddb.query("delete from kl_comments where id="&G("id"))
-'			if result=0 then
-'				AlertMsg(CAOZUO_FAIL_STR)
-'			end if
+		echo "<script>window.location='comments.asp';</script>"
 	end if
-	
 	sql="select * from kl_comments order by fbdate desc "
-	'loopBlockpage "commentllist",sql,20
-
-'oldtpl.Parse
-'Destroy our objects
-'set oldtpl = nothing
-
 
 newtpl.assign "sql",sql
 newtpl.assign "page",G("page")

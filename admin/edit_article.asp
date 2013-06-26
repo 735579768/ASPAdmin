@@ -27,44 +27,19 @@
 				if(G("arcdescr")="") then uprs("arcdescr")=left(removehtml(G("arccontent")),30)
 				uprs("uddate")=FormatDate(now,2)
 				uprs.update
+				uprs.close
+				set uprs=nothing
 				if err.number<>0 then
 					AlertMsg(UPDATE_FAIL_STR)
+					echo "<script>window.history.go(-1);</script>"
 				else
 					AlertMsg(UPDATE_SUCCESS_STR)
+					echo "<script>window.history.go(-2);</script>"
 				end if
 	end if
 '输出模板默认数据
 	id=G("id")
 	sqlstr="SELECT a.cat_id as cid,c.type_name as typename,b.type_id as typeid,*  from (kl_archives as a inner join  kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on b.type_id=c.type_id where a.id="&id&" order by fbdate desc"
-'	set rs=olddb.query(sqlstr)
-'	arctpl=rs("arctpl")&""
-'	if arctpl="" then arctpl=rs("tpl_article")&"" end if
-'	oldtpl.SetVariable "id",rs("id")&""
-'	
-'	oldtpl.SetVariable "arcauthor",rs("arcauthor")&""
-'	oldtpl.SetVariable "arctitle",rs("arctitle")&""
-'	oldtpl.SetVariable "arcpic",rs("arcpic")&""
-'	oldtpl.SetVariable "arctpl",arctpl
-'	oldtpl.SetVariable "arcsource",rs("arcsource")&""
-'	oldtpl.SetVariable "arckeys",rs("arckeys")&""
-'	oldtpl.SetVariable "arcflag",rs("arcflag")&""
-'	oldtpl.SetVariable "fbdate",rs("fbdate")&""
-'	oldtpl.SetVariable "cat_name",rs("cat_name")&""
-'	oldtpl.SetVariable "type_name",rs("typename")&""
-'	oldtpl.SetVariable "type_id",rs("typeid")&""
-'	oldtpl.SetVariable "arccontent",rs("arccontent")&""
-'	oldtpl.SetVariable "arcdescr",rs("arcdescr")&""
-'	
-'	oldtpl.SetVariable "typeidsel",getContentTypeSel()
-'	oldtpl.SetVariable "catidsel",getArcCatSel()
-'
-'	oldtpl.SetTemplateFile rs("tpl_editform")&""'getEditform(rs("cid")&"")
-'	if err.number <> 0 then 
-'		echoErr()
-'	end if
-'oldtpl.Parse
-'set oldtpl = nothing
-
 newtpl.assign "typeidsel",getContentTypeSel()
 newtpl.assign "catidsel",getArcCatSel()
 set rs=newdb.query(sqlstr)
