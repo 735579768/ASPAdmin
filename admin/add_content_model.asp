@@ -1,14 +1,10 @@
 <!--#include file="lib/AdminInIt.asp"-->
 <%
-set datars=newdb.table("kl_archives").sel()
-Set o = jsObject()
-for each  a in datars.fields
-o(a.name)=1
-next
-json=tojson(o)
+set datars=newdb.table("kl_content_types").where("type_id=7").sel()
+json=datars("formjsonstr")
 set arr=jsontoobj(json)
 for each b in arr.keys
-echo arr(b)
+echo b&"=>"&arr(b)&"<br>"
 next
 
 if G("act")="addconmodel" then
@@ -17,7 +13,7 @@ datatable=G("data_table")
 set datars=newdb.table(datatable).sel()
 Set o = jsObject()
 for each  a in datars.fields
-o(a.name)=1
+o(a.name)="descr|"& cstr(1)
 next
 formjsonstr=tojson(o)
 on error resume next

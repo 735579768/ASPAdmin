@@ -11,7 +11,7 @@ datatable=G("data_table")
 set datars=newdb.table(datatable).sel()
 Set o = jsObject()
 for each  a in datars.fields
-o(a.name)=1
+o(a.name)="descr|"& cstr(1)
 next
 formjsonstr=tojson(o)
 on error resume next
