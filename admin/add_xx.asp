@@ -1,12 +1,21 @@
 <!--#include file="lib/AdminInIt.asp"-->
 <% if session("APP")<>"true" then reurl("/") end if %>
 <%
+typeid=G("type_id")
+set typers=newdb.table("kl_content_types").where("type_id="&typeid).sel()
+data_table=cstr(typers("data_table"))
+set typers=nothing
+set datatablers=newdb.table(data_table).sel()
+for each a in datatablers.fields
+	echo a.name&"<br>"
+next
+echo data_table
 '添加信息
-	if G("isaddxx")="true" 
+	if G("isaddxx")="true"  then
 		err.clear
 		cat_id=G("cat_id")
 		sql="select b.data_table as datatable from kl_cats as a inner join kl_content_types as b on a.type_id=b.type_id where a.cat_id="&cat_id
-		set rs=olddb.query(sql)
+		set rs=newdb.query(sql)
 		datatable=rs("datatable")
 		
 				set uprs=server.createobject("adodb.recordset")

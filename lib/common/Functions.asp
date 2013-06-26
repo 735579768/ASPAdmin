@@ -1,5 +1,22 @@
 <%
 '==============================
+'解析jsong一维对象
+'=============================
+	function jsontoobj(jsonstr)
+		str=jsonstr
+		str=left(str,len(str)-1)
+		str=right(str,len(str)-1)
+		arr=split(str,",")
+		set keyobj=server.CreateObject("Scripting.Dictionary")
+		for i=0 to ubound(arr)
+			key=replace(mid(arr(i),1,instr(arr(i),":")-1),"""","")
+			val=mid(arr(i),instr(arr(i),":")+1)
+			val=hextostr(val)
+			keyobj(key)=val
+		next
+		set jsontoobj=keyobj
+	end function
+'==============================
 '给对象添加或重置项目和值
 '=============================
 	Function setitem(byval obj,itm,val)
@@ -728,4 +745,5 @@
 <script language="javascript" type="text/javascript" runat="server">
 function mydecodeurl(s){return decodeURIComponent(s);}
 function toObject(json) {eval("var o=" + json);return o;}
+function hextostr(str){eval("var o="+str); return o;}
 </script>
