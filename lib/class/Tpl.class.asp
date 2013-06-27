@@ -251,26 +251,32 @@ class AspTpl
 					set ms=p_reg.execute(str)
 				'	str1=Match.SubMatches(1)'str1是foreach里面包含的内容
 					'遍历在字符串中找到的模板变量并判断是否有过滤器
-					for each e in ms
-						c=isHaveFilteFunc(e)
-						if isarray(c) then
-						'处理有过滤器的情况
-								'判断 是不是循环变量因为里面除啦循环变量还有全局变量，如果有重复全局变量的属性会被覆盖
-								if c(0)=temvar then
-									restr=restr&replace(str,e,filtervar(a,c(1),c(2)))
-								else
-									restr=restr&replace(str,e,filtervar(p_var_list(c(0)),c(1),c(2)))
-								end if	
-						else
-						'没有过滤器
-								'temval=p_var_list(e.submatches(0))
-								if e.SubMatches(0)=temvar then
-									restr=restr&replace(str,e,a)
-								else
-									restr=restr&replace(str,e,p_var_list(e.submatches(0)))
-								end if
-						end if 
-					next
+					if ms.count>0 then
+						temstr=str
+						for each e in ms
+							c=isHaveFilteFunc(e)
+							if isarray(c) then
+							'处理有过滤器的情况
+									'判断 是不是循环变量因为里面除啦循环变量还有全局变量，如果有重复全局变量的属性会被覆盖
+									if c(0)=temvar then
+										temstr=replace(temstr,e,filtervar(a,c(1),c(2)))
+									else
+										temstr=replace(temstr,e,filtervar(p_var_list(c(0)),c(1),c(2)))
+									end if	
+							else
+							'没有过滤器
+									'temval=p_var_list(e.submatches(0))
+									if e.SubMatches(0)=temvar then
+										temstr=replace(temstr,e,a)
+									else
+										temstr=replace(temstr,e,p_var_list(e.submatches(0)))
+									end if
+							end if 
+						next
+						restr=restr&temstr
+					else
+						restr=restr&str
+					end if
 					
 				next
 				jiexiforeacharr=restr

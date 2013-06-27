@@ -1,6 +1,6 @@
 <!--#include file="lib/AdminInIt.asp"-->
 <%
-set datars=newdb.table("kl_content_types").where("type_id=7").sel()
+set datars=newdb.table("kl_content_types").where("type_id=1").sel()
 json=datars("formjsonstr")
 set arr=jsontoobj(json)
 for each b in arr.keys
