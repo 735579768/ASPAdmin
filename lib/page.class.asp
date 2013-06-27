@@ -240,7 +240,7 @@ str_tmp=""
 For i=1 to 5
   a=curpage
   b=a-i
-  if b>0 then str_tmp=str_tmp & "<a "&style&" href=""" & XD_sURL & b & """>"&b&"</a> "
+  if b>0 then str_tmp= "<a "&style&" href=""" & XD_sURL & b & """>"&b&"</a> "&str_tmp
   if b<=1 then exit for
 Next
  str_tmp=str_tmp & "<a style='color:red;' href=""" & XD_sURL &curpage & """>"&curpage&"</a> "

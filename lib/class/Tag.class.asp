@@ -114,7 +114,7 @@ class QuickTag
 								next
 								
 							arcrs.movenext
-
+							
 							liststr=tplobj.jiexivar(liststr)'在解析短标签前把里面的全局变量解析成数据
 							liststr=tplobj.jiexiShortTag(liststr)'处理短标签
 							liststr2=liststr2&liststr

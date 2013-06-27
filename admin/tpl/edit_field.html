@@ -125,8 +125,11 @@ a,img{border:0;}
 }
 </style>
 <body>
-<form method="post" action="" name="fieldform">
+<form method="post" action="?updformjson=true&type_id={$type_id}" name="fieldform">
 <table width="98%%" border="1" cellspacing="0" style="border-collapse:collapse; margin:50px auto;" cellpadding="0">
+  <tr>
+    <td colspan="3" align="center">内容模型 ({$type_name}) 列表字段显示</td>
+    </tr>
   <tr>
     <td width="30%" align="center">字段</td>
     <td width="40%" align="center">描述</td>
@@ -134,9 +137,9 @@ a,img{border:0;}
   </tr>
  <!--{foreach name="arr" var="var" iteration="num"}-->
   <tr>
-    <td width="10%" align="right"><input name="auto_{$var}{$num}" type="hidden" />{$var}</td>
-    <td ><input type="text" name="{$var}2{$num}" value="{$var}" /></td>
-    <td><input type="text" name="{$var}3{$num}" value="1" /></td>
+    <td width="30%" align="right"><input name="auto_{$var}{$num}" type="hidden" />{$var}</td>
+    <td ><input type="text" name="{$var}1{$num}" value="{$var}" /></td>
+    <td><input type="text" name="{$var}2{$num}" value="0" /></td>
   </tr>
   <!--{/foreach}-->
   <tr><td colspan="3" align="center"><a href="javascript:void(0);"  onclick="fieldform.submit();" class="coolbg">提交</a></td></tr>
