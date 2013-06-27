@@ -47,13 +47,15 @@ class QuickTag
 			tagreg.Pattern=p_tag_l & "arclist\s*?(.*?)\s*?"& p_tag_r  &"([\s\S]*?)"& p_tag_l & "/arclist"& p_tag_r
 			Set Matches = tagreg.Execute(str)
 			for each m in matches
-				catidlist=tplobj.getTagParam(m.submatches(0),"catid")
-				parentidlist=tplobj.getTagParam(m.submatches(0),"parentid")
-				num=tplobj.getTagParam(m.submatches(0),"num")
-				tplsql=tplobj.getTagParam(m.submatches(0),"sql")
-				pgsize=tplobj.getTagParam(m.submatches(0),"pagesize")'分页大小
-				pgnav=tplobj.getTagParam(m.submatches(0),"pagenav")'分页导航变量
-				hometj=tplobj.getTagParam(m.submatches(0),"hometj")'分页导航变量
+			
+				paramstr=m.submatches(0)
+				catidlist=tplobj.getTagParam(paramstr,"catid")
+				parentidlist=tplobj.getTagParam(paramstr,"parentid")
+				num=tplobj.getTagParam(paramstr,"num")
+				tplsql=tplobj.getTagParam(paramstr,"sql")
+				pgsize=tplobj.getTagParam(paramstr,"pagesize")'分页大小
+				pgnav=tplobj.getTagParam(paramstr,"pagenav")'分页导航变量
+				hometj=tplobj.getTagParam(paramstr,"hometj")'分页导航变量
 				if hometj<>"" then hometj=" and hometj=1 "
 				top=""
 				liststr2=""
@@ -110,7 +112,9 @@ class QuickTag
 									next 
 									
 								next
+								
 							arcrs.movenext
+
 							liststr=tplobj.jiexivar(liststr)'在解析短标签前把里面的全局变量解析成数据
 							liststr=tplobj.jiexiShortTag(liststr)'处理短标签
 							liststr2=liststr2&liststr

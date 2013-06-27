@@ -141,6 +141,7 @@ class AspTpl
 
 
 
+
 			if Ms.count>0 then
 				redim arr(3) 
 				arr(0)=Ms(0).SubMatches(0)'变量键名
@@ -169,8 +170,7 @@ class AspTpl
 					str=replace(str,Match,"")	
 				else
 					if bol then
-						str=replace(str,Match,Match.SubMatches(1))
-						str=jiexiShortTag(str)
+						str=replace(str,Match,jiexiShortTag(Match.SubMatches(1)))
 					else
 						str=replace(str,Match,"")	
 					end if				
@@ -188,8 +188,7 @@ class AspTpl
 		Set Matches = p_reg.Execute(str)
 		For Each Match in Matches  
 			if eval(jiexivar(Match.SubMatches(0))) then
-				str=replace(str,Match,Match.SubMatches(1))
-				str=jiexiShortTag(str)
+				str=replace(str,Match,jiexiShortTag(Match.SubMatches(1)))
 			else
 				str=replace(str,Match,Match.SubMatches(2))
 				str=jiexiShortTag(str)
@@ -251,32 +250,26 @@ class AspTpl
 					set ms=p_reg.execute(str)
 				'	str1=Match.SubMatches(1)'str1是foreach里面包含的内容
 					'遍历在字符串中找到的模板变量并判断是否有过滤器
-					if ms.count>0 then
-						temstr=str
-						for each e in ms
-							c=isHaveFilteFunc(e)
-							if isarray(c) then
-							'处理有过滤器的情况
-									'判断 是不是循环变量因为里面除啦循环变量还有全局变量，如果有重复全局变量的属性会被覆盖
-									if c(0)=temvar then
-										temstr=replace(temstr,e,filtervar(a,c(1),c(2)))
-									else
-										temstr=replace(temstr,e,filtervar(p_var_list(c(0)),c(1),c(2)))
-									end if	
-							else
-							'没有过滤器
-									'temval=p_var_list(e.submatches(0))
-									if e.SubMatches(0)=temvar then
-										temstr=replace(temstr,e,a)
-									else
-										temstr=replace(temstr,e,p_var_list(e.submatches(0)))
-									end if
-							end if 
-						next
-						restr=restr&temstr
-					else
-						restr=restr&str
-					end if
+					for each e in ms
+						c=isHaveFilteFunc(e)
+						if isarray(c) then
+						'处理有过滤器的情况
+								'判断 是不是循环变量因为里面除啦循环变量还有全局变量，如果有重复全局变量的属性会被覆盖
+								if c(0)=temvar then
+									restr=restr&replace(str,e,filtervar(a,c(1),c(2)))
+								else
+									restr=restr&replace(str,e,filtervar(p_var_list(c(0)),c(1),c(2)))
+								end if	
+						else
+						'没有过滤器
+								'temval=p_var_list(e.submatches(0))
+								if e.SubMatches(0)=temvar then
+									restr=restr&replace(str,e,a)
+								else
+									restr=restr&replace(str,e,p_var_list(e.submatches(0)))
+								end if
+						end if 
+					next
 					
 				next
 				jiexiforeacharr=restr
@@ -421,7 +414,6 @@ class AspTpl
 		p_tpl_content=ifTag(p_tpl_content)
 		p_tpl_content=foreachTag(p_tpl_content)
 		p_tpl_content=looptag(p_tpl_content)
-		
 		'扩展cms内容输出标签
 		set tpltag=new QuickTag
 		p_tpl_content=tpltag.run(p_tpl_content)
