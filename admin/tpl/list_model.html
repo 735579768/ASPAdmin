@@ -54,6 +54,7 @@ select{ padding:2px;}
 .pagenav a:hover,.pagenav a:hover font{ color:#000; background:#ebebeb;}
 .pagenav a,.pagenav font{ display:inline-block; height:20px; height:20px; padding:0px 6px; line-height:20px;border: 1px solid #E7ECF0;}
 .pagenav a font{ margin:0px; padding:0px; border:none;}
+td{ text-align:center;}
 </style>
 </head>
 <body>
@@ -76,60 +77,12 @@ select{ padding:2px;}
 </TD></TR>
 </table>
 <form name="batchdel" id="batchdel" action="">
-<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#cfcfcf" align="center">
-<tr class="biaotou" bgcolor="#E7E7E7">
-<td height="28" colspan="9" align="center" background="images/tbg.gif" style="padding-left:10px;">
-	<span>文档列表</span> &nbsp;
-</td>
-</tr>
-
-<tr align="center" bgcolor="#FBFCE2" height="25">
-<td width="5%">ID</td>
-<td width="4%">选择</td>
-<td width="20%">文章标题</td>
-<td width="5%">发表时间</td>
-<td width="10%">更新时间</td>
-<td width="7%">类目</td>
-<td width="7%">内容模型</td>
-<td width="8%">首页推荐</td>
-<td width="10%">操作</td>
-</tr>
-<tr align="center" bgcolor="#FFFFFF" onmousemove="javascript:this.bgColor='#FCFDEE';" onmouseout="javascript:this.bgColor='#FFFFFF';" height="25">
-<td>{{id}}</td>
-<td><input  type="checkbox" class="np checkid"  value="{{id}}" /></td>
-<td align="left">
-	<a href="edit_article.asp?id={{id}}&cat_id={{cat_id}}" target="_self"><u title="{{title}}">{{arctitle}}{{flagstr}}</u>{{haveimg}}</a>
-</td>
-<td>{{fbdate}}</td>
-<td>{{uddate}}</td>
-<td>{{cat_name}}</td>
-<td>{{type_name}}</td>
-<td>{{tuijian}}</td>
-<td>
-
-      <a href="edit_article.asp?id={{id}}&cat_id={{cat_id}}"><img src="images/edit.png" title="编辑属性" alt="编辑属性" onclick=";" style="cursor:pointer" border="0" width="16" height="16"></a>
-    <a href="/view.asp?id={{id}}" target="_blank"><img src="images/check.gif" title="预览" alt="预览" onclick="" style="cursor:pointer" border="0" width="16" height="16"></a>
-    <a href="{{recyclingurl}}"><input type="hidden" value="{{id}}" /><img src="images/recycling.gif" title="移到回收站" alt="移到回收站" onclick=";" style="cursor:pointer" border="0" width="30" height="20" class="delarticle"></a></td>
-</tr>
-<tr bgcolor="#ffffff">
-  <td height="24" colspan="9">
-  &nbsp;
-  <a href="javascript:selAll()" class="coolbg">全选</a>
-  <a href="javascript:noSelAll()" class="coolbg">取消全选</a>
-  <a href="javascript:void(0)" onclick="batchdel.submit();" class="coolbg">&nbsp;移到回收站&nbsp;</a></td>
-</tr>
-
-<tr align="right" bgcolor="#ffffff">
-<td height="30" colspan="9" align="center">
-	<span class="pagenav">{{pagenav}}</span></td>
-</tr>
-</table>
-<input type="hidden" name="batchid" id="batchidstr" value="" />
-</form>
-<table width="98%" style="border-collapse:collapse">
+<table width="98%" border="1" cellpadding="2" style="border-collapse:collapse;" cellspacing="1" align="center">
 {$titledata}
 {$listdata}
 </table>
+<input type="hidden" name="batchid" id="batchidstr" value="" />
+</form>
 <div class="pagenav">
 {$pagenav}
 </div>

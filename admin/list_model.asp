@@ -22,7 +22,7 @@ for each a in keyobj.keys
 		end if
 	end if
 next
-titledata=titledata&"<td>操作</td></tr>"
+titledata=titledata&"<td width='10%'>操作</td></tr>"
 newtpl.assign "titledata",titledata
 
 
@@ -35,22 +35,20 @@ set arcrs=mypage.getrs()
 pagenav=mypage.getshowpage()
 listdata=""
 	for i=0 to 19
-	echo i 
 		if not arcrs.eof then
 			listdata=listdata&"<tr>"
 			for each a in keyobj.keys
 			 temarr=split(keyobj(a),"|")
 				if ubound(temarr)>0 then
 					if temarr(1)=1 then
-						listdata=listdata&"<td>"&left(arcrs(a),10)&"</td>"			
+						listdata=listdata&"<td>"&left(removehtml(arcrs(a)),10)&"</td>"			
 					end if
 				end if
 			next
-			arcrs.movenext
 			listdata=listdata&"<td>"&opt&"</td></tr>"
 		end if
 
-		
+	arcrs.movenext
 	next
 newtpl.assign "listdata",listdata
 newtpl.assign "pagenav",pagenav
