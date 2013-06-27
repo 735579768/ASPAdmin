@@ -152,6 +152,43 @@ $(document).ready(function(){
 	
 })
 </script>
+<!--{if "{$act}"="runsql"}-->
+<form method="post" name="datatable" >
+<table width="98%" border="1" align="center" style="border-collapse:collapse; margin:50px auto;">
+<tr><td colspan="2" align="center">内容模型管理<span style="color:red;">(此处设置非程序员请勿操作)</span></td></tr>
+<tr><td align="right">新建数据表名：</td><td><input type="text" value="kl_test" name="data_table" /></td></tr>
+  <tr>
+    <td align="right" width="30%">sql语句：</td>
+    <td><textarea name="sql" cols="70" rows="10">
+    		CREATE TABLE kl_test
+                    (
+                        ID Counter primary key,
+                        cat_id int not null,
+                        type_id int not null,
+                        Title Text(255) Not Null,
+                        Content Memo,
+                        descr Memo,
+                        pic text(255),
+                        hits int not null,
+                        keys text(255),
+                        tpl text(50),
+                        hometj int not null,
+                        recycling int not null,
+                        source text(255),
+                        author Text(255),
+                        fbdate datetime,
+                        uddate datetime
+                        
+                    )
+    </textarea></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><a href="javascript:void(0);" onclick="datatable.submit();" class="coolbg">执行SQL语句</a></td>
+  </tr>
+ </table>
+ </form>
+<!--{/if}-->
+<!--{if "{$act}"="addmodel"}-->
 <form action="" id="contentmodel" method="post">
 <table width="98%" border="1" align="center" style="border-collapse:collapse; margin:50px auto;">
 <tr><td colspan="2" align="center">内容模型管理<span style="color:red;">(此处设置非程序员请勿操作)</span></td></tr>
@@ -191,6 +228,7 @@ $(document).ready(function(){
 </table>
 
 </form>
+<!--{/if}-->
 <table width="98%%" border="1" cellspacing="0" style="border-collapse:collapse; margin:50px auto;" cellpadding="0">
 <tr><td colspan="3" align="center">
 
