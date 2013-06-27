@@ -16,7 +16,7 @@
 			end if
 			'编辑文章时进行类型过滤
 			if typeid<>"" and G("id")<>"" then 
-				sql="select cat_id,cat_name from kl_cats where parent_id=0 and type_id="&typeid&" order by sort asc"
+				sql="select cat_id,cat_name,parent_id from kl_cats where parent_id=0  order by sort asc"
 			else
 				sql="select cat_id,cat_name from kl_cats where parent_id=0 order by sort asc"
 			end if

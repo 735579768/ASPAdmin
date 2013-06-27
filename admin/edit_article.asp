@@ -34,7 +34,7 @@
 					echo "<script>window.history.go(-1);</script>"
 				else
 					AlertMsg(UPDATE_SUCCESS_STR)
-					echo "<script>window.history.go(-2);</script>"
+					echo "<script>window.location=""article_list.asp?cat_id="&cat_id&"""</script>"
 				end if
 	end if
 '输出模板默认数据
