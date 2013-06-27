@@ -190,8 +190,7 @@ class AspTpl
 			if eval(jiexivar(Match.SubMatches(0))) then
 				str=replace(str,Match,jiexiShortTag(Match.SubMatches(1)))
 			else
-				str=replace(str,Match,Match.SubMatches(2))
-				str=jiexiShortTag(str)
+				str=replace(str,Match,jiexiShortTag(Match.SubMatches(2)))
 			end if
 		next
 		ifElseTag=str
