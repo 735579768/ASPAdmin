@@ -56,7 +56,9 @@ class QuickTag
 				pgsize=tplobj.getTagParam(paramstr,"pagesize")'分页大小
 				pgnav=tplobj.getTagParam(paramstr,"pagenav")'分页导航变量
 				hometj=tplobj.getTagParam(paramstr,"hometj")'分页导航变量
+				tiaojian=tplobj.getTagParam(paramstr,"where")'分页导航变量
 				if hometj<>"" then hometj=" and hometj=1 "
+				if tiaojian<>"" then tiaojian=" and "&tiaojian&" "
 				top=""
 				liststr2=""
 				runsql=tplsql'如果有sql语句就直接用sql语句
@@ -64,10 +66,10 @@ class QuickTag
 				if runsql="" then
 					where=" recycling=0 "
 					if catidlist<>"" and parentidlist<>"" then
-						where=where&" and(kl_archives.cat_id in("&catidlist&") or kl_cats.parent_id in("&parentidlist&"))" 
+						where=where&" and(kl_archives.cat_id in("&catidlist&") or kl_cats.parent_id in("&parentidlist&"))"&tiaojian 
 					else
-						if catidlist<>""  then where=where&" and kl_archives.cat_id in("&catidlist&") " 
-						if parentidlist<>""  then where=where&" and kl_cats.parent_id in("&parentidlist&") "
+						if catidlist<>""  then where=where&" and kl_archives.cat_id in("&catidlist&") " &tiaojian 
+						if parentidlist<>""  then where=where&" and kl_cats.parent_id in("&parentidlist&") "&tiaojian 
 					end if
 					runsql="select "&top&" kl_cats.cat_id as catid, * from (kl_archives inner join kl_cats on kl_archives.cat_id=kl_cats.cat_id) inner join kl_content_types on kl_cats.type_id=kl_content_types.type_id where "& where &" "& hometj &" order by fbdate desc,id desc"
 				end if
