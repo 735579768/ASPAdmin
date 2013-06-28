@@ -40,11 +40,12 @@ listdata=""
 			 temarr=split(keyobj(a),"|")
 				if ubound(temarr)>0 then
 					if temarr(1)=1 then
-						listdata=listdata&"<td>"&left(removehtml(arcrs(a)),10)&"</td>"			
+						listdata=listdata&"<td>"&left(removehtml(arcrs(a)),20)&"</td>"			
 					end if
 				end if
 			next
 			listdata=listdata
+			
 			listdata=listdata&"<td><a href='edit_article.asp?id="&arcrs("id")&"&cat_id="&arcrs("cat_id")&"'><img src='images/edit.png' title='编辑属性' alt='编辑属性' onclick=';' style='cursor:pointer' border='0' width='16' height='16'></a>    <a href='/view.asp?id="&arcrs("id")&"' target='_blank'><img src='images/check.gif' title='预览' alt='预览' onclick='' style='cursor:pointer' border='0' width='16' height='16'></a>    <a href='{{recyclingurl}}'><input type='hidden' value='"&arcrs("id")&"' /><img src='images/recycling.gif' title='移到回收站' alt='移到回收站' onclick=';' style='cursor:pointer' border='0' width='30' height='20' class='delarticle'></a></td></tr>"
 	arcrs.movenext
 	end if

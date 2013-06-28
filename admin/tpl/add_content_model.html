@@ -16,33 +16,7 @@ td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; 
 .sx{ text-align:center; margin:0px; padding:0px;}
 </style>
 <body>
-<script type="text/javascript">
-$(document).ready(function(){
 
-	//内嵌弹出层调用
-	$('#inside').click(function(){
-		$.webox({
-			height:280,
-			width:600,
-			bgvisibel:true,
-			title:'内嵌弹出层调用',
-			html:$("#box").html()
-		});
-	});
-	
-	//iframe弹出层调用
-	$('#outside').click(function(){
-		$.webox({
-			height:280,
-			width:600,
-			bgvisibel:true,
-			title:'iframe弹出层调用',
-			iframe:'add_content_model.asp'
-		});
-	});
-	
-})
-</script>
 <!--{if "{$act}"="runsql"}-->
 <form method="post" name="datatable" >
 <table width="98%" border="1" align="center" style="border-collapse:collapse; margin:50px auto;">
