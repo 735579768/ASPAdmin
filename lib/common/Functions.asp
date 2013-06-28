@@ -341,7 +341,15 @@
 '弹出js提示框到前台
 '///////////////////////////////////////////
 	function AlertMsg(str)
+		str=replace(str,"'","""")
 		echo "<script>alert('"&str&"');</script>"
+	end function
+'弹出js提示框到前台并返回
+'///////////////////////////////////////////
+	function AlertMsg(str,go)
+		str=replace(str,"'","""")
+		echo "<script>alert('"&str&"');</script>"
+		echo "<script>window.history.go("&go&");</script>"
 	end function
 '弹出js提示框到前台并刷新窗口
 '///////////////////////////////////////////

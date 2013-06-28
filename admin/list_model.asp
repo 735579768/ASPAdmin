@@ -9,7 +9,6 @@ datatable=rs("data_table")
 set keyobj=jsontoobj(formjsonstr)
 
 dim col'表数量
-opt=" <a href='edit_article.asp?id={{id}}&cat_id={{cat_id}}'><img src='images/edit.png' title='编辑属性' alt='编辑属性' onclick=';' style='cursor:pointer' border='0' width='16' height='16'></a>    <a href='/view.asp?id={{id}}' target='_blank'><img src='images/check.gif' title='预览' alt='预览' onclick='' style='cursor:pointer' border='0' width='16' height='16'></a>    <a href='{{recyclingurl}}'><input type='hidden' value='{{id}}' /><img src='images/recycling.gif' title='移到回收站' alt='移到回收站' onclick=';' style='cursor:pointer' border='0' width='30' height='20' class='delarticle'></a>"
 
 redim colarr(20)
 titledata="<tr bgcolor='#FBFCE2'>"
@@ -45,10 +44,10 @@ listdata=""
 					end if
 				end if
 			next
-			listdata=listdata&"<td>"&opt&"</td></tr>"
-		end if
-
+			listdata=listdata
+			listdata=listdata&"<td><a href='edit_article.asp?id="&arcrs("id")&"&cat_id="&arcrs("cat_id")&"'><img src='images/edit.png' title='编辑属性' alt='编辑属性' onclick=';' style='cursor:pointer' border='0' width='16' height='16'></a>    <a href='/view.asp?id="&arcrs("id")&"' target='_blank'><img src='images/check.gif' title='预览' alt='预览' onclick='' style='cursor:pointer' border='0' width='16' height='16'></a>    <a href='{{recyclingurl}}'><input type='hidden' value='"&arcrs("id")&"' /><img src='images/recycling.gif' title='移到回收站' alt='移到回收站' onclick=';' style='cursor:pointer' border='0' width='30' height='20' class='delarticle'></a></td></tr>"
 	arcrs.movenext
+	end if
 	next
 newtpl.assign "listdata",listdata
 newtpl.assign "pagenav",pagenav

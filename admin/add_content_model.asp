@@ -5,44 +5,30 @@ if datatable<>"" then
 	on error resume next
 	newdb.kl_conn.execute(G("sql"))
 	if err.number<>0 then
-	Alertmsg("run sql fail,error str:"&err.description)
-	else
-	newtpl.assign "act","addmodel"
-	echo "here"
-	end if
-
-	if G("act")="addconmodel" then
-		'取对应数据表中的字段信息
-		datatable=G("data_table")
-		set datars=newdb.table(datatable).sel()
-		Set o = jsObject()
-		for each  a in datars.fields
-		o(a.name)="descr|"& cstr(1)
-		next
-		formjsonstr=tojson(o)
-		on error resume next
 		err.clear
+		call Alertmsg("run sql fail,error str:"&err.description,-1)
+	else
 		set rs=newdb.table("kl_content_types").sel()'打开一个表的记录集
 		rs.addnew
 		rs("type_name")=G("type_name")
 		rs("type_sxname")=G("type_name")
 		rs("data_table")=datatable
-		rs("tpl_addform")=G("tpl_addform")
-		rs("tpl_editform")=G("tpl_editform")
-		rs("tpl_index")=G("tpl_index")
-		rs("tpl_list")=G("tpl_list")
-		rs("tpl_article")=G("tpl_article")
-		rs("formjsonstr")=formjsonstr
+		rs("tpl_addform")="addform.html"
+		rs("tpl_editform")="editform.html"
+		rs("tpl_index")="article_index.html"
+		rs("tpl_list")="article_list.html"
+		rs("tpl_article")="article_article.html"
+		rs("formjsonstr")=""
 		rs.update
 		if err.number<>0 then
 			AlertMsg(ADD_FAIL_STR)
 		else
-			AlertMsg(ADD_SUCCESS_STR)
-			reurl("contentmodel_list.asp")
+			set rs=newdb.table("kl_content_types").order("type_id desc").sel()
+			reurl("edit_field.asp?type_id="&rs("type_id"))
 		end if
-	end if
-else
- newtpl.assign "act","runsql"
-end if
+	 end if
+else	
+newtpl.assign "act","runsql"
 newtpl.display("add_content_model.html")
+end if
 %>
