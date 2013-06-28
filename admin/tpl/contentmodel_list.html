@@ -29,21 +29,23 @@ table input{ text-align:center; display:inline-block; width:70px; height:22px; b
 <!--搜索信息-->
 <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#cfcfcf" align="center">
 <tr class="biaotou" bgcolor="#E7E7E7">
-<td height="28" colspan="10" align="center" background="images/tbg.gif" style="padding-left:10px;">
+<td height="28" colspan="11" align="center" background="images/tbg.gif" style="padding-left:10px;">
 	<span>内容模型列表</span> &gt;&gt;&nbsp;<a href="add_content_model.asp" class="coolbg">添加新模型</a> &gt;&gt;&nbsp;<a href="javascript:window.history.go(-1);" class="coolbg">返回</a>
 </td>
 </tr>
 <tr align="center" bgcolor="#FBFCE2" height="25">
-<td width="5%">ID</td>
-<td width="4%">模型名称</td>
-<td width="4%">简称</td>
-<td width="4%">数据表</td>
-<td width="8%">添加模板</td>
-<td width="8%">编辑模板</td>
-<td width="8%">封面模板</td>
-<td width="8%">列表模板</td>
-<td width="8%">详情模板</td>
-<td width="8%">操作</td>
+<td width="6%">ID</td>
+<td width="10%">模型名称</td>
+<td width="8%">简称</td>
+<td width="6%">数据表</td>
+<td width="10%">添加模板</td>
+<td width="10%">编辑模板</td>
+<td width="10%">封面模板</td>
+<td width="10%">列表模板</td>
+<td width="10%">详情模板</td>
+<td width="10%">编辑字段</td>
+<td width="10%">操作</td>
+
 </tr>
 <!-- BEGIN contentmodellist -->
 <!--{arclist sql="select * from kl_content_types"}-->
@@ -56,18 +58,20 @@ table input{ text-align:center; display:inline-block; width:70px; height:22px; b
 <td align="left">
 	<input  name="type_sxname" type="text" value="{$type_sxname}" />
 </td>
-<td><input  name="data_table" type="text" value="{$data_table}" readonly="readonly" /></td>
+<td><input  name="data_table" type="hidden" value="{$data_table}" />{$data_table}</td>
 <td><input  name="tpl_addform" type="text" value="{$tpl_addform}" /></td>
 <td><input  name="tpl_editform" type="text" value="{$tpl_editform}" /></td>
 <td><input  name="tpl_index" type="text" value="{$tpl_index}" /></td>
 <td><input  name="tpl_list" type="text" value="{$tpl_list}" /></td>
 <td><input  name="tpl_article" type="text" value="{$tpl_article}" /></td>
+<td><a href="edit_field.asp?type_id={$type_id}" class="coolbg">编辑字段</a> </td>
 <td>
     <input type="hidden" name="type_id" value="{$type_id}" />
     <input type="hidden" name="act" value="updmodel" />
     <input type="submit"  value="提交更新" class="coolbg" style="width:60px;" />
     <a href="?act=delmodel&type_id={$type_id}" class="coolbg">删除</a> 
     </td>
+
 </tr>
 </form>
 <!--{/arclist}-->

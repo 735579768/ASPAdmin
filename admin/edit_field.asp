@@ -36,6 +36,7 @@ if datatable<>"" then
 		dim desc,show,addedit
 		
 		if isobject(jsonobj) then
+		on error resume next
 			tarr=split(jsonobj(a.name),"|")
 			descr=tarr(0)
 			show=tarr(1)
