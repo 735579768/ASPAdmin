@@ -17,14 +17,13 @@ td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; 
 <script charset="utf-8" src="editor/lang/zh_CN.js"></script>
 
 <body>
-<form action="" id="addarc" method="post">
+<form action="?act=addxx" id="addarc" method="post">
 <table width="98%" style="border-collapse:collapse; margin-bottom:50px;" border="1" cellspacing="0" cellpadding="0">
 {$addform}
   <tr>
     <td colspan="2" align="center">
-    <input type="hidden" name="isaddarticle" value="true" />
-    <input type="submit"  value="添加文章"  style="width:70px" class="coolbt checkform">
-    <input type="button"  value="返回" onclick="window.history.go(-1);"  style="width:70px" class="coolbt">
+    <a href="javascript:void(0);" onclick="addarc.submit();" class="coolbg">添加</a>
+    <a href="javascript:void(0);" onclick="window.history.go(-1);" class="coolbg">返回</a>
     </td>
   </tr>
 </table>

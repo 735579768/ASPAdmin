@@ -32,9 +32,10 @@ if datatable<>"" then
 		for each a in rs.fields
 				echo fieldtag&""
 			if fieldtag="" then 
-				fieldstr=fieldstr&"<field name='"&a.name&"' title='"&a.name&"' descr='' listshow='1' addshow='' editshow='' datatype='text' />"&vbCrLf
+				fieldstr=fieldstr&"<field name='"&a.name&"' title='"&a.name&"' descr='' listshow='1' addshow='' editshow=''  func='' datatype='text' />"&vbCrLf
 			end if
 		next
+		fieldstr=fieldstr&"<field name='type_id' title='内容类型' descr='' listshow='1' addshow='1' editshow='1' datatype='cat_id' func=''/>"
 		if fieldtag="" then fieldtag=fieldstr
 		newtpl.assign "fieldtag",fieldtag
 		newtpl.assign "type_id",typeid

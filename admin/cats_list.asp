@@ -249,14 +249,14 @@ icoimgid=icoimgid+1
 		<dt>
         	<div class='left'>
                 <img class='jiajian' stateid="icoimg<%=icoimgid%>" state="0" id="icoimg<%=icoimgid%>" src='images/jian.gif' width='9' height='9' />
-                栏目：<u><a title='点击查看此分类下文章' href='article_list.asp?cat_id=<%=cid1%>' target='_self'><%=cname1%></a></u>
+                栏目：<u><a title='点击查看此分类下文章' href='list_xx.asp?cat_id=<%=cid1%>' target='_self'><%=cname1%></a></u>
                 <span class='red'>(ID:<%=cid1%>,文档数:<%=arcnum1%>)</span>(<%=wraprs("type_sxname")%>)<%=catsinglecontent%>
             </div>
             <div class='right'> 
             <%
 			if not isparentcat(cid1) then
 			%>
-    <a href='add_article.asp?cat_id=<%=cid1%>' title='在此分类下添加信息'  class='coolbg red'>添加信息</a> 
+    <a href='add_xx.asp?cat_id=<%=cid1%>&type_id=<%=typeid1%>' title='在此分类下添加信息'  class='coolbg red'>添加信息</a> 
                 <%
 				else
 					echo "<div style='width:60px; height:25px; float:left;'></div>"
@@ -297,7 +297,7 @@ icoimgid=icoimgid+1
 %>
     <dd>
     	<div class='left'>
-    		栏目：<u><a title='点击查看此分类下文章'  href='article_list.asp?cat_id=<%=cid2%>' target='_self'><%=cname2%></a></u><span class='red'>(ID:<%=cid2%>,文档数:<%=arcnum2%>)</span>(<%=neirs("type_sxname")%>)<%=catsinglecontent2%>
+    		栏目：<u><a title='点击查看此分类下文章'  href='list_xx.asp?cat_id=<%=cid2%>' target='_self'><%=cname2%></a></u><span class='red'>(ID:<%=cid2%>,文档数:<%=arcnum2%>)</span>(<%=neirs("type_sxname")%>)<%=catsinglecontent2%>
         </div>
         <div class='right'>
         <%
@@ -307,7 +307,7 @@ icoimgid=icoimgid+1
  	<%
 	 else
 	 %>
-     <a href='add_article.asp?cat_id=<%=cid2%>' title='在此分类下添加信息'  class='coolbg red'>添加信息</a>
+     <a href='add_xx.asp?cat_id=<%=cid2%>&type_id=<%=typeid2%>' title='在此分类下添加信息'  class='coolbg red'>添加信息</a>
    	<%
 	end if
 	 %>

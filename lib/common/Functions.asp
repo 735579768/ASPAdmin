@@ -700,6 +700,7 @@
 '参  数：strHTML
 '****************************************************
 	Function RemoveHTML(strHTML)
+	on error resume next
 	 Dim objRegExp, Match, Matches 
 	 Set objRegExp = New Regexp
 	 objRegExp.IgnoreCase = True

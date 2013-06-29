@@ -1,36 +1,56 @@
 <!--#include file="lib/AdminInIt.asp"-->
 <% if session("APP")<>"true" then reurl("/") end if %>
 <%
+'接收类型id  分类id  id 三个参数
 typeid=G("type_id")
-set typers=newdb.table("kl_content_types").where("type_id="&typeid).sel()
-formjsonstr=cstr(typers("formjsonstr"))
-set jsonobj=jsontoobj(formjsonstr)
+id=G("id")
+newtpl.assign "id",id
 
-listdata=""
-if isobject(jsonobj) then
-	for each a in jsonobj.keys
-	tarr=split(jsonobj(a),"|")
-	descr=tarr(0)
-	addedit=cstr(tarr(2))
-	if addedit<>"" then
-'	a="auto_"&a
-	select case addedit
-		case "1" 'text
-			listdata=listdata&"<tr><td>"&descr&":</td><td><input name='"&a&"' type='text' /></td></tr>"
-		case "2" 'textarea
-			listdata=listdata&"<tr><td>"&descr&":</td><td><textarea name='"&a&"' style='width:500px; height:50px;'></textarea></td></tr>"
-		case "3" 'html数据
-			listdata=listdata&"<script>var editor;KindEditor.ready(function(K) {editor = K.create('textarea[name="""&a&"""]', {'allowFileManager' : true,'uploadJson': 'editor/asp/upload_json.asp','fileManagerJson': 'editor/asp/file_manager_json.asp','allowFlashUpload':true,'allowFileManager':true,'filterMode':false,'allowPreviewEmoticons':true,'afterBlur':function(){this.sync();}});});</script><tr><td>"&descr&":</td><td><textarea name='"&a&"' style='width:710px;height:400px;visibility:hidden;'></textarea></td></tr>"
-		case "4" '上传图片
-			listdata=listdata&"<script>var editor;KindEditor.ready(function(K) {K('#image1').click(function() {editor.loadPlugin('image', function() {editor.plugin.imageDialog({imageUrl : K('#url1').val(),clickFn : function(url, title, width, height, border, align) {K('#url1').val(url);editor.hideDialog();}});});});});</script><tr><td>"&descr&":</td><td><input name='"&a&"' type='text' id='url1' value='' style='width:388px' /> <input type='button' id='image1' value='选择图片' /></td></tr>"
-		case default
-			listdata=listdata&"<tr><td>"&descr&":</td><td><input name='"&a&"' type='text' /></td></tr>"
-	end select
+set typers=newdb.table("kl_content_types").where("type_id="&typeid).sel()
+fieldtag=typers("fieldtag")&""
+type_name=typers("type_name")&""
+data_table=typers("data_table")&""
+'===============================
+'添加数据
+	if G("act")="updxx"  then
+		set formobj=newdb.table(data_table).where("id="&id).create()
+		formobj("uddate")=FormatDate(now,2)&""
+		newdb.formdata=formobj
+		result=newdb.save()
+		if result then
+			echo "<script>alert('"&UPDATE_SUCCESS_STR&"');window.location='list_xx.asp?cat_id="&G("cat_id")&"';</script>"
+		else
+			echoErr()
+			AlertMsg UPDATE_FAIL_STR,-1
+		end if
 	end if
-	next
-	newtpl.assign "listdata",listdata
-end if
-'添加信息
+
+'====================
+
+set datars=newdb.table(data_table).where("id="&id).sel()
+
+if datars.eof then :echo "<script>window.history.go(-1);</script>":die(""):end if
+'====================
+'输出添加表单
+Set reg = New RegExp 
+reg.IgnoreCase = True
+reg.Global = True
+reg.Pattern ="<field(.*?)/>"
+Set Matches = reg.Execute(fieldtag)
+editform=""
+For Each Match in Matches 
+	nme=getFieldParam(Match,"name")
+	title=getFieldParam(Match,"title")
+	descr=getFieldParam(Match,"descr")
+	datatype=getFieldParam(Match,"datatype")
+	addshow=getFieldParam(Match,"addshow")
+	if addshow="1" then
+	editform=editform&gettypeform(nme,datars(nme),title,descr,datatype)
+	end if
+next 
+newtpl.assign "editform",editform
+'输出添加表单
+'===============================
 	if G("isaddxx")="true"  then
 		err.clear
 		cat_id=G("cat_id")
@@ -60,5 +80,38 @@ end if
 					AlertMsg(ADD_SUCCESS_STR)
 				end if
 	end if
-newtpl.display("add_xx.html")
+newtpl.display("edit_xx.html")
+'=================================本页函数库========
+	public Function getFieldParam(str,key)
+		Set p_reg = New RegExp 
+		str1=""
+		p_reg.Pattern ="([\s\S]*?)"&key&"=[\""|\']([\s\S]*?)[\""|\']([\s\S]*?)"	
+		set ms=p_reg.Execute(str)
+		if ms.count>0 then
+		str1=ms(0).SubMatches(1)'取sql语句
+		end if
+		set ms=nothing
+		getFieldParam=str1
+	End Function
+'==========================================
+'返回表单类型
+'==========================================
+	public Function gettypeform(nme,val,title,descr,datatype)
+		select case datatype
+			case "text" 'text
+				gettypeform="<tr><td align='right'>"&title&":</td><td><input name='"&nme&"' value='"&val&"' type='text' style='width:200px;' /></td></tr>"
+			case "textarea" 'textarea
+				gettypeform="<tr><td align='right'>"&title&":</td><td><textarea name='"&nme&"' style='width:500px; height:50px;'>"&val&" </textarea>"&descr&"</td></tr>"
+			case "html" 'html数据
+				gettypeform="<script>var editor;KindEditor.ready(function(K) {editor = K.create('textarea[name="""&nme&"""]', {'allowFileManager' : true,'uploadJson': 'editor/asp/upload_json.asp','fileManagerJson': 'editor/asp/file_manager_json.asp','allowFlashUpload':true,'allowFileManager':true,'filterMode':false,'allowPreviewEmoticons':true,'afterBlur':function(){this.sync();}});});</script><tr><td align='right'>"&title&":</td><td><textarea name='"&nme&"' style='width:710px;height:400px;visibility:hidden;'>"&val&"</textarea>"&descr&"</td></tr>"
+			case "pic" '上传图片
+				gettypeform="<script>var editor;KindEditor.ready(function(K) {K('#image1').click(function() {editor.loadPlugin('image', function() {editor.plugin.imageDialog({imageUrl : K('#url1').val(),clickFn : function(url, title, width, height, border, align) {K('#url1').val(url);editor.hideDialog();}});});});});</script><tr><td align='right'>"&title&":</td><td><input name='"&nme&"' type='text' value='"&val&"'  id='url1' value='' style='width:388px' /> <input type='button' id='image1' value='选择图片' />"&descr&"</td></tr>"
+			case "cat_id" '分类下拉菜单
+				gettypeform="<tr><td align='right'>"&title&":</td><td>"&getArcCatSel()&descr&"</td></tr>"
+			case "static" '分类下拉菜单
+				gettypeform="<tr><td align='right'>"&title&":</td><td><input name='type_id' value='"&typeid&"'  type='hidden' />"&type_name&"</td></tr>"
+			case default
+				gettypeform="<tr><td align='right'>"&title&":</td><td><input name='"&nme&"' value='"&val&"'  type='text' />"&descr&"</td></tr>"
+		end select
+	End Function
 %>

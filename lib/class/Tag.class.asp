@@ -106,10 +106,10 @@ class QuickTag
 												'echo mm
 												if isarray(c) then
 												'有过滤器
-													liststr=replace(liststr,mm,tplobj.filterVar(cstr(arcrs(c(0))),c(1),c(2)))
+													liststr=replace(liststr,mm,tplobj.filterVar(arcrs(c(0))&"",c(1),c(2)))
 												else
 												'没有过滤器
-													liststr=replace(liststr,mm,cstr(arcrs(fie.name )))
+													liststr=replace(liststr,mm,arcrs(fie.name )&"")
 												end if	
 									next 
 									

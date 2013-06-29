@@ -169,10 +169,10 @@ Class Accessdb
 	Function create()
 		set autoform = server.CreateObject("Scripting.Dictionary")
 		for each key in request.Form
-			if instr(key,"auto_")<>0 then
-				k=replace(key,"auto_","")
-				autoform(k)=request.Form(key)
-			end if
+			'if instr(key,"auto_")<>0 then
+				'k=replace(key,"auto_","")
+				autoform(key)=request.Form(key)
+			'end if
 		next
 		set create=autoform
 	end Function
@@ -189,14 +189,12 @@ Class Accessdb
 		For i = 0 To autoform.Count -1 '重复数组。
 			on error resume next
 			err.clear
-			if instr(d(i),"auto_")<>0 then
-				fie=replace(d(i),"auto_","")
-				rs(fie)=request.Form(d(i))
+			rs(d(i))=autoform(d(i))
 				if err.number<>0 then
 					err.clear
 					echoErr 0 ,"<span style='color:red;'>update data err;<br>error deacr:"&err.description&"</span><br>"
 				end if
-			end if
+			'end if
  		Next
 		rs.update
 		set autoform=nothing
@@ -215,14 +213,14 @@ Class Accessdb
 		For i = 0 To autoform.Count -1 '重复数组。
 			on error resume next
 			err.clear
-			if instr(d(i),"auto_")<>0 then
-				fie=replace(d(i),"auto_","")
-				rs(fie)=request.Form(d(i))
+			'if instr(d(i),"auto_")<>0 then
+			'	fie=replace(d(i),"auto_","")
+				rs(d(i))=autoform(d(i))
 				if err.number<>0 then
 					err.clear
 					echoErr 0 ,"<span style='color:red;'>update data err;<br>error deacr:"&err.description&"</span><br>"
 				end if
-			end if
+			'end if
  		Next
 		rs.update
 		set autoform=nothing
