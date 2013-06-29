@@ -35,27 +35,25 @@ $(document).ready(function(){
 <form method="post" action="?updformjson=true&type_id={$type_id}" name="fieldform">
 <table width="98%%" border="1" cellspacing="0" style="border-collapse:collapse; margin:0px auto;" cellpadding="0">
   <tr>
-    <td colspan="4" align="center">内容模型 ({$type_name}) 列表字段显示</td>
+    <td align="center">内容模型 ({$type_name}) 字段编辑</td>
     </tr>
   <tr>
-    <td width="20%" align="center">字段</td>
-    <td width="20%" align="center">描述</td>
-    <td width="30%" align="center">列表显示(1显示,0不显示)</td>
-     <td width="30%" align="center">数据类型</td>
-  </tr>
- {$listdata}
-  <tr><td colspan="4" align="center"><a href="javascript:void(0);"  onclick="fieldform.submit();" class="coolbg">提交</a></td></tr>
+    <td align="center">字段信息编辑 <a href="#" class="coolbg sel">数据类型说明</a></td>
+    </tr>
+   <tr><td>
+   <textarea  name="fieldtag" style="width:98%; height:300px;">
+{$fieldtag}
+   </textarea></td></tr>
+  <tr><td align="center"><a href="javascript:void(0);"  onclick="fieldform.submit();" class="coolbg">提交</a></td></tr>
 </table>
 </form>
 </div>
 <div id="box" style="display:none;">
 <div style="padding:20px;font-weight: bolder; font-size:16px;line-height: 25px;">
-若为空则在表单是不显示<br />
-
-text数据为(1)<br />
-textarea数据为(2)<br />
-html数据为(3)是一个编辑框<br />
-pic数据为(4)可以上传图片的表单<br />
+text(变通input)<br />
+textarea(textarea)<br />
+html(一个html编辑框)<br />
+pic(可以上传图片的表单)<br />
 
 
 </div>

@@ -13,45 +13,32 @@ if G("updformjson")="true" and typeid<>"" then
 	formjsonstr= tojson(o)
 	set rs=newdb.table("kl_content_types").where("type_id="&typeid).sel
 	rs("formjsonstr")=formjsonstr
+	rs("fieldtag")=G("fieldtag")
 	rs.update
 end if
 '输出表中的字段
-dim datatable,type_name,formjsonstr,jsonobj
+dim datatable,type_name,formjsonstr,jsonobj,fieldtag
 datatable=G("data_table")
 if typeid<>"" then
 	set rs=newdb.table("kl_content_types").where("type_id="&typeid).sel()
-	type_name=rs("type_name")
-	datatable=rs("data_table")
-	formjsonstr=rs("formjsonstr")
+	type_name=rs("type_name")&""
+	datatable=rs("data_table")&""
+	fieldtag=rs("fieldtag")&""
 end if
-'输出json对象数据
-if formjsonstr<>"" then
-set jsonobj=jsontoobj(formjsonstr)
-end if
-
 if datatable<>"" then
 	set rs=newdb.table(datatable).sel()
-		listdata=""
+'		listdata=""
+		fieldstr=""
 		for each a in rs.fields
-		dim desc,show,addedit
-		
-		if isobject(jsonobj) then
-		on error resume next
-			tarr=split(jsonobj(a.name),"|")
-			descr=tarr(0)
-			show=tarr(1)
-			addedit=tarr(2)
-		else
-			descr=a.name
-			show="0"
-			addedit=""
-		end if
-		listdata=listdata&"<tr><td  align='right'><input name='auto_"&a.name&"' type='hidden' />"&a.name&"</td><td align='center' ><input type='text' name='"&a.name&"1' value='"&descr&"' /></td><td align='center' ><input type='text' name='"&a.name&"2' value='"&show&"' /></td><td align='center' ><input type='text' name='"&a.name&"3' value='"&addedit&"' /><a id='"&a.name&"' class='coolbg sel'>类型说明</a></td></tr>"
+				echo fieldtag&""
+			if fieldtag="" then 
+				fieldstr=fieldstr&"<field name='"&a.name&"' title='"&a.name&"' descr='' listshow='1' addshow='' editshow='' datatype='text' />"&vbCrLf
+			end if
 		next
-		newtpl.assign "listdata",listdata
+		if fieldtag="" then fieldtag=fieldstr
+		newtpl.assign "fieldtag",fieldtag
 		newtpl.assign "type_id",typeid
 		newtpl.assign "type_name",type_name
-		newtpl.assign "arr",arr
 		newtpl.display("edit_field.html")
 else
 	echo "<script>window.history.go(-1);</sript>"
