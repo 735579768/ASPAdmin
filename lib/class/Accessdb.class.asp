@@ -77,7 +77,7 @@ Class Accessdb
 				if not rss.eof then 	
 					set kl_keyval = server.CreateObject("Scripting.Dictionary")
 					for each a in rss.fields
-						kl_keyval(a.name)=rss(a.name)
+						kl_keyval(a.name)=rss(a.name)&""
 					next
 					set klvalarr(i)=kl_keyval
 					set kl_keval=nothing

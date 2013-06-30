@@ -488,16 +488,18 @@ class AspTpl
 						fireg.pattern="<.*?>|\s*|\r*\n\s*\r*\n"
 						val=fireg.replace(val,"")
 						set fireg=nothing
-						filterVar=left(val,Cint(param))
+						temVar=left(val,Cint(param))
 				case "empty" 
 						if val="" then
-							filtervar=param
+							temvar=param
 						else
-							filtervar=val
+							temvar=val
 						end if
 				case else 
-						filtervar=val
+						temvar=val
 			end select
+			if isnull(temval) then temval=""
+			filterVar=temvar
 	End Function
 	'===============================================================================
 	'取标签中的参数
@@ -562,7 +564,7 @@ class AspTpl
 	' 
 	'===================================================
 	private function looptag(str)
-		'bakon error resume next
+		'on error resume next
 		p_reg.Pattern=p_tag_l & "loop(.*?)" & p_tag_r&"([\s\S]*?)" & p_tag_l & "/loop" &p_tag_r
 		set matches=p_reg.execute(str)
 		for each match in matches
@@ -588,6 +590,7 @@ class AspTpl
 								for each m in temm
 									c=isHaveFilteFunc(m)
 									if isarray(c) then
+										
 										restr=replace(restr,m,filtervar(temobjarr(i)(k),c(1),c(2)) )
 									else
 										restr=replace(restr,m,temobjarr(i)(k))
