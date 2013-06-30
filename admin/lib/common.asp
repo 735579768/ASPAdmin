@@ -154,8 +154,9 @@
 '输出角色权限下拉菜单
 	Function getQxsel()
 			dim str
+			qx_id=session("adminqxid")
 			str="<select name=qx_id>"
-		set selrs=olddb.GetRecordBySQL("select * from kl_admin_qx")
+		set selrs=olddb.GetRecordBySQL("select * from kl_admin_qx where qx_id>="&qx_id)
 				if selrs.recordcount>0 then 
 					do while not selrs.eof
 							if G("qx_id")=selrs("qx_id")&"" then

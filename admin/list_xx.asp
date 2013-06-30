@@ -128,12 +128,21 @@ newtpl.display("list_xx.html")
 '=====================================
 function funcFilter(func,val)
 	select case func
+	'推荐文章
 		case "hometj"
 			if val="1" then
 				 val="<a class='tj' href='javascript:void(0);' data='no' dataid='"&arcrs("id")&"'  style='color:red;'>已推荐</a>"
 			else
 				val="<a class='tj' data='yes' href='javascript:void(0);' dataid='"&arcrs("id")&"' style='color:#000;;'>未推荐</a>"
 			end if
+	'判断文章是不是有图片
+		case "haveimg"
+			if arcrs("arcpic")<>"" then
+				val="<u>"&val&"</u><div class='catimg'><img class='haveimg' src='images/haveimg.gif' style='cursor:pointer;' width='12' height='12' alt='分类封面有图片显示' title='分类封面有图片显示' /><span class='catdaimg' ><img src='"&arcrs("arcpic")&"' width='150' height='150' /></span></div>"	
+			else
+				val="<u>"&val&"</u>"
+			end if
+		
 		case else val=left(val,20)
 	end select
 	funcFilter=val
