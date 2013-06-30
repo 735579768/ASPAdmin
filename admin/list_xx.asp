@@ -138,7 +138,7 @@ function funcFilter(func,val)
 	'判断文章是不是有图片
 		case "haveimg"
 			if arcrs("arcpic")<>"" then
-				val="<u>"&val&"</u><div class='catimg'><img class='haveimg' src='images/haveimg.gif' style='cursor:pointer;' width='12' height='12' alt='分类封面有图片显示' title='分类封面有图片显示' /><span class='catdaimg' ><img src='"&arcrs("arcpic")&"' width='150' height='150' /></span></div>"	
+				val="<u><a href='edit_xx.asp?id="&arcrs("id")&"&type_id="&arcrs("type_id")&"&cat_id="&arcrs("cat_id")&"'>"&val&"</a></u><div class='catimg'><img class='haveimg' src='images/haveimg.gif' style='cursor:pointer;' width='12' height='12' alt='分类封面有图片显示' title='分类封面有图片显示' /><span class='catdaimg' ><img src='"&arcrs("arcpic")&"' width='150' height='150' /></span></div>"	
 			else
 				val="<u>"&val&"</u>"
 			end if
