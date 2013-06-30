@@ -21,7 +21,7 @@ data_table=typers("data_table")&""
 			echo "<script>alert('"&UPDATE_SUCCESS_STR&"');window.location='list_xx.asp?cat_id="&G("cat_id")&"';</script>"
 		else
 			echoErr()
-			AlertMsg UPDATE_FAIL_STR,-1
+			AlertMsgGo UPDATE_FAIL_STR,-1
 		end if
 	end if
 

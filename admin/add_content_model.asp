@@ -6,7 +6,7 @@ if datatable<>"" then
 	newdb.kl_conn.execute(G("sql"))
 	if err.number<>0 then
 		err.clear
-		call Alertmsg("run sql fail,error str:"&err.description,-1)
+		call AlertmsgGo("run sql fail,error str:"&err.description,-1)
 	else
 		set rs=newdb.table("kl_content_types").sel()'打开一个表的记录集
 		rs.addnew

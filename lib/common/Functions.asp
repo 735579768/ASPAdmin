@@ -346,7 +346,7 @@
 	end function
 '弹出js提示框到前台并返回
 '///////////////////////////////////////////
-	function AlertMsg(str,go)
+	function AlertMsgGo(str,go)
 		str=replace(str,"'","""")
 		echo "<script>alert('"&str&"');</script>"
 		echo "<script>window.history.go("&go&");</script>"

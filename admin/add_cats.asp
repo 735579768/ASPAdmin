@@ -38,9 +38,9 @@ if G("act")="add" then
 				uprs.close
 				set uprs=nothing
 		if err.number<>0 then
-			AlertMsg(ADDFAIL&err.description)
+			AlertMsgGo ADDFAIL&err.description,1
 		else
-			AlertMsg(ADDSUCCESS)
+			AlertMsgGo ADDSUCCESS,1
 			echo "<script>window.location='cats_list.asp';</script>"
 		end if
 		

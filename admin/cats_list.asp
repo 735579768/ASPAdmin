@@ -72,14 +72,17 @@ function tjaddmsg(){
 </script>
 <%
 dim menujibie,icoimgid
- menujibie=1
- icoimgid=1
+
+menujibie=1
+icoimgid=1
 sql="select cat_id from kl_cats where parent_id=0 order by sort asc "
 set xhrs=olddb.query(sql)
 if xhrs.recordcount>0 then
 	do while not xhrs.eof
 		menujibie=1
-		call getcatlist(xhrs("cat_id"))
+		echo "<dl class='lanmu'>"
+		call getcatlist(xhrs("cat_id"),"","")
+		echo "</dl>"
 	xhrs.movenext
 	loop
 end if
@@ -223,15 +226,17 @@ function getarcnum(catid)
 	set bbbb=nothing
 end function
 '查询分类是否有封面内容
-Function getcatindexcontent(catcontent)
-if catcontent<>"" then
-getcatindexcontent=YOUINDEXCONTENT
-else
-getcatindexcontent=MEIINDEXCONTENT
-end if
-end Function
+	Function getcatindexcontent(catcontent)
+		if catcontent<>"" then
+		getcatindexcontent=YOUINDEXCONTENT
+		else
+		getcatindexcontent=MEIINDEXCONTENT
+		end if
+	end Function
 '无限分类调用函数
-Function getcatlist(catid)
+Function getcatlist(catid,padding,divleft)
+		if padding="" then padding=40
+		if divleft="" then divleft=580
 sqlstr="select a.cat_name as catname,a.type_id as typeid,* from kl_cats as a inner join kl_content_types as b on a.type_id=b.type_id   where a.cat_id="&catid&" order by sort asc "
 set wraprs=olddb.query(sqlstr) 
 cid1=wraprs("cat_id")&""'分类id
@@ -245,9 +250,8 @@ catsinglecontent=getcatindexcontent(wraprs("cat_singlecontent")&"")
 
 icoimgid=icoimgid+1
 %>
-	<dl class='lanmu'>
-		<dt>
-        	<div class='left'>
+		<dt style='padding-left:<%=padding%>px'>
+        	<div class='left' style='width:<%=divleft%>px;'>
                 <img class='jiajian' stateid="icoimg<%=icoimgid%>" state="0" id="icoimg<%=icoimgid%>" src='images/jian.gif' width='9' height='9' />
                 栏目：<u><a title='点击查看此分类下文章' href='list_xx.asp?cat_id=<%=cid1%>' target='_self'><%=cname1%></a></u>
                 <span class='red'>(ID:<%=cid1%>,文档数:<%=arcnum1%>)</span>(<%=wraprs("type_sxname")%>)<%=catsinglecontent%>
@@ -262,6 +266,7 @@ icoimgid=icoimgid+1
 					echo "<div style='width:60px; height:25px; float:left;'></div>"
 				end if
 				%>
+                <div style="width:60px; float:left;"></div>
                 <a href='edit_cats.asp?cat_id=<%=cid1%>&type_id=<%=typeid1%>' class='coolbg'>更改</a>
                 <input type='hidden'  value='<%=cid1%>' />
                 <a href='javascript:void(0);' class='coolbg delcat'>删除</a>
@@ -270,64 +275,68 @@ icoimgid=icoimgid+1
             </div>
     	</dt>
 <%
+
+		
+		'如果有子菜单就去输出子菜单
+	if isparentcat(catid) then
 		sqlstr="select a.cat_id as catid,a.cat_name as catname,a.type_id as typeid,* from kl_cats as a inner join kl_content_types as b on a.type_id=b.type_id   where a.parent_id="&catid&" order by sort asc "
 		set neirs=olddb.query(sqlstr) 
-		
-		if neirs.recordcount>0 then 
-			do while not neirs.eof
-
-		'如果有子菜单就去输出子菜单
-		if isparentcat(neirs("catid")) then
-				menujibie=menujibie+1 
-			echo "<dd class='menujibie"&cstr(menujibie)&"' style='_padding-left:0px;'>"
-			 call getcatlist(neirs("catid"))
-			 menujibie=menujibie-1 
-			echo "</dd>"
-		else
-			cid2=neirs("catid")&""'分类id
-			cname2=neirs("catname")&""'分类name
-			arcnum2=getarcnum(neirs("catid")&"")
-			typeid2=neirs("typeid")&""'类型id
-			sort2=neirs("sort")&""
-			havepic2=getcatimg(neirs("cat_pic")&"")
-			navshow2=getcatshow(neirs("cat_show")&"")
-			catflag2=neirs("catflag")&""
-			catsinglecontent2=getcatindexcontent(neirs("cat_singlecontent")&"")
-
-%>
-    <dd>
-    	<div class='left'>
-    		栏目：<u><a title='点击查看此分类下文章'  href='list_xx.asp?cat_id=<%=cid2%>' target='_self'><%=cname2%></a></u><span class='red'>(ID:<%=cid2%>,文档数:<%=arcnum2%>)</span>(<%=neirs("type_sxname")%>)<%=catsinglecontent2%>
-        </div>
-        <div class='right'>
-        <%
-        if catflag2="1" then
-		%>
-          <a href='edit_cats.asp?cat_id=<%=cid2%>&type_id=<%=typeid2%>&tabid=3' title='添加栏目内容'  class='coolbg red' style="color:green;">封面内容</a>
- 	<%
-	 else
-	 %>
-     <a href='add_xx.asp?cat_id=<%=cid2%>&type_id=<%=typeid2%>' title='在此分类下添加信息'  class='coolbg red'>添加信息</a>
-   	<%
-	end if
-	 %>
-                <a href='edit_cats.asp?cat_id=<%=cid2%>&type_id=<%=typeid2%>' class='coolbg'>更改</a>
-                <input type='hidden'  value='<%=cid2%>' />
-                <a href='javascript:void(0);' class='coolbg delcat'>删除</a>
-                <a href='add_cats.asp?parent_id=<%=cid2%>&type_id=<%=typeid2%>' class='coolbg'>增加子类</a> 
-                (sort:<%=sort2%>)(<%=navshow2%>)(<%=havepic2%>)
-        </div>
-    </dd>
-    <%
-			end if
-			neirs.movenext
+		do while not neirs.eof
+			if isparentcat(neirs("catid")) then
+					padding=padding+50
+					divleft=divleft-50
+					menujibie=menujibie+1 
+					echo "<dd class='menujibie"&cstr(menujibie)&"' style='_padding-left:0px;'><dl class='lanmu'>"
+					 call getcatlist(neirs("catid"),padding,divleft)
+					 menujibie=menujibie-1 
+					echo "</dl></dd>"
+					divleft=divleft+50
+					padding=padding-50
+				else
+					divleft=divleft-61
+					padding=padding+60
+					cid2=neirs("catid")&""'分类id
+					cname2=neirs("catname")&""'分类name
+					arcnum2=getarcnum(neirs("catid")&"")
+					typeid2=neirs("typeid")&""'类型id
+					sort2=neirs("sort")&""
+					havepic2=getcatimg(neirs("cat_pic")&"")
+					navshow2=getcatshow(neirs("cat_show")&"")
+					catflag2=neirs("catflag")&""
+					catsinglecontent2=getcatindexcontent(neirs("cat_singlecontent")&"")
+	
+	%>
+		<dd style='padding-left:<%=padding%>px;'>
+			<div class='left' style='width:<%=divleft%>px;'>
+				栏目：<u><a title='点击查看此分类下文章'  href='list_xx.asp?cat_id=<%=cid2%>' target='_self'><%=cname2%></a></u><span class='red'>(ID:<%=cid2%>,文档数:<%=arcnum2%>)</span>(<%=neirs("type_sxname")%>)<%=catsinglecontent2%>
+			</div>
+			<div class='right'>
+			<%
+			if catflag2="1" then
+			%>
+			  <a href='edit_cats.asp?cat_id=<%=cid2%>&type_id=<%=typeid2%>&tabid=3' title='添加栏目内容'  class='coolbg red' style="color:green;">封面内容</a>
+		<%
+		 else
+		 %>
+		 <a href='add_xx.asp?cat_id=<%=cid2%>&type_id=<%=typeid2%>' title='在此分类下添加信息'  class='coolbg red'>添加信息</a>
+		<%
+		end if
+		 %>
+					<a href='edit_cats.asp?cat_id=<%=cid2%>&type_id=<%=typeid2%>' class='coolbg'>更改</a>
+					<input type='hidden'  value='<%=cid2%>' />
+					<a href='javascript:void(0);' class='coolbg delcat'>删除</a>
+					<a href='add_cats.asp?parent_id=<%=cid2%>&type_id=<%=typeid2%>' class='coolbg'>增加子类</a> 
+					(sort:<%=sort2%>)(<%=navshow2%>)(<%=havepic2%>)
+			</div>
+		</dd>
+		<%
+				divleft=divleft+61
+				padding=padding-60
+				end if
+				neirs.movenext
 			loop
 			set neirs=nothing
 	end if
-	%>
-	</dl>
-<%
-
 End function
 
 Function isparentcat(catid)

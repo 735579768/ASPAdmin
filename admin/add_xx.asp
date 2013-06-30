@@ -19,7 +19,7 @@ datatable=typers("data_table")&""
 			echo "<script>alert('"&ADD_SUCCESS_STR&"');window.location='list_xx.asp?cat_id="&G("cat_id")&"';</script>"
 		else
 			echoErr()
-			AlertMsg ADD_FAIL_STR,-1
+			AlertMsgGo ADD_FAIL_STR,-1
 		end if
 	end if
 
