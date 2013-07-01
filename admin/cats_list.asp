@@ -246,6 +246,7 @@ arcnum1=getarcnum(wraprs("cat_id")&"")
 sort1=wraprs("sort")&""
 havepic1=getcatimg(wraprs("cat_pic")&"")
 navshow1=getcatshow(wraprs("cat_show")&"")
+catflag1=wraprs("catflag")&""
 catsinglecontent=getcatindexcontent(wraprs("cat_singlecontent")&"")
 
 icoimgid=icoimgid+1
@@ -258,13 +259,24 @@ icoimgid=icoimgid+1
             </div>
             <div class='right'> 
             <%
-			if not isparentcat(cid1) then
-			%>
-    <a href='add_xx.asp?cat_id=<%=cid1%>&type_id=<%=typeid1%>' title='在此分类下添加信息'  class='coolbg red'>添加信息</a> 
-                <%
-				else
+			'如果分类有子类同时分类类型是列表，如表示输出默认类型为空不让用户添加信息列表
+			if  isparentcat(cid1) and catflag1="2" then
+				echo "<div style='width:60px; height:25px; float:left;'></div>"
+			else
+				if catflag1="0" then
 					echo "<div style='width:60px; height:25px; float:left;'></div>"
+				elseif catflag1="1" then
+					echo "<a href='edit_cats.asp?cat_id="&cid1&"&type_id="&typeid1&"&tabid=3' title='添加栏目内容'  class='coolbg red' style='color:green;'>封面内容</a>"
+				elseif catflag1="2" then
+					echo "<a href='add_xx.asp?cat_id="&cid1&"&type_id="&typeid1&"' title='在此分类下添加信息'  class='coolbg red'>添加信息</a>"
 				end if
+			
+			end if
+'				if not isparentcat(cid1) then
+'					echo "<a href='add_xx.asp?cat_id="&cid1&"&type_id="&typeid1&"' title='在此分类下添加信息'  class='coolbg red'>添加信息</a>"
+'				else
+'					echo "<div style='width:60px; height:25px; float:left;'></div>"
+'				end if
 				%>
                 <div style="width:60px; float:left;"></div>
                 <a href='edit_cats.asp?cat_id=<%=cid1%>&type_id=<%=typeid1%>' class='coolbg'>更改</a>

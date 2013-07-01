@@ -18,13 +18,14 @@ if G("tj")<>"" then
 	if G("tj")="no" then newdb.query("update "&datatable&" set hometj=0 where id="&G("temid"))
 end if
 if G("act")="del" then
-'newdb.query("delete from "&datatable&" where id="&G("temid"))
-newdb.query("update  "&datatable&" set recycling=1 where id="&G("temid"))
+newdb.query("delete from "&datatable&" where id="&G("temid"))
+'newdb.query("update  "&datatable&" set recycling=1 where id="&G("temid"))
 end if
 if G("act")="batchdel" then
 arr=split(G("batchid"),",")
 for i=0 to ubound(arr)
-newdb.query("update  "&datatable&" set recycling=1 where id="&arr(i))
+newdb.query("delete from "&datatable&" where id="&arr(i))
+'newdb.query("update  "&datatable&" set recycling=1 where id="&arr(i))
 next
 end if
 '==========================================处理提交过来的请求 end ==========
