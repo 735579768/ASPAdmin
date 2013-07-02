@@ -495,6 +495,18 @@ class AspTpl
 						else
 							temvar=val
 						end if
+				case "formatdate" 
+						valarr=split(val," ")
+						datenow=split(valarr(0),param)
+						if ubound(datenow)=2 then
+							if len(datenow(1))<2 then datenow(1)="0"&datenow(1)
+							if len(datenow(2))<2 then datenow(2)="0"&datenow(2)
+							newdate=datenow(0)&"/"&datenow(1)&"/"&datenow(2)
+							filtervar=newdate
+						else
+							filtervar=valarr(0)
+						end if
+						exit function
 				case else 
 						temvar=val
 			end select
