@@ -162,6 +162,7 @@ class AspTpl
 		p_reg.Pattern=regtag
 		Set Matches = p_reg.Execute(str)
 		For Each Match in Matches 
+			if instr(Match,replace(p_tag_l & "else"& p_tag_r,"\",""))=0 then
 			on error resume next
 				err.clear
 				bol=eval(jiexivar(Match.SubMatches(0)))
@@ -175,6 +176,7 @@ class AspTpl
 						str=replace(str,Match,"")	
 					end if				
 				end if
+			end if
 		next
 		ifTag=str
 	End function
@@ -183,10 +185,7 @@ class AspTpl
 	'==================================================	
 	Public Function ifElseTag(str)
 		regtag=p_tag_l & "if\s+?(.*?)\s*?"& p_tag_r  &"([\s\S]*?)"& p_tag_l & "else"& p_tag_r & "([\s\S]*?)"& p_tag_l & "/if"& p_tag_r
-		'regtag=p_tag_l & "if\s+?(.*?)\s*?"& p_tag_r  &"(?!([\s\S]*?)"& p_tag_l & "/if"& p_tag_r&"([\s\S]*?)"&p_tag_l & "if\s+?(.*?)\s*?"& p_tag_r&")([\s\S]*?)"& p_tag_l & "else"& p_tag_r & "([\s\S]*?)"& p_tag_l & "/if"& p_tag_r
 		p_reg.Pattern=regtag
-		'echo regtag
-		'p_tpl_content=p_reg.execute(p_tpl_content,"it is if ")
 		Set Matches = p_reg.Execute(str)
 		For Each Match in Matches  
 			if eval(jiexivar(Match.SubMatches(0))) then
@@ -417,10 +416,11 @@ class AspTpl
 	'=================================================
 	private Function jiexiTpl()
 		p_tpl_content=includefile(p_tpl_content)'包含文件
-		p_tpl_content=ifElseTag(p_tpl_content)
 		p_tpl_content=ifTag(p_tpl_content)
+		p_tpl_content=ifElseTag(p_tpl_content)
 		p_tpl_content=foreachTag(p_tpl_content)
 		p_tpl_content=looptag(p_tpl_content)
+		p_tpl_content=htmlselect(p_tpl_content)
 		'扩展cms内容输出标签
 		set tpltag=new QuickTag
 		p_tpl_content=tpltag.run(p_tpl_content)
@@ -660,5 +660,37 @@ class AspTpl
 		eqtag=str
 		set p_eqreg=nothing
 	end function
+	'==========================
+	'模板select控件输出
+	'============================
+	private Function htmlselect(str)
+		p_reg.Pattern="<htmlselect(.*?)/?>"
+		set m=p_reg.execute(str)
+		for each mm in m
+			paramstr=mm.SubMatches(0)
+			selkey=getTagParam(paramstr,"options")
+			dim objarr
+			if p_var_list.Exists(selkey) then
+				set objarr=p_var_list(selkey)
+				selname=getTagParam(paramstr,"name")
+				selid=getTagParam(paramstr,"id")
+				selected=getTagParam(paramstr,"selected")
+				selstr="<select name='"&selname&"' id='"&selid&"'>"
+				for each key in objarr.keys
+					if cstr(p_var_list(selected))<>cstr(key) then
+						selstr=selstr&"<option value='"&key&"'>"&objarr(key)&"</option>"
+					else
+						selstr=selstr&"<option value='"&key&"' selected>"&objarr(key)&"</option>"
+					end if
+				next
+				selstr=selstr&"</select>"
+				str=replace(str,mm,selstr)
+			else
+				'echoerr 1,"htmlselect key is null"
+				str=replace(str,mm,"<span style='color:red;'>htmlselect key '"&selkey&"' is null</span>")
+			end if
+		next
+		htmlselect=str
+	End Function	
 end class
 %>
