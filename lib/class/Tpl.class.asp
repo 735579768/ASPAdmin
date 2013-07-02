@@ -141,6 +141,7 @@ class AspTpl
 
 
 
+
 			if Ms.count>0 then
 				redim arr(3) 
 				arr(0)=Ms(0).SubMatches(0)'变量键名
@@ -182,7 +183,9 @@ class AspTpl
 	'==================================================	
 	Public Function ifElseTag(str)
 		regtag=p_tag_l & "if\s+?(.*?)\s*?"& p_tag_r  &"([\s\S]*?)"& p_tag_l & "else"& p_tag_r & "([\s\S]*?)"& p_tag_l & "/if"& p_tag_r
+		'regtag=p_tag_l & "if\s+?(.*?)\s*?"& p_tag_r  &"(?!([\s\S]*?)"& p_tag_l & "/if"& p_tag_r&"([\s\S]*?)"&p_tag_l & "if\s+?(.*?)\s*?"& p_tag_r&")([\s\S]*?)"& p_tag_l & "else"& p_tag_r & "([\s\S]*?)"& p_tag_l & "/if"& p_tag_r
 		p_reg.Pattern=regtag
+		'echo regtag
 		'p_tpl_content=p_reg.execute(p_tpl_content,"it is if ")
 		Set Matches = p_reg.Execute(str)
 		For Each Match in Matches  
