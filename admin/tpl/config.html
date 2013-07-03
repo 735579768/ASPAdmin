@@ -30,55 +30,62 @@ a{ text-decoration:none; color:#000;}
             
             <tr align="right" height="25" bgcolor="#ffffff">
        <td width="300">主页链接名： </td>
-       <td align="left" style="padding:3px;"><input type="text" name="cfg_indexname"  value="{$cfg_indexname}" style="width:80%"></td>
+       <td align="left" style="padding:3px;"><input type="text" name="cfg_indexname"  value="{$cfgobj.cfg_indexname}" style="width:80%"></td>
        <td align="left">cfg_indexname</td>
       </tr>
             <tr align="right" height="25" bgcolor="#ffffff">
        <td width="300">网站名称： </td>
-       <td align="left" style="padding:3px;"><input type="text" name="cfg_webname"  value="{$cfg_webname}" style="width:80%"></td>
+       <td align="left" style="padding:3px;"><input type="text" name="cfg_webname"  value="{$cfgobj.cfg_webname}" style="width:80%"></td>
        <td align="left">cfg_webname</td>
       </tr>
             <tr align="right" height="25" bgcolor="#ffffff">
        <td width="300">文档HTML默认保存路径： </td>
-       <td align="left" style="padding:3px;"><input type="text" name="cfg_arcdir"  value="{$cfg_arcdir}" style="width:80%"></td>
+       <td align="left" style="padding:3px;"><input type="text" name="cfg_arcdir"  value="{$cfgobj.cfg_arcdir}" style="width:80%"></td>
        <td align="left">cfg_arcdir</td>
       </tr>
             <tr align="right" height="25"  bgcolor="#ffffff">
        <td width="300">图片/上传文件默认路径： </td>
-       <td align="left" bgcolor="#ffffff" style="padding:3px;"><input type="text" name="cfg_medias_dir"  value="{$cfg_medias_dir}" style="width:80%"></td>
+       <td align="left" bgcolor="#ffffff" style="padding:3px;"><input type="text" name="cfg_medias_dir"  value="{$cfgobj.cfg_medias_dir}" style="width:80%"></td>
        <td align="left" bgcolor="#ffffff">cfg_medias_dir</td>
       </tr>
             
             <tr align="right" height="25" bgcolor="#ffffff">
        <td width="300">模板默认风格： </td>
-       <td align="left" style="padding:3px;"><input type="text" name="cfg_df_style"  value="{$cfg_df_style}" style="width:80%"></td>
+       <td align="left" style="padding:3px;"><input type="text" name="cfg_df_style"  value="{$cfgobj.cfg_df_style}" style="width:80%"></td>
        <td align="left">cfg_df_style</td>
       </tr>
             <tr align="right" height="25" bgcolor="#ffffff">
        <td width="300">网站版权信息： </td>
-       <td align="left" style="padding:3px;"><input type="text" name="cfg_powerby"  value="{$cfg_powerby}" style="width:80%"></td>
+       <td align="left" style="padding:3px;"><input type="text" name="cfg_powerby"  value="{$cfgobj.cfg_powerby}" style="width:80%"></td>
        <td align="left">cfg_powerby</td>
       </tr>
             <tr align="right" height="25" bgcolor="#ffffff">
        <td width="300">站点默认关键字： </td>
-       <td align="left" style="padding:3px;"><textarea name="cfg_keywords" cols="70" rows="3"  style="width:80%">{$cfg_keywords}</textarea></td>
+       <td align="left" style="padding:3px;"><textarea name="cfg_keywords" cols="70" rows="3"  style="width:80%">{$cfgobj.cfg_keywords}</textarea></td>
        <td align="left">cfg_keywords</td>
       </tr>
             <tr align="right" height="25" bgcolor="#ffffff">
        <td width="300">站点描述： </td>
-       <td align="left" style="padding:3px;"><textarea name="cfg_description" cols="70" rows="5" class="textarea_info" id="edit___cfg_description" style=" width:80%;height:50px" row="4">{$cfg_description}</textarea></td>
+       <td align="left" style="padding:3px;"><textarea name="cfg_description" cols="70" rows="5" class="textarea_info" id="edit___cfg_description" style=" width:80%;height:50px" row="4">{$cfgobj.cfg_description}</textarea></td>
        <td align="left">cfg_description</td>
       </tr>
             <tr align="right" height="25" bgcolor="#ffffff">
        <td width="300">网站备案号： </td>
-       <td align="left" style="padding:3px;"><input type="text" name="cfg_beian"  value="{$cfg_beian}" style="width:80%"></td>
+       <td align="left" style="padding:3px;"><input type="text" name="cfg_beian"  value="{$cfgobj.cfg_beian}" style="width:80%"></td>
        <td align="left">cfg_beian</td>
       </tr>
             <tr align="right" height="25" bgcolor="#ffffff">
        <td width="300">第三方代码： </td>
-       <td align="left" style="padding:3px;"><textarea name="cfg_thirdcode" rows="5" style="width:80%">{$cfg_thirdcode}</textarea>
+       <td align="left" style="padding:3px;"><textarea name="cfg_thirdcode" rows="5" style="width:80%">{$cfgobj.cfg_thirdcode}</textarea>
          (添加到网站底部)</td>
        <td align="left">cfg_thirdcode</td>
+      </tr>
+        <tr align="right" height="25" bgcolor="#ffffff">
+       <td width="300">网站URL伪静态： </td>
+       <td align="left" style="padding:3px;">
+       <htmlradio name='cfg_weijingtai' options='radioarr' selected='seled' />
+       </td>
+       <td align="left">cfg_weijingtai</td>
       </tr>
            </tbody></table>
            <table width="100%" border="0" cellspacing="1" cellpadding="1" style="border:1px solid #cfcfcf;border-top:none;">
