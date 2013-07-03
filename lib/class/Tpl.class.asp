@@ -421,6 +421,7 @@ class AspTpl
 		p_tpl_content=foreachTag(p_tpl_content)
 		p_tpl_content=looptag(p_tpl_content)
 		p_tpl_content=htmlselect(p_tpl_content)
+		p_tpl_content=htmlradio(p_tpl_content)
 		'扩展cms内容输出标签
 		set tpltag=new QuickTag
 		p_tpl_content=tpltag.run(p_tpl_content)
@@ -691,6 +692,37 @@ class AspTpl
 			end if
 		next
 		htmlselect=str
+	End Function	
+	'==========================
+	'模板radio控件输出
+	'============================
+	private Function htmlradio(str)
+		p_reg.Pattern="<htmlradio(.*?)/?>"
+		set m=p_reg.execute(str)
+		for each mm in m
+			paramstr=mm.SubMatches(0)
+			selkey=getTagParam(paramstr,"options")
+			dim objarr
+			if p_var_list.Exists(selkey) then
+				set objarr=p_var_list(selkey)
+				selname=getTagParam(paramstr,"name")
+				selid=getTagParam(paramstr,"id")
+				selected=getTagParam(paramstr,"selected")
+				selstr=""
+				for each key in objarr.keys
+					if cstr(p_var_list(selected))<>cstr(key) then
+						selstr=selstr&"<input type='radio' name='"&selname&"' value='"&key&"' /><span>"&objarr(key)&"</span>"
+					else
+						selstr=selstr&"<input type='radio' name='"&selname&"' value='"&key&"' checked='checked' /><span>"&objarr(key)&"</span>"
+					end if
+				next
+				str=replace(str,mm,selstr)
+			else
+				'echoerr 1,"htmlselect key is null"
+				str=replace(str,mm,"<span style='color:red;'>htmlradio key '"&selkey&"' is null</span>")
+			end if
+		next
+		htmlradio=str
 	End Function	
 end class
 %>
