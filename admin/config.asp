@@ -20,7 +20,7 @@ if G("upcfg")="true" then
 	
 	'result=olddb.UpdateRecord("kl_meta","meta_key='cfg_system'",array("meta_value:"&tojson(o)))
 	if err.number=0 then 
-	call AlertMsggo(UPDATE_SUCCESS_STR,1)
+	reurl("config.asp")
 	end if
 	set rs=nothing
 end if

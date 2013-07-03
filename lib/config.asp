@@ -30,8 +30,9 @@ dim TPL_PATH
 	TPL_PATH="tpl"
 	
 '在模板最终输出时进行正则替换第一组替换中间用##隔开
-redim regarr(3)
-regarr(0)="cat\.asp\?catid\=(\d+)##cat-$1.html"
-regarr(1)="view\.asp\?id\=(\d+)##view-$1.html"
-regarr(2)="charset=gb2312##charset=utf-8"
+redim regarr(4)
+regarr(0)="cat\.asp\?catid\=(\d+)\&page\=(\d+)##cat-$1-$2.html"
+regarr(1)="cat\.asp\?catid\=(\d+)##cat-$1.html"
+regarr(2)="view\.asp\?id\=(\d+)##view-$1.html"
+regarr(3)="charset=gb2312##charset=utf-8"
 %>
