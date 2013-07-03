@@ -5,8 +5,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script src="js/jquery-1.8.1.min.js" type="text/javascript"></script>
 <script src="js/common.js" type="text/javascript"></script>
+<link href="css/jquery-webox.css" rel="stylesheet" type="text/css">
 <link href="css/main.css" rel="stylesheet" type="text/css" />
 <title>添加信息</title>
+<script src="js/jquery-webox.js"></script>
+<script type="text/javascript">
+function popup(catid){
+		//iframe弹出层调用
+		$.webox({
+			height:350,
+			width:600,
+			bgvisibel:true,
+			title:'快速编辑分类属性',
+			iframe:'quickeditcat.asp?cat_id='+catid
+		});
+	}
+</script>
 </head>
 <style>
 .biaotou {
@@ -255,7 +269,7 @@ icoimgid=icoimgid+1
         	<div class='left' style='width:<%=divleft%>px;'>
                 <img class='jiajian' stateid="icoimg<%=icoimgid%>" state="0" id="icoimg<%=icoimgid%>" src='images/jian.gif' width='9' height='9' />
                 栏目：<u><a title='点击查看此分类下文章' href='list_xx.asp?cat_id=<%=cid1%>' target='_self'><%=cname1%></a></u>
-                <span class='red'>(ID:<%=cid1%>,文档数:<%=arcnum1%>)</span>(<%=wraprs("type_sxname")%>)<%=catsinglecontent%>
+                <span class='red'>(ID:<%=cid1%>,文档数:<%=arcnum1%>)</span>(<%=wraprs("type_sxname")%>)<img style="cursor:pointer;" onclick="popup(<%=cid1%>);" alt="编辑" src="images/edit.png" /><%=catsinglecontent%>
             </div>
             <div class='right'> 
             <%
@@ -320,7 +334,7 @@ icoimgid=icoimgid+1
 	%>
 		<dd style='padding-left:<%=padding%>px;'>
 			<div class='left' style='width:<%=divleft%>px;'>
-				栏目：<u><a title='点击查看此分类下文章'  href='list_xx.asp?cat_id=<%=cid2%>' target='_self'><%=cname2%></a></u><span class='red'>(ID:<%=cid2%>,文档数:<%=arcnum2%>)</span>(<%=neirs("type_sxname")%>)<%=catsinglecontent2%>
+				栏目：<u><a title='点击查看此分类下文章'  href='list_xx.asp?cat_id=<%=cid2%>' target='_self'><%=cname2%></a></u><span class='red'>(ID:<%=cid2%>,文档数:<%=arcnum2%>)</span>(<%=neirs("type_sxname")%>)<img  style="cursor:pointer;" onclick="popup(<%=cid2%>);" alt="编辑" src="images/edit.png" /><%=catsinglecontent2%>
 			</div>
 			<div class='right'>
 			<%
