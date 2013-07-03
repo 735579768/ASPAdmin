@@ -442,6 +442,7 @@ class AspTpl
 	'伪静态处理
 	'===========================
 	private Function regtplstr(str)
+				
 		for each a in regarr 
 			ta=split(a,"##",2)
 			if ubound(ta)>0 then 
