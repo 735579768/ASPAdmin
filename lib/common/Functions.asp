@@ -342,14 +342,16 @@
 '///////////////////////////////////////////
 	function AlertMsg(str)
 		str=replace(str,"'","""")
-		echo "<script>alert('"&str&"');</script>"
+		reurl("message.asp?msg="&str)
+		'echo "<script>alert('"&str&"');<\/script>"
 	end function
 '弹出js提示框到前台并返回
 '///////////////////////////////////////////
 	function AlertMsgGo(str,go)
 		str=replace(str,"'","""")
-		echo "<script>alert('"&str&"');</script>"
-		echo "<script>window.history.go("&go&");</script>"
+		reurl("message.asp?msg="&str&"&uri="&go)
+		'echo "<script>alert('"&str&"');<\/script>"
+		'echo "<script>window.history.go("&go&");<\/script>"
 	end function
 '弹出js提示框到前台并刷新窗口
 '///////////////////////////////////////////

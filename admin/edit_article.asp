@@ -31,10 +31,11 @@
 				set uprs=nothing
 				if err.number<>0 then
 					AlertMsg(UPDATE_FAIL_STR)
-					echo "<script>window.history.go(-1);</script>"
+					'echo "<script>window.history.go(-1);<\/script>"
 				else
-					AlertMsg(UPDATE_SUCCESS_STR)
-					echo "<script>window.location=""article_list.asp?cat_id="&cat_id&"""</script>"
+					alertMsgGo UPDATE_SUCCESS_STR,"article_list.asp?cat_id="&cat_id
+					'AlertMsg(UPDATE_SUCCESS_STR)
+					'echo "<script>window.location=""article_list.asp?cat_id="&cat_id&"""<\/script>"
 				end if
 	end if
 '输出模板默认数据

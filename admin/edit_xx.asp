@@ -11,7 +11,7 @@ fieldtag=typers("fieldtag")&""
 type_name=typers("type_name")&""
 data_table=typers("data_table")&""
 '===============================
-'添加数据
+'更新数据
 	if G("act")="updxx"  then
 		set formobj=newdb.table(data_table).where("id="&id).create()
 		
@@ -31,10 +31,11 @@ data_table=typers("data_table")&""
 		newdb.formdata=formobj
 		result=newdb.save()
 		if result then
-			echo "<script>alert('"&UPDATE_SUCCESS_STR&"');window.location='list_xx.asp?cat_id="&G("cat_id")&"';</script>"
+			alertMsgGo UPDATE_SUCCESS_STR,"list_xx.asp?cat_id="&G("cat_id")
+			'echo "<script>alert('"&&"');window.location='list_xx.asp?cat_id="&G("cat_id")&"';<\/script>"
 		else
 			echoErr()
-			AlertMsgGo UPDATE_FAIL_STR,-1
+			AlertMsg UPDATE_FAIL_STR
 		end if
 	end if
 
