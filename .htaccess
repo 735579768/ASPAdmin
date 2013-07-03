@@ -5,7 +5,7 @@
 
 RewriteEngine on
 
-RewriteRule ^cat-(\d+?).html cat.asp?cat_id=$1
+RewriteRule ^cat-(\d+?).html cat.asp?catid=$1
 RewriteRule ^view-(\d+?).html view.asp?id=$1
 
 </IfModule>

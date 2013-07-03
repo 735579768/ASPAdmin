@@ -429,9 +429,29 @@ class AspTpl
 		'扩展cms内容输出标签
 		p_tpl_content=jiexiShortTag(p_tpl_content)
 		p_tpl_content=jiexivar(p_tpl_content)
+		'判断如果是前台就输出伪静态
+		if isobject(seoobj) then
+			if seoobj("cfg_weijingtai")="1" then
+				p_tpl_content=regtplstr(p_tpl_content)
+			end if
+		end if
 		p_tpl_content=Endjiexi(p_tpl_content)
 		jiexiTpl=p_tpl_content
 	end function
+	'==========================
+	'伪静态处理
+	'===========================
+	private Function regtplstr(str)
+		for each a in regarr 
+			ta=split(a,"##",2)
+			if ubound(ta)>0 then 
+				p_reg.Pattern = ta(0)
+				str= p_reg.Replace(str,ta(1))	
+			end if
+		next
+		'伪静态
+		regtplstr=str
+	End Function
 	'=================================================
 	'解析字符串模板
 	'==================================================
