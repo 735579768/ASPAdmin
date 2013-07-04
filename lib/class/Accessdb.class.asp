@@ -199,7 +199,7 @@ Class Accessdb
 			rs(d(i))=autoform(d(i))
 				if err.number<>0 then
 					err.clear
-					echoErr 0 ,"<span style='color:red;'>update data err;<br>error deacr:"&err.description&"</span><br>"
+					echoErr 0 ,"<span style='color:red;'>update data error;<br>error descr:"&err.description&"</span><br>"
 				end if
 			'end if
  		Next
@@ -220,12 +220,10 @@ Class Accessdb
 		For i = 0 To autoform.Count -1 '重复数组。
 			on error resume next
 			err.clear
-			'if instr(d(i),"auto_")<>0 then
-			'	fie=replace(d(i),"auto_","")
 				rs(d(i))=autoform(d(i))
 				if err.number<>0 then
 					err.clear
-					echoErr 0 ,"<span style='color:red;'>update data err;<br>error deacr:"&err.description&"</span><br>"
+					echoErr 0 ,"<span style='color:red;'>add data error;<br>error descr:"&err.description&"</span><br>"
 				end if
 			'end if
  		Next

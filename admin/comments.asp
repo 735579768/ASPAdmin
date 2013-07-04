@@ -10,7 +10,8 @@
 			arr=split(str,",")
 			result=""
 			for i=0 to ubound(arr)
-				result=olddb.DeleteRecord("kl_comments","id",arr(i))
+				'result=olddb.DeleteRecord("kl_comments","id",arr(i))
+				result=newdb.table("kl_comments").where("id="&arr(i)).delete()
 			next
 				if result=0 then
 					AlertMsg(CAOZUO_FAIL_STR)
@@ -18,11 +19,10 @@
 		end if	
 		
 	if G("act")="del" then
-		result=olddb.query("delete from kl_comments where id="&G("id"))
-		echo "<script>window.location='comments.asp';</script>"
+		result=newdb.table("kl_comments").where("id="&G("id")).delete()
+		'result=olddb.query("delete from kl_comments where id="&G("id"))
 	end if
-	sql="select * from kl_comments order by fbdate desc "
-
+sql="select * from kl_comments order by fbdate desc,id desc "
 newtpl.assign "sql",sql
 newtpl.assign "page",G("page")
 newtpl.display("comments.html")
