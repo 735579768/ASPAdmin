@@ -708,7 +708,7 @@
 	 objRegExp.IgnoreCase = True
 	 objRegExp.Global = True
 	 '取闭合的<>
-	 objRegExp.Pattern = "<(.*?)>|\s+?"
+	 objRegExp.Pattern = "<(.*?)>|\s+?|&nbsp;"
 	 '进行匹配
 	 strHTML=objRegExp.replace(strHTML,"")
 '	 Set Matches=objRegExp.Execute(strHTML)
