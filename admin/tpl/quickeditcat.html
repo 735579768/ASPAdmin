@@ -5,6 +5,7 @@
 <link href="css/main.css" rel="stylesheet" type="text/css" />
 <title>主框架</title>
 <style>
+html,body{ width:100%;}
 * {
 	margin: 0px;
 	padding: 0px;
@@ -14,49 +15,48 @@ a {
 	text-decoration: none;
 	color: #000;
 }
+table{ border:none;}
 </style>
 </head>
 
 <body style="background:#FFFFFF;">
-<form action="" method="post"  name="form1">
-  <table width="98%" border="1" style="border-collapse:collapse; margin:10px auto;" cellspacing="1" cellpadding="3">
+<form action="?act=upd&cat_id={$catobj.cat_id}" method="post"  name="form1">
+  <table width="98%" height="98%" border="1" style="border-collapse:collapse; margin:10px auto;" cellspacing="1" cellpadding="3">
           <tr align="center" class="biaotou">
-            <td colspan="2">添加链接&gt;&gt;<a href="javascript:window.history.go(-1);" class="coolbg">返回</a></td></tr>
-            <tr>
-              <td width="100">网址：</td>
-              <td ><input name="friend_url" type="text" id="url" value="http://localhost/" size="30" class="pubinputs"></td>
-            </tr>
-            
-            <tr>
-              <td >网站名称：</td>
-              <td><input name="friend_name" type="text" size="30" value="友链标题" class="pubinputs"></td>
-            </tr>
-            <tr>
-              <td >站长Email：</td>
-              <td><input name="friend_email" type="text" size="30" value="" class="pubinputs"></td>
-            </tr>
-            <tr>
-              <td >链接位置：</td>
-              <td>                <input type="radio" name="friend_weizhi" value="2" checked="1">
-                首页
-                <input type="radio" name="friend_weizhi" value="1">
-                内页
- </td>
-            </tr>
-            <tr>
-              <td  >排列位置：</td>
-              <td ><input name="sortrank" type="text" id="sortrank" value="1" size="10" class="pubinputs" style="width:60px">
-                (由小到大排列) </td>
-            </tr>
-            <tr>
-              <td  >显示：</td>
-              <td ><input name="show" type="text" id="sortrank" value="1" size="10" class="pubinputs" style="width:60px">
-                (0不显示，1显示) </td>
-            </tr>
+            <td colspan="2">更改分类属性</td></tr>
+  <tr>
+    <td align="left" width="20%" > 分类名字：</td>
+    <td align="left"><input name="cat_name" type="text" value="{$catobj.cat_name}" /></td>
+  </tr>
+  <tr>
+  	<td >封面模板：</td>
+    <td><input name="cat_index" type="text" value="{$catobj.cat_index}" style="width:200px; height:20px;" /></td>
+  </tr>
+  <tr>
+  	<td >列表模板：</td>
+    <td><input name="cat_list" type="text" value="{$catobj.cat_list}" style="width:200px; height:20px;" /></td>
+  </tr>
+  <tr>
+  	<td >文章模板：</td>
+    <td><input name="cat_article" type="text" value="{$catobj.cat_article}" style="width:200px; height:20px;" /></td>
+  </tr>
+          
+    <tr>
+    <td  align="left">显示/隐藏：</td>
+    <td align="left"> <input name="cat_show" type="text"  value="{$catobj.cat_show}" size="5" maxlength="1" />&nbsp;显示(1)隐藏(0)</td>
+  </tr> 
+    <tr>
+    <td align="left"> 排序：</td>
+    <td align="left"><input name="sort"  type="text" value="{$catobj.sort}" /></td>
+  </tr>
+  <tr>
+    <td width="100px" align="left">分类属性：</td>
+    <td align="left"><input name="catflag" type="text"  value="{$catobj.catflag}" />(0是空分类,1是封面内容,2是列表内容)</td>
+  </tr>
             <tr align="center">
-              <td colspan="2"><input type="hidden" name="friend_id" value="{{friend_id}}">
-                <input type="hidden" name="act" value="addfriend" />
-                <input type="submit" name="Submit" value="确定" class="np coolbg"></td>
+              <td colspan="2">
+                <a class="coolbg" href="javascript:form1.submit();">确定</a>
+                </td>
             </tr>
           </table>
 </form>

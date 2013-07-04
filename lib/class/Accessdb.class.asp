@@ -136,7 +136,14 @@ Class Accessdb
 		set sel=query("")
 		kl_sqlkey.removeAll()
 	End Function
-	'======================sql连贯操作函数start==============
+	'==================================
+	'selarr
+	'功能:直接把记录集转成键值对象
+	'==================================
+	Function selarr()
+		set temrs=sel()
+		selarr=rstoarr(temrs)
+	End Function
 	'==================================
 	'echoErr函数
 	'功能：把不同的错误级别输出

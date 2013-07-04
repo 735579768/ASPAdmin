@@ -1,8 +1,8 @@
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <LINK href="css/css.css" type=text/css rel=stylesheet>
-<title>π‹¿Ì∫ÛÃ®</title>
+<title>ÁÆ°ÁêÜÂêéÂè∞</title>
 </head>
 <script language="javascript">
 <!--
@@ -10,17 +10,17 @@ function submitdata()
 {
 	if(document.form1.usernametxt.value == "")
 	{
-		alert("”√ªß√˚≤ªø…Œ™ø’!");
+		alert("Áî®Êà∑Âêç‰∏çÂèØ‰∏∫Á©∫!");
 		return false
 	}
 	if(document.form1.passwordtxt.value == "")
 	{
-		alert("√‹¬Î≤ªø…Œ™ø’!");
+		alert("ÂØÜÁ†Å‰∏çÂèØ‰∏∫Á©∫!");
 		return false
 	}
 	if(document.form1.numcode.value == "")
 	{
-		alert("—È÷§¬Î≤ªø…Œ™ø’!");
+		alert("È™åËØÅÁ†Å‰∏çÂèØ‰∏∫Á©∫!");
 		return false
 	}
 }
@@ -47,7 +47,7 @@ function submitdata()
                           <td height="30" align="right" valign="top">&nbsp;</td>
                         </tr>
                         <tr>
-                          <td height="120" align="center" valign="bottom"><form name="form1" method="post" action="{{adminDir}}" onSubmit="javascript:return submitdata();">
+                          <td height="120" align="center" valign="bottom"><form name="form1" method="post" action="/admin/" onSubmit="javascript:return submitdata();">
                             <table width="90%"  border="0" cellspacing="0" cellpadding="0">
                                 <tr align="left" valign="middle">
                                   <td height="25" align="center" valign="top" class="ex"><label>&nbsp;</label></td>
@@ -56,36 +56,36 @@ function submitdata()
                                 <tr align="left" valign="middle">
                                   <td><table width="100%"  border="0" cellspacing="0" cellpadding="0">
                                       <tr>
-                                        <td width="29%" align="right" valign="middle" class="ex">”√ªß√˚:&nbsp;&nbsp;</td>
+                                        <td width="29%" align="right" valign="middle" class="ex">Áî®Êà∑Âêç:&nbsp;&nbsp;</td>
                                         <td width="71%" height="23" align="left" valign="middle"><span class="stylen1">
                                           <input name="loginname" type="text" class="login" id="Uname" size="23" style="width:150" maxlength="50">
                                         </span></td>
                                       </tr>
                                       <tr>
-                                        <td align="right" valign="middle" class="ex">√‹&nbsp;&nbsp;¬Î:&nbsp;&nbsp;</td>
+                                        <td align="right" valign="middle" class="ex">ÂØÜ&nbsp;&nbsp;Á†Å:&nbsp;&nbsp;</td>
                                         <td height="27" align="left" valign="middle"><span class="stylen1">
                                           <input name="loginpwd" type="password" class="login" id="Upwd"  size="24" style="width:150" maxlength="20">
                                         </span></td>
                                       </tr>
                                       <tr>
-                                        <td align="right" valign="middle" class="ex">—È÷§¬Î:&nbsp;&nbsp;</td>
+                                        <td align="right" valign="middle" class="ex">È™åËØÅÁ†Å:&nbsp;&nbsp;</td>
                                         <td height="27" align="left" valign="bottom"><table width="80%"  border="0" cellspacing="0" cellpadding="0">
                                             <tr>
                                               <td width="45%"><span class="stylen1">
                                                 <input name="numcode" type="text" class="login" id="numcode" size="8" maxlength="8" s>
                                               </span></td>
-                                              <td width="55%" class="com" align="center"><img src="lib/NumCode.asp" title="—È÷§¬Î" border="0" onClick="this.src=this.src+'?'+Math.random();"/ style=" cursor:pointer;"></td>
+                                              <td width="55%" class="com" align="center"><img src="lib/NumCode.asp" title="È™åËØÅÁ†Å" border="0" onClick="this.src=this.src+'?'+Math.random();"/ style=" cursor:pointer;"></td>
                                             </tr>
                                         </table></td>
                                       </tr>
-                                      <tr><td align="right" valign="middle" class="ex">µ«¬Ω◊¥Ã¨£∫</td>
+                                      <tr><td align="right" valign="middle" class="ex">ÁôªÈôÜÁä∂ÊÄÅÔºö</td>
                                         <td>
                                       	<select name="loginstate">
-                                        <option  value="0" selected >≤ªº«¬º</option>
-                                        <option value="1">º«¬º30∑÷÷”</option>
-                                        <option value="2">º«¬º“ªÃÏ</option>
-                                         <option  value="3" >º«¬º“ª÷‹</option>
-                                          <option  value="4" >º«¬º“ª‘¬</option>
+                                        <option  value="0" selected >‰∏çËÆ∞ÂΩï</option>
+                                        <option value="1">ËÆ∞ÂΩï30ÂàÜÈíü</option>
+                                        <option value="2">ËÆ∞ÂΩï‰∏ÄÂ§©</option>
+                                         <option  value="3" >ËÆ∞ÂΩï‰∏ÄÂë®</option>
+                                          <option  value="4" >ËÆ∞ÂΩï‰∏ÄÊúà</option>
                                         </select>
                                       
                                       </td></tr>
@@ -114,5 +114,8 @@ function submitdata()
   </tr>
 </table>
 {{errstr}}
+<script>
+//window.parent.location="login.asp";
+</script>
 </body>
 </html>

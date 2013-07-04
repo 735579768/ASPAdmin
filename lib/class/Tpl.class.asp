@@ -23,7 +23,7 @@ class AspTpl
 	private p_charset
 	public  p_tpl_dir	
 	private sub class_Initialize
-		debug=false
+		debug=true
 		p_charset="UTF-8"
 		p_var_l = "\{\$"
 		p_var_r = "\}"
@@ -55,17 +55,21 @@ class AspTpl
 	'检查模板目录
 	'==================================================
 	private sub checkTplDirAndFile()
+	
 		tdir=server.mappath(p_tpl_dir)
 		if not p_fs.FolderExists(tdir) then
 			p_fs.CreateFolder(tdir)
 		end if
+		
 		if p_fs.FileExists(server.mappath(p_tpl_dir &"/"& p_tpl_File)) then
 				'set oFile = p_fs.OpenTextFile(server.mappath(p_tpl_dir &"/"& p_tpl_File), 1)
 				p_tpl_content = ReadFromTextFile(p_tpl_dir &"/"& p_tpl_File,p_charset)'oFile.ReadAll
 				'oFile.Close
+				
 			else
 				echoErr 1,"<b>ASPTemplate Error: File [" & server.mappath(p_tpl_dir &"/"& p_tpl_File) & "] does not exists!</b><br>"
 			end if
+			
 	end sub
 	'==================================================
 	'解析模板变量
@@ -480,18 +484,20 @@ class AspTpl
 	'功能：把不同的错误级别输出
 	'==================================
 	Function echoErr(errnum,errstr)
+	echo errnum
 		if debug then
 			select case errnum
-				case 0:'致命错误
+				case 0'致命错误
 					kl_err="Error Description:"&err.description
 					response.Write errstr&"<br>"
 					response.Write kl_err&"<br>"
 					response.End()	
-				case 1:'一般错误
+				case 1'一般错误
 					kl_err="Error Description:"&err.description
 					response.Write errstr&"<br>"
 					response.Write kl_err&"<br>"
-				case else:'其它
+						
+				case else'其它
 					response.Write errstr&"<br>"
 					response.Write("<br>")
 			end select

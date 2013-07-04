@@ -34,6 +34,7 @@ $.extend({
 			$('#'+option['locked']+' .span').click(function(){
 				$('.webox').css({display:'none'});
 				$('.background').css({display:'none'});
+				window.location.reload();
 			});
 			var marginLeft=parseInt(width/2);
 			var marginTop=parseInt(height/2);

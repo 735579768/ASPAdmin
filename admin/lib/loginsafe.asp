@@ -102,11 +102,15 @@ end if
 		end if
 	end function
 	function login(errstr)	
-		oldtpl.SetTemplateFile "login.html" '设置模板文件
-		oldtpl.SetVariable "adminDir","/"&adminDir&"/"
-		oldtpl.setvariable "errstr",errstr
-		oldtpl.Parse
-		set oldtpl = nothing
+'		oldtpl.SetTemplateFile "login.html" '设置模板文件
+'		oldtpl.SetVariable "adminDir","/"&adminDir&"/"
+'		oldtpl.setvariable "errstr",errstr
+'		oldtpl.Parse
+'		set oldtpl = nothing
+'		newtpl.assign "errstr",errstr
+'		newtpl.assign "adminDir","admin/"
+'		newtpl.display("login.html")
+		echo "<script>window.parent.location='login.asp';</script>"
 		die("")
 	end function
 %>
