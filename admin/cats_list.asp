@@ -13,7 +13,7 @@
 function popup(catid){
 		//iframe弹出层调用
 		$.webox({
-			height:350,
+			height:400,
 			width:600,
 			bgvisibel:true,
 			title:'快速编辑分类属性',

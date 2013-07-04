@@ -10,9 +10,17 @@ end if
 
 
 rsarr=newdb.table("kl_cats").where("cat_id="&cat_id).selarr()
+set radioobj=server.CreateObject("scripting.dictionary")
+radioobj("0")="关闭自定义模板"
+radioobj("1")="启用自定义模板"
+newtpl.assign "selarr",radioobj
+newtpl.assign "seled",rsarr(0)("cat_single")
+
+
+
 set catobj=rsarr(0)
 catobj("parentidsel")=getArcCatSel()
-
+'生成启用单页模板按钮
 
 
 '======================

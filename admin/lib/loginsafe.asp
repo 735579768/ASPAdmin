@@ -22,13 +22,15 @@ loginstate=G("loginstate")
 if Uname<>"" and Upwd<>"" and numcode<>"" Then
 	'验证码检验
 	if numcode<>trim(Session("numcode")) then 
-		login("<script>alert('验证码错误！');</script>")
+		AlertMsg("验证码错误！")
+		die("")
 	end if
 set rs=olddb.GetRecord(suffix & "admin","*","username='"&Uname&"'","",0)
 	if not rs.eof Then
 		dim md5pwd:md5pwd=md5(Upwd,32)
 		if rs("password")<> md5pwd Then
-			login("<script>alert('密码错误！');</script>")
+			AlertMsg("密码错误！")
+			die("")
 		else
 		'echo rs("password")&"--"&md5pwd
 			'更新登陆次数
@@ -60,11 +62,15 @@ set rs=olddb.GetRecord(suffix & "admin","*","username='"&Uname&"'","",0)
 		end if
 	else
 		logerrmsg="用户名不存在"
-		login("<script>alert('用户名不存在！');//parent.window.location.reload();</script>")
-		
+		AlertMsg("用户名不存在！")
+		die("")
 	end if
 end if
 
+
+'if Uname="" then call AlertMsgGo("用户名不能为空！","/admin/login.asp"):die("")
+'if Upwd="" then call AlertMsgGo("用户名不能为空！","/admin/login.asp"):die("")
+'if numcode="" then call AlertMsgGo("用户名不能为空！","/admin/login.asp"):die("")
 '检查cookies验证登陆状
 if not yanzhengCookies() then 
 	login("")
