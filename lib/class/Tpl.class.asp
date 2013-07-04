@@ -484,7 +484,6 @@ class AspTpl
 	'功能：把不同的错误级别输出
 	'==================================
 	Function echoErr(errnum,errstr)
-	echo errnum
 		if debug then
 			select case errnum
 				case 0'致命错误

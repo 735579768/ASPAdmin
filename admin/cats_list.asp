@@ -261,7 +261,7 @@ sort1=wraprs("sort")&""
 havepic1=getcatimg(wraprs("cat_pic")&"")
 navshow1=getcatshow(wraprs("cat_show")&"")
 catflag1=wraprs("catflag")&""
-catsinglecontent=getcatindexcontent(wraprs("cat_singlecontent")&"")
+'catsinglecontent=getcatindexcontent(wraprs("cat_singlecontent")&"")'封面内容获取
 
 icoimgid=icoimgid+1
 %>
@@ -269,7 +269,7 @@ icoimgid=icoimgid+1
         	<div class='left' style='width:<%=divleft%>px;'>
                 <img class='jiajian' stateid="icoimg<%=icoimgid%>" state="0" id="icoimg<%=icoimgid%>" src='images/jian.gif' width='9' height='9' />
                 栏目：<u><a title='点击查看此分类下文章' href='list_xx.asp?cat_id=<%=cid1%>' target='_self'><%=cname1%></a></u>
-                <span class='red'>(ID:<%=cid1%>,文档数:<%=arcnum1%>)</span>(<%=wraprs("type_sxname")%>)<img style="cursor:pointer;" onclick="popup(<%=cid1%>);" alt="编辑" src="images/edit.png" /><%=catsinglecontent%>
+                <span class='red'>(ID:<%=cid1%>,文档数:<%=arcnum1%>)</span>(<%=wraprs("type_sxname")%>)<img style="cursor:pointer;" onclick="popup(<%=cid1%>);" alt="编辑" src="images/edit.png" />
             </div>
             <div class='right'> 
             <%
@@ -329,12 +329,12 @@ icoimgid=icoimgid+1
 					havepic2=getcatimg(neirs("cat_pic")&"")
 					navshow2=getcatshow(neirs("cat_show")&"")
 					catflag2=neirs("catflag")&""
-					catsinglecontent2=getcatindexcontent(neirs("cat_singlecontent")&"")
+					'catsinglecontent2=getcatindexcontent(neirs("cat_singlecontent")&"")'封面内容获取
 	
 	%>
 		<dd style='padding-left:<%=padding%>px;'>
 			<div class='left' style='width:<%=divleft%>px;'>
-				栏目：<u><a title='点击查看此分类下文章'  href='list_xx.asp?cat_id=<%=cid2%>' target='_self'><%=cname2%></a></u><span class='red'>(ID:<%=cid2%>,文档数:<%=arcnum2%>)</span>(<%=neirs("type_sxname")%>)<img  style="cursor:pointer;" onclick="popup(<%=cid2%>);" alt="编辑" src="images/edit.png" /><%=catsinglecontent2%>
+				栏目：<u><a title='点击查看此分类下文章'  href='list_xx.asp?cat_id=<%=cid2%>' target='_self'><%=cname2%></a></u><span class='red'>(ID:<%=cid2%>,文档数:<%=arcnum2%>)</span>(<%=neirs("type_sxname")%>)<img  style="cursor:pointer;" onclick="popup(<%=cid2%>);" alt="编辑" src="images/edit.png" />
 			</div>
 			<div class='right'>
 			<%
