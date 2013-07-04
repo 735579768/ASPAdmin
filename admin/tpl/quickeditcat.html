@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/main.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-1.8.1.min.js" type="text/javascript"></script>
 <title>主框架</title>
 <style>
 html,body{ width:100%;}
@@ -29,6 +30,10 @@ table{ border:none;}
     <td align="left"><input name="cat_name" type="text" value="{$catobj.cat_name}" /></td>
   </tr>
   <tr>
+    <tr>
+    <td align="left" width="100"> 父分类：</td>
+    <td align="left">{$catobj.parentidsel}(<span class="red">不要随便更改</span>)</td>
+  </tr>
   	<td >封面模板：</td>
     <td><input name="cat_index" type="text" value="{$catobj.cat_index}" style="width:200px; height:20px;" /></td>
   </tr>
@@ -60,5 +65,6 @@ table{ border:none;}
             </tr>
           </table>
 </form>
+{$catobj.jsstr}
 </body>
 </html>

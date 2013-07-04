@@ -66,9 +66,9 @@ catobj("parentidsel")=getArcCatSel()
 
 jssstr=""
 if parentid=0 then
-jsstr="<script>$(function(){$('#cat_id').attr('name','parent_id');$('#cat_id').append(""<option value='0'>顶级分类<option>"");$(""#cat_id option[value='0']"").attr('selected','true');});</script>"
+jsstr="<script>$(function(){$(""#cat_id option[value='0']"").attr('selected','true');$(""#cat_id option[value='0']"").html('顶级分类');$('#cat_id').attr('name','parent_id');});</script>"
 else
-jsstr="<script>$(function(){$('#cat_id').attr('name','parent_id');$(""#cat_id option[value='"&parentid&"']"").attr('selected','true');});</script>"
+jsstr="<script>$(function(){$(""#cat_id option[value='0']"").html('顶级分类');$('#cat_id').attr('name','parent_id');$(""#cat_id option[value='"&parentid&"']"").attr('selected','true');});</script>"
 end if
 catobj("jsstr")=jsstr
 catobj("tabid")=G("tabid")

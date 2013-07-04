@@ -10,6 +10,21 @@ end if
 
 
 rsarr=newdb.table("kl_cats").where("cat_id="&cat_id).selarr()
-newtpl.assign "catobj",rsarr(0)
+set catobj=rsarr(0)
+catobj("parentidsel")=getArcCatSel()
+
+
+
+'======================
+'生成cat_id select 的js代码
+parentid=catobj("parent_id")&""
+jssstr=""
+if parentid=0 then
+jsstr="<script>$(function(){$(""#cat_id option[value='0']"").attr('selected','true');$(""#cat_id option[value='0']"").html('顶级分类');$('#cat_id').attr('name','parent_id');});</script>"
+else
+jsstr="<script>$(function(){$(""#cat_id option[value='0']"").html('顶级分类');$('#cat_id').attr('name','parent_id');$(""#cat_id option[value='"&parentid&"']"").attr('selected','true');});</script>"
+end if
+catobj("jsstr")=jsstr
+newtpl.assign "catobj",catobj
 newtpl.display("quickeditcat.html")
 %>
