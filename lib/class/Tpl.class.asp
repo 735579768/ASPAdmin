@@ -10,7 +10,7 @@
 '===================================================
 class AspTpl
 	private debug
-	private p_err
+	private p_errstr
 	private p_var_l
 	private p_var_r
 	private p_tag_l
@@ -41,6 +41,9 @@ class AspTpl
 		set p_reg=nothing
 		set p_fs=nothing
 		set p_var_list=nothing
+		if debug then
+		response.Write "<div id='debug' style='z-index:9; position:fixed; left:0px; bottom:0px; width:500px; height:300px; padding:10px; background:#fff; border:solid 3px #ccc; overflow:auto;'><div style='width:30px; height:30px; position:absolute; right:0px; top:0px; cursor:pointer; font-size:20px; text-align:center;font-weight:bolder;' onclick=""this.parentNode.style.display='none';"">X</div>"&p_errstr&"</div><div style='width:30px; height:30px; position:fixed; left:0px; bottom:0px; cursor:pointer; font-size:20px; text-align:center;font-weight:bolder;z-index:8;' onclick=""document.getElementById('debug').style.display='block';"">DEBUG</div>"
+		end if
 	end sub
 	'==================================================
 	'模板目录
@@ -193,11 +196,19 @@ class AspTpl
 		p_reg.Pattern=regtag
 		Set Matches = p_reg.Execute(str)
 		For Each Match in Matches  
-			if eval(jiexivar(Match.SubMatches(0))) then
-				str=replace(str,Match,jiexiShortTag(Match.SubMatches(1)))
-			else
-				str=replace(str,Match,jiexiShortTag(Match.SubMatches(2)))
-			end if
+				on error resume next
+				err.clear
+				bol=eval(jiexivar(Match.SubMatches(0)))
+				if err.number<>0 then
+					err.clear
+					str=replace(str,Match,jiexiShortTag(Match.SubMatches(2)))
+				else
+					if bol then
+						str=replace(str,Match,jiexiShortTag(Match.SubMatches(1)))
+					else
+						str=replace(str,Match,jiexiShortTag(Match.SubMatches(2)))
+					end if
+				end if
 		next
 		ifElseTag=str
 	end Function
@@ -484,7 +495,7 @@ class AspTpl
 	'功能：把不同的错误级别输出
 	'==================================
 	Function echoErr(errnum,errstr)
-		if debug then
+		p_errstr=p_errstr&"<br>"&errstr&"<br>"&"Error Description:"&err.description
 			select case errnum
 				case 0'致命错误
 					kl_err="Error Description:"&err.description
@@ -492,15 +503,14 @@ class AspTpl
 					response.Write kl_err&"<br>"
 					response.End()	
 				case 1'一般错误
-					kl_err="Error Description:"&err.description
-					response.Write errstr&"<br>"
-					response.Write kl_err&"<br>"
+				'	kl_err="Error Description:"&err.description
+				'	response.Write errstr&"<br>"
+				'	response.Write kl_err&"<br>"
 						
 				case else'其它
-					response.Write errstr&"<br>"
-					response.Write("<br>")
+				'	response.Write errstr&"<br>"
+				'	response.Write("<br>")
 			end select
-		end if
 		err.clear
 	End Function
 	'===============================================================================

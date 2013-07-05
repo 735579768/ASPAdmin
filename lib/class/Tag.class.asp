@@ -124,7 +124,7 @@ class QuickTag
 						next
 					set arcrs=nothing
 				else
-					echo "parentid and sql and catid  is should not null in arclist at that time"
+					tplobj.echoerr 1, "parentid and sql and catid  is should not null in arclist at that time"
 				end if
 				str=replace(str,m,liststr2)
 			next
