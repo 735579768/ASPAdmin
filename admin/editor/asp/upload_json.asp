@@ -32,7 +32,7 @@ flashExtStr = "swf|flv"
 mediaExtStr = "swf|flv|mp3|wav|wma|wmv|mid|avi|mpg|asf|rm|rmvb"
 fileExtStr = "doc|docx|xls|xlsx|ppt|htm|html|txt|zip|rar|gz|bz2"
 '最大文件大小
-maxSize = 5 * 1024 * 1024 '5M
+maxSize = 100 * 1024 * 1024 '5M
 
 Set fso = Server.CreateObject("Scripting.FileSystemObject")
 If Not fso.FolderExists(Server.mappath(savePath)) Then
