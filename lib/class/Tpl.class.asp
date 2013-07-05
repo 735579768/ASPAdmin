@@ -42,7 +42,7 @@ class AspTpl
 		set p_fs=nothing
 		set p_var_list=nothing
 		if debug then
-		response.Write "<div id='debug' style='z-index:9; position:fixed; left:0px; bottom:0px; width:500px; height:300px; padding:10px; background:#fff; border:solid 3px #ccc; overflow:auto;'><div style='width:30px; height:30px; position:absolute; right:0px; top:0px; cursor:pointer; font-size:20px; text-align:center;font-weight:bolder;' onclick=""this.parentNode.style.display='none';"">X</div>"&p_errstr&"</div><div style='width:30px; height:30px; position:fixed; left:0px; bottom:0px; cursor:pointer; font-size:20px; text-align:center;font-weight:bolder;z-index:8;' onclick=""document.getElementById('debug').style.display='block';"">DEBUG</div>"
+		response.Write "<div id='debug' style='z-index:9; position:fixed; left:0px; display:none; bottom:0px; width:500px; height:300px; padding:10px; background:#fff; border:solid 3px #ccc; overflow:auto;'><div id='debugclose' style='width:30px; height:30px; position:absolute; right:0px; top:0px; cursor:pointer; font-size:20px; text-align:center;font-weight:bolder;' >X</div>"&p_errstr&"</div><div id='debugshow' style='width:100px; height:40px; line-height:40px; text-align:center; position:fixed; left:0px; bottom:0px; cursor:pointer; font-size:20px; text-align:center;font-weight:bolder;z-index:8; background:#fff;'>DEBUG</div><script charset='utf-8' src='/admin/js/debug.js'></script>"
 		end if
 	end sub
 	'==================================================
@@ -565,6 +565,7 @@ class AspTpl
 		set ms=p_reg.Execute(str)
 		if ms.count>0 then
 		str1=jiexivar(ms(0).SubMatches(1))'取sql语句
+		str1=replace(str1,"&","'")
 		end if
 		set ms=nothing
 		getTagParam=str1
