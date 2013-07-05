@@ -83,7 +83,7 @@ KindEditor.plugin('flv', function(K) {
 						}
 						var html = 
 						'<script type="text/javascript" src="'+K.basePath+'/plugins/ckplayer/ckplayer.js" charset="utf-8"></script>\r\n'
-						+'<div id="a1" style="width:100%;margin:0 auto;text-align:center">正在加载播放器...</div>\r\n'
+						+'<div id="a1" style="width:100%;margin:0 auto;background:#000;color:#fff; width:'+width+'px;height:'+height+'px;line-height:'+height+'px;text-align:center">正在加载播放器...</div>\r\n'
 						+'<script type="text/javascript">\r\n'
 						
 						+'var s1=new swfupload();\r\n'
