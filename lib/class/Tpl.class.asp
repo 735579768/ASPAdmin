@@ -174,15 +174,11 @@ class AspTpl
 			on error resume next
 				err.clear
 				bol=eval(jiexivar(Match.SubMatches(0)))
-				if err.number<>0 then
+				if err.number<>0 or not bol then
 					err.clear
 					str=replace(str,Match,"")	
 				else
-					if bol then
-						str=replace(str,Match,jiexiShortTag(Match.SubMatches(1)))
-					else
-						str=replace(str,Match,"")	
-					end if				
+						str=replace(str,Match,jiexiShortTag(Match.SubMatches(1)))			
 				end if
 			end if
 		next
@@ -198,16 +194,14 @@ class AspTpl
 		For Each Match in Matches  
 				on error resume next
 				err.clear
-				bol=eval(jiexivar(Match.SubMatches(0)))
-				if err.number<>0 then
+		on error resume next
+				err.clear
+				bol=eval(replace(trim(jiexivar(Match.SubMatches(0))),"'",""""))
+				if err.number<>0 or not bol then
 					err.clear
-					str=replace(str,Match,jiexiShortTag(Match.SubMatches(2)))
+				str=replace(str,Match,Match.SubMatches(2))
 				else
-					if bol then
-						str=replace(str,Match,jiexiShortTag(Match.SubMatches(1)))
-					else
-						str=replace(str,Match,jiexiShortTag(Match.SubMatches(2)))
-					end if
+					str=replace(str,Match,Match.SubMatches(1))	
 				end if
 		next
 		ifElseTag=str
@@ -683,17 +677,12 @@ class AspTpl
 				on error resume next
 				err.clear
 				bol=eval(m.submatches(0))
-				if err.number<>0 then
+				if err.number<>0 or not bol then
 					err.clear
 					str=replace(str,m,"")
 				else
-					if bol then
-						str=replace(str,m,m.submatches(1))
-					else
-						str=replace(str,m,"")
-					end if				
+					str=replace(str,m,m.submatches(1))			
 				end if
-
 			next
 		end if
 		eqtag=str
