@@ -12,6 +12,7 @@ Function FilterFunc(val,funcname,param)
 						fireg.pattern="<.*?>|\s*|\r*\n\s*\r*\n"
 						val=fireg.replace(val,"")
 						set fireg=nothing
+						if param="" then param=20
 						temVar=left(val,Cint(param))
 				case "empty" 
 						if val="" then
@@ -21,6 +22,10 @@ Function FilterFunc(val,funcname,param)
 						end if
 				case "formatdate" 
 						valarr=split(val," ")
+						if param="" or param=null then
+							if instr(val,"/")<>0 then param="/"
+							if instr(val,"-")<>0 then param="-"
+						end if
 						datenow=split(valarr(0),param)
 						if ubound(datenow)=2 then
 							if len(datenow(1))<2 then datenow(1)="0"&datenow(1)

@@ -23,7 +23,7 @@ class AspTpl
 	private p_charset
 	public  p_tpl_dir	
 	private sub class_Initialize
-		debug=true
+		debug=app_debug
 		p_charset="UTF-8"
 		p_var_l = "\{\$"
 		p_var_r = "\}"
@@ -143,18 +143,21 @@ class AspTpl
 			re.IgnoreCase = True
 			re.Global = True
 			'分析是否有变量过滤器start 
-			re.Pattern =  p_var_l &  "(\S*?)\|(\S*?)\=(\S*?)"  & p_var_r 
+			re.Pattern =  p_var_l &  "(\S*?)\|([^\=]*?)\=?([^\=]*?)"  & p_var_r 
 			set Ms=re.execute(a)
 			'处理有过滤器的情况
-
-
-
-
 			if Ms.count>0 then
 				redim arr(3) 
-				arr(0)=Ms(0).SubMatches(0)'变量键名
-				arr(1)=Ms(0).SubMatches(1)'函数名
-				arr(2)=Ms(0).SubMatches(2)'调用参数
+				arr(0)=Ms(0).SubMatches(0)&""'变量键名
+				'echo Ms(0).SubMatches(0)&"---"&Ms(0).SubMatches(1)&"-----"& Ms(0).SubMatches(2)&"<br>"
+				if Ms(0).SubMatches(1)="" or Ms(0).SubMatches(1)=null then
+					arr(1)=Ms(0).SubMatches(2)&""'函数名
+					arr(2)=""'调用参数				
+				else
+					arr(1)=Ms(0).SubMatches(1)&""'函数名
+					arr(2)=Ms(0).SubMatches(2)&""'调用参数				
+				end if
+
 				isHaveFilteFunc=arr
 			else
 				isHaveFilteFunc=false
