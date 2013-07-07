@@ -43,7 +43,7 @@ class AspTpl
 		set p_fs=nothing
 		set p_var_list=nothing
 		if debug then
-		response.Write "<div id='debug' style='z-index:9; position:fixed; left:0px; display:none; bottom:0px; width:500px; height:300px; padding:10px; background:#fff; border:solid 3px #ccc; overflow:auto;'><div id='debugclose' style='width:30px; height:30px; position:absolute; right:0px; top:0px; cursor:pointer; font-size:20px; text-align:center;font-weight:bolder;' >X</div>"&p_errstr&"</div><div id='debugshow' style='width:100px; height:40px; line-height:40px; text-align:center; position:fixed; left:0px; bottom:0px; cursor:pointer; font-size:20px; text-align:center;font-weight:bolder;z-index:8; background:#fff;'>DEBUG</div><script charset='utf-8' src='/admin/js/debug.js'></script>"
+		response.Write "<style>#debug ul li{ border:none;border-bottom: solid 1px #EDEDED;height: 20px;line-height: 20px;padding: 2px 0px;}</style><div id='debug' style='z-index:9; position:fixed; left:0px; display:none; bottom:0px; width:500px; height:300px; padding:10px; background:#fff; border:solid 3px #ccc; overflow:auto;'><div id='debugclose' style='width:30px; height:30px; position:absolute; right:0px; top:0px; cursor:pointer; font-size:20px; text-align:center;font-weight:bolder;' >X</div><ul>"&p_errstr&"</ul></div><div id='debugshow' style='width:100px; height:40px; line-height:40px; text-align:center; position:fixed; left:0px; bottom:0px; cursor:pointer; font-size:20px; text-align:center;font-weight:bolder;z-index:8; background:#fff;'>DEBUG</div><script charset='utf-8' src='/admin/js/debug.js'></script>"
 		end if
 	end sub
 	'==================================================
@@ -491,7 +491,7 @@ class AspTpl
 	'功能：把不同的错误级别输出
 	'==================================
 	Function echoErr(errnum,errstr)
-		p_errstr=p_errstr&"<br>"&errstr&"<br>"&"Error Description:"&err.description
+		p_errstr=p_errstr&"<li>"&errstr&"</li><li>"&"Error Description:"&err.description&"</li>"
 			select case errnum
 				case 0'致命错误
 					kl_err="Error Description:"&err.description
