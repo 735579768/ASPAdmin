@@ -58,7 +58,7 @@ Class Accessdb
 		if sqlstr<>"" then kl_sql=sqlstr
 		set kl_rs=server.CreateObject("adodb.recordset")
 		kl_rs.open kl_sql,kl_conn,1,3
-		if err.number<>0 then 
+		if err.number<>0 and app_deug then 
 			echoerr 0,"query SQL语句出错:"&kl_sql
 		end if
 		set query=kl_rs

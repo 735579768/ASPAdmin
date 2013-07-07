@@ -32,6 +32,7 @@ class AspTpl
 		p_tpl_dir = "tpl"
 		set p_fs= server.createobject("Scripting.FileSystemObject")
 		set p_var_list = server.CreateObject("Scripting.Dictionary")
+		set p_var_list("precode") = server.CreateObject("Scripting.Dictionary")
 		Set p_reg = New RegExp 
 		p_reg.IgnoreCase = True
 		p_reg.Global = True
@@ -129,8 +130,6 @@ class AspTpl
 					end if
 			end if 
 		next
-		p_reg.Pattern = p_var_l&"\S*"&p_var_r    
-		str= p_reg.Replace(str, "")			 '把没有赋值的变量标签替换成空
 		jiexivar=str
 	end Function
 	'==================================================
@@ -415,7 +414,6 @@ class AspTpl
 	private function haveinclude(str)
 		p_reg.IgnoreCase = True
 		p_reg.Global = True
-
 		p_reg.Pattern =  p_tag_l &  "include(\s+?)file=\""(\S+?)\""(\s*?)"  & p_tag_r 
 		set matches=p_reg.Execute(str)
 		if matches.count<1 then
@@ -429,6 +427,7 @@ class AspTpl
 	'=================================================
 	private Function jiexiTpl()
 		p_tpl_content=includefile(p_tpl_content)'包含文件
+		p_tpl_content=precodetag(p_tpl_content)
 		p_tpl_content=ifTag(p_tpl_content)
 		p_tpl_content=ifElseTag(p_tpl_content)
 		p_tpl_content=foreachTag(p_tpl_content)
@@ -517,38 +516,6 @@ class AspTpl
 	'@param param函数的参数字符串
 	'===============================================================================	
 	public Function filterVar(val,funcname,param)
-	
-			'Select Case trim(funcname)
-'				case "left" 
-'						set fireg=new regExp
-'						fireg.IgnoreCase = True
-'						fireg.Global = True
-'						fireg.pattern="<.*?>|\s*|\r*\n\s*\r*\n"
-'						val=fireg.replace(val,"")
-'						set fireg=nothing
-'						temVar=left(val,Cint(param))
-'				case "empty" 
-'						if val="" then
-'							temvar=param
-'						else
-'							temvar=val
-'						end if
-'				case "formatdate" 
-'						valarr=split(val," ")
-'						datenow=split(valarr(0),param)
-'						if ubound(datenow)=2 then
-'							if len(datenow(1))<2 then datenow(1)="0"&datenow(1)
-'							if len(datenow(2))<2 then datenow(2)="0"&datenow(2)
-'							newdate=datenow(0)&"/"&datenow(1)&"/"&datenow(2)
-'							filtervar=newdate
-'						else
-'							filtervar=valarr(0)
-'						end if
-'						exit function
-'				case else 
-'						temvar=val
-'			end select
-'			if isnull(temval) then temval=""
 			filterVar=FilterFunc(val,funcname,param)
 	End Function
 	'===============================================================================
@@ -608,7 +575,25 @@ class AspTpl
 		str= p_reg.Replace(str, "'javascript:void(0);'")			 '去掉锚点		
 		p_reg.Pattern = "\r*\n\s*\r*\n"  '去掉空行
 		str= p_reg.Replace(str, vbCrLf)
+		p_reg.Pattern = p_var_l&"\S*"&p_var_r    
+		str= p_reg.Replace(str, "")			 '把没有赋值的变量标签替换成空
+		'输出原样标签中的内容
+		for each a in p_var_list("precode").keys
+			str=replace(str,a,p_var_list("precode")(a))
+		next
 		Endjiexi=str	
+	End Function
+	'===============================================================================
+	'原样输出代码
+	'===============================================================================	
+	Private Function precodetag(str)
+		p_reg.Pattern="<precode>([\s\S]*?)</precode>" 
+ 		set matches=p_reg.execute(str)
+		for each match in matches
+			p_var_list("precode")(md5(match.SubMatches(0),32))=jiexivar(match.SubMatches(0))
+			str=replace(str,match,md5(match.SubMatches(0),32))
+		next
+		precodetag=str	
 	End Function
 	'================================================== 
 	'函数名称:looptag 

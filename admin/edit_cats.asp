@@ -1,12 +1,14 @@
 ﻿<!--#include file="lib/AdminInIt.asp"-->
 <%
-dim cat_id:cat_id=G("cat_id")
+dim cat_id,typeid
+cat_id=G("cat_id")
 if G("act")="updtcat" then
 				set uprs=server.createobject("adodb.recordset")
 				uprs.open "select * from kl_cats where cat_id="&cat_id,newdb.kl_conn,0,2
 				uprs("cat_name")=G("cat_name")
 				uprs("sort")=G("sort")
-				uprs("type_id")=G("type_id")
+				typeid=G("type_id")
+				uprs("type_id")=typeid
 				uprs("parent_id")=G("parent_id")
 				uprs("cat_show")=G("cat_show")
 				uprs("cat_pic")=G("cat_pic")
@@ -40,7 +42,7 @@ if G("act")="updtcat" then
 		uprs.update
 		uprs.close
 		set uprs=nothing
-		AlertMsg(UPDATESUCCESS)
+		call AlertMsgGo(UPDATESUCCESS,"edit_cats.asp?cat_id="&cat_id&"&type_id="&typeid)
 end if
 'Generate the page
 sql="select a.type_id as typeid ,* from kl_cats as a inner join kl_content_types as b on a.type_id=b.type_id where a.cat_id="&cat_id
