@@ -15,13 +15,17 @@
 			next
 				if result=0 then
 					AlertMsg(CAOZUO_FAIL_STR)
+				else
+					call alertMsgGo("删除成功","comments.asp")
 				end if
 		end if	
 		
 	if G("act")="del" then
 		result=newdb.table("kl_comments").where("id="&G("id")).delete()
+		call alertMsgGo("删除成功","comments.asp")
 		'result=olddb.query("delete from kl_comments where id="&G("id"))
 	end if
+
 sql="select * from kl_comments order by fbdate desc,id desc "
 newtpl.assign "sql",sql
 newtpl.assign "page",G("page")

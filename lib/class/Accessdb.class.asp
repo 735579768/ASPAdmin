@@ -243,7 +243,7 @@ Class Accessdb
 		rs.delete
 		rs.update
 		set autoform=nothing
-		add=true	
+		delete=true	
 	End function
 End Class
 %>
