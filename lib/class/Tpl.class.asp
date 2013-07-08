@@ -469,7 +469,19 @@ class AspTpl
 			p_tpl_content=str
 			str=jiexiTpl()
 			response.Write str
+			debugstr()
 	end function
+	'=================================================
+	'解析字符串模板
+	'==================================================
+	private Function debugstr()
+		if debug then
+		end_time=timer()
+		time_ijob=FormatNumber((end_time-start_time)*1000,3)
+		runtime="<div  style=' border:solid 1px #ccc;width:auto; height:40px; line-height:40px; text-align:center; position:fixed;_position:absolute;_bottom:auto;_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0))); right:0px; bottom:0px; cursor:pointer; font-size:20px; text-align:center;font-weight:bolder;z-index:8; background:#fff;'>执行时间：<font color=""#ff0000"">"&time_ijob&"</font> 毫秒<div>"
+		response.Write "<style>*html{background-image:url(about:blank);background-attachment:fixed;}#debug ul li{ border:none;border-bottom: solid 1px #EDEDED;height: 20px;line-height: 20px;padding: 2px 0px;}</style><div id='debug' style='z-index:9; position:fixed;_position:absolute;_bottom:auto;_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0))); left:0px; display:none; bottom:0px; width:500px; height:300px; padding:10px; background:#fff; border:solid 3px #ccc; overflow:auto;'><div id='debugclose' style='width:30px; height:30px; position:absolute; right:0px; top:0px; cursor:pointer; font-size:20px; text-align:center;font-weight:bolder;' >X</div><ul>"&p_errstr&"</ul></div><div id='debugshow' style='width:100px; height:40px; line-height:40px; text-align:center; position:fixed;_position:absolute;_bottom:auto;_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0))); left:0px; bottom:0px; cursor:pointer; font-size:20px; text-align:center;font-weight:bolder;z-index:8; background:#fff;border:solid 1px #ccc;'>DEBUG</div><script charset='utf-8' src='/admin/js/debug.js'></script>"&runtime
+		end if	
+	end Function
 	'==================================================
 	'解析模板文件
 	'==================================================
@@ -479,12 +491,7 @@ class AspTpl
 		checkTplDirAndFile()'载入模板
 		str=jiexiTpl()
 		response.Write str
-		if debug then
-		end_time=timer()
-		time_ijob=FormatNumber((end_time-start_time)*1000,3)
-		runtime="<div  style=' border:solid 1px #ccc;width:auto; height:40px; line-height:40px; text-align:center; position:fixed;_position:absolute;_bottom:auto;_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0))); right:0px; bottom:0px; cursor:pointer; font-size:20px; text-align:center;font-weight:bolder;z-index:8; background:#fff;'>程序执行：<font color=""#ff0000"">"&time_ijob&"</font> 毫秒<div>"
-		response.Write "<style>*html{background-image:url(about:blank);background-attachment:fixed;}#debug ul li{ border:none;border-bottom: solid 1px #EDEDED;height: 20px;line-height: 20px;padding: 2px 0px;}</style><div id='debug' style='z-index:9; position:fixed;_position:absolute;_bottom:auto;_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0))); left:0px; display:none; bottom:0px; width:500px; height:300px; padding:10px; background:#fff; border:solid 3px #ccc; overflow:auto;'><div id='debugclose' style='width:30px; height:30px; position:absolute; right:0px; top:0px; cursor:pointer; font-size:20px; text-align:center;font-weight:bolder;' >X</div><ul>"&p_errstr&"</ul></div><div id='debugshow' style='width:100px; height:40px; line-height:40px; text-align:center; position:fixed;_position:absolute;_bottom:auto;_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0))); left:0px; bottom:0px; cursor:pointer; font-size:20px; text-align:center;font-weight:bolder;z-index:8; background:#fff;border:solid 1px #ccc;'>DEBUG</div><script charset='utf-8' src='/admin/js/debug.js'></script>"&runtime
-		end if	
+		debugstr()
 	end Function
 	'==================================================
 	'输出错误
