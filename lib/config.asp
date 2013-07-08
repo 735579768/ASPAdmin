@@ -8,7 +8,7 @@ on error goto 0
 session("APP")="true"
 
 'Response.Addheader "Content-Type","text/html; charset=utf-8" 
-const app_debug=true
+const app_debug=false
 'database config
 const Sql_Server = "127.0.0.1" 'server
 const Sql_User = "" 'datauser 
