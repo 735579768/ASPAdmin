@@ -53,7 +53,7 @@
         </div>
 </div>
     <div class="arcpav">
-     <!--{arclist sql="select top 1 * from kl_archives where fbdate>#{$arcinfo.fbdate}# and cat_id={$arcinfo.cat_id} order by fbdate desc,id desc "}-->
+     <!--{arclist sql="select top 1 * from kl_archives where fbdate>#{$arcinfo.fbdate}# and cat_id={$arcinfo.cat_id} order by fbdate asc,id asc "}-->
     <a href="view.asp?id={$id}"><b>[上一篇]</b>{$arctitle|left=20}</a>
     <!--{/arclist}-->
     
