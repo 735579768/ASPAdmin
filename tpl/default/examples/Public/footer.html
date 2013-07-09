@@ -1,19 +1,7 @@
-<div style="clear:both;"></div>
-<div class="footer">
-	<div class="footer_right fleft">
-
-		<div class="pp3"><br>
- 电话：13503795469<br>
-河南明阳防静电地板有限公司  地址：洛阳市涧西区南昌路南苑小区4单元301
-
-    	<ul class="footer_ul">
-        	<li><a href="/">首页</a></li>
-            <!--{loop name="navlist" var="var"}-->
-            <li><a href="cat.asp?catid={$var.cat_id}">{$var.cat_name}</a></li>
-            <!--{/loop}-->
-      </ul>
-
-		</div>
-	</div>
-</div>
-</div>
+<ul>
+       <li><a href="/">{$indexseo.cfg_indexname}</a></li>
+          <!--{arclist sql="select * from kl_cats where parent_id=0 and cat_show=1 order by sort asc"}-->
+            <li><a href="cat.asp?catid={$cat_id}">{$cat_name}</a></li>
+            <!--{/arclist}-->
+</ul>
+{$indexseo.cfg_thirdcode}{$indexseo.cfg_beian}{$indexseo.cfg_webname}{$indexseo.cfg_powerby}
