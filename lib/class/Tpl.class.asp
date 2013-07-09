@@ -735,7 +735,7 @@ class AspTpl
 				selected=getTagParam(paramstr,"selected")
 				selstr=""
 				for each key in objarr.keys
-					if cstr(p_var_list(selected))<>cstr(key) then
+					if p_var_list(selected)&""<>key&"" then
 						selstr=selstr&"<input type='radio' name='"&selname&"' value='"&key&"' /><span>"&objarr(key)&"</span>"
 					else
 						selstr=selstr&"<input type='radio' name='"&selname&"' value='"&key&"' checked='checked' /><span>"&objarr(key)&"</span>"

@@ -22,10 +22,16 @@ Class Accessdb
 	'功能：初始化数据
 	'==================================
 	Private Sub Class_Initialize()
+		on error resume next
+		err.clear
 		connstr= "Provider=Microsoft.Jet.OLEDB.4.0;Data Source="&server.MapPath(Sql_Data)&";Jet OLEDB:Database Password="&db_pwd&";"
 		Set kl_conn = Server.CreateObject("ADODB.Connection")
 		Set kl_sqlkey = server.CreateObject("Scripting.Dictionary")
 		kl_Conn.Open connstr
+		if err.number<>0 then
+		echo "database link error!"
+		die("")
+		end if
 	End Sub
 	Private Sub Class_Terminate()
 		Set kl_conn = Nothing
@@ -53,13 +59,19 @@ Class Accessdb
 	'功能：查询记录集
 	'==================================
 	Function query(sqlstr)
-		on error resume next
-		err.clear
-		if sqlstr<>"" then kl_sql=sqlstr
-		set kl_rs=server.CreateObject("adodb.recordset")
-		kl_rs.open kl_sql,kl_conn,1,3
-		if err.number<>0 and app_deug then 
-			echoerr 0,"query SQL语句出错:"&kl_sql
+		if app_debug then
+			err.clear
+			if sqlstr<>"" then kl_sql=sqlstr
+			set kl_rs=server.CreateObject("adodb.recordset")
+			kl_rs.open kl_sql,kl_conn,1,3
+			if err.number<>0 and app_deug then 
+				echoerr 0,"query SQL语句出错:"&kl_sql
+			end if
+		else
+			on error resume next
+			if sqlstr<>"" then kl_sql=sqlstr
+			set kl_rs=server.CreateObject("adodb.recordset")
+			kl_rs.open kl_sql,kl_conn,1,3	
 		end if
 		set query=kl_rs
 	End Function

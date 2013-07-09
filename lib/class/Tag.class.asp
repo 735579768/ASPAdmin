@@ -47,7 +47,6 @@ class QuickTag
 			tagreg.Pattern=p_tag_l & "arclist\s*?(.*?)\s*?"& p_tag_r  &"([\s\S]*?)"& p_tag_l & "/arclist"& p_tag_r
 			Set Matches = tagreg.Execute(str)
 			for each m in matches
-			
 				paramstr=m.submatches(0)
 				catidlist=tplobj.getTagParam(paramstr,"catid")
 				parentidlist=tplobj.getTagParam(paramstr,"parentid")
@@ -87,6 +86,7 @@ class QuickTag
 					else
 						set arcrs=db.query(runsql)
 						pgsize=arcrs.recordcount
+						
 					end if
 						for i=0 to pgsize-1
 							if not arcrs.eof then
