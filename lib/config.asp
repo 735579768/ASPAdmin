@@ -10,7 +10,7 @@ session("APP")="true"
 dim end_time,start_time,time_ijob
 start_time=timer()
 'Response.Addheader "Content-Type","text/html; charset=utf-8" 
-const app_debug=true
+dim app_debug:app_debug=true
 'database config
 const Sql_Server = "127.0.0.1" 'server
 const Sql_User = "" 'datauser 
