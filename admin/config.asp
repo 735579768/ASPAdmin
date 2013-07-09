@@ -3,21 +3,12 @@
 on error resume next
 if G("upcfg")="true" then 
 	Set o = jsObject()
-	o("cfg_indexname")=G("cfg_indexname")
-	o("cfg_webname")=G("cfg_webname")
-	o("cfg_arcdir")=G("cfg_arcdir")
-	o("cfg_medias_dir")=G("cfg_medias_dir")
-	o("cfg_df_style")=G("cfg_df_style")
-	o("cfg_powerby")=G("cfg_powerby")
-	o("cfg_keywords")=G("cfg_keywords")
-	o("cfg_description")=G("cfg_description")
-	o("cfg_beian")=G("cfg_beian")
-	o("cfg_thirdcode")=G("cfg_thirdcode")
-	o("cfg_weijingtai")=G("cfg_weijingtai")
+	for each a in request.Form
+		o(a)=G(a)
+	next
 	set rs=newdb.table("kl_meta").where("meta_key='cfg_system'").sel()
 	rs("meta_value")=tojson(o)
 	rs.update
-	
 	'result=olddb.UpdateRecord("kl_meta","meta_key='cfg_system'",array("meta_value:"&tojson(o)))
 	if err.number=0 then 
 	reurl("config.asp")
@@ -31,11 +22,15 @@ set rs=db.table("kl_meta").where("meta_key='cfg_system'").fild("meta_value").sel
 jsonstr=rs(0)&""
 set cfgobj=jsontoobj(jsonstr)
 newtpl.assign "cfgobj",cfgobj
+
 set dir=server.CreateObject("Scripting.Dictionary")
 dir("0")="关闭"
 dir("1")="启用"
 newtpl.assign "radioarr",dir
+newtpl.assign "yasuoradioarr",dir
 newtpl.assign "seled",cfgobj("cfg_weijingtai")
+newtpl.assign "yasuoseled",cfgobj("cfg_pageyasuo")
+set dir=nothing
 
 
 

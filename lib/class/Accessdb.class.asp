@@ -17,11 +17,13 @@ Class Accessdb
 	private kl_sql
 	private kl_err
 	private kl_sqlkey
+	public kl_sqlnum
 	'==================================
 	'初始化类函数
 	'功能：初始化数据
 	'==================================
 	Private Sub Class_Initialize()
+		kl_sqlnum=0
 		on error resume next
 		err.clear
 		connstr= "Provider=Microsoft.Jet.OLEDB.4.0;Data Source="&server.MapPath(Sql_Data)&";Jet OLEDB:Database Password="&db_pwd&";"
@@ -73,6 +75,7 @@ Class Accessdb
 			set kl_rs=server.CreateObject("adodb.recordset")
 			kl_rs.open kl_sql,kl_conn,1,3	
 		end if
+		kl_sqlnum=kl_sqlnum+1
 		set query=kl_rs
 	End Function
 	'==================================

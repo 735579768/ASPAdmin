@@ -478,7 +478,7 @@ class AspTpl
 		if debug then
 		end_time=timer()
 		time_ijob=FormatNumber((end_time-start_time)*1000,3)
-		runtime="<div  style=' border:solid 1px #ccc;width:auto; height:40px; line-height:40px; text-align:center; position:fixed;_position:absolute;_bottom:auto;_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0))); right:0px; bottom:0px; cursor:pointer; font-size:20px; text-align:center;font-weight:bolder;z-index:8; background:#fff;'>执行时间：<font color=""#ff0000"">"&time_ijob&"</font> 毫秒<div>"
+		runtime="<div  style=' border:solid 1px #ccc;width:auto; height:40px; line-height:40px; text-align:center; position:fixed;_position:absolute;_bottom:auto;_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0))); right:0px; bottom:0px; cursor:pointer; font-size:20px; text-align:center;font-weight:bolder;z-index:8; background:#fff;'>执行"&db.kl_sqlnum&"个sql语句,执行时间：<font color=""#ff0000"">"&time_ijob&"</font> 毫秒<div>"
 		response.Write "<style>*html{background-image:url(about:blank);background-attachment:fixed;}#debug ul li{ border:none;border-bottom: solid 1px #EDEDED;height: 20px;line-height: 20px;padding: 2px 0px;}</style><div id='debug' style='z-index:9; position:fixed;_position:absolute;_bottom:auto;_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0))); left:0px; display:none; bottom:0px; width:500px; height:300px; padding:10px; background:#fff; border:solid 3px #ccc; overflow:auto;'><div id='debugclose' style='width:30px; height:30px; position:absolute; right:0px; top:0px; cursor:pointer; font-size:20px; text-align:center;font-weight:bolder;' >X</div><ul>"&p_errstr&"</ul></div><div id='debugshow' style='width:100px; height:40px; line-height:40px; text-align:center; position:fixed;_position:absolute;_bottom:auto;_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0))); left:0px; bottom:0px; cursor:pointer; font-size:20px; text-align:center;font-weight:bolder;z-index:8; background:#fff;border:solid 1px #ccc;'>DEBUG</div><script charset='utf-8' src='/admin/js/debug.js'></script>"&runtime
 		end if	
 	end Function
@@ -582,9 +582,16 @@ class AspTpl
 	'===============================================================================	
 	Public Function Endjiexi(str)
 		p_reg.Pattern = "\'#\'|""#"""    
-		str= p_reg.Replace(str, "'javascript:void(0);'")			 '去掉锚点		
-		p_reg.Pattern = "\r*\n\s*\r*\n"  '去掉空行
-		str= p_reg.Replace(str, vbCrLf)
+		str= p_reg.Replace(str, "'javascript:void(0);'")'去掉锚点
+		if isobject(seoobj) then
+			if seoobj("cfg_pageyasuo")="1" then
+				p_reg.Pattern = "\r*\n\s*"  '页面压缩	
+				str= p_reg.Replace(str, "")			
+			else
+				p_reg.Pattern = "\r*\n\s*\r*\n"  '去掉空行
+				str= p_reg.Replace(str, vbCrLf)		
+			end if	
+		end if
 		p_reg.Pattern = p_var_l&"\S*"&p_var_r    
 		str= p_reg.Replace(str, "")			 '把没有赋值的变量标签替换成空
 		'输出原样标签中的内容
