@@ -1,10 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script src="js/jquery-1.8.1.min.js" type="text/javascript"></script>
 <script src="js/list.js" type="text/javascript"></script>
-<title>±à¼­ĞÅÏ¢</title>
+<title>ç¼–è¾‘ä¿¡æ¯</title>
 <style>
 a{ color:#000; text-decoration:none;}
 *{ margin:0px; padding:0px; font-size:12px;}
@@ -22,57 +22,61 @@ padding-left: 5px;
 background: #CCC url(images/allbtbg2.gif);
 cursor: pointer;
 }
+.pagenav,.pagenav a,.pagenav font{ font-size:12px; color:#666;text-align: center;}
+.pagenav a:hover,.pagenav a:hover font{ color:#000; background:#ebebeb;}
+.pagenav a,.pagenav font{ display:inline-block; height:20px; height:20px; padding:0px 6px; line-height:20px;border: 1px solid #E7ECF0;}
+.pagenav a font{ margin:0px; padding:0px; border:none;}
 </style>
 </head>
 <body>
-<!--ËÑË÷ĞÅÏ¢-->
+<!--æœç´¢ä¿¡æ¯-->
 <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#cfcfcf" align="center">
 <tr class="biaotou" bgcolor="#E7E7E7">
 <td height="28" colspan="9" align="center" background="images/tbg.gif" style="padding-left:10px;">
-	<span>ÎÄµµÁĞ±í</span> &nbsp;&gt;&gt;<a href="javascript:window.history.go(-1);" class="coolbg">·µ»Ø</a>
+	<span>æ–‡æ¡£åˆ—è¡¨</span> &nbsp;&gt;&gt;<a href="javascript:window.history.go(-1);" class="coolbg">è¿”å›</a>
 </td>
 </tr>
 <tr align="center" bgcolor="#FBFCE2" height="25">
 <td width="5%">ID</td>
-<td width="4%">Ñ¡Ôñ</td>
-<td width="20%">Á´½Ó±êÌâ</td>
-<td width="13%">Á´½ÓµØÖ·</td>
-<td width="10%">ÓÊ¼ş</td>
-<td width="14%">Á´½ÓÎ»ÖÃ</td>
-<td width="10%">²Ù×÷</td>
+<td width="4%">é€‰æ‹©</td>
+<td width="20%">é“¾æ¥æ ‡é¢˜</td>
+<td width="13%">é“¾æ¥åœ°å€</td>
+<td width="10%">é‚®ä»¶</td>
+<td width="14%">é“¾æ¥ä½ç½®</td>
+<td width="10%">æ“ä½œ</td>
 </tr>
-<!-- BEGIN friendlinklist -->
+<!--{arclist sql="select * from kl_friend_link" pagenav="pagenav" pagesize="15"}-->
 <tr align="center" bgcolor="#FFFFFF" onmousemove="javascript:this.bgColor='#FCFDEE';" onmouseout="javascript:this.bgColor='#FFFFFF';" height="25" >
-<td>{{friend_id}}</td>
+<td>{$friend_id}</td>
 <td><input name="arcID" type="checkbox" id="arcID" value="91" class="np"></td>
 <td align="left">
-	<u>{{friend_name}}</u>
+	<u>{$friend_name}</u>
 </td>
-<td>{{friend_url}}</td>
-<td>{{friend_email}}</td>
-<td>{{friend_weizhi}}</td>
+<td>{$friend_url}</td>
+<td>{$friend_email}</td>
+<td>{$friend_weizhi}</td>
 <td>
-    <a href="edit_friendlink.asp?friend_id={{friend_id}}"><img src="images/edit.png" title="±à¼­ÊôĞÔ" alt="±à¼­ÊôĞÔ" onclick=";" style="cursor:pointer" border="0" width="16" height="16"></a><a href="javascript:void(0);"> &nbsp;&nbsp;<input type="hidden" value="{{friend_id}}" /> <img src="images/no.gif" title="É¾³ı" alt="É¾³ı" onclick=";" style="cursor:pointer" border="0" width="16" height="16" class="delfriendlink"></a></td>
+    <a href="edit_friendlink.asp?friend_id={$friend_id}"><img src="images/edit.png" title="ç¼–è¾‘å±æ€§" alt="ç¼–è¾‘å±æ€§" onclick=";" style="cursor:pointer" border="0" width="16" height="16"></a><a href="javascript:void(0);"> &nbsp;&nbsp;<input type="hidden" value="{$friend_id}" /> <img src="images/no.gif" title="åˆ é™¤" alt="åˆ é™¤" onclick=";" style="cursor:pointer" border="0" width="16" height="16" class="delfriendlink"></a></td>
 </tr>
-<!-- END friendlinklist -->
+<!--{/arclist}-->
 <tr bgcolor="#ffffff">
   <td height="24" colspan="9">
   &nbsp;
-  <a href="javascript:selAll()" class="coolbg">È«Ñ¡</a>
-  <a href="javascript:noSelAll()" class="coolbg">È¡Ïû</a>
-  <a href="javascript:moveArc(0)" class="coolbg">&nbsp;»¹Ô­&nbsp;</a>
-  <a href="javascript:delArc(0)" class="coolbg">&nbsp;É¾³ı&nbsp;</a></td>
+  <a href="javascript:selAll()" class="coolbg">å…¨é€‰</a>
+  <a href="javascript:noSelAll()" class="coolbg">å–æ¶ˆ</a>
+  <a href="javascript:moveArc(0)" class="coolbg">&nbsp;è¿˜åŸ&nbsp;</a>
+  <a href="javascript:delArc(0)" class="coolbg">&nbsp;åˆ é™¤&nbsp;</a></td>
 </tr>
 
 <tr align="right" bgcolor="#F9FCEF">
 <td height="30" colspan="9" align="center">
-	<span>{{pagenav}}</span></td>
+	<span>{$pagenav}</span></td>
 </tr>
 </table>
 
 
 <script type="text/javascript">
-//É¾³ıÓÑÇéÁ´½Ó
+//åˆ é™¤å‹æƒ…é“¾æ¥
 $(function(){
 	$(".delfriendlink").bind("click",function(){
 		var obj=$(this);
@@ -83,7 +87,7 @@ $(function(){
 				'friend_id':valu
 			},function(data){
 				if(data==1){
-						alert('É¾³ı³É¹¦£¡');
+						alert('åˆ é™¤æˆåŠŸï¼');
 						obj.parent().parent().parent().remove();
 					}else{
 						alert(data);
