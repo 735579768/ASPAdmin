@@ -191,7 +191,6 @@ Class Accessdb
 		set autoform = server.CreateObject("Scripting.Dictionary")
 		for each key in request.Form
 				if not (instr(key,"__no__")<>0) then
-				echo key
 				autoform(key)=request.Form(key)
 				end if
 			'end if
