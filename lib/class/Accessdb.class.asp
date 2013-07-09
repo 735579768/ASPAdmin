@@ -135,7 +135,6 @@ Class Accessdb
 	'功能：查询数据
 	'==================================
 	Function sel()
-		''bakon error resume next
 		dim top ,fild,where,jin,table,order
 		if kl_sqlkey.Exists("top") then top=cstr(kl_sqlkey("top"))
 		if kl_sqlkey.Exists("fild") then fild=cstr(kl_sqlkey("fild"))
@@ -147,7 +146,7 @@ Class Accessdb
 		if fild="" then fild="*"
 		if jin<>"" then jin="inner join "&jin
 		if order<>"" then order=" order by "&order
-		kl_sql="select "&top&" "&fild&" from "&table &" "& jin&" "&"where  1=1  "&where&" "&order
+		kl_sql="select "&top&" "&fild&" from "&table &" "& jin&" "&" where 1=1 "&where&" "&order
 		set sel=query("")
 		kl_sqlkey.removeAll()
 	End Function
@@ -191,9 +190,10 @@ Class Accessdb
 	Function create()
 		set autoform = server.CreateObject("Scripting.Dictionary")
 		for each key in request.Form
-			'if instr(key,"auto_")<>0 then
-				'k=replace(key,"auto_","")
+				if not (instr(key,"__no__")<>0) then
+				echo key
 				autoform(key)=request.Form(key)
+				end if
 			'end if
 		next
 		set create=autoform
@@ -209,14 +209,12 @@ Class Accessdb
 		set rs=sel()
 		d=autoform.keys
 		For i = 0 To autoform.Count -1 '重复数组。
-			on error resume next
 			err.clear
 			rs(d(i))=autoform(d(i))
 				if err.number<>0 then
 					err.clear
 					echoErr 0 ,"<span style='color:red;'>update data error;<br>error descr:"&err.description&"</span><br>"
 				end if
-			'end if
  		Next
 		rs.update
 		set autoform=nothing
@@ -233,14 +231,12 @@ Class Accessdb
 		rs.addnew
 		d=autoform.keys
 		For i = 0 To autoform.Count -1 '重复数组。
-			on error resume next
 			err.clear
 				rs(d(i))=autoform(d(i))
 				if err.number<>0 then
 					err.clear
-					echoErr 0 ,"<span style='color:red;'>add data error;<br>error descr:"&err.description&"</span><br>"
+					echoErr 0 ,"<span style='color:red;'>add data error;<br>error descr:"&err.description&"<br>"&kl_sql&"</span><br>"
 				end if
-			'end if
  		Next
 		rs.update
 		set autoform=nothing
