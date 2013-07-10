@@ -88,7 +88,7 @@ function tjaddmsg(){
 dim menujibie,icoimgid
 
 menujibie=1
-icoimgid=1
+icoimgid=0
 sql="select cat_id from kl_cats where parent_id=0 order by sort asc "
 set xhrs=olddb.query(sql)
 if xhrs.recordcount>0 then
@@ -186,10 +186,10 @@ $(function(){
 function bianlistate(){
 	statestr=""
 		$(".jiajian").each(function(index, element) {
-            if(index==1){
-				statestr=$(".jiajian").eq(index-1).attr("stateid")+":"+$(".jiajian").eq(index-1).attr("state")
+            if(statestr==""){
+				statestr=$(".jiajian").eq(index).attr("stateid")+":"+$(".jiajian").eq(index).attr("state")
 				}else{
-				statestr+=","+$(".jiajian").eq(index-1).attr("stateid")+":"+$(".jiajian").eq(index-1).attr("state")
+				statestr+=","+$(".jiajian").eq(index).attr("stateid")+":"+$(".jiajian").eq(index).attr("state")
 				}
         });
 			writeCookie("menustate",statestr,10);
@@ -198,7 +198,7 @@ function zall(){
 	$('.jiajian').attr('src','images/jian.gif');
 	$('.lanmu dd,.lanmu .senondmenu').show();
 	$('.jiajian').each(function(index, element) {
-    $(this).eq(index-1).attr('state',1); 
+    $(this).eq(index).attr('state',1); 
     });
 	bianlistate();
 	}
@@ -206,7 +206,7 @@ function hall(){
 	$('.jiajian').attr('src','images/jia.gif');
 	$('.lanmu dd,.lanmu .senondmenu').hide();
 	$('.jiajian').each(function(index, element) {
-     $(this).eq(index-1).attr('state',0); 
+     $(this).eq(index).attr('state',0); 
     });
 	bianlistate();
 	}
