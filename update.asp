@@ -2,9 +2,10 @@
 <!--#include file="lib/page.class.asp"-->
 <!--#include file="inc/common.asp"-->
 <%
-sql="create table test_table(tet text)"
-sql="alter table kl_content_types add formjsonstr text"
-sql="alter table kl_content_types drop formjsonstr"
+'sql="create table test_table(tet text)"
+'sql="alter table kl_content_types add formjsonstr text"
+'在分类表中添加啦分类别名
+sql="alter table kl_cats add cat_alias text"
 on error resume next
 db.kl_conn.execute(sql)
 if err.number<>0 then
