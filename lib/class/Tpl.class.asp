@@ -424,6 +424,7 @@ class AspTpl
 	'=================================================
 	private Function jiexiTpl()
 		p_tpl_content=includefile(p_tpl_content)'包含文件
+		p_tpl_content=reurltag(p_tpl_content)
 		p_tpl_content=precodetag(p_tpl_content)
 		p_tpl_content=ifTag(p_tpl_content)
 		p_tpl_content=ifElseTag(p_tpl_content)
@@ -692,6 +693,31 @@ class AspTpl
 		end if
 		eqtag=str
 		set p_eqreg=nothing
+	end function
+	'==========================
+	'模板reurl重定位url地址
+	'============================
+	private function reurltag(str)
+		Set p_eqreg = New RegExp 
+		p_eqreg.Pattern ="<reurl(\s+?)url=[\'|\""](.*?)[\'|\""](\s+?)([\s\S]*?)/>"
+		p_eqreg.IgnoreCase = True
+		p_eqreg.Global = True
+		set eqm=p_eqreg.execute(str)
+		if eqm.count>0 then
+			for each m in eqm
+				on error resume next
+				err.clear
+				bol=eval(jiexivar(m.submatches(3)))
+				if err.number<>0 or not bol then
+					err.clear
+					str=replace(str,m,"")
+				else
+					reurl regtplstr(m.submatches(1))
+				end if
+			next
+		end if
+		set p_eqreg=nothing	
+		reurltag=str
 	end function
 	'==========================
 	'模板select控件输出

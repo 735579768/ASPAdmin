@@ -1,5 +1,11 @@
 <%
 '==============================
+'解析调试输出
+'=============================
+	function debug(str)
+		call db.echoErr(1,str)
+	End function
+'==============================
 '解析jsong一维对象
 '=============================
 	function jsontoobj(jsonstr)
