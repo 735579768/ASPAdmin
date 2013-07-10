@@ -16,10 +16,10 @@ datatable=typers("data_table")&""
 		newdb.formdata=formobj
 		result=newdb.add()
 		if result then
-			echo "<script>alert('"&ADD_SUCCESS_STR&"');window.location='list_xx.asp?cat_id="&G("cat_id")&"';</script>"
+			AlertMsgGo ADD_SUCCESS_STR,"list_xx.asp?cat_id="&G("cat_id")
 		else
 			echoErr()
-			AlertMsgGo ADD_FAIL_STR,-1
+			AlertMsg ADD_FAIL_STR
 		end if
 	end if
 

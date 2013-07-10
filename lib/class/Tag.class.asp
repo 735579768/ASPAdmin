@@ -178,7 +178,7 @@ class QuickTag
 		Set catreg = New RegExp 
 		catreg.IgnoreCase = True
 		catreg.Global = True
-		catreg.Pattern ="<position([\s\S]*?)/>"
+		catreg.Pattern ="<position([\s\S]*?)/?>"
 		set eqm=catreg.execute(str)
 		if eqm.count>0 then
 			for each m in eqm		
