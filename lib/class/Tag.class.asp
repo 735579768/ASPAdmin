@@ -56,6 +56,7 @@ class QuickTag
 				pgnav=tplobj.getTagParam(paramstr,"pagenav")'分页导航变量
 				hometj=tplobj.getTagParam(paramstr,"hometj")'分页导航变量
 				tiaojian=tplobj.getTagParam(paramstr,"where")'分页导航变量
+				iteration=tplobj.getTagParam(paramstr,"iteration")'计次循环变量
 				if hometj<>"" then hometj=" and hometj=1 "
 				if tiaojian<>"" then tiaojian=" and "&tiaojian&" "
 				top=""
@@ -91,8 +92,8 @@ class QuickTag
 						for i=0 to pgsize-1
 							if not arcrs.eof then
 								liststr=m.submatches(1)'列表中的字符串
-								'on error resume next
-								'arcrs("arctitle")
+								tagreg.Pattern = p_var_l &iteration& p_var_r
+								liststr=tagreg.replace(liststr,i+1)
 								'遍历记录集中的字段
 								for each fie in arcrs.fields
 									'echo fie.name
