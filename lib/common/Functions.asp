@@ -335,6 +335,7 @@
 'url转向
 '///////////////////////////////////////////
 	Function reurl(url)
+		url=tpl.regtplstr(url)
 		response.Redirect(url)
 	End Function 
 '///////////////////////////////////////////

@@ -446,7 +446,7 @@ class AspTpl
 	'==========================
 	'伪静态处理
 	'===========================
-	private Function regtplstr(str)
+	public Function regtplstr(str)
 		'判断如果是前台就输出伪静态
 		if isobject(seoobj) then
 			if seoobj("cfg_weijingtai")="1" then				
