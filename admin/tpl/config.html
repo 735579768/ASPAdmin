@@ -21,8 +21,7 @@ a{ text-decoration:none; color:#000;}
 <div class="kl-tab">
 <ul class="kl-tab-nav-block">
 	<li class="kl-tab-nav">基本配置</li>
-    <li class="kl-tab-nav">2</li>
-    <li class="kl-tab-nav">3</li>
+    <li class="kl-tab-nav">高级配置</li>
 </ul>
     <div class="kl-tab-div-block">
         <div class="kl-tab-div">
@@ -41,31 +40,11 @@ a{ text-decoration:none; color:#000;}
        <td align="left">cfg_indexname</td>
       </tr>
             <tr align="right" height="25" bgcolor="#ffffff">
-       <td width="300">网站名称： </td>
+       <td width="300">网站首页标题： </td>
        <td align="left" style="padding:3px;"><input type="text" name="cfg_webname"  value="{$cfgobj.cfg_webname}" style="width:80%"></td>
        <td align="left">cfg_webname</td>
       </tr>
-            <tr align="right" height="25" bgcolor="#ffffff">
-       <td width="300">文档HTML默认保存路径： </td>
-       <td align="left" style="padding:3px;"><input type="text" name="cfg_arcdir"  value="{$cfgobj.cfg_arcdir}" style="width:80%"></td>
-       <td align="left">cfg_arcdir</td>
-      </tr>
-            <tr align="right" height="25"  bgcolor="#ffffff">
-       <td width="300">图片/上传文件默认路径： </td>
-       <td align="left" bgcolor="#ffffff" style="padding:3px;"><input type="text" name="cfg_medias_dir"  value="{$cfgobj.cfg_medias_dir}" style="width:80%"></td>
-       <td align="left" bgcolor="#ffffff">cfg_medias_dir</td>
-      </tr>
-            
-            <tr align="right" height="25" bgcolor="#ffffff">
-       <td width="300">模板默认风格： </td>
-       <td align="left" style="padding:3px;"><input type="text" name="cfg_df_style"  value="{$cfgobj.cfg_df_style}" style="width:80%"></td>
-       <td align="left">cfg_df_style</td>
-      </tr>
-            <tr align="right" height="25" bgcolor="#ffffff">
-       <td width="300">网站版权信息： </td>
-       <td align="left" style="padding:3px;"><input type="text" name="cfg_powerby"  value="{$cfgobj.cfg_powerby}" style="width:80%"></td>
-       <td align="left">cfg_powerby</td>
-      </tr>
+
             <tr align="right" height="25" bgcolor="#ffffff">
        <td width="300">站点默认关键字： </td>
        <td align="left" style="padding:3px;"><textarea name="cfg_keywords" cols="70" rows="3"  style="width:80%">{$cfgobj.cfg_keywords}</textarea></td>
@@ -81,12 +60,44 @@ a{ text-decoration:none; color:#000;}
        <td align="left" style="padding:3px;"><input type="text" name="cfg_beian"  value="{$cfgobj.cfg_beian}" style="width:80%"></td>
        <td align="left">cfg_beian</td>
       </tr>
-            <tr align="right" height="25" bgcolor="#ffffff">
-       <td width="300">第三方代码： </td>
-       <td align="left" style="padding:3px;"><textarea name="cfg_thirdcode" rows="5" style="width:80%">{$cfgobj.cfg_thirdcode}</textarea>
-         (添加到网站底部)</td>
-       <td align="left">cfg_thirdcode</td>
+                  <tr align="right" height="25" bgcolor="#ffffff">
+              <td width="300">网站版权信息： </td>
+              <td align="left" style="padding:3px;"><input type="text" name="cfg_powerby"  value="{$cfgobj.cfg_powerby}" style="width:80%"></td>
+              <td align="left">cfg_powerby</td>
+            </tr>
+           </tbody></table>
+           
+
+</div>
+        <div class="kl-tab-div">
+        <table width="100%" style="" id="td1" border="0" cellspacing="1" cellpadding="1" bgcolor="#cfcfcf">
+      <tbody><tr align="right" bgcolor="#FBFCE2" height="25">
+       <td width="300" align="center">参数说明</td>
+       <td align="center">参数值</td>
+       <td width="220" align="center">变量名</td>
       </tr>
+            <tr align="right" height="25" bgcolor="#ffffff">
+              <td width="300">文档HTML默认保存路径： </td>
+              <td align="left" style="padding:3px;"><input type="text" name="cfg_arcdir"  value="{$cfgobj.cfg_arcdir}" style="width:80%"></td>
+              <td align="left">cfg_arcdir</td>
+            </tr>
+            <tr align="right" height="25"  bgcolor="#ffffff">
+       <td width="300">图片/上传文件默认路径： </td>
+       <td align="left" bgcolor="#ffffff" style="padding:3px;"><input type="text" name="cfg_medias_dir"  value="{$cfgobj.cfg_medias_dir}" style="width:80%"></td>
+       <td align="left" bgcolor="#ffffff">cfg_medias_dir</td>
+      </tr>
+            
+            <tr align="right" height="25" bgcolor="#ffffff">
+       <td width="300">模板默认风格： </td>
+       <td align="left" style="padding:3px;"><input type="text" name="cfg_df_style"  value="{$cfgobj.cfg_df_style}" style="width:80%"></td>
+       <td align="left">cfg_df_style</td>
+      </tr>
+            <tr align="right" height="25" bgcolor="#ffffff">
+              <td width="300">第三方代码： </td>
+              <td align="left" style="padding:3px;"><textarea name="cfg_thirdcode" rows="5" style="width:80%">{$cfgobj.cfg_thirdcode}</textarea>
+              (添加到网站底部)</td>
+              <td align="left">cfg_thirdcode</td>
+            </tr>
         <tr align="right" height="25" bgcolor="#ffffff">
        <td width="300">网站URL伪静态： </td>
        <td align="left" style="padding:3px;">
@@ -102,11 +113,7 @@ a{ text-decoration:none; color:#000;}
        <td align="left">cfg_pageyasuo</td>
       </tr>
            </tbody></table>
-           
-
-</div>
-        <div class="kl-tab-div">22222</div>
-        <div class="kl-tab-div">33333</div>
+        </div>
     </div>
 </div>
 <table width="100%" border="0" cellspacing="1" cellpadding="1">
@@ -126,12 +133,12 @@ $("p").bind("click",function(){
 	});
 $(function(){
 $.klplugin={
-	/////////////////////////////////////////////////////tab切换特效/////////////////////////////////////////////
+
 	runtab:function(options){
 					var defaults={
-						'navhoverclsname':'navhovercls',//nav显示时候拥有的类
-						'divshowclsname':'divshowcls',//div显示的时候拥有的类
-						'model':'mouseover'//tab的切换模式，默认为mouseover
+						'navhoverclsname':'navhovercls',
+						'divshowclsname':'divshowcls',
+						'model':'mouseover'
 						};
 					var opts = $.extend(defaults, options); 
 					
@@ -139,13 +146,13 @@ $.klplugin={
 					$(".kl-tab .kl-tab-div:first-child").show();
 					$(".kl-tab .kl-tab-nav").bind(opts.model,function(){
 								var obj=$(this);
-								 //查找要显示的div索引
+						
 								 obj.parents(".kl-tab").find(".kl-tab-nav").each(function(i) {
 									if($(this).html()==obj.html()){
-										//设置hover类
+								
 										obj.parents(".kl-tab").find(".kl-tab-nav").removeClass(opts.navhoverclsname);
 										obj.addClass(opts.navhoverclsname);
-										//隐藏掉所有的tabdiv
+								
 										obj.parents(".kl-tab").find(".kl-tab-div").hide();
 										obj.parents(".kl-tab").find(".kl-tab-div").removeClass(opts.divshowclsname);
 										
@@ -157,8 +164,8 @@ $.klplugin={
 		}
 	};
 $.klplugin.runtab({
-		'navhoverclsname':'a',//nav显示时候拥有的类
-		'divshowclsname':'b',//div显示的时候拥有的类
+		'navhoverclsname':'a',
+		'divshowclsname':'b',
 		'model':'click'
 		});
 	});
