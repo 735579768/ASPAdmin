@@ -10,8 +10,7 @@
 <!--#INCLUDE FILE="db.class.asp"-->
 <!--#INCLUDE FILE="json.asp"-->
 <%
-'查询数据测试
-'set rs=db.GetRecordBySQL("select * from kj_admin") 
+
 '初始化模板引擎
 set tpl=New ASPtpl
 '设置模板目录
@@ -19,11 +18,19 @@ tpl.p_tpl_dir=TPL_PATH&"/"&themes
 '初始化数据库db类
 Set db = new Accessdb
 
-'初始化页面标题，关键字，描述
-'set rs=db.query("select meta_value from kl_meta where meta_key='cfg_system'")
-'set obj=toObject(rs(0)&"")
-''arr=toArray(rs(0)&"")
-'setVarArr(array("cfg_indexname:"&obj.cfg_indexname,"cfg_webname:"&obj.cfg_webname,"cfg_arcdir:"&obj.cfg_arcdir,"cfg_medias_dir:"&obj.cfg_medias_dir,"cfg_df_style:"&obj.cfg_df_style,"cfg_powerby:"&obj.cfg_powerby,"cfg_keywords:"&obj.cfg_keywords,"cfg_description:"&obj.cfg_description,"cfg_beian:"&obj.cfg_beian))
-'set obj=nothing
+'输出页面优化内容
+set rs=db.table("kl_meta").where("meta_key='cfg_system'").fild("meta_value").sel()
+jsonstr=rs(0)&""
+set seoobj=jsontoobj(jsonstr)
+tpl.assign "indexseo",seoobj
 
+'伪静态规则
+'在模板最终输出时进行正则替换第一组替换中间用##隔开
+dim url_suffex:url_suffex=".html"
+redim regarr(4)
+regarr(0)="cat\.asp\?catid\=(\d+)\&page\=(\d+)##cat-$1-$2"&url_suffex
+regarr(1)="cat\.asp\?catid\=(\d+)##cat-$1"&url_suffex
+regarr(2)="view\.asp\?id\=(\d+)##view-$1"&url_suffex
+regarr(3)="charset=gb2312##charset=utf-8"
+regarr(3)="search\.asp##search"
 %>
