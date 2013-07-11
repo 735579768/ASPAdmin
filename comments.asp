@@ -1,4 +1,4 @@
-<!--#include file="lib/init.asp"-->
+<!--#include file="lib/FrontInit.asp"-->
 <!--#include file="lib/page.class.asp"-->
 <%
 set obj=db.table("kl_comments").create()

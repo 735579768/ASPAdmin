@@ -1,6 +1,5 @@
-<!--#include file="lib/init.asp"-->
+<!--#include file="lib/FrontInit.asp"-->
 <!--#include file="lib/page.class.asp"-->
-<!--#include file="inc/common.asp"-->
 <%
 'sql="create table test_table(tet text)"
 'sql="alter table kl_content_types add formjsonstr text"

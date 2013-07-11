@@ -1,4 +1,4 @@
-<!--#include file="lib/init.asp"-->
+<!--#include file="lib/FrontInit.asp"-->
 <%
 dim id,typeid,datatable
 temid=G("id")

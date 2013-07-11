@@ -103,6 +103,7 @@ class AspTplPlug
 	End Function	
 '正则最终输出的模板字符串
 	Function regtplstr()
+	if isobject(regarr) then
 		for each a in regarr 
 			ta=split(a,"##",2)
 			if ubound(ta)>0 then 
@@ -110,6 +111,7 @@ class AspTplPlug
 				tpl_str= p_regexp.Replace(tpl_str,ta(1))	
 			end if
 		next
+	end if
 		'伪静态
 	End Function
 '//////////////////////////////////loop code end///////////////////////////////////////////////////

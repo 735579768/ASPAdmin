@@ -1,5 +1,5 @@
-$.autoimgWH={
-		run:function(options){
+function autowh(){
+	this.run=function(options){
 					var defaults={
 						'autoW':138,//nav显示时候拥有的类
 						'autoH':130,//div显示的时候拥有的类
@@ -55,15 +55,26 @@ $.autoimgWH={
 						});},100); 
 
 			}
-	};
 	
+	}
+
 $(function(){
-/*调用方法*/
-$.autoimgWH.run({
-		'autoW':300,//宽
-		'autoH':171,//高
-		'sel':'.engineering img'//选择器
-	});    
+var a=new autowh()
+	a.run({
+			'autoW':150,//宽
+			'autoH':94,//高
+			'sel':'.er_1nr img'//选择器
+		})   
+	a.run({
+		'autoW':140,//宽
+		'autoH':94,//高
+		'sel':'.fengcnr img'//选择器
+	})  
+	a.run({
+		'autoW':146,//宽
+		'autoH':110,//高
+		'sel':'.ziznr img'//选择器
+	})  
 });
 
 
