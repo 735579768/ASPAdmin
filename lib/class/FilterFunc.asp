@@ -16,7 +16,11 @@ Function FilterFunc(val,funcname,param)
 						temVar=left(val,Cint(param))
 				case "empty" 
 						if val="" then
-							temvar=param
+							if left(param,1)="$" then
+								temvar=tpl.jiexivar("{"&param&"}")
+							else
+								temvar=param
+							end if
 						else
 							temvar=val
 						end if

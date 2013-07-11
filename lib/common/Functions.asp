@@ -9,18 +9,19 @@
 '解析jsong一维对象
 '=============================
 	function jsontoobj(jsonstr)
-		str=jsonstr
-		str=left(str,len(str)-1)
-		str=right(str,len(str)-1)
-		arr=split(str,",")
+		set jsonreg=new Regexp
+		jsonreg.IgnoreCase = True
+		jsonreg.Global = True
+		jsonreg.Pattern ="\""(.*?)\""\:\""(.*?)\"""
 		set keyobj=server.CreateObject("Scripting.Dictionary")
-		for i=0 to ubound(arr)
-			key=replace(mid(arr(i),1,instr(arr(i),":")-1),"""","")
-			val=mid(arr(i),instr(arr(i),":")+1)
-			val=hextostr(val)
+		set matches=jsonreg.execute(jsonstr)
+		for each m in matches
+			key=m.submatches(0)&""
+			val=hextostr(m.submatches(1))&""
 			keyobj(key)=val
 		next
 		set jsontoobj=keyobj
+		set jsonreg=nothing
 	end function
 '==============================
 '给对象添加或重置项目和值
@@ -763,5 +764,5 @@
 <script language="javascript" type="text/javascript" runat="server">
 function mydecodeurl(s){return decodeURIComponent(s);}
 function toObject(json) {eval("var o=" + json);return o;}
-function hextostr(str){eval("var o="+str); return o;}
+function hextostr(str){var o=eval("'"+str+"'"); return o;}
 </script>
