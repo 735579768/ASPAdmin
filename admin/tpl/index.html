@@ -1,8 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<title>ÍøÕ¾ºóÌ¨¹ÜÀí</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ç½‘ç«™åå°ç®¡ç†</title>
 <link href="css/frame.css" rel="stylesheet" type="text/css" />
 <script src="js/jquery-1.8.1.min.js" language="javascript" type="text/javascript"></script>
 </head>
@@ -11,13 +11,13 @@
 <div class="top">{{include file="header_top.html"}}</div>
 <div class="topnav">
 <ul class="navleft">
-<li><a id="hidemenu" href="javascript:void(0);">Òş²Ø²Ëµ¥</a></li>
-<li style=" padding-left:200px;">»¶Ó­ÓÃ»§ {{uname}} µÇÂ½£¬ÉÏ´ÎµÇÂ½Ê±¼ä {{lastdate}} </li>
+<li><a id="hidemenu" href="javascript:void(0);">éšè—èœå•</a></li>
+<li style=" padding-left:200px;">æ¬¢è¿ç”¨æˆ· {{uname}} ç™»é™†ï¼Œä¸Šæ¬¡ç™»é™†æ—¶é—´ {{lastdate}} </li>
 </ul>
 <ul class="navright">
-<li><a href="/" title="ÍøÕ¾Ê×Ò³" target="_blank">ÍøÕ¾Ê×Ò³</a></li>
-<li><a href="main.asp" title="ÏµÍ³Ê×Ò³" target="main">ÏµÍ³Ê×Ò³</a></li>
-<li><a href="{{exit_url}}" title="ÍË³öÏµÍ³" target="main">ÍË³öÏµÍ³</a></li>
+<li><a href="/" title="ç½‘ç«™é¦–é¡µ" target="_blank">ç½‘ç«™é¦–é¡µ</a></li>
+<li><a href="main.asp" title="ç³»ç»Ÿé¦–é¡µ" target="main">ç³»ç»Ÿé¦–é¡µ</a></li>
+<li><a href="{{exit_url}}" title="é€€å‡ºç³»ç»Ÿ" target="main">é€€å‡ºç³»ç»Ÿ</a></li>
 </ul>
 </div>
 </div>
@@ -69,12 +69,12 @@ window.onerror=function(){return true;};
 $(document).ready(function(e) {
     $("#hidemenu").bind("click",function(){
 		var a=$(this).html();
-		if(a=='Òş²Ø²Ëµ¥'){
+		if(a=='éšè—èœå•'){
 			$("body").attr('class','hidemenu');
-			$(this).html('ÏÔÊ¾²Ëµ¥');
+			$(this).html('æ˜¾ç¤ºèœå•');
 			}else{
 			$("body").attr('class','showmenu');
-			$(this).html('Òş²Ø²Ëµ¥');	
+			$(this).html('éšè—èœå•');	
 				}
 		});
 });

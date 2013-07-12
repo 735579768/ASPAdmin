@@ -1,16 +1,15 @@
 <!--#include file="lib/AdminInIt.asp"-->
 <%
-oldtpl.setvariable "exit_url","?act=exit"
+newtpl.assign "exit_url","?act=exit"
 uname=Request.Cookies("U_name")&""
-oldtpl.setvariable "uname",uname
-set rs=olddb.query("select top 2 logintime from kl_admin_log where uname='"&uname&"'")
+newtpl.assign "uname",uname
+
+set rs=newdb.query("select top 2 logintime from kl_admin_log where uname='"&uname&"'")
 if rs.recordcount=2 then
 rs.movenext
-oldtpl.setvariable "lastdate",cstr(rs(0))
+newtpl.assign "lastdate",cstr(rs(0))
 else
-oldtpl.setvariable "lastdate","null"
+newtpl.assign "lastdate","null"
 end if
-
-oldtpl.Parse
-set oldtpl = nothing
+newtpl.display("index")
 %>
