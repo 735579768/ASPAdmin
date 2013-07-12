@@ -2,7 +2,7 @@
 <!--#INCLUDE FILE="../../lib/page.class.asp"-->
 <%
 '关闭后台调试
-app_debug=true
+app_debug=false
 '初始化模板引擎
 'set oldtpl=nothing
 set oldtpl=New ASPTemplate

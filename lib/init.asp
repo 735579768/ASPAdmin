@@ -14,7 +14,7 @@
 set tpl=New ASPtpl
 '设置模板目录
 tpl.p_tpl_dir=TPL_PATH&"/"&themes
-tpl.p_tpl_suffix=".html"
+tpl.p_tpl_suffix=".tpl"
 '初始化数据库db类
 Set db = new Accessdb
 %>
