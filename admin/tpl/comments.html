@@ -40,14 +40,12 @@ cursor: pointer;
 <tr align="center" bgcolor="#FBFCE2" height="25">
 <td width="5%">ID</td>
 <td width="5%">选择</td>
-<td width="10%">订货单位</td>
-<td width="17%">产品名称</td>
-<td width="5%">订购人</td>
-<td width="10%">联系电话</td>
-<td width="10%">传真</td>
-<td width="10%">电子邮件</td>
-<td width="10%">邮编</td>
-<td width="10%">详细描述</td>
+<td width="10%">标题</td>
+<td width="20%">内容</td>
+<td width="5%">性别</td>
+<td width="10%">姓名</td>
+<td width="10%">联系方式</td>
+<td width="10%">发布时间</td>
 <td width="10%">发布IP</td>
 <td width="5%">操作</td>
 </tr>
@@ -56,15 +54,13 @@ cursor: pointer;
 <td>{$id}</td>
 <td><input name="arcID" type="checkbox" id="arcID" value="{$id}" class="np checkid"></td>
 <td align="left">
-<u>{$danwei}</u>
+<u>{$title}</u>
 </td>
-<td>{$protitle}</td>
-<td>{$ordername}</td>
-<td>{$phone}</td>
-<td>{$tel}</td>
-<td>{$email}</td>
-<td>{$youbian}</td>
-<td>{$descr}</td>
+<td>{$content}</td>
+<td>{$sex}</td>
+<td>{$uname}</td>
+<td>{$contact}</td>
+<td>{$fbdate}</td>
 <td>{$fbip}</td>
 <td bgcolor="#fffff;">
     <a href="comments.asp?id={$id}&act=del"><input type="hidden" value="{$friend_id}" /><img src="images/no.gif" title="删除" alt="删除" onclick=";" style="cursor:pointer" border="0" width="16" height="16" class="delcomment"></a></td>

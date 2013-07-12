@@ -77,27 +77,32 @@ var a=new autowh()
 	}) 
 	
 
-	$('.nonull').bind('focus',function(){
-		$(this).css({border:'solid 1px #ccc',color:'#000'});
-		$(this).val('')
-	//	$(this).prevAll().filter('.yanzheng').remove();
-		});
+
 	 
 });
-function tjcheck(){
+
+
+//提交表单验证
+$(function(){
+	$('.nonull').bind('focus',function(){
+		$(this).css({border:'solid 1px #ccc',color:'#000'});
+		if($(this).val()=='请输入内容') $(this).val('')
+		});	
+	});
+function tjcheck(formname){
 	var re=true;
 	$('.nonull').each(function(index, element) {
-        if($(this).val()==''){
+        if($(this).val()=='' || $(this).val()=='请输入内容'){
 			$(this).val('请输入内容')
 			$(this).css({color:'#ccc',border:'solid 1px #f00'});
-			//$(this).after("<span class='yanzheng' style='color:red;'>必填项</span>")
 			re=false;
 			}
     });
 	if(re){
-		document.form1.submit();
+		$("#"+formname).submit();
 		}
 }
+//提交表单验证
 /*
 <a href="javascript:void(0)" onclick="SetHome(this,window.location)">设为首页</a>
 <a href="javascript:void(0)" onclick="shoucang(document.title,window.location)">加入收藏</a>
