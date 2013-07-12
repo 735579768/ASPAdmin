@@ -74,11 +74,30 @@ var a=new autowh()
 		'autoW':146,//宽
 		'autoH':110,//高
 		'sel':'.ziznr img'//选择器
-	})  
+	}) 
+	
+
+	$('.nonull').bind('focus',function(){
+		$(this).css({border:'solid 1px #ccc',color:'#000'});
+		$(this).val('')
+	//	$(this).prevAll().filter('.yanzheng').remove();
+		});
+	 
 });
-
-
-
+function tjcheck(){
+	var re=true;
+	$('.nonull').each(function(index, element) {
+        if($(this).val()==''){
+			$(this).val('请输入内容')
+			$(this).css({color:'#ccc',border:'solid 1px #f00'});
+			//$(this).after("<span class='yanzheng' style='color:red;'>必填项</span>")
+			re=false;
+			}
+    });
+	if(re){
+		document.form1.submit();
+		}
+}
 /*
 <a href="javascript:void(0)" onclick="SetHome(this,window.location)">设为首页</a>
 <a href="javascript:void(0)" onclick="shoucang(document.title,window.location)">加入收藏</a>

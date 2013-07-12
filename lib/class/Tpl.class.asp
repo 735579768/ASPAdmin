@@ -21,9 +21,11 @@ class AspTpl
 	private p_fs
 	private p_tpl_file
 	private p_charset
-	public  p_tpl_dir	
+	public  p_tpl_dir
+	public  p_tpl_suffix	
 	private sub class_Initialize
 		debug=app_debug
+		p_tpl_suffix=".html"
 		p_charset="UTF-8"
 		p_var_l = "\{\$"
 		p_var_r = "\}"
@@ -486,6 +488,12 @@ class AspTpl
 	'解析模板文件
 	'==================================================
 	public Function display(tplfile)
+		nu=instrrev(tplfile,".")
+		if nu=0 then 
+			tplfile=tplfile&p_tpl_suffix
+		else
+			tplfile=mid(tplfile,1,nu-1)&p_tpl_suffix
+		end if
 		'这里解析的顺序不能错
 		p_tpl_file=tplfile
 		checkTplDirAndFile()'载入模板

@@ -1,4 +1,4 @@
 <!--#include file="lib/FrontInit.asp"-->
 <%
-tpl.display("index.html")
+tpl.display("index")
 %>
