@@ -1,12 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script src="js/jquery-1.8.1.min.js" type="text/javascript"></script>
 <link href="css/main.css" rel="stylesheet" type="text/css" />
-<title>Ö÷¿ò¼Ü</title>
+<title>ä¸»æ¡†æ¶</title>
 <style>
-body{font-family:Arial, Helvetica, sans-serif,"ËÎÌå";margin:0px;padding:0px;}
+body{font-family:Arial, Helvetica, sans-serif,"å®‹ä½“";margin:0px;padding:0px;}
 #time{border-top:#e9f2f9 10px solid;border-bottom:#e9f2f9 10px solid;padding:10px 20px;over-flow:hidden;}
 .time_1,.time_2,.time_3,.time_4,.time_5,.time_6{display:inline;float:left;width:28px;height:38px;margin:0 0 0 6px;background:url(images/00.gif);}
 .dian{width:10px; height:38px;margin:0 0 0 6px;background:url(images/dian.gif);float:left;}
@@ -147,13 +147,13 @@ case 12:$(".eng").html("Dec");break;
 }
 
 switch(m4){
-case 1:$(".zhou span:eq(1)").html("Ò»");$(".zhou span:last").html("MON").css("color","#0d6217");break;
-case 2:$(".zhou span:eq(1)").html("¶ş");$(".zhou span:last").html("TUS").css("color","#0d6217");break;
-case 3:$(".zhou span:eq(1)").html("Èı");$(".zhou span:last").html("WEN").css("color","#0d6217");break;
-case 4:$(".zhou span:eq(1)").html("ËÄ");$(".zhou span:last").html("THUR").css("color","#0d6217");break;
-case 5:$(".zhou span:eq(1)").html("Îå");$(".zhou span:last").html("FIR").css("color","#0d6217");break;
-case 6:$(".zhou span:eq(1)").html("Áù");$(".zhou span:last").html("SAT").css("color","#0d6217");break;
-case 7:$(".zhou span:eq(1)").html("ÈÕ");$(".zhou span:last").html("SUN").css("color","#0d6217");break;
+case 1:$(".zhou span:eq(1)").html("ä¸€");$(".zhou span:last").html("MON").css("color","#0d6217");break;
+case 2:$(".zhou span:eq(1)").html("äºŒ");$(".zhou span:last").html("TUS").css("color","#0d6217");break;
+case 3:$(".zhou span:eq(1)").html("ä¸‰");$(".zhou span:last").html("WEN").css("color","#0d6217");break;
+case 4:$(".zhou span:eq(1)").html("å››");$(".zhou span:last").html("THUR").css("color","#0d6217");break;
+case 5:$(".zhou span:eq(1)").html("äº”");$(".zhou span:last").html("FIR").css("color","#0d6217");break;
+case 6:$(".zhou span:eq(1)").html("å…­");$(".zhou span:last").html("SAT").css("color","#0d6217");break;
+case 7:$(".zhou span:eq(1)").html("æ—¥");$(".zhou span:last").html("SUN").css("color","#0d6217");break;
 }
 
 }
@@ -188,15 +188,15 @@ case 7:$(".zhou span:eq(1)").html("ÈÕ");$(".zhou span:last").html("SUN").css("co
 <div class="r_6"></div>
 <div class="eng"></div>
 <div class="clear"></div>
-<div class="zhou"><span>ĞÇÆÚ</span><span></span>&nbsp;&nbsp;&nbsp;&nbsp;<span></span></div>
+<div class="zhou"><span>æ˜ŸæœŸ</span><span></span>&nbsp;&nbsp;&nbsp;&nbsp;<span></span></div>
 </div>
 <div class="clear"></div>
 </div>
 <table  style="border-collapse:collapse; margin:0px 5px; display:none;"width="98%" border="1">
   <tr>
-    <td width="25%">Êı¾İ¿âÈ¨ÏŞ</td>
+    <td width="25%">æ•°æ®åº“æƒé™</td>
     <td width="25%">&nbsp;</td>
-    <td width="25%">ÉÏ´«Ä¿Â¼(/uploads)È¨ÏŞ</td>
+    <td width="25%">ä¸Šä¼ ç›®å½•(/uploads)æƒé™</td>
     <td width="25%">&nbsp;</td>
   </tr>
   <tr>
@@ -212,24 +212,26 @@ case 7:$(".zhou span:eq(1)").html("ÈÕ");$(".zhou span:last").html("SUN").css("co
     <td>&nbsp;</td>
   </tr>
 </table>
-<div class="font1 indexbox">ÏµÍ³ÎÄÕÂ×ÜÊı£º<span class="red" style="font-size:25px;"> {{arccount}} </span>,ÓĞĞ§ÎÄÕÂ×ÜÊı£º<span class="red" style="font-size:25px;"> {{arcyescount}} </span>,»ØÊÕÕ¾ÎÄÕÂ×ÜÊı£º<span class="red" style="font-size:25px;"> {{arcnocount}} </span></div>
+<div class="font1 indexbox">ç³»ç»Ÿæ–‡ç« æ€»æ•°ï¼š<span class="red" style="font-size:25px;"> {$arccount} </span>,æœ‰æ•ˆæ–‡ç« æ€»æ•°ï¼š<span class="red" style="font-size:25px;"> {$arcyescount} </span>,å›æ”¶ç«™æ–‡ç« æ€»æ•°ï¼š<span class="red" style="font-size:25px;"> {$arcnocount} </span></div>
 <div class="font1 indexbox">
 <div class="box1">
-<h3>×î½ü¸üĞÂÎÄÕÂ</h3>
+<h3>æœ€è¿‘æ›´æ–°æ–‡ç« </h3>
 <ul>
-<!-- BEGIN arclist -->
-	<li><span style="float:left;">{{uddate}}</span>{{arctitle}}</li>
-<!-- END arclist -->
+<!--{arclist sql="select top 5 * from kl_archives order by uddate desc,id desc"}-->
+	<li><span style="float:left;">{$uddate}</span>{$arctitle}</li>
+    <!--{/arclist}-->
+
 </ul>
 </div>
 </div>
 <div class="font1 indexbox">
 <div class="box1">
-<h3>×î½üµÇÂ½ÓÃ»§</h3>
+<h3>æœ€è¿‘ç™»é™†ç”¨æˆ·</h3>
 <ul>
-<!-- BEGIN adminlog -->
-	<li>{{uname}}<span style="float:right;">{{logintime}}</span></li>
-<!-- END adminlog -->
+<!--{arclist sql="select top 5 * from kl_admin_log order by logintime desc,id desc"}-->
+	<li>{$uname}<span style="float:right;">{$logintime}</span></li>
+ <!--{/arclist}-->
+
 </ul>
 </div>
 </div>
