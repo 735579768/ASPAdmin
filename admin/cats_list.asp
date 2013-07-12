@@ -292,7 +292,6 @@ icoimgid=icoimgid+1
 '					echo "<div style='width:60px; height:25px; float:left;'></div>"
 '				end if
 				%>
-                <div style="width:60px; float:left;"></div>
                 <a href='edit_cats.asp?cat_id=<%=cid1%>&type_id=<%=typeid1%>' class='coolbg'>更改</a>
                 <input type='hidden'  value='<%=cid1%>' />
                 <a href='javascript:void(0);' class='coolbg delcat'>删除</a>
