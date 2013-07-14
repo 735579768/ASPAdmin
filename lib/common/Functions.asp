@@ -12,12 +12,12 @@
 		set jsonreg=new Regexp
 		jsonreg.IgnoreCase = True
 		jsonreg.Global = True
-		jsonreg.Pattern ="\""(.*?)\""\:\""(.*?)\"""
+		jsonreg.Pattern ="#fie#([\s\S]*?)#key#([\s\S]*?)#fie#"
 		set keyobj=server.CreateObject("Scripting.Dictionary")
 		set matches=jsonreg.execute(jsonstr)
 		for each m in matches
 			key=m.submatches(0)&""
-			val=hextostr(m.submatches(1))&""
+			val=m.submatches(1)&""
 			keyobj(key)=val
 		next
 		set jsontoobj=keyobj
@@ -764,5 +764,4 @@
 <script language="javascript" type="text/javascript" runat="server">
 function mydecodeurl(s){return decodeURIComponent(s);}
 function toObject(json) {eval("var o=" + json);return o;}
-function hextostr(str){var o=eval("'"+str+"'"); return o;}
 </script>
