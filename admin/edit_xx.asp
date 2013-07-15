@@ -20,7 +20,7 @@ data_table=typers("data_table")&""
 		if not temrs.eof  then
 			tempic=trim(temrs("arcpic")&"")
 			set temrs=nothing
-			if G("arcpic")<>"" and trim(G("arcpic"))<>tempic then
+			if G("arcpic")<>"" and tempic<>"" and trim(G("arcpic"))<>tempic then
 					DeleteFile(tempic )
 			end if
 		end if

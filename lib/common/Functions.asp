@@ -446,8 +446,8 @@
 		Set regsql = New RegExp 
 		regsql.IgnoreCase = True
 		regsql.Global = True
-		regsql.Pattern="(\s*?)[dbcc|alter|drop|* |and|exec|or|insert|select|delete|update|count|master|truncate|declare|char|mid(|chr|set |where|xp_cmdshell](\s*?)"
-		filtersql=regsql.replace(fstring,"")
+		regsql.Pattern="(\s*?)(dbcc|alter|drop|\*|and|exec|or|insert|select|delete|update|count|master|truncate|declare|char|mid\(|chr|set|where|xp_cmdshell)(\s+?)<(.*?)/?>"
+		filtersql=regsql.replace(fstring," ")
 '		if isnull(fString) then
 '		filtersql=""
 '		exit function
