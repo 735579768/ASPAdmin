@@ -442,20 +442,23 @@
 '///////////////////////////////////////////
 '过滤SQL非法字符并格式化html代码
 '///////////////////////////////////////////
-	function filtersql(fString)
-		if isnull(fString) then
-		filtersql=""
-		exit function
-		else
-		fString=trim(fString)
-		'fString=replace(fString,">","》")
-		'fString=replace(fString,"<","《")
-		fString=replace(fString,"'","""")
-		fString=replace(fString,";","；")
-		fString=replace(fString,"--","—")
-		'fString=server.htmlencode(fString)
-		filtersql=fString
-		end if	
+	function filterSql(fString)
+		Set regsql = New RegExp 
+		regsql.IgnoreCase = True
+		regsql.Global = True
+		regsql.Pattern="(\s*?)[dbcc|alter|drop|* |and|exec|or|insert|select|delete|update|count|master|truncate|declare|char|mid(|chr|set |where|xp_cmdshell](\s*?)"
+		filtersql=regsql.replace(fstring,"")
+'		if isnull(fString) then
+'		filtersql=""
+'		exit function
+'		else
+'		fString=trim(fString)
+'		fString=replace(fString,"'","""")
+'		fString=replace(fString,";","；")
+'		fString=replace(fString,"--","—")
+'		'fString=server.htmlencode(fString)
+'		filtersql=fString
+'		end if	
 	end function
 '///////////////////////////////////////////
 '///////////////////////////////////////////

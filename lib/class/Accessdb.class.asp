@@ -18,11 +18,13 @@ Class Accessdb
 	private kl_err
 	private kl_sqlkey
 	public kl_sqlnum
+	public kl_filtersql
 	'==================================
 	'初始化类函数
 	'功能：初始化数据
 	'==================================
 	Private Sub Class_Initialize()
+		kl_filtersql=false
 		kl_sqlnum=0
 		on error resume next
 		err.clear
@@ -38,6 +40,7 @@ Class Accessdb
 	Private Sub Class_Terminate()
 		Set kl_conn = Nothing
 	End Sub
+	
 	Public Property Let Conn(pdbConn)
 		If IsObject(pdbConn) Then
 			Set kl_conn = pdbConn
@@ -191,10 +194,15 @@ Class Accessdb
 		set autoform = server.CreateObject("Scripting.Dictionary")
 		for each key in request.Form
 				if not (instr(key,"__no__")<>0) then
-				autoform(key)=request.Form(key)
+					if kl_filtersql then
+						autoform(key)=filterSql(request.Form(key))
+					else
+						autoform(key)=request.Form(key)
+					end if
 				end if
 			'end if
 		next
+		kl_filterSql=false
 		set create=autoform
 	end Function
 	'==================================

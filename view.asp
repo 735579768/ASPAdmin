@@ -19,6 +19,13 @@ datatable="kl_archives"
 end if
 '添加点击数量
 db.query("update "&datatable&" set archits=archits+1 where id="&id)
+''查询文章信息
+'(select id from table where id < 10 order by id asc limit 1) 
+'union all 
+'(select id from table where id = 10) 
+'union all  
+'(select id from table where id > 10 order by id desc limit 1);
+
 set rs=db.table(datatable).fild("kl_cats.cat_id as catid,*").where("id="&id).jin("kl_cats on  "&trim(datatable)&".cat_id=kl_cats.cat_id").sel()
 '设置此篇文章信息
 if rs.recordcount>0 then 

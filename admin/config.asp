@@ -6,6 +6,7 @@ fie="#fie#"
 if G("upcfg")="true" then 
 	'Set o = jsObject()
 	str=""
+	
 	for each a in request.Form
 			str=str&fie&a&key&G(a)&fie
 	next
@@ -13,7 +14,9 @@ if G("upcfg")="true" then
 	rs("meta_value")=str
 	rs.update
 	if err.number=0 then 
-	reurl("config.asp")
+		alertmsggo UPDATE_SUCCESS_STR,"config.asp"
+	else
+		alertmsg UPDATE_FAIL_STR
 	end if
 	set rs=nothing
 end if
