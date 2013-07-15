@@ -102,7 +102,7 @@ listdata=""
 					listdata=listdata&"<td>"&val&"</td>"	
 				end if
 			next 
-			listdata=listdata&"<td><a href='edit_xx.asp?id="&arcrs("id")&"&type_id="&arcrs("type_id")&"&cat_id="&arcrs("cat_id")&"'><img src='images/edit.png' title='编辑属性' alt='编辑属性' onclick=';' style='cursor:pointer' border='0' width='16' height='16'></a>    <a href='/view.asp?id="&arcrs("id")&"_"&arcrs("type_id")&"' target='_blank'><img src='images/check.gif' title='预览' alt='预览' onclick='' style='cursor:pointer' border='0' width='16' height='16'></a>    <a href='javascript:void(0);'><img src='images/recycling.gif' dataid='"&arcrs("id")&"' title='移到回收站' class='del' alt='移到回收站' onclick=';' style='cursor:pointer' border='0' width='30' height='20' class='delarticle'></a></td></tr>"
+			listdata=listdata&"<td><a href='edit_xx.asp?id="&arcrs("id")&"&type_id="&arcrs("type_id")&"&cat_id="&arcrs("cat_id")&"'><img src='images/edit.png' title='修改信息' alt='修改信息' onclick=';' style='cursor:pointer' border='0' width='16' height='16'></a>    <a href='/view.asp?id="&arcrs("id")&"_"&arcrs("type_id")&"' target='_blank'><img src='images/check.gif' title='预览' alt='预览' onclick='' style='cursor:pointer' border='0' width='16' height='16'></a>    <a href='javascript:void(0);'><img src='images/recycling.gif' dataid='"&arcrs("id")&"' title='移到回收站' class='del' alt='移到回收站' onclick=';' style='cursor:pointer' border='0' width='30' height='20' class='delarticle'></a></td></tr>"
 	arcrs.movenext
 	end if
 	next
