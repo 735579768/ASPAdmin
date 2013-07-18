@@ -15,17 +15,34 @@ data_table=typers("data_table")&""
 	if G("act")="updxx"  then
 		set formobj=newdb.table(data_table).where("id="&id).create()
 		
-		'delete pic start
-		set temrs=newdb.query("select arcpic from kl_archives where id="&id)
-		if not temrs.eof  then
-			tempic=trim(temrs("arcpic")&"")
-			set temrs=nothing
-			if G("arcpic")<>"" and tempic<>"" and trim(G("arcpic"))<>tempic then
-					DeleteFile(tempic )
-			end if
-		end if
-		'delete pic send
+
 		
+		'如果图片为空则从文章中提取第一个图片 start
+		if G("arcpic")="" then
+			Set picreg = New RegExp 
+			picreg.IgnoreCase = True
+			picreg.Global = True
+			picreg.Pattern="<img(.*?)/?>"
+			set mats=picreg.execute(G("arccontent"))
+			if mats.count>0 then
+				formobj("arcpic")= newtpl.gettagparam(mats(0),"src")
+			end if
+			set picreg=nothing
+		else
+		
+			'delete pic start
+			set temrs=newdb.query("select arcpic from kl_archives where id="&id)
+			if not temrs.eof  then
+				tempic=trim(temrs("arcpic")&"")
+				set temrs=nothing
+				if  tempic<>"" and trim(G("arcpic"))<>tempic then
+						DeleteFile(tempic )
+				end if
+			end if
+			'delete pic send
+				
+		end if
+		'如果图片为空则从文章中提取第一个图片 end
 		
 		formobj("uddate")=FormatDate(now,2)&""
 		newdb.formdata=formobj

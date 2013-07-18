@@ -50,7 +50,7 @@ if G("hometj")<>"" and G("hometj")<>"2" then
 	if G("hometj")="0" then oldtpl.SetVariable "hometj0","selected"
 	if G("hometj")="1" then oldtpl.SetVariable "hometj1","selected"
 end if
-sqlstr="SELECT a.id,a.cat_id as catid,a.arctitle,a.fbdate,a.arcflag,a.uddate,b.cat_name,c.type_name,a.arccontent,a.arcpic,a.recycling,a.archits,* from (kl_archives as a inner join  kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on b.type_id=c.type_id   "& where &" order by fbdate desc"
+sqlstr="SELECT a.id,a.cat_id as catid,a.arctitle,a.fbdate,a.arcflag,a.uddate,b.cat_name,c.type_name,a.arccontent,a.arcpic,a.recycling,a.archits,c.type_id as typeid,* from (kl_archives as a inner join  kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on b.type_id=c.type_id   "& where &" order by fbdate desc"
 
 '//////////////////////////////////////////////////////////////////////////////////////////
 '创建对象
@@ -75,6 +75,7 @@ for i=1 to mypage.pagesize
 	oldtpl.SetVariable "page",G("page")
 	oldtpl.SetVariable "id",rs("id")&""
 	oldtpl.SetVariable "cat_id",rs("catid")&""
+	oldtpl.SetVariable "type_id",rs("typeid")&""
 	oldtpl.SetVariable "title",rs("arctitle")&""
 	oldtpl.SetVariable "arctitle",left(rs("arctitle")&"",15)
 	oldtpl.SetVariable "uddate",rs("uddate")&""
