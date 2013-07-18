@@ -13,6 +13,19 @@ datatable=typers("data_table")&""
 		set formobj=newdb.table(datatable).create()
 		formobj("fbdate")=FormatDate(now,2)
 		formobj("uddate")=FormatDate(now,2)
+		'如果图片为空则从文章中提取第一个图片 start
+		if G("arcpic")="" then
+			Set picreg = New RegExp 
+			picreg.IgnoreCase = True
+			picreg.Global = True
+			picreg.Pattern="<img(.*?)/?>"
+			set mats=picreg.execute(G("arccontent"))
+			if mats.count>0 then
+				formobj("arcpic")= newtpl.gettagparam(mats(0),"src")
+			end if
+			set picreg=nothing
+		end if
+		'如果图片为空则从文章中提取第一个图片 end
 		newdb.formdata=formobj
 		result=newdb.add()
 		if result then
