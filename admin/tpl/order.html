@@ -33,7 +33,7 @@ cursor: pointer;
 <!--搜索信息-->
 <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#cfcfcf" align="center">
 <tr class="biaotou" bgcolor="#E7E7E7">
-<td height="28" colspan="12" align="center" background="images/tbg.gif" style="padding-left:10px;">
+<td height="28" colspan="10" align="center" background="images/tbg.gif" style="padding-left:10px;">
 	<span>订单列表</span> &nbsp;&gt;&gt;<a href="javascript:window.history.go(-1);" class="coolbg">返回</a>
 </td>
 </tr>
@@ -41,11 +41,9 @@ cursor: pointer;
 <td width="5%">ID</td>
 <td width="5%">选择</td>
 <td width="7%">产品类别</td>
-<td width="8%">产品名称</td>
-<td width="5%">公司名称</td>
 <td width="7%">联系人</td>
 <td width="13%">联系电话/传真/手机</td>
-<td width="15%">具体要求</td>
+<td width="15%">地址/详细</td>
 <td width="10%">发布时间</td>
 <td width="7%">发布IP</td>
 <td width="5%">操作</td>
@@ -55,13 +53,11 @@ cursor: pointer;
 <td>{$id}</td>
 <td><input name="arcID" type="checkbox" id="arcID" value="{$id}" class="np checkid"></td>
 <td align="left">
-<u>{$pro_type}</u>
+  <u>{$title}</u>
 </td>
-<td>{$pro_title}</td>
-<td>{$com_name}</td>
-<td>{$contact_name}</td>
-<td>{$call}/{$call}/{$phone}</td>
-<td>{$detail}</td>
+<td>{$uname}</td>
+<td>{$phone}</td>
+<td>{$adr}/{$adr2}</td>
 <td>{$fbdate}</td>
 <td>{$fbip}</td>
 <td bgcolor="#fffff;">
@@ -70,14 +66,14 @@ cursor: pointer;
 </tr>
 <!--{/arclist}-->
 <tr bgcolor="#ffffff">
-  <td height="24" colspan="12">
+  <td height="24" colspan="10">
   &nbsp;
   <a href="javascript:selAll()" class="coolbg">全选</a>
   <a href="javascript:noSelAll()" class="coolbg">取消</a>
   <a href="javascript:commentsform.submit();" class="coolbg">&nbsp;批量删除&nbsp;</a></td>
 </tr>
 <tr align="right" bgcolor="#F9FCEF">
-<td height="30" colspan="12" align="center">
+<td height="30" colspan="10" align="center">
 	{$pagenav}</td>
 </tr>
 </table>
