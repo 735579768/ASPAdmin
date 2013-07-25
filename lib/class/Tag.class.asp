@@ -107,6 +107,28 @@ class QuickTag
 												'echo mm
 												if isarray(c) then
 												'有过滤器
+													if instr(c(2),"$")<>0 then
+														set fireg=new regExp
+														fireg.IgnoreCase = True
+														fireg.Global = True
+														fireg.pattern="(\$)(\w+?)\W{1}|(\$)(\w+?)$"
+														set ms=fireg.execute(c(2))
+														for each a in ms
+															rskey=""
+															if a.submatches(1)<>"" then
+																rskey=a.submatches(1)
+															elseif a.submatches(3)<>"" then
+																rskey=a.submatches(3)
+															end if
+															on error resume next
+															err.clear
+															rstr=arcrs(rskey)
+															if err.number=0 then
+																c(2)=replace(c(2),a,rstr)	
+															end if
+															
+														next  
+													end if
 													liststr=replace(liststr,mm,tplobj.filterVar(arcrs(c(0))&"",c(1),c(2)))
 												else
 												'没有过滤器

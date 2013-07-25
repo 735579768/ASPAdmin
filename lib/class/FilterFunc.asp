@@ -3,12 +3,12 @@
 '过滤器函数
 '================================
 Function FilterFunc(val,funcname,param)
+	set fireg=new regExp
+	fireg.IgnoreCase = True
+	fireg.Global = True
 	temvar=val
 	Select Case trim(funcname)
 				case "left" 
-						set fireg=new regExp
-						fireg.IgnoreCase = True
-						fireg.Global = True
 						fireg.pattern="<.*?>|\s*|\r*\n\s*\r*\n"
 						val=fireg.replace(val,"")
 						set fireg=nothing
@@ -16,8 +16,14 @@ Function FilterFunc(val,funcname,param)
 						temVar=left(val,Cint(param))
 				case "empty" 
 						if val="" then
-							if left(param,1)="$" then
-								temvar=tpl.jiexivar("{"&param&"}")
+							param=replace(param," eq ","=")
+							if instr(param,"$")<>0 then
+								fireg.pattern="(\$)([\w\.]+?)\s+?|(\$)([\w\.]+?)$"
+								set ms=fireg.execute(param)
+								for each a in ms
+									param=replace(param,a,"{"&a&"}")	
+								next  
+								temvar=tpl.jiexivar(param)
 							else
 								temvar=param
 							end if
@@ -42,5 +48,6 @@ Function FilterFunc(val,funcname,param)
 	end select
 	if isnull(temvar) then temvar=""
 	FilterFunc=temvar
+	set fireg=nothing
 End Function
 %>
