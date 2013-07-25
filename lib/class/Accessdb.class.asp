@@ -239,6 +239,7 @@ Class Accessdb
 		d=autoform.keys
 		For i = 0 To autoform.Count -1 '重复数组。
 			err.clear
+			echo d(i)&"---"&autoform(d(i))&"<br>"
 				rs(d(i))=autoform(d(i))
 				if err.number<>0 then
 					err.clear

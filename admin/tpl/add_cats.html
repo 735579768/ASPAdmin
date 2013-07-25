@@ -1,16 +1,16 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ï»¿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script src="js/jquery-1.8.1.min.js" language="javascript" type="text/javascript"></script>
 <link href="css/main.css" rel="stylesheet" type="text/css" />
-<title>Ìí¼ÓĞÅÏ¢</title>
+<title>æ·»åŠ ä¿¡æ¯</title>
 </head>
 <style>
 .biaotou{background:url(images/tbg.gif) repeat-x; height:28px;}
 table{ border-color:#FBFCE2;}
 table td table td,table td table{ border:none; text-align:left; line-height:28px; height:28px;}
-td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; font-family:"ËÎÌå";background-color: #FFF;}
+td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; font-family:"å®‹ä½“";background-color: #FFF;}
 .kl-tab{}
 .kl-tab-nav{ cursor:pointer;display:block; height:30px; float:left;line-height: 30px;width: 100px;text-align: center;border-right: solid 1px #ccc;}
 .kl-tab .kl-tab-nav-block,.kl-tab .kl-tab-div-block{ display:block; width:100%; float:left;}
@@ -47,114 +47,114 @@ td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; 
 				/////////////////////////////////////////
 			});
 		</script>
-<form action="" id="addchildcatsform" method="post">
+<form action="?act=add" id="addchildcatsform" method="post">
 <div class="kl-tab">
 <ul class="kl-tab-nav-block">
-	<li class="kl-tab-nav">»ù±¾ĞÅÏ¢</li>
-    <li class="kl-tab-nav">¸ß¼¶Ñ¡Ïî</li>
-    <li class="kl-tab-nav">À¸Ä¿Ä£°å</li>
-    <li class="kl-tab-nav">À¸Ä¿ÄÚÈİ</li>
+	<li class="kl-tab-nav">åŸºæœ¬ä¿¡æ¯</li>
+    <li class="kl-tab-nav">é«˜çº§é€‰é¡¹</li>
+    <li class="kl-tab-nav">æ ç›®æ¨¡æ¿</li>
+    <li class="kl-tab-nav">æ ç›®å†…å®¹</li>
 </ul>
     <div class="kl-tab-div-block">
         <div class="kl-tab-div"><table width="98%" style=" margin:10px auto;border-collapse:collapse;" border="1" cellspacing="0" cellpadding="0">
  <tr>
- 	<td height="28" colspan="6" align="center" class="biaotou">·ÖÀàÀ¸Ä¿¹ÜÀí&gt;&gt;<a href="cats_list.asp" class="coolbg">·ÖÀàÁĞ±í</a>>>Ôö¼Ó·ÖÀà</td>
+ 	<td height="28" colspan="6" align="center" class="biaotou">åˆ†ç±»æ ç›®ç®¡ç†&gt;&gt;<a href="cats_list.asp" class="coolbg">åˆ†ç±»åˆ—è¡¨</a>>>å¢åŠ åˆ†ç±»</td>
  </tr>
  
- <!---ĞÅÏ¢±êÌâ-->
+ <!---ä¿¡æ¯æ ‡é¢˜-->
   <tr>
-    <td width="100px">ËùÊô¶¥¼¶·ÖÀà£º</td>
-    <td><input type="hidden" name="parent_id" value="{{parent_id}}" />{{cat_name}}</td>
+    <td width="100px">æ‰€å±é¡¶çº§åˆ†ç±»ï¼š</td>
+    <td><input type="hidden" name="parent_id" value="{$obj.parent_id}" />{$obj.cat_name}</td>
   </tr>
   <tr>
-    <td width="100px">·ÖÀàÃû³Æ£º</td>
+    <td width="100px">åˆ†ç±»åç§°ï¼š</td>
     <td><input name="cat_name"  type="text" value="" /></td>
   </tr>
   <tr align="left">
-    <td width="90">·ÖÀàÍ¼Æ¬Õ¹Ê¾£º</td>
-    <td><input name="cat_pic" type="text" id="url1" value="{{cat_pic}}" style="width:200px" /> <input type="button" id="image1" value="Ñ¡ÔñÍ¼Æ¬" /></td>
+    <td width="90">åˆ†ç±»å›¾ç‰‡å±•ç¤ºï¼š</td>
+    <td><input name="cat_pic" type="text" id="url1" value="{$obj.cat_pic}" style="width:200px" /> <input type="button" id="image1" value="é€‰æ‹©å›¾ç‰‡" /></td>
   </tr>
   <tr>
-    <td width="100px">ÏÔÊ¾/Òş²Ø£º</td>
-    <td>  <input name="cat_show" type="text"  value="0" size="5" maxlength="1" />&nbsp;ÏÔÊ¾(1)Òş²Ø(0)</td>
+    <td width="100px">æ˜¾ç¤º/éšè—ï¼š</td>
+    <td>  <input name="cat_show" type="text"  value="0" size="5" maxlength="1" />&nbsp;æ˜¾ç¤º(1)éšè—(0)</td>
   </tr>
   <tr>
     <tr>
-    <td width="100px">ÄÚÈİÄ£ĞÍ£º</td>
-    <td> {{typeidsel}}</td>
+    <td width="100px">å†…å®¹æ¨¡å‹ï¼š</td>
+    <td> {$obj.typeidsel}</td>
   </tr>
   <tr>
-    <td width="100px">ÅÅĞò£º</td>
+    <td width="100px">æ’åºï¼š</td>
     <td><input name="sort" type="text"  value="999" /></td>
   </tr>
   <tr>
-    <td width="100px" align="left">·ÖÀàÊôĞÔ£º</td>
-    <td><input name="catflag" type="text" value="2" />(0ÊÇ¿Õ·ÖÀà,1ÊÇ·âÃæÄÚÈİ,2ÊÇÁĞ±íÄÚÈİ)</td>
+    <td width="100px" align="left">åˆ†ç±»å±æ€§ï¼š</td>
+    <td><input name="catflag" type="text" value="2" />(0æ˜¯ç©ºåˆ†ç±»,1æ˜¯å°é¢å†…å®¹,2æ˜¯åˆ—è¡¨å†…å®¹)</td>
   </tr>
-<tr><td colspan="2" align="center"><input name="act" type="hidden" value="add" />
-<a href="javascript:tjyanzheng();" class="coolbg">Ìí¼Ó·ÖÀà</a>
-    <a href="javascript:window.history.go(-1);" class="coolbg">·µ»Ø</a></td></tr>
+<tr><td colspan="2" align="center">
+<a href="javascript:tjyanzheng();" class="coolbg">æ·»åŠ åˆ†ç±»</a>
+    <a href="javascript:window.history.go(-1);" class="coolbg">è¿”å›</a></td></tr>
 </table></div>
         <div class="kl-tab-div"><table width="98%" style=" border-collapse:collapse; text-align:left;" border="0">
   <tr>
-  	<td width="10%">·âÃæÄ£°å£º</td>
-    <td><input name="cat_index" type="text" value="{{cat_index}}" style="width:200px; height:20px;" /></td>
+  	<td width="10%">å°é¢æ¨¡æ¿ï¼š</td>
+    <td><input name="cat_index" type="text" value="{$obj.cat_index}" style="width:200px; height:20px;" /></td>
   </tr>
   <tr>
-  	<td width="10%">ÁĞ±íÄ£°å£º</td>
-    <td><input name="cat_list" type="text" value="{{cat_list}}" style="width:200px; height:20px;" /></td>
+  	<td width="10%">åˆ—è¡¨æ¨¡æ¿ï¼š</td>
+    <td><input name="cat_list" type="text" value="{$obj.cat_list}" style="width:200px; height:20px;" /></td>
   </tr>
   <tr>
-  	<td width="10%">ÎÄÕÂÄ£°å£º</td>
-    <td><input name="cat_article" type="text" value="{{cat_article}}" style="width:200px; height:20px;" /></td>
+  	<td width="10%">æ–‡ç« æ¨¡æ¿ï¼š</td>
+    <td><input name="cat_article" type="text" value="{$obj.cat_article}" style="width:200px; height:20px;" /></td>
   </tr>
   <tr>
-  	<td width="10%">seo±êÌâ£º</td>
+  	<td width="10%">seoæ ‡é¢˜ï¼š</td>
     <td><input name="cat_seotitle" type="text" style="width:300px; height:30px;" /></td>
   </tr>
   <tr>
-  	<td width="10%">seo¹Ø¼ü×Ö£º</td>
+  	<td width="10%">seoå…³é”®å­—ï¼š</td>
     <td><textarea name="cat_seokeys"  style="width:400px; height:30px;"></textarea></td>
   </tr>
   <tr>
-  	<td width="10%">seoÃèÊö£º</td>
+  	<td width="10%">seoæè¿°ï¼š</td>
     <td><input name="cat_seodescr" type="text" style="width:600px; height:50px;"  /></td>
   </tr>
   <tr>
-    <td align="center" colspan="2"> <a href="javascript:tjyanzheng();" class="coolbg">Ìí¼Ó·ÖÀà</a>
-    <a href="javascript:window.history.go(-1);" class="coolbg">·µ»Ø</a></td></tr>
+    <td align="center" colspan="2"> <a href="javascript:tjyanzheng();" class="coolbg">æ·»åŠ åˆ†ç±»</a>
+    <a href="javascript:window.history.go(-1);" class="coolbg">è¿”å›</a></td></tr>
 </table></div>
         <div class="kl-tab-div"><table width="98%" style=" border-collapse:collapse;" border="0">
   <tr>
-    <td>ËµÃ÷£ºÀ¸Ä¿ÄÚÈİÊÇÌæ´úÔ­À´À¸Ä¿µ¥¶ÀÒ³µÄ¸üÁé»îµÄ·½Ê½£¬Èç¹ûÏÂÃæÓĞÄÚÈİµÄ»°£¬Õâ¸ö·ÖÀàµÄ·âÃæ½«Ö±½ÓÏÔÊ¾Õâ¸öÄÚÈİÄ£°å</td>
+    <td>è¯´æ˜ï¼šæ ç›®å†…å®¹æ˜¯æ›¿ä»£åŸæ¥æ ç›®å•ç‹¬é¡µçš„æ›´çµæ´»çš„æ–¹å¼ï¼Œå¦‚æœä¸‹é¢æœ‰å†…å®¹çš„è¯ï¼Œè¿™ä¸ªåˆ†ç±»çš„å°é¢å°†ç›´æ¥æ˜¾ç¤ºè¿™ä¸ªå†…å®¹æ¨¡æ¿</td>
   </tr>
   <tr><td align="left">
   <input type="radio" name="cat_single" value="1" />
-  ÆôÓÃ×Ô¶¨ÒåÄ£°å
+  å¯ç”¨è‡ªå®šä¹‰æ¨¡æ¿
   <input  name="cat_single" type="radio" value="0" checked="checked" />
-  ²»ÆôÓÃ×Ô¶¨ÒåÄ£°å
+  ä¸å¯ç”¨è‡ªå®šä¹‰æ¨¡æ¿
   </td></tr>
   <tr>
   <td>
 
-  <textarea name="catcontent" style="width:99%;height:600px;"></textarea>
+  <textarea name="cat_content" style="width:99%;height:600px;"></textarea>
   </td>
   </tr>
   <tr>
-    <td align="center"><a href="javascript:tjyanzheng();" class="coolbg">Ìí¼Ó·ÖÀà</a>
-    <a href="javascript:window.history.go(-1);" class="coolbg">·µ»Ø</a></td></tr>
+    <td align="center"><a href="javascript:tjyanzheng();" class="coolbg">æ·»åŠ åˆ†ç±»</a>
+    <a href="javascript:window.history.go(-1);" class="coolbg">è¿”å›</a></td></tr>
 </table></div>
 <div class="kl-tab-div">
 <table width="98%"  border="0">
   <tr>
-    <td>À¸Ä¿ÄÚÈİÔÚÒ³ÃæÖĞÓÃ{$cat_singlecontent}¾Í¿ÉÒÔµ÷ÓÃ</td>
+    <td>æ ç›®å†…å®¹åœ¨é¡µé¢ä¸­ç”¨{$cat_singlecontent}å°±å¯ä»¥è°ƒç”¨</td>
   </tr>
   <tr>
     <td><textarea name="cat_singlecontent" style="width:100%;height:400px;visibility:hidden;"></textarea></td>
   </tr>
     <tr>
-    <td align="center"><a href="javascript:tjyanzheng();" class="coolbg">Ìí¼Ó·ÖÀà</a>
-    <a href="javascript:window.history.go(-1);" class="coolbg">·µ»Ø</a></td></tr>
+    <td align="center"><a href="javascript:tjyanzheng();" class="coolbg">æ·»åŠ åˆ†ç±»</a>
+    <a href="javascript:window.history.go(-1);" class="coolbg">è¿”å›</a></td></tr>
 </table>
 
 </div>
@@ -168,12 +168,12 @@ td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; 
 <script type="text/javascript">
 $(function(){
 	$.klplugin={
-	/////////////////////////////////////////////////////tabÇĞ»»ÌØĞ§/////////////////////////////////////////////
+	/////////////////////////////////////////////////////tabåˆ‡æ¢ç‰¹æ•ˆ/////////////////////////////////////////////
 	runtab:function(options){
 					var defaults={
-						'navhoverclsname':'navhovercls',//navÏÔÊ¾Ê±ºòÓµÓĞµÄÀà
-						'divshowclsname':'divshowcls',//divÏÔÊ¾µÄÊ±ºòÓµÓĞµÄÀà
-						'model':'mouseover'//tabµÄÇĞ»»Ä£Ê½£¬Ä¬ÈÏÎªmouseover
+						'navhoverclsname':'navhovercls',//navæ˜¾ç¤ºæ—¶å€™æ‹¥æœ‰çš„ç±»
+						'divshowclsname':'divshowcls',//divæ˜¾ç¤ºçš„æ—¶å€™æ‹¥æœ‰çš„ç±»
+						'model':'mouseover'//tabçš„åˆ‡æ¢æ¨¡å¼ï¼Œé»˜è®¤ä¸ºmouseover
 						};
 					var opts = $.extend(defaults, options); 
 					
@@ -181,13 +181,13 @@ $(function(){
 					$(".kl-tab .kl-tab-div:first-child").show();
 					$(".kl-tab .kl-tab-nav").bind(opts.model,function(){
 								var obj=$(this);
-								 //²éÕÒÒªÏÔÊ¾µÄdivË÷Òı
+								 //æŸ¥æ‰¾è¦æ˜¾ç¤ºçš„divç´¢å¼•
 								 obj.parents(".kl-tab").find(".kl-tab-nav").each(function(i) {
 									if($(this).html()==obj.html()){
-										//ÉèÖÃhoverÀà
+										//è®¾ç½®hoverç±»
 										obj.parents(".kl-tab").find(".kl-tab-nav").removeClass(opts.navhoverclsname);
 										obj.addClass(opts.navhoverclsname);
-										//Òş²ØµôËùÓĞµÄtabdiv
+										//éšè—æ‰æ‰€æœ‰çš„tabdiv
 										obj.parents(".kl-tab").find(".kl-tab-div").hide();
 										obj.parents(".kl-tab").find(".kl-tab-div").removeClass(opts.divshowclsname);
 										
@@ -199,29 +199,29 @@ $(function(){
 		}
 	};
 $.klplugin.runtab({
-		'navhoverclsname':'a',//navÏÔÊ¾Ê±ºòÓµÓĞµÄÀà
-		'divshowclsname':'b',//divÏÔÊ¾µÄÊ±ºòÓµÓĞµÄÀà
+		'navhoverclsname':'a',//navæ˜¾ç¤ºæ—¶å€™æ‹¥æœ‰çš„ç±»
+		'divshowclsname':'b',//divæ˜¾ç¤ºçš„æ—¶å€™æ‹¥æœ‰çš„ç±»
 		'model':'click'
 		});
 	});
 function tjyanzheng(){
 	if (!$("input[name='cat_name']").val()){
-		alert('·ÖÀàÃû×Ö²»ÄÜÎª¿Õ!');
+		alert('åˆ†ç±»åå­—ä¸èƒ½ä¸ºç©º!');
 		return false;
 		}
 	addchildcatsform.submit();
 	}
 $(function(){
 $("#delimg").bind("click",function(){
-	if(confirm("È·ÈÏÒªÉ¾³ı?")){
+	if(confirm("ç¡®è®¤è¦åˆ é™¤?")){
 	$.get("uploadimg/index.asp",{
 									act:'delimg',
 									imgpath:$("#pic").val()
 										},function(data){
 								if(data==1){
-									alert('É¾³ı³É¹¦£¡');
+									alert('åˆ é™¤æˆåŠŸï¼');
 									}else{
-									alert('ÎÄ¼şÉ¾³ı´íÎó£¡');
+									alert('æ–‡ä»¶åˆ é™¤é”™è¯¯ï¼');
 										}
 									$("#pic").val('');
 									$("#pic").change();
@@ -238,6 +238,7 @@ $("#pic").bind("change",function(){
 		$("#picimg").hide();	
 			}
 	});
+$("option[value=0]").remove();
 });
 function cha(){
 	$("#pic").change();
