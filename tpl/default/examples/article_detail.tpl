@@ -15,7 +15,7 @@
 </head>
 
 <body>
-<!--{include file="public/header.html"}-->
+<!--{include file="public/header.tpl"}-->
 <div class="container">
 <div class="left">
              <dl>
@@ -63,6 +63,6 @@
     </div>
 <div style="clear:both;"></div>
 </div>
-<!--{include file="public/footer.html"}-->
+<!--{include file="public/footer.tpl"}-->
 </body>
 </html>
