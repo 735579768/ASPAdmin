@@ -167,7 +167,7 @@ class QuickTag
 			for each m in eqm		
 				temparam=tplobj.getTagParam(m.SubMatches(0),"id")
 				str1=m.submatches(1)
-				set catrs=db.table("kl_cats").top("1").where("cat_id="&temparam).sel()
+				set catrs=db.table("kl_cats").top("1").where("cat_id="&temparam).order("sort asc,cat_id desc").sel()
 					for each a in catrs.fields
 						catreg.Pattern = p_var_l &a.name &"(.*?)"& p_var_r
 						set mms=catreg.execute(str1)
