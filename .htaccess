@@ -10,5 +10,6 @@ RewriteRule ^cat-(\d+)-(\d+)(.*?) cat.asp?catid=$1&page=$2
 RewriteRule ^view-(\d+)(.*?) view.asp?id=$1
 RewriteRule ^search(.*?) search.asp
 RewriteRule ^comments(.*?) comments.asp$1
+RewriteRule ^search(.*?) search.asp$1
 
 </IfModule>
