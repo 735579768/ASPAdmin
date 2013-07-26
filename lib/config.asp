@@ -20,7 +20,7 @@ const adminDir="admin"
 
 '=======================动态配置======================" 
 dim themes:themes="default"'主题目录
-dim app_debug:app_debug=false
+dim app_debug:app_debug=true
 dim login_id:login_id=0
 dim TPL_PATH:TPL_PATH="tpl"
 %>
