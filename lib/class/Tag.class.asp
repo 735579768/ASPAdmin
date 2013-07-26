@@ -77,6 +77,8 @@ class QuickTag
 					dim arcrs
 					if pgnav<>"" then
 						if pgsize="" then pgsize=20
+								'记录sql
+								db.kl_sqlobj(db.kl_sqlobj.count+1)=runsql
 								Set mypage=new xdownpage
 								mypage.getconn=db.kl_conn
 								mypage.getsql=runsql

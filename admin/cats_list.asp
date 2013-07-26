@@ -198,7 +198,7 @@ function zall(){
 	$('.jiajian').attr('src','images/jian.gif');
 	$('.lanmu dd,.lanmu .senondmenu').show();
 	$('.jiajian').each(function(index, element) {
-    $(this).eq(index).attr('state',1); 
+    $(this).attr('state',1); 
     });
 	bianlistate();
 	}
@@ -206,7 +206,7 @@ function hall(){
 	$('.jiajian').attr('src','images/jia.gif');
 	$('.lanmu dd,.lanmu .senondmenu').hide();
 	$('.jiajian').each(function(index, element) {
-     $(this).eq(index).attr('state',0); 
+     $(this).attr('state',0); 
     });
 	bianlistate();
 	}
