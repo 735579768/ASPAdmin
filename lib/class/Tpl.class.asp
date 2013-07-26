@@ -689,7 +689,7 @@ class AspTpl
 			for each m in eqm
 				on error resume next
 				err.clear
-				bol=eval(m.submatches(0))
+				bol=eval(replace(m.submatches(0),"neq","<>"))
 				if err.number<>0 or not bol then
 					err.clear
 					str=replace(str,m,"")
