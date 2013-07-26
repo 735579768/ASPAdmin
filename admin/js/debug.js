@@ -67,5 +67,18 @@ window.onload=function(){
 		};
 	var debugs=readCookie('debugshow');
 	if(debugs==1)document.getElementById('debugshow').click();
+	
+	
+	
+	document.getElementById('debugsqlclose').onclick=function(){
+		writeCookie('debugsqlshow','0')
+		this.parentNode.style.display='none';
+		};
+	document.getElementById('debugsqlshow').onclick=function(){
+		writeCookie('debugsqlshow','1')
+		document.getElementById('debugsql').style.display='block';
+		};
+	var debugs=readCookie('debugsqlshow');
+	if(debugs==1)document.getElementById('debugsqlshow').click();
 
 	}

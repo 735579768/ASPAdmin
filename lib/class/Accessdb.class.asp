@@ -17,6 +17,7 @@ Class Accessdb
 	private kl_sql
 	private kl_err
 	private kl_sqlkey
+	public kl_sqlobj
 	public kl_sqlnum
 	public kl_filtersql
 	'==================================
@@ -31,6 +32,7 @@ Class Accessdb
 		connstr= "Provider=Microsoft.Jet.OLEDB.4.0;Data Source="&server.MapPath(Sql_Data)&";Jet OLEDB:Database Password="&db_pwd&";"
 		Set kl_conn = Server.CreateObject("ADODB.Connection")
 		Set kl_sqlkey = server.CreateObject("Scripting.Dictionary")
+		Set kl_sqlobj = server.CreateObject("Scripting.Dictionary")
 		kl_Conn.Open connstr
 		if err.number<>0 then
 		echo "database link error!"
@@ -68,6 +70,8 @@ Class Accessdb
 			err.clear
 			if sqlstr<>"" then kl_sql=sqlstr
 			set kl_rs=server.CreateObject("adodb.recordset")
+			'记录执行的sql语句
+			kl_sqlobj(kl_sqlobj.count+1)=kl_sql
 			kl_rs.open kl_sql,kl_conn,1,3
 			if err.number<>0 and app_deug then 
 				echoerr 0,"query SQL语句出错:"&kl_sql
