@@ -66,9 +66,11 @@ if parent_id<>0 then
 else
 '	oldtpl.setvariable "cat_name","无"
 '	oldtpl.setvariable "parent_id",parent_id
-	
-	newtpl.assign "cat_name","无"
-	newtpl.assign "parent_id",parent_id
+	set obj=getobj()
+	obj("cat_name")="无"
+	obj("parent_id")=parent_id
+'	newtpl.assign "cat_name","无"
+'	newtpl.assign "parent_id",parent_id
 end if
 obj("typeidsel")=getContentTypeSel()
 'oldtpl.setvariable "typeidsel",

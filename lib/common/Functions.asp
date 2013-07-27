@@ -2,6 +2,12 @@
 '==============================
 '解析调试输出
 '=============================
+	function getobj()
+		set getobj=server.CreateObject("Scripting.Dictionary")
+	end function
+'==============================
+'解析调试输出
+'=============================
 	function debug(str)
 		call db.echoErr(1,str)
 	End function
