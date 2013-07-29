@@ -16,7 +16,9 @@
 
 <body>
 <!--{include file="public/header.tpl"}-->
-
+                      <!--{arclist sql="select * from kl_cats  where cat_id in(select parent_id from kl_cats where cat_id={$arcinfo.cat_id})"}-->
+                      {$cat_name}
+                      <!--{/arclist}-->
 
             <!--{arclist sql="select * from kl_cats  where parent_id in(select parent_id from kl_cats where cat_id={$arcinfo.cat_id})"}-->
             <!--{/arclist}-->
