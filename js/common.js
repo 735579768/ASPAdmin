@@ -7,43 +7,51 @@ function autowh(){
 						};
 					var opts = $.extend(defaults, options);
 					$(opts.sel).each(function(index, element) {
-				
 				var w=$(this).width();
 				var h=$(this).height();
-				if(w=750){
-					w=750;
-					}
 					if (w!=0 && h!=0){
-						if(w>h){
-								if(w>opts.autoW){
-									$(this).removeAttr('height');
-									$(this).attr('width',opts.autoW)
-									var temh=$(this).height();
-									if(temh>opts.autoH){
-										$(this).removeAttr('width');
-										$(this).attr('height',opts.autoH)
+						if(!$(this).parent().hasClass('imgwrap')){
+								$(this).wrap("<span class='imgwrap'></span>");
+								$(this).parent(".imgwrap").css({
+														border:'solid 1px #ccc',
+														display:'table-cell',
+														'vertical-align':'middle',
+														width:opts.autoW+'px',
+														height:opts.autoH+'px',
+														'text-align':'center'
+									});
+								$(this).css({border:'none'});
+								if(w>h){
+										if(w>opts.autoW){
+											$(this).removeAttr('height');
+											$(this).attr('width',opts.autoW-8);
+											var temh=$(this).height();
+											if(temh>opts.autoH){
+												$(this).removeAttr('width');
+												$(this).attr('height',opts.autoH-8);
+												}
+												
+												
+										}else{
+											$(this).attr('width',w);
 										}
-										
-										
+								
 								}else{
-									$(this).attr('width',w)
-								}
-						
-						}else{
-								if(h>opts.autoH){
-									$(this).removeAttr('width');
-									$(this).attr('height',opts.autoH)
-									var temw=$(this).width();
-									if(temw>opts.autoW){
-										$(this).removeAttr('height');
-										$(this).attr('width',opts.autoW)
+										if(h>opts.autoH){
+											$(this).removeAttr('width');
+											$(this).attr('height',opts.autoH-8);
+											var temw=$(this).width();
+											if(temw>opts.autoW){
+												$(this).removeAttr('height');
+												$(this).attr('width',opts.autoW-8);
+												}
+												
+										}else{
+											$(this).attr('height',h);
 										}
-										
-								}else{
-									$(this).attr('height',h);
 								}
 						}
-					}
+						}
 					});
 					
 				obj=this;
@@ -75,8 +83,18 @@ var a=new autowh()
 		'autoH':110,//高
 		'sel':'.ziznr img'//选择器
 	}) 
-	
 
+	a.run({
+		'autoW':162,//宽
+		'autoH':160,//高
+		'sel':'.cpzstu img'//选择器
+	}) 
+	
+	a.run({
+		'autoW':156,//宽
+		'autoH':160,//高
+		'sel':'.zy_cpzstu img'//选择器
+	}) 
 
 	 
 });
