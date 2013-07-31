@@ -34,12 +34,14 @@ function autowh() {
 						border : 'solid 1px #ccc',
 						display : 'table-cell',
 						'vertical-align' : 'middle',
-						width : defaults.autoW + 'px',
-						height : defaults.autoH + 'px',
+						 width : defaults.autoW + 'px',
+						 height : defaults.autoH + 'px',
 						'text-align' : 'center'
 					});
 					thisobj.css({
-						border : 'none'
+						border : 'none',
+						'display':'block'
+
 					});
 					if (w > h) {
 						thisobj.removeAttr('height');
@@ -84,33 +86,36 @@ $(function () {
 			'autoH' : 94, //高
 			'sel' : '.er_1nr img' //选择器
 		})
-		a.run({
+	var b = new autowh()
+		b.run({
 			'autoW' : 140, //宽
 			'autoH' : 94, //高
 			'sel' : '.fengcnr img' //选择器
 		})
-		a.run({
+	var c = new autowh()
+		c.run({
 			'autoW' : 146, //宽
 			'autoH' : 110, //高
 			'sel' : '.ziznr img' //选择器
 		})
-
-		a.run({
+	var d = new autowh()
+		d.run({
 			'autoW' : 162, //宽
 			'autoH' : 160, //高
 			'sel' : '.cpzstu img' //选择器
 		})
-
-		a.run({
+	var e = new autowh()
+		e.run({
 			'autoW' : 156, //宽
 			'autoH' : 160, //高
 			'sel' : '.zy_cpzstu img' //选择器
 		})
-/*		a.run({
-			'autoW' : 169, //宽
-			'autoH' : 118, //高
-			'sel' : '.scroll img' //选择器
-		})*/
+	var f = new autowh()
+		f.run({
+			'autoW' : 160, //宽
+			'autoH' : 112, //高
+			'sel' : '.xstdnrkj img' //选择器
+		})
 
 });
 
