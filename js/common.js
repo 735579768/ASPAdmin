@@ -29,7 +29,7 @@ function autowh() {
 			var h = thisobj.height();
 			if (w != 0 && h != 0) {
 				if (!thisobj.parent().hasClass('imgwrap')) {
-					thisobj.wrap("<span class='imgwrap'></span>");
+					thisobj.wrap("<div class='imgwrap'></div>");
 					thisobj.parent(".imgwrap").css({
 						border : 'solid 1px #ccc',
 						display : 'table-cell',
@@ -39,8 +39,7 @@ function autowh() {
 						'text-align' : 'center'
 					});
 					thisobj.css({
-						border : 'none',
-						'display':'block'
+						border : 'none'
 
 					});
 					if (w > h) {
@@ -78,7 +77,11 @@ function autowh() {
 
 
 }
-
+/*
+ie6下面加入下面样式
+.imgwrap{_font-family:Arial;_position:relative;}
+.imgwrap img{ _top:50%; _left:50%;_position:absolute;_vertical-align: middle;_margin-left:expression(-this.width/2);_margin-top:expression(-this.height/2);}
+*/
 $(function () {
 	var a = new autowh()
 		a.run({
