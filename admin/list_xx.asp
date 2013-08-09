@@ -6,6 +6,7 @@ dim where,searchform
 where=" where 1=1 and recycling=0 " 
 set catrs=newdb.table("kl_cats").fild("type_id").where("cat_id="&G("cat_id")).sel()
 typeid=catrs("type_id")
+newtpl.assign "type_id",typeid
 set catrs=nothing
 'catid=G("cat_id")
 set typers=newdb.table("kl_content_types").where("type_id="&typeid).sel()

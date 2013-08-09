@@ -73,6 +73,7 @@ td{ text-align:center;}
 
 &nbsp;<a href="javascript:void(0);" onclick="sear1.submit();" class="coolbg">搜索</a>
 <a href="javascript:window.history.go(-1);" class="coolbg">返回</a>
+<a href="javascript:void(0);" id="addxx" class="coolbg">添加信息</a>
 </TD></TR>
 </table>
 <table width="98%" border="1" cellpadding="2" style="border-collapse:collapse;" cellspacing="1" align="center">
@@ -93,6 +94,10 @@ td{ text-align:center;}
 <script type="text/javascript">
 //删除文章
 $(function(){
+	$('#addxx').bind('click',function(){
+		var catid=$('#cat_id').val();
+		window.location='add_xx.asp?type_id={$type_id}&cat_id='+catid;
+		});
 	$('.tj').bind('click',function(){
 		var va=$(this).attr('data');
 		var id=$(this).attr('dataid');

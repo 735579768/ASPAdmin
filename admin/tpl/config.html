@@ -98,16 +98,6 @@ KindEditor.ready(function(K) {
               <td align="left" style="padding:3px;"><input type="text" name="cfg_powerby"  value="{$cfgobj.cfg_powerby}" style="width:80%"></td>
               <td align="left">cfg_powerby</td>
             </tr>
-                  <tr align="right" height="25" bgcolor="#ffffff">
-              <td width="300">联系地址： </td>
-              <td align="left" style="padding:3px;"><input type="text" name="cfg_address"  value="{$cfgobj.cfg_address}" style="width:80%"></td>
-              <td align="left">cfg_arcdir</td>
-            </tr>
-            <tr align="right" height="25"  bgcolor="#ffffff">
-       <td width="300">联系电话： </td>
-       <td align="left" bgcolor="#ffffff" style="padding:3px;"><input type="text" name="cfg_phone"  value="{$cfgobj.cfg_phone}" style="width:80%"></td>
-       <td align="left" bgcolor="#ffffff">cfg_medias_dir</td>
-      </tr>
            </tbody></table>
            
 
@@ -156,7 +146,7 @@ KindEditor.ready(function(K) {
         <tr align="right" height="25" bgcolor="#ffffff">
        <td width="300">页面压缩： </td>
        <td align="left" style="padding:3px;">
-       <htmlradio name='cfg_pageyasuo' options='yasuoradioarr' selected='yasuoseled' />(通过去掉返回代码中多余的换行和空白实现减小代码大小)
+       <htmlradio name='cfg_pageyasuo' options='yasuoradioarr' selected='yasuoseled' />(通过去掉返回代码中多余的换行和空白实现减小代码大小,小心使用如果js写法不规范则会出错)
        </td>
        <td align="left">cfg_pageyasuo</td>
       </tr>
@@ -179,6 +169,31 @@ KindEditor.ready(function(K) {
               <td align="left" style="padding:3px;"><textarea name="cfg_notice" rows="5" style="width:80%">{$cfgobj.cfg_notice}</textarea></td>
               <td align="left">cfg_notice</td>
             </tr>
+                        <tr align="right" height="25" bgcolor="#ffffff">
+       <td width="300">固话： </td>
+       <td align="left" style="padding:3px;"><input type="text" name="cfg_guhua"  value="{$cfgobj.cfg_guhua}" style="width:80%"></td>
+       <td align="left">cfg_guhua</td>
+      </tr>
+            <tr align="right" height="25"  bgcolor="#ffffff">
+       <td width="300">手机： </td>
+       <td align="left" bgcolor="#ffffff" style="padding:3px;"><input type="text" name="cfg_phone"  value="{$cfgobj.cfg_phone}" style="width:80%"></td>
+       <td align="left" bgcolor="#ffffff">cfg_phone</td>
+      </tr>                        <tr align="right" height="25" bgcolor="#ffffff">
+              <td width="300">联系地址： </td>
+              <td align="left" style="padding:3px;"><input type="text" name="cfg_address"  value="{$cfgobj.cfg_address}" style="width:80%"></td>
+              <td align="left">cfg_address</td>
+            </tr>
+            <tr align="right" height="25" bgcolor="#ffffff">
+              <td width="300">邮箱地址： </td>
+              <td align="left" style="padding:3px;"><input type="text" name="cfg_email"  value="{$cfgobj.cfg_email}" style="width:80%"></td>
+              <td align="left">cfg_email</td>
+            </tr>
+                   <tr align="right" height="25" bgcolor="#ffffff">
+              <td width="300">邮编： </td>
+              <td align="left" style="padding:3px;"><input type="text" name="cfg_youbian"  value="{$cfgobj.cfg_youbian}" style="width:80%"></td>
+              <td align="left">cfg_youbian</td>
+            </tr>
+
            </tbody></table>
          </div>
     	
