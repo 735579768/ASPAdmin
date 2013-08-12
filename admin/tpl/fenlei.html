@@ -13,9 +13,12 @@
 栏目:{$catsel}分类名字： <input name="fenlei_parent_id" id="fenleiparentid" value="0" type="hidden" /><input name="fenlei_name" id="fenleiname" type="text" /><a href="javascript:void(0);" class="coolbg addfenlei">添加一级分类</a>
 </form>
 
-<table width="98%" border="1" style="border-collapse:collapse; border-color:#ccc;">
+<form id="modform" method="post" action="?act=mod">
+<input type="hidden" name="fenlei_name" value="" />
+</form>
+<table width="98%" border="0" style="border-collapse:collapse; border-color:#ededed;">
 <tr>
-<td width="20%">分类名字</td>
+<td width="60%">分类名字</td>
 <td>分类操作</td>
 </tr>
 {$sfenlei}
@@ -45,6 +48,15 @@ $(function(){
 		});
 	$('#cat_id').bind('change',function(){
 		window.location='?cat_id='+$(this).val();
+		});
+	$('.modfenlei').bind('click',function(){
+		var trobj=$(this).parents('tr');
+		var va=trobj.find('[name="fenlei_name"]').val();
+		var vaid=trobj.find('[name="fenlei_id"]').val();
+		$('#modform').find('[name="fenlei_name"]').val(va);
+		$('#modform').find('[name="fenlei_id"]').val(vaid);
+		$('#modform').attr('action',"?act=mod&cat_id={$cat_id}&fenlei_id="+vaid);
+		$('#modform').submit();
 		});
 	
 });
