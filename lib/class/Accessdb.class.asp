@@ -242,12 +242,13 @@ Class Accessdb
 		rs.addnew
 		d=autoform.keys
 		For i = 0 To autoform.Count -1 '重复数组。
+			on error resume next
 			err.clear
 			'echo d(i)&"---"&autoform(d(i))&"<br>"
 				rs(d(i))=autoform(d(i))
 				if err.number<>0 then
+					echoErr 0 ,"add data error!<br>error field: <span style='color:red;'>"&d(i)&"</span> <br>SQL语句：<span style='color:red;'>"&kl_sql&"</span><br>"
 					err.clear
-					echoErr 0 ,"<span style='color:red;'>add data error;<br>error descr:"&err.description&"<br>"&kl_sql&"</span><br>"
 				end if
  		Next
 		rs.update
