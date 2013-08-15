@@ -769,6 +769,58 @@
 	   fString    =    Replace(fString,    "<BR>",    CHR(10))   
 	   HTMLDecode    =    fString   
    end    function
+function getqikannian()
+	set ters=db.table("kl_fenlei").where("fenlei_parent_id=61").order("fenlei_id desc").sel()
+	str="<select id='qikannian' name='qikannian'><option value='0' selected>请选择年份</option>"
+	if ters.recordcount>0 then
+	do while not ters.eof
+	if G("qikannian")=ters("fenlei_id")&"" then
+		str=str&"<option value='"&ters("fenlei_id")&"' selected>"&ters("fenlei_name")&"</option>"	
+	else
+		str=str&"<option value='"&ters("fenlei_id")&"'>"&ters("fenlei_name")&"</option>"
+	end if
+	ters.movenext
+	loop
+	end if
+	str=str&"</select>"
+	getqikannian=str
+	set ters=nothing
+end function
+
+function getqikanyue()
+	set ters=db.table("kl_fenlei").where("fenlei_parent_id=91").order("fenlei_id desc").sel()
+	str="<select id='qikanyue' name='qikanyue'><option value='0' selected>请选择月份</option>"
+		if ters.recordcount>0 then
+	do while not ters.eof
+	if G("qikanyue")=ters("fenlei_id")&"" then
+		str=str&"<option value='"&ters("fenlei_id")&"' selected>"&ters("fenlei_name")&"</option>"	
+	else
+		str=str&"<option value='"&ters("fenlei_id")&"'>"&ters("fenlei_name")&"</option>"
+	end if
+	ters.movenext
+	loop
+	end if
+	str=str&"</select>"
+	getqikanyue=str
+	set ters=nothing
+end function
+function getqikanfenqi()
+	set ters=db.table("kl_fenlei").where("fenlei_parent_id=63").order("fenlei_id desc").sel()
+	str="<select  id='qikanfenqi' name='qikanfenqi'><option value='0' selected>请选择分期</option>"
+		if ters.recordcount>0 then
+	do while not ters.eof
+	if G("qikanfenqi")=ters("fenlei_id")&"" then
+		str=str&"<option value='"&ters("fenlei_id")&"' selected>"&ters("fenlei_name")&"</option>"	
+	else
+		str=str&"<option value='"&ters("fenlei_id")&"'>"&ters("fenlei_name")&"</option>"
+	end if
+	ters.movenext
+	loop
+	end if
+	str=str&"</select>"
+	getqikanfenqi=str
+	set ters=nothing
+end function
 %>
 <script language="javascript" type="text/javascript" runat="server">
 function mydecodeurl(s){return decodeURIComponent(s);}

@@ -18,10 +18,15 @@ tpl.p_tpl_suffix=".tpl"'为啦安全把模板改为tpl
 '在模板最终输出时进行正则替换第一组替换中间用##隔开
 dim url_suffex:url_suffex=".html"
 redim regarr(6)
-regarr(0)="cat\.asp\?catid\=(\d+)\&page\=(\d+)##cat-$1-$2"&url_suffex
+regarr(0)="cat\.asp\?catid\=(\d+)\&page\=(\d+)##cat_$1_$2"&url_suffex
 regarr(1)="cat\.asp\?catid\=(\d+)##cat-$1"&url_suffex
 regarr(2)="view\.asp\?id\=(\d+)##view-$1"&url_suffex
 regarr(3)="charset=gb2312##charset=utf-8"
 regarr(4)="search\.asp##search"
 regarr(5)="comments\.asp##comments"
+
+
+tpl.assign "qikannian",getqikannian()
+tpl.assign "qikanyue",getqikanyue()
+tpl.assign "qikanfenqi",getqikanfenqi()
 %>
