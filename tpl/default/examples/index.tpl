@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>{$catinfo.cat_name}|{$indexseo.cfg_webname}</title>
-<meta name="keywords" content="{$catinfo.cat_seokeys|empty=$indexseo.cfg_keywords}" />
-<meta name="description" content="{$catinfo.cat_seodescr|empty=$indexseo.cfg_description}" />
+<title>{$indexseo.cfg_webname}</title>
+<meta name="keywords" content="{$indexseo.cfg_keywords}" />
+<meta name="description" content="{$indexseo.cfg_description}" />
 <link rel="stylesheet" type="text/css" href="/css/index.css">
 <script src="/js/jquery-1.4.2.min.js" type="text/javascript"></script>
 <script src="/js/common.js" type="text/javascript"></script>
