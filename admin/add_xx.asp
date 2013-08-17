@@ -62,10 +62,17 @@ For Each Match in Matches
 	descr=getFieldParam(Match,"descr")
 	datatype=getFieldParam(Match,"datatype")
 	addshow=getFieldParam(Match,"addshow")
+	'defaultfunc  是xml中的一个键  含义是当前这个字段要有默认的数据他的值代表啦一个函数名字，如果为空则就不设置默认值 
+	defaultfunc=getFieldParam(Match,"defaultfunc")
 	if addshow="1" then
 	val=""
-	if nme="arcauthor" then val=author 
-	if nme="arcsource" then val=arcsource 
+	if defaultfunc<>"" then
+		val=formdefaultval(defaultfunc)
+	else
+		if nme="arcauthor" then val=author 
+		if nme="arcsource" then val=arcsource 	
+	end if
+
 	addform=addform&gettypeform(nme,val,title,descr,datatype)
 	end if
 next 
@@ -106,4 +113,13 @@ newtpl.display("add_xx.html")
 				gettypeform="<tr><td>"&title&":</td><td><input name='"&nme&"' value='"&val&"'  type='text' />"&descr&"</td></tr>"
 		end select
 	End Function
+	'生成表单时默认添加的数据
+function formdefaultval(func)
+	select case func
+		case "zhaopintpl"
+			formdefaultval="<div class='zy_ckzx'>		<ul>        	<li class='lia'>03标题：</li>            <li class='lib'>我的房子是108平米的，请问需要多大的，价格是多少</li>            <li class='lic'>留名：</li>            <li class='lid'>裴女士</li>        </ul>		<div class='zy_ckzxnra'>        <h3>留言内容：</h3>        <p>贝雷塔壁挂炉精巧型24kw的是意大利原装进口的吗，其性能与其他的可比性有什么优点</p>        </div>    	<h3>管理员回复：</h3>        <p>是的，其性能：1、外型美观，体积小巧2、人性化设计的宽大的液晶数字显示屏3、根据室外气温变化，自动调节采暖输出温度（连接室外温度传感器）3、春夏秋冬四个季节模式，满足提升房间温度5、卫生热水预热功能6、SARA加热功能，快速提升房间温度7、IPX5D的电气保护等级 </p>    </div>"
+		case default
+			formdefaultval=""
+		end select
+end function
 %>
