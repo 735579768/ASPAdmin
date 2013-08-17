@@ -56,3 +56,9 @@ function readCookie(name)
   return cookieValue;  
 
 }
+$(function(){
+	$('.submitbtn').bind('click',function(){
+		//console.log($(this).parents('form'));
+		$(this).parents('form').submit();
+		});
+});

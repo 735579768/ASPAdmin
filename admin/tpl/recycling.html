@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/main.css" rel="stylesheet" type="text/css" />
 <script src="js/jquery-1.8.1.min.js" type="text/javascript"></script>
 <script src="js/list.js" type="text/javascript"></script>
 <title>回收站</title>
@@ -13,16 +14,6 @@ a{ color:#000; text-decoration:none;}
 td{ height:22px; padding:2px;}
 .np{ border:none;}
 
-.coolbg {
-border: none;
-border-right: 1px solid #ACACAC;
-border-bottom: 1px solid #ACACAC;
-padding: 2px;
-padding-right: 5px;
-padding-left: 5px;
-background: #CCC url(images/allbtbg2.gif);
-cursor: pointer;
-}
 .pagenav,.pagenav a,.pagenav font{ font-size:12px; color:#666;text-align: center;}
 .pagenav a:hover,.pagenav a:hover font{ color:#000; background:#ebebeb;}
 .pagenav a,.pagenav font{ display:inline-block; height:20px; height:20px; padding:0px 6px; line-height:20px;border: 1px solid #E7ECF0;}
@@ -33,7 +24,7 @@ cursor: pointer;
 <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#cfcfcf" align="center">
 <tbody><tr bgcolor="#E7E7E7">
 <td height="28" colspan="7" align="center" background="images/tbg.gif" style="padding-left:10px;">
-	<b>文档回收站</b> &nbsp;&lt;&lt;<a href="javascript:window.history.go(-1);" class="coolbg">返回</a>
+	<b>文档回收站</b> &nbsp;&lt;&lt;<a href="javascript:window.history.go(-1);" class="button">返回</a>
 </td>
 </tr>
 
@@ -62,10 +53,10 @@ cursor: pointer;
 <tr bgcolor="#ffffff">
   <td height="24" colspan="7">
   &nbsp;
-  <a href="javascript:selAll()" class="coolbg">全选</a>
-  <a href="javascript:noSelAll()" class="coolbg">取消全选</a>
-  <a href="javascript:void(0)" onclick="batchhuanyuan.submit();" class="coolbg">&nbsp;还原选中&nbsp;</a>
-  <a href="javascript:delall()" class="coolbg">&nbsp;彻底删除&nbsp;</a></td>
+  <a href="javascript:selAll()" class="button">全选</a>
+  <a href="javascript:noSelAll()" class="button">取消全选</a>
+  <a href="javascript:void(0)" onclick="batchhuanyuan.submit();" class="button">&nbsp;还原选中&nbsp;</a>
+  <a href="javascript:delall()" class="button">&nbsp;彻底删除&nbsp;</a></td>
 </tr>
 
 <tr align="right" bgcolor="#F9FCEF">

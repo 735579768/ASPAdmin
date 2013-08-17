@@ -59,7 +59,7 @@
 
 <tr bgcolor="#E7E7E7" class="biaotou">
 <td height="28" colspan="3" background="images/tbg.gif" style="padding-left:10px;">
-	<span>分类栏目管理<<<a href="cats_list.asp" class="coolbg">分类列表</a>>>更改分类</a></span> &nbsp;
+	<span>分类栏目管理<<<a href="cats_list.asp" class="button">分类列表</a>>>更改分类</a></span> &nbsp;
 </td>
 </tr>
 
@@ -85,7 +85,9 @@
   </tr>
     <tr align="left">
     <td width="90">分类图片展示：</td>
-    <td><input name="cat_pic" type="text" id="url1" value="{$catobj.cat_pic}" style="width:200px" /> <input type="button" id="image1" value="选择图片" /></td>
+    <td><input name="cat_pic" type="text" id="url1" value="{$catobj.cat_pic}" style="width:200px" />
+     <a href="javascript:void(0);" id="image1" class="button">选择图片</a>
+     </td>
   </tr>
     <tr>
     <td width="100px" align="left">显示/隐藏：</td>
@@ -109,8 +111,8 @@
      <tr>
     <td  colspan="2"align="center"><input type="hidden" name="act" value="updtcat"  />
     <input type="hidden" name="cat_id" value="{$catobj.cat_id}"  />
-    <a href="javascript:updatecatsform.submit();" class="coolbg">更新</a>
-    <a href="javascript:window.history.go(-1);" class="coolbg">返回</a></td>
+    <a href="javascript:updatecatsform.submit();" class="button">更新</a>
+    <a href="javascript:window.history.go(-1);" class="button">返回</a></td>
   </tr>
 
 </table></div>
@@ -139,8 +141,8 @@
   	<td width="10%">seo描述：</td>
     <td><input name="cat_seodescr" type="text" value="{$catobj.cat_seodescr}" style="width:600px; height:50px;"  /></td>
   </tr>
-  <tr><td align="center" colspan="2">   <a href="javascript:updatecatsform.submit();" class="coolbg">更新</a>
-    <a href="javascript:window.history.go(-1);" class="coolbg">返回</a></td></tr>
+  <tr><td align="center" colspan="2">   <a href="javascript:updatecatsform.submit();" class="button">更新</a>
+    <a href="javascript:window.history.go(-1);" class="button">返回</a></td></tr>
 </table></div>
         <div class="kl-tab-div"><table width="98%" style=" border-collapse:collapse;" border="0">
   <tr><td align="left">
@@ -155,8 +157,8 @@
   <textarea name="cat_content" style="width:99%;height:400px;"><precode>{$catobj.cat_content}</precode></textarea>
   </td>
   </tr>
-  <tr><td align="center">    <a href="javascript:updatecatsform.submit();" class="coolbg">更新</a>
-    <a href="javascript:window.history.go(-1);" class="coolbg">返回</a></td></tr>
+  <tr><td align="center">    <a href="javascript:updatecatsform.submit();" class="button">更新</a>
+    <a href="javascript:window.history.go(-1);" class="button">返回</a></td></tr>
 </table></div>
 		<div class="kl-tab-div">
 <table width="98%" border="0">
@@ -166,8 +168,8 @@
   <tr>
     <td><textarea name="cat_singlecontent" style="width:100%;height:400px;visibility:hidden;">{$catobj.cat_singlecontent}</textarea></td>
   </tr>
-   <tr><td align="center">    <a href="javascript:updatecatsform.submit();" class="coolbg">更新</a>
-    <a href="javascript:window.history.go(-1);" class="coolbg">返回</a></td></tr>
+   <tr><td align="center">    <a href="javascript:updatecatsform.submit();" class="button">更新</a>
+    <a href="javascript:window.history.go(-1);" class="button">返回</a></td></tr>
 </table>
 
 </div>

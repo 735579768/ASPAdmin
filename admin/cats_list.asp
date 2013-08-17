@@ -64,12 +64,12 @@ td {
 <body>
 
 <dl class="lanmu">
-<dt style=" background:url(images/tbg.gif) repeat-x;"><a href="javascript:zall();" class="coolbg zhankai">全部展开</a>
-<a href="javascript:hall();" class="coolbg hebing">全部合并</a>
-<a href="add_cats.asp?parent_id=0&type_id=1" class="coolbg hebing">添加顶级分类</a>
+<dt style=" background:url(images/tbg.gif) repeat-x;"><a href="javascript:zall();" class="button zhankai">全部展开</a>
+<a href="javascript:hall();" class="button hebing">全部合并</a>
+<a href="add_cats.asp?parent_id=0&type_id=1" class="button hebing">添加顶级分类</a>
 <form name="addmsg" action="add_article.asp" id="addmsg" style="display:inline; margin-left:130px;">
 请选择分类：<%=getArcCatSel()%>
-<a href='javascript:tjaddmsg();'  id="addmsgbtn"  title='在此分类下添加信息'  class='coolbg red'>添加信息</a> 
+<a href='javascript:tjaddmsg();'  id="addmsgbtn"  title='在此分类下添加信息'  class='button red'>添加信息</a> 
 </form>
 </dt>
 </dl>
@@ -275,27 +275,27 @@ icoimgid=icoimgid+1
             <%
 			'如果分类有子类同时分类类型是列表，如表示输出默认类型为空不让用户添加信息列表
 			if  isparentcat(cid1) and catflag1="2" then
-				echo "<div style='width:60px; height:25px; float:left;'></div>"
+				echo "<div style='width:80px; height:25px; float:left;'></div>"
 			else
 				if catflag1="0" then
-					echo "<div style='width:60px; height:25px; float:left;'></div>"
+					echo "<div style='width:80px; height:25px; float:left;'></div>"
 				elseif catflag1="1" then
-					echo "<a href='edit_cats.asp?cat_id="&cid1&"&type_id="&typeid1&"&tabid=3' title='添加栏目内容'  class='coolbg red' style='color:green;'>封面内容</a>"
+					echo "<a href='edit_cats.asp?cat_id="&cid1&"&type_id="&typeid1&"&tabid=3' title='添加栏目内容'  class='button red' style='color:green;'>封面内容</a>"
 				elseif catflag1="2" then
-					echo "<a href='add_xx.asp?cat_id="&cid1&"&type_id="&typeid1&"' title='在此分类下添加信息'  class='coolbg red'>添加信息</a>"
+					echo "<a href='add_xx.asp?cat_id="&cid1&"&type_id="&typeid1&"' title='在此分类下添加信息'  class='button red'>添加信息</a>"
 				end if
 			
 			end if
 '				if not isparentcat(cid1) then
-'					echo "<a href='add_xx.asp?cat_id="&cid1&"&type_id="&typeid1&"' title='在此分类下添加信息'  class='coolbg red'>添加信息</a>"
+'					echo "<a href='add_xx.asp?cat_id="&cid1&"&type_id="&typeid1&"' title='在此分类下添加信息'  class='button red'>添加信息</a>"
 '				else
 '					echo "<div style='width:60px; height:25px; float:left;'></div>"
 '				end if
 				%>
-                <a href='edit_cats.asp?cat_id=<%=cid1%>&type_id=<%=typeid1%>' class='coolbg'>更改</a>
+                <a href='edit_cats.asp?cat_id=<%=cid1%>&type_id=<%=typeid1%>' class='button'>更改</a>
                 <input type='hidden'  value='<%=cid1%>' />
-                <a href='javascript:void(0);' class='coolbg delcat'>删除</a>
-                <a href='add_cats.asp?parent_id=<%=cid1%>&type_id=<%=typeid1%>' class='coolbg'>增加子类</a> 
+                <a href='javascript:void(0);' class='button delcat'>删除</a>
+                <a href='add_cats.asp?parent_id=<%=cid1%>&type_id=<%=typeid1%>' class='button'>增加子类</a> 
                 (sort:<%=sort1%>)(<%=navshow1%>)(<%=havepic1%>)
             </div>
     	</dt>
@@ -339,18 +339,18 @@ icoimgid=icoimgid+1
 			<%
 			if catflag2="1" then
 			%>
-			  <a href='edit_cats.asp?cat_id=<%=cid2%>&type_id=<%=typeid2%>&tabid=3' title='添加栏目内容'  class='coolbg red' style="color:green;">封面内容</a>
+			  <a href='edit_cats.asp?cat_id=<%=cid2%>&type_id=<%=typeid2%>&tabid=3' title='添加栏目内容'  class='button red' style="color:green;">封面内容</a>
 		<%
 		 else
 		 %>
-		 <a href='add_xx.asp?cat_id=<%=cid2%>&type_id=<%=typeid2%>' title='在此分类下添加信息'  class='coolbg red'>添加信息</a>
+		 <a href='add_xx.asp?cat_id=<%=cid2%>&type_id=<%=typeid2%>' title='在此分类下添加信息'  class='button red'>添加信息</a>
 		<%
 		end if
 		 %>
-					<a href='edit_cats.asp?cat_id=<%=cid2%>&type_id=<%=typeid2%>' class='coolbg'>更改</a>
+					<a href='edit_cats.asp?cat_id=<%=cid2%>&type_id=<%=typeid2%>' class='button'>更改</a>
 					<input type='hidden'  value='<%=cid2%>' />
-					<a href='javascript:void(0);' class='coolbg delcat'>删除</a>
-					<a href='add_cats.asp?parent_id=<%=cid2%>&type_id=<%=typeid2%>' class='coolbg'>增加子类</a> 
+					<a href='javascript:void(0);' class='button delcat'>删除</a>
+					<a href='add_cats.asp?parent_id=<%=cid2%>&type_id=<%=typeid2%>' class='button'>增加子类</a> 
 					(sort:<%=sort2%>)(<%=navshow2%>)(<%=havepic2%>)
 			</div>
 		</dd>

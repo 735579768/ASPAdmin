@@ -12,17 +12,6 @@ a{ color:#000; text-decoration:none;}
 .biaotou{background:url(images/tbg.gif) repeat-x; height:28px; line-height:28px;}
 td{ height:22px; padding:2px;}
 .np{ border:none;}
-
-.coolbg {
-border: none;
-border-right: 1px solid #ACACAC;
-border-bottom: 1px solid #ACACAC;
-padding: 2px;
-padding-right: 5px;
-padding-left: 5px;
-background: #CCC url(images/allbtbg2.gif);
-cursor: pointer;
-}
 .catimg{ position:relative; display:inline-block;}
 .catimg span{ background:#fff; border:solid 1px #ccc; padding:5px;}
 .catimg .catdaimg{ display:none; position:absolute; left:12px; top:10px; z-index:999;}
@@ -71,9 +60,9 @@ td{ text-align:center;}
 </select>
 {$searchform}
 
-&nbsp;<a href="javascript:void(0);" onclick="sear1.submit();" class="coolbg">搜索</a>
-<a href="javascript:window.history.go(-1);" class="coolbg">返回</a>
-<a href="javascript:void(0);" id="addxx" class="coolbg">添加信息</a>
+&nbsp;<a href="javascript:void(0);" onclick="sear1.submit();" class="button">搜索</a>
+<a href="javascript:window.history.go(-1);" class="button">返回</a>
+<a href="javascript:void(0);" id="addxx" class="button">添加信息</a>
 </TD></TR>
 </table>
 <table width="98%" border="1" cellpadding="2" style="border-collapse:collapse;" cellspacing="1" align="center">
@@ -82,9 +71,9 @@ td{ text-align:center;}
 </table>
 <div>
   &nbsp;
-  <a href="javascript:selAll()" class="coolbg">全选</a>
-  <a href="javascript:noSelAll()" class="coolbg">取消全选</a>
-  <a href="javascript:void(0)"  class="coolbg batchdel">&nbsp;移到回收站&nbsp;</a></td>
+  <a href="javascript:selAll()" class="button">全选</a>
+  <a href="javascript:noSelAll()" class="button">取消全选</a>
+  <a href="javascript:void(0)"  class="button batchdel">&nbsp;移到回收站&nbsp;</a></td>
 </div>
 <input type="hidden" name="batchid" id="batchidstr" value="" />
 </form>
