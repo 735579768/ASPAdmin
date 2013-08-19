@@ -1,9 +1,9 @@
 *{ margin:0px; padding:0px;}
 a{ text-decoration:none; color:#000;}
 .menu a{ text-decoration:none; color:#000;}
-.menu  dt,.menu dd ul li a{ font-size:14px;display:block;cursor:pointer;text-align:center;height:26px; margin:0px 5px; line-height:26px;}
-.menu dd ul li{clear:both; display:black;}
-.menu dd ul li a{ font-size:12px; height:26px; overflow:hidden; background:url(../images/menu_bg.gif) no-repeat;}
+.menu  dt,.menu dd ul li a{ font-size:14px;display:block;cursor:pointer;text-align:center;height:26px; margin:0px; line-height:26px;}
+.menu dd ul li{clear:both; display:block; vertical-align:middle;}
+.menu dd ul li a{ font-size:12px; height:26px; overflow:hidden; background:url(../images/menu_bg.gif) no-repeat; float:left; display:inline; width:100%;}
 .menu dd ul li a:hover{background:url(../images/menu_bg_hover.gif) no-repeat;}
 .menu dt{background:url(../images/nav-bg.png) no-repeat;}
 .menu dd ul li{ background:#ffffff; height:26px; overflow:hidden;}
