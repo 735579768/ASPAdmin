@@ -12,6 +12,7 @@ Function FilterFunc(val,funcname,param)
 						fireg.pattern="<.*?>|\s*|\r*\n\s*\r*\n"
 						val=fireg.replace(val,"")
 						set fireg=nothing
+						val=replace(val,"&nbsp;","")
 						if param="" then param=20
 						temVar=left(val,Cint(param))
 				case "empty" 
