@@ -2,7 +2,7 @@
 <!--#include file="lib/page.class.asp"-->
 <%
 db.kl_filtersql=true
-set obj=db.table("kl_order").create()
+set obj=db.table("kl_comments").create()
 obj("fbdate")=formatdate(now,2)
 obj("fbip")=getip()
 db.formdata=obj

@@ -38,7 +38,7 @@ td{ height:22px; padding:2px;}
 <td width="10%">联系方式</td>
 <td width="10%">发布时间</td>
 <td width="10%">发布IP</td>
-<td width="5%">操作</td>
+<td width="10%">操作</td>
 </tr>
 <!--{arclist sql="{$sql}" pagesize="20" pagenav="pagenav"}-->
 <tr align="center" bgcolor="#FFFFFF" onmousemove="javascript:this.bgColor='#FCFDEE';" onmouseout="javascript:this.bgColor='#FFFFFF';" height="25" >
@@ -54,7 +54,7 @@ td{ height:22px; padding:2px;}
 <td>{$fbdate}</td>
 <td>{$fbip}</td>
 <td bgcolor="#fffff;">
-    <a href="comments.asp?id={$id}&act=del"><input type="hidden" value="{$friend_id}" /><img src="images/no.gif" title="删除" alt="删除" onclick=";" style="cursor:pointer" border="0" width="16" height="16" class="delcomment"></a></td>
+   <a href="comments_hf.asp?id={$id}" class="button">回复</a> <input type="hidden" value="{$friend_id}" /><a  class="button delcomment" href="comments.asp?id={$id}&act=del"> 删除</a></td>
 </tr>
 <!--{/arclist}-->
 <tr bgcolor="#ffffff">
