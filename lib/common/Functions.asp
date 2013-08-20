@@ -124,23 +124,24 @@
 '取文章模板
 '///////////////////////////////////////////
 	Function getArticleTpl(arcid)
-		sql="select * from (kl_archives as a inner join kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on b.type_id=c.type_id where a.id="&arcid
+		'sql="select * from (kl_archives as a inner join kl_cats as b on a.cat_id=b.cat_id) inner join kl_content_types as c on b.type_id=c.type_id where a.id="&arcid
+		sql="select * from kl_archives as a inner join  kl_content_types as c on a.type_id=c.type_id where a.id="&arcid
 		set m=db.query(sql)
-		arctpl=m("arctpl")&""
-		cat_article=m("cat_article")&""
+		'arctpl=m("arctpl")&""
+		'cat_article=m("cat_article")&""
 		tpl_article=m("tpl_article")&""
-		a=""
-		if arctpl<>"" then 
-			a=arctpl
-		elseif cat_article<>"" then 
-			a=cat_article
-		elseif tpl_article<>"" then
-			a=tpl_article
-		else
-		end if
+'		a=""
+'		if arctpl<>"" then 
+'			a=arctpl
+'		elseif cat_article<>"" then 
+'			a=cat_article
+'		elseif tpl_article<>"" then
+'			a=tpl_article
+'		else
+'		end if
 		'set m=db.getRecord("kl_archives","arctpl","id="&arcid,"",0)
 		set m=nothing
-		getArticleTpl=a
+		getArticleTpl=tpl_article
 	End Function
 '///////////////////////////////////////////
 '取分类封面模板
