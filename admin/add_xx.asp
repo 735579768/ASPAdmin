@@ -117,7 +117,7 @@ newtpl.display("add_xx.html")
 function formdefaultval(func)
 	select case func
 		case "zhaopin"
-			formdefaultval="<div class='zp_nr'>            	<span>任职要求：</span><br>                1、建筑学本科学历；<br>                2、较强的方案创作能力和建筑美感，对设计理念、市场方向能敏锐的把握；<br>                3、善于接受新设计理念及概念创新，草图表达、语言沟通能力强，熟练运用CAD，Sketchup等设计软件，对初设、施工图有一定了解；<br>                4、工作认真负责，愿意与他人合作，抗压能力强。<br><br>                <span>简历投递渠道：</span>  有意者请将个人资料发至邮箱：henanlwrn@126.com<br>            </div>"
+			formdefaultval="        	                1、建筑学本科学历；<br>                2、较强的方案创作能力和建筑美感，对设计理念、市场方向能敏锐的把握；<br>                3、善于接受新设计理念及概念创新，草图表达、语言沟通能力强，熟练运用CAD，Sketchup等设计软件，对初设、施工图有一定了解；<br>                4、工作认真负责，愿意与他人合作，抗压能力强。<br><br>                <span>简历投递渠道：</span>  有意者请将个人资料发至邮箱：henanlwrn@126.com<br>          "
 		case default
 			formdefaultval=""
 		end select
