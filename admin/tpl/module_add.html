@@ -27,42 +27,28 @@ table input{ text-align:center; display:inline-block; width:70px; height:22px; b
 </head>
 <body>
 <!--搜索信息-->
-<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#cfcfcf" align="center">
+<form action="" method="post">
+<table width="98%" border="1" cellpadding="2" style="border-collapse:collapse;" cellspacing="1"  align="center">
 <tr class="biaotou" bgcolor="#E7E7E7">
 <td height="28" colspan="11" align="center" background="images/tbg.gif" style="padding-left:10px;">
 	<span>内容模型列表</span> &gt;&gt;&nbsp;<a href="module_add.asp" class="coolbg">添加新功能模块</a> &gt;&gt;&nbsp;<a href="javascript:window.history.go(-1);" class="coolbg">返回</a>
 </td>
 </tr>
-<tr align="center" bgcolor="#FBFCE2" height="25">
-<td width="6%">ID</td>
+<tr>
+
 <td>模块名称</td>
-<td>模块标识id</td>
+<td><input type="text" value="" name="name" /></td>
 
-<td>操作</td>
 
 </tr>
-<!--{arclist sql="select * from kl_module"}-->
-<form action="" method="post">
+
 <tr align="center" bgcolor="#FFFFFF" onmousemove="javascript:this.bgColor='#FCFDEE';" onmouseout="javascript:this.bgColor='#FFFFFF';" height="25" >
-<td>{$id}</td>
-<td align="left">{$name}</td>
-<td align="left">
-	<input  name="type_sxname" type="text" value="{$type_sxname}" />
-</td>
-
-<td>
-    <input type="hidden" name="type_id" value="{$type_id}" />
-    <input type="hidden" name="act" value="updmodel" />
-    <input type="submit"  value="提交更新" class="coolbg" style="width:60px;" />
-    <a href="?act=delmodel&type_id={$type_id}" class="coolbg">删除</a> 
-    </td>
-
+<td align="left">模块标识id</td>
+<td align="left">&nbsp;</td>
 </tr>
-</form>
-<!--{/arclist}-->
-<!-- END contentmodellist -->
-</table>
 
+</table>
+</form>
 
 <script type="text/javascript">
 //删除友情链接
