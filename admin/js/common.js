@@ -57,8 +57,33 @@ function readCookie(name)
 
 }
 $(function(){
+	//提交表单验证
+	$('.nonull').bind('focus', function () {
+		$(this).css({
+			border : 'solid 1px #ccc',
+			color : '#000'
+		});
+		if ($(this).val() == '请输入内容')
+			$(this).val('')
+	});
+
 	$('.submitbtn').bind('click',function(){
 		//console.log($(this).parents('form'));
-		$(this).parents('form').submit();
+		var a=true;
+		if(typeof(checkform)=='function'){
+			a=checkform();
+		}else{
+				$('.nonull').each(function (index, element) {
+					if ($(this).val() == '' || $(this).val() == '请输入内容') {
+						$(this).val('请输入内容')
+						$(this).css({
+							color : '#ccc',
+							border : 'solid 1px #f00'
+						});
+						a = false;
+					}
+				});
+			}
+		if(a)$(this).parents('form').submit();
 		});
 });

@@ -34,6 +34,8 @@ class QuickTag
 		end sub
 		'运行本类中的标签解析
 		public Function run(str)
+			'替换模块
+			str=moduletag(str)
 			str=arclisttag(str)
 			str=cattag(str)
 			str=positiontag(str)
@@ -230,5 +232,29 @@ class QuickTag
 		end if
 		getcat=str
 	end Function
+	
+	Function moduletag(str)
+			Set mreg = New RegExp 
+			mreg.IgnoreCase = True
+			mreg.Global = True
+			mreg.Pattern =p_tag_l & "module([\s\S]*?)"&p_tag_r
+			set eqm=mreg.execute(str)
+			if eqm.count>0 then
+				for each m in eqm
+					markid=tplobj.getTagParam(m.SubMatches(0),"markid")
+					set mrs=db.query("select htmlcode from kl_module where markid='"&markid&"'")
+					mstr=""
+					if mrs.recordcount>0 then
+						mstr=mrs("htmlcode")&""
+						str=replace(str,m,mstr)
+						set mrs=nothing
+					else
+						str=replace(str,m,"")
+					end if
+				next
+			end if
+			set mreg=nothing
+		moduletag=str
+	end function
 end class
 %>
