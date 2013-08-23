@@ -38,25 +38,20 @@ a {
               <a href="javascript:void(0);" class="button submitbtn">备份数据库</a>{$bakmsg}
              </td>
             </tr>
-            <!--{loop name="baklist" var="var"}-->
+            <!--{arclist sql="select * from kl_databak order by id 	desc" }-->
             <tr>
               <td >备份记录：</td>
               <td>
-              <input  name="id" type="hidden" class="deldb" value="{$var.id}" />
-              <input name="friend_email" type="text" class="pubinputs" value="{$var.bakname}" size="30" readonly="readonly">操作者：{$var.bakadminname} 备份时间：{$var.bakdate} 备份描述：{$var.bakdescr} 
+              <input  name="id" type="hidden" class="deldb" value="{$id}" />
+              <input name="friend_email" type="text" class="pubinputs" value="{$bakname}" size="30" readonly="readonly">操作者：{$bakadminname} 备份时间：{$bakdate} 备份描述：{$bakdescr} 
                <a href="javascript:void(0);" class="button hydb">还原</a>
-                <a href="javascript:void(0);" class="button deldb">删除</a></td>
+                <a href="?act=deldb&dbname={$bakname}&id={$id}" class="button deldb">删除</a></td>
             </tr>
-            <!--{/loop}-->
+            <!--{/arclist}-->
           </table>
 </form>
 <script type="text/javascript">
 $(function(){
-	$('.deldb').bind('click',function(){
-		var a=$(this).prev().prev().val();
-		var id=$(this).prev().prev().prev().val();
-		window.location="?act=deldb&dbname="+a+"&id="+id;
-		});
 	$('.hydb').bind('click',function(){
 		var a=$(this).prev().val();
 		//var id=$(this).prev().prev().prev().val();
