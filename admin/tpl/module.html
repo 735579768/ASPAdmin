@@ -44,7 +44,7 @@ table input{ text-align:center; display:inline-block; width:70px; height:22px; b
 <td>操作</td>
 
 </tr>
-<!--{arclist sql="select * from kl_module"}-->
+<!--{arclist sql="select * from kl_module" pagenav="pagenav" pagesize="20"}-->
 <tr align="center" bgcolor="#FFFFFF" onmousemove="javascript:this.bgColor='#FCFDEE';" onmouseout="javascript:this.bgColor='#FFFFFF';" height="25" >
 <td>{$id}</td>
 <td align="center">{$name}</td>
@@ -57,10 +57,9 @@ table input{ text-align:center; display:inline-block; width:70px; height:22px; b
     </td>
 
 </tr>
-</form>
 <!--{/arclist}-->
-<!-- END contentmodellist -->
 </table>
+{$pagenav}
 
 
 <script type="text/javascript">
