@@ -337,7 +337,9 @@ icoimgid=icoimgid+1
 			</div>
 			<div class='right'>
 			<%
-			if catflag2="1" then
+			if catflag2="0" then
+					echo "<div style='width:80px; height:25px; float:left;'></div>"
+			elseif catflag2="1" then
 			%>
 			  <a href='edit_cats.asp?cat_id=<%=cid2%>&type_id=<%=typeid2%>&tabid=3' title='添加栏目内容'  class='button red' style="color:green;">封面内容</a>
 		<%
