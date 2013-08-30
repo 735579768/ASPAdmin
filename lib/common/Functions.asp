@@ -822,6 +822,36 @@ function getqikanfenqi()
 	getqikanfenqi=str
 	set ters=nothing
 end function
+'
+''查询蜘蛛来访问 
+'
+function GetBot() 
+	'查询蜘蛛 
+	dim s_agent 
+	GetBot="" 
+	s_agent=Request.ServerVariables("HTTP_USER_AGENT") '关键判断语句 
+	if instr(1,s_agent,"googlebot",1) >0 then 
+		GetBot="google" 
+	end if 
+	if instr(1,s_agent,"msnbot",1) >0 then 
+		GetBot="MSN" 
+	end if 
+	if instr(1,s_agent,"slurp",1) >0 then 
+		GetBot="Yahoo" 
+	end if 
+	if instr(1,s_agent,"baiduspider",1) >0 then 
+		GetBot="baidu" 
+	end if 
+	if instr(1,s_agent,"sohu-search",1) >0 then 
+		GetBot="Sohu" 
+	end if 
+	if instr(1,s_agent,"lycos",1) >0 then 
+		GetBot="Lycos" 
+	end if 
+	if instr(1,s_agent,"robozilla",1) >0 then 
+		GetBot="Robozilla" 
+	end if 
+end function 
 %>
 <script language="javascript" type="text/javascript" runat="server">
 function mydecodeurl(s){return decodeURIComponent(s);}

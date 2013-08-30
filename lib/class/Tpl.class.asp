@@ -451,14 +451,26 @@ class AspTpl
 	public Function regtplstr(str)
 		'判断如果是前台就输出伪静态
 		if isobject(seoobj) then
-			if seoobj("cfg_weijingtai")="1" then				
-				for each a in regarr 
-					ta=split(a,"##",2)
-					if ubound(ta)>0 then 
-						p_reg.Pattern = ta(0)
-						str= p_reg.Replace(str,ta(1))	
+			if seoobj("cfg_weijingtai")="1" then	
+				if  seoobj("cfg_spider")<>"1" then			
+					for each a in regarr 
+						ta=split(a,"##",2)
+						if ubound(ta)>0 then 
+							p_reg.Pattern = ta(0)
+							str= p_reg.Replace(str,ta(1))	
+						end if
+					next
+				else
+					if getbot<>"" then
+						for each a in regarr 
+							ta=split(a,"##",2)
+							if ubound(ta)>0 then 
+								p_reg.Pattern = ta(0)
+								str= p_reg.Replace(str,ta(1))	
+							end if
+						next
 					end if
-				next
+				end if
 			end if
 		end if
 		'伪静态

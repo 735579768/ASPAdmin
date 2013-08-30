@@ -34,6 +34,7 @@ dir("1")="启用"
 newtpl.assign "radioarr",dir
 newtpl.assign "yasuoradioarr",dir
 newtpl.assign "seled",cfgobj("cfg_weijingtai")
+newtpl.assign "seled2",cfgobj("cfg_spider")
 newtpl.assign "yasuoseled",cfgobj("cfg_pageyasuo")
 set dir=nothing
 
