@@ -5,33 +5,36 @@
 	if G("act")="huanyuan" then
 			if G("id")<>"" then 
 				id=G("id")
-				result=olddb.UpdateRecord("kl_archives","id="&id,array("recycling:0"))
-					if result=0 then
-						AlertMsg(CAOZUO_FAIL_STR)
-					end if
+				'result=olddb.UpdateRecord("kl_archives","id="&id,array("recycling:0"))
+				result=newdb.query("update kl_archives set recycling=0 where id="&id)
+				'	if result="true" then
+						call AlertMsggo(CAOZUO_SUCCESS_STR,"recycling.asp")
+				'	else
+				'		call	AlertMsg(CAOZUO_FAIL_STR)
+				'	end if
 			end if
 		'批量移出
-		if G("batchid")<>"" then
-		
+		if G("batchid")<>"" then		
 			str=G("batchid")
 			arr=split(str,",")
 			dim result
 			for i=0 to ubound(arr)
-				result=olddb.UpdateRecord("kl_archives","id="&arr(i),array("recycling:0"))
+				'result=olddb.UpdateRecord("kl_archives","id="&arr(i),array("recycling:0"))
+				result=newdb.query("update kl_archives set recycling=0 where id="&arr(i))
 			next
-				if result=0 then
-					AlertMsg(CAOZUO_FAIL_STR)
-				end if
+			call AlertMsggo(CAOZUO_SUCCESS_STR,"recycling.asp")
 		end if
 	end if
 '彻底删除
 	if G("act")="del" then
 			if G("id")<>"" then 
 				id=G("id")
-				result=olddb.DeleteRecord("kl_archives","id",id)
-					if result=0 then
-						AlertMsg(CAOZUO_FAIL_STR)
-					end if
+				'result=olddb.DeleteRecord("kl_archives","id",id)
+				result=newdb.query("delete kl_archives  where id="&id)
+'					if result=0 then
+'						AlertMsg(CAOZUO_FAIL_STR)
+'					end if
+						call AlertMsggo("删除成功！","recycling.asp")
 			end if
 		'批量删除
 		if G("batchid")<>"" then
@@ -39,11 +42,13 @@
 			arr=split(str,",")
 			result=""
 			for i=0 to ubound(arr)
-				result=olddb.DeleteRecord("kl_archives","id",arr(i))
+				'result=olddb.DeleteRecord("kl_archives","id",arr(i))
+				result=newdb.query("delete kl_archives  where id="&arr(i))
 			next
-				if result=0 then
-					AlertMsg(CAOZUO_FAIL_STR)
-				end if
+						call AlertMsggo("批量删除成功！","recycling.asp")
+'				if result=0 then
+'					AlertMsg(CAOZUO_FAIL_STR)
+'				end if
 		end if	
 	end if
 
