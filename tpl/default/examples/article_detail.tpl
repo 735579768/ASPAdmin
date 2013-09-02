@@ -59,11 +59,11 @@
         </div>
 </div>
     <div class="arcpav">
-     <!--{arclist sql="select top 1 * from kl_archives where  id>{$arcinfo.id} and cat_id={$arcinfo.cat_id} order by id asc,fbdate asc "}-->
+        	     <!--{arclist sql="select top 1 * from kl_archives where  id>{$arcinfo.id} and cat_id={$arcinfo.cat_id} and recycling=0 order by id asc,fbdate asc "}-->
     <a href="view.asp?id={$id}"><b>[上一篇]</b>{$arctitle|left=20}</a>
     <!--{/arclist}-->
     
-      <!--{arclist sql="select top 1 * from kl_archives where  id<{$arcinfo.id} and cat_id={$arcinfo.cat_id}  order by id desc,fbdate desc "}-->
+      <!--{arclist sql="select top 1 * from kl_archives where  id<{$arcinfo.id} and cat_id={$arcinfo.cat_id} and recycling=0   order by id desc,fbdate desc "}-->
     <a href="view.asp?id={$id}"><b>[下一篇]</b>{$arctitle|left=20}</a>
     <!--{/arclist}-->
     </div>
