@@ -29,6 +29,7 @@ db.query("update "&datatable&" set archits=archits+1 where id="&id)
 set rs=db.table(datatable).fild("kl_cats.cat_id as catid,*").where("id="&id).jin("kl_cats on  "&trim(datatable)&".cat_id=kl_cats.cat_id").sel()
 '设置此篇文章信息
 if rs.recordcount>0 then 
+ if rs("recycling")=1 then reurl("/") 
 	rsarr=db.rsToArr(rs)
 	set arcobj=rsarr(0)
 	tpl.assign "arcinfo",arcobj
