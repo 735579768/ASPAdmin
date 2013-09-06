@@ -125,12 +125,14 @@ $(function(){
 	
 	$(".haveimg").bind("mouseover",function(){
 			$(this).next().show();
+			$(this).next().css('display','table-cell');
 			});
 	$(".haveimg").bind("mouseout",function(){
 		$(this).next().hide();
 		});
 		$(".catdaimg img").bind("mouseover",function(){
 			$(this).parent().show();
+			
 			});
 		$(".catdaimg").bind("mouseout",function(){
 			$(this).hide();

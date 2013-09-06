@@ -230,3 +230,15 @@ resize: none;
     {
         content: "\25B6";
     }      
+.catimg .catdaimg{ width:150px; height:150px; display:table-cell; vertical-align:middle;
+border: solid 3px #ccc;
+padding: 2px;
+background:#ffffff;
+}
+.catimg .catdaimg img{
+max-width:150px;
+_width:expression((document.documentElement.clientWidth||document.body.clientWidth)>150?"150px":"auto");
+max-height:150px;
+_height:expression((document.documentElement.clientHeight||document.body.clientHeight)>150?"150px":"auto");
+}	
+	}
