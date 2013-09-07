@@ -38,7 +38,7 @@ table input{ text-align:center; display:inline-block; width:70px; height:22px; b
 
 </tr>
 </table>
-<!--{arclist sql="select * from kl_content_types"}-->
+<!--{arclist sql="select * from kl_content_types" iteration="jishu"}-->
 <form action="" method="post">
 <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#cfcfcf" align="center">
 
@@ -62,7 +62,9 @@ table input{ text-align:center; display:inline-block; width:70px; height:22px; b
     <input type="hidden" name="type_id" value="{$type_id}" />
     <input type="hidden" name="act" value="updmodel" />
      <a href="javascript:void(0);" class="button submitbtn">更新</a> 
+     <eq {$jishu} neq 1>
     <a href="?act=delmodel&type_id={$type_id}" class="button">删除</a> 
+    </eq>
     </td>
 
 </tr>
