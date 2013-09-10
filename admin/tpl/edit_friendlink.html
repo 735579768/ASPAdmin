@@ -12,7 +12,7 @@ a{ text-decoration:none; color:#000;}
 
 <body style="background:#FFFFFF;">
 <precode>
-	<form action="edit_friendlink.asp?act=updtfriend&friend_id={$obj.friend_id}" method="post"  name="form1">
+	<form action="edit_friendlink.asp?act=updtfriend&friend_id={$obj.friend_id}" method="post"  name="form1" id="form1">
 <table width="98%" border="1" align="center" cellpadding="3" style="border-collapse:collapse; margin:0 auto;" cellspacing="1">
     <tr>
     <td height="28" colspan="2" align="center" background="images/tbg.gif" style="padding-left:10px;">
@@ -57,8 +57,8 @@ a{ text-decoration:none; color:#000;}
             </tr>
       <tr>
         <td height="51" colspan="2" align="center">
-        	<input type="submit" name="__no__1"  value="更新链接" class="np button">　 　
-          <input type="reset"  name="__no__2" value=" 返 回 " onclick="window.history.go(-1);" class="np button">        </td>
+             <a href="javascript:form1.submit();" class="np button">更新链接</a>　
+                <a href="javascript:void(0);"onclick="window.history.go(-1);"  class="np button">返 回</a>　      </td>
       </tr>
 </table>
 </form>

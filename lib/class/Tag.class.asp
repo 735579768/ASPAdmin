@@ -59,10 +59,10 @@ class QuickTag
 				hometj=tplobj.getTagParam(paramstr,"hometj")'分页导航变量
 				tiaojian=tplobj.getTagParam(paramstr,"where")'分页导航变量
 				iteration=tplobj.getTagParam(paramstr,"iteration")'计次循环变量
+				liststr2=tplobj.getTagParam(paramstr,"empty")'计次循环变量
 				if hometj<>"" then hometj=" and hometj=1 "
 				if tiaojian<>"" then tiaojian=" and "&tiaojian&" "
 				top=""
-				liststr2=""
 				runsql=tplsql'如果有sql语句就直接用sql语句
 				if num<>"" then top=" top "&num
 				if runsql="" then
@@ -95,6 +95,7 @@ class QuickTag
 					end if
 						for i=0 to pgsize-1
 							if not arcrs.eof then
+								liststr2=""
 								liststr=m.submatches(1)'列表中的字符串
 								tagreg.Pattern = p_var_l &iteration& p_var_r
 								liststr=tagreg.replace(liststr,i+1)
