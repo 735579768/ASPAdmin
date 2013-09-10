@@ -93,9 +93,9 @@ class QuickTag
 						pgsize=arcrs.recordcount
 						
 					end if
+						if arcrs.recordcount<>0 then liststr2=""
 						for i=0 to pgsize-1
 							if not arcrs.eof then
-								liststr2=""
 								liststr=m.submatches(1)'列表中的字符串
 								tagreg.Pattern = p_var_l &iteration& p_var_r
 								liststr=tagreg.replace(liststr,i+1)
