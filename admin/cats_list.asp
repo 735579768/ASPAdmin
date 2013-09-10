@@ -234,7 +234,7 @@ function getcatimg(str)
 end function
 '查询分类文章数量
 function getarcnum(catid)
-	sql="select count(*) as  a from kl_archives where cat_id="&catid
+	sql="select count(*) as  a from kl_archives where cat_id="&catid&" and recycling=0"
 	set bbbb=olddb.query(sql)
 	getarcnum=bbbb("a")&""
 	set bbbb=nothing
