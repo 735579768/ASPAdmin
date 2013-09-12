@@ -8,16 +8,23 @@ body.hidemenu .left{display:none;}
 body.showmenu .right{left:212px;}
 body.hidemenu .right{left:0px;}
 
-
 .header{ width:100%; height:100px; position:absolute; z-index:8; top:0px; overflow:hidden;}
-.header .top{ height:70px; width:100%; background:url(../images/top-bg.png) repeat;}
-.header .top  h1{ text-align:center; display:block; height:70px;line-height:70px; font-size:20px;}
-.header .topnav{ height:30px; width:100%; background:url(../images/nav-bg.png) repeat-x 0px -35px;}
+.header .top{ height:70px; width:100%;background: url(../images/top-bg.png) repeat;}
+.header .top  h1{ margin-left: 20px; display:block; height:70px;line-height:70px; font-size:21px;color:#777;}
+.header .top .hy{position:absolute; right: 50px; bottom:40px;font-size: 20px;color: #777; font-weight: bolder;}
+.header .top .hy span{ margin:0px 5px;}
+.header .top .hy span a{ color:#23576D;}
+.header .topnav{ height:30px; width:100%; background:url(../images/nav-bg.png) repeat-x 0px -35px; /*background:#00B8FF;*/}
 .header .topnav ul.navleft{ float:left;  margin-left:50px;}
 .header .topnav ul.navright{ float:right; margin-right:50px;}
-.header .topnav li{ float:left; color:#fff; line-height:30px; height:30px; text-align:center;}
-.header .topnav li a{color:#FFF; height:30px; line-height:30px; color:#FFF; float:left; padding:0px 10px;; margin-right:10px;}
-.header .topnav li a:hover{ background:#4c4c4c;}
+.header .topnav li{ float:left;}
+.header .topnav li a{color:#2a5452; height:30px; line-height:30px;  float:left; padding:0px 10px;; margin-right:10px;font-weight: bolder;}
+.header .topnav li a:hover{ text-decoration:underline;}
+
+
+
+
+
 
 
 .left{position:absolute;top:100px;width:212px;left:0px;bottom:0px;z-index:7;}
