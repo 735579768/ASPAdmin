@@ -36,6 +36,7 @@ Class Accessdb
 		kl_Conn.Open connstr
 		if err.number<>0 then
 		echo "database link error!"
+		if app_debug then echo err.description
 		die("")
 		end if
 	End Sub
