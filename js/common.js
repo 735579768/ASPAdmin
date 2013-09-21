@@ -187,3 +187,105 @@ function shoucang(sTitle, sURL) {
 	}
 }
 //window.onerror=function(){return true;};
+
+$(function(){
+	$('.nonull').each(function(index, element) {
+		var a=$(this).attr('defaultdata');
+		var b=$(this).val();
+		if(b==''){
+			$(this).val(a);
+			$(this).css('color','#787878');
+		}else{
+			$(this).css('color','#000000');
+			}        
+    });
+	$('.nonull').bind('focus',function(){
+		$(this).css('color','#787878');
+		var a=$(this).attr('defaultdata');
+		var b=$(this).val();
+		if(b==a){
+			$(this).val('');
+			$(this).css('color','#000000');
+		}else if(a!=b && b!=''){
+			$(this).css('color','#000000');
+			}
+		})
+	$('.nonull').bind('blur',function(){
+		var a=$(this).attr('defaultdata');
+		var b=$(this).val();
+		if(b==''){$(this).val(a);$(this).css('color','#787878');}
+		})
+	$('.submitbtn').bind('click',function(){
+		var formobj=$(this).parents('form').find('.nonull');
+		console.log($(this).parents('form').find('.nonull'));
+		var onnullbool=true;
+			formobj.each(function(index, element) {
+				var a=$(this).attr('defaultdata');
+				var b=$(this).val();
+				if(b==a || b==''){
+					$(this).css('color','#f00');
+					$(this).val(a);
+					onnullbool=false;
+					}
+			});
+		if(onnullbool)$(this).parents('form').submit();
+		});
+	});
+// JavaScript Document
+///////////////////////////////////////////////////////////////////////js写cookies//////////////////////////////////////////////////
+
+function writeCookie(name, value, hours)  
+
+{  
+
+  var expire = "";  
+
+  if(hours != null)  
+
+  {  
+
+    expire = new Date((new Date()).getTime() + hours * 3600000);  
+
+    expire = "; expires=" + expire.toGMTString();  
+
+  }  
+
+  document.cookie = name + "=" + escape(value) + expire;  
+
+}  
+
+///////////////////////////////////////////////////////////////用cookies名字读它的值////////////////////////////
+
+function readCookie(name)  
+
+{  
+
+  var cookieValue = "";  
+
+  var search = name + "=";  
+
+  if(document.cookie.length > 0)  
+
+  {   
+
+    offset = document.cookie.indexOf(search);  
+
+    if (offset != -1)  
+
+    {   
+
+      offset += search.length;  
+
+      end = document.cookie.indexOf(";", offset);  
+
+      if (end == -1) end = document.cookie.length;  
+
+      cookieValue = unescape(document.cookie.substring(offset, end))  
+
+    }  
+
+  }  
+
+  return cookieValue;  
+
+}
