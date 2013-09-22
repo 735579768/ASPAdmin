@@ -192,7 +192,7 @@ $(function(){
 	$('.nonull').each(function(index, element) {
 		var a=$(this).attr('defaultdata');
 		var b=$(this).val();
-		if(b==''){
+		if(b=='' || a==b){
 			$(this).val(a);
 			$(this).css('color','#787878');
 		}else{
@@ -217,7 +217,7 @@ $(function(){
 		})
 	$('.submitbtn').bind('click',function(){
 		var formobj=$(this).parents('form').find('.nonull');
-		console.log($(this).parents('form').find('.nonull'));
+		//console.log($(this).parents('form').find('.nonull'));
 		var onnullbool=true;
 			formobj.each(function(index, element) {
 				var a=$(this).attr('defaultdata');
