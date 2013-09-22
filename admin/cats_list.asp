@@ -48,7 +48,9 @@ td {
 .catimg span{ background:#fff; border:solid 1px #ccc; padding:5px;}
 .catimg .catdaimg{ display:none; position:absolute; left:-150px; top:0px; z-index:999;}
 
-.lanmu{ margin:0 auto; }
+.lanmu{ margin:0 auto; 
+min-width:1000px;
+_width:expression(this.width <1000 && this.height < this.width ? 1000: true);}
 .lanmu,.lanmu dt,.lanmu dd{display:block;  width:100%; margin:0px; padding:0px;}
 .lanmu dt,.lanmu dd{ height:30px; line-height:30px;}
 .lanmu dt{ background:url(images/lanmubg.gif) repeat-x;padding:0px 40px;}
