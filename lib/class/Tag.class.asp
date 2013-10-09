@@ -162,6 +162,7 @@ class QuickTag
 	'自定义从数据库查询的标签
 	'=========================================================================================
 	private function cattag(str)
+	on error resume next
 		str1=""
 		Set catreg = New RegExp 
 		catreg.IgnoreCase = True
