@@ -70,7 +70,9 @@ function Marquee(){this.ID=document.getElementById(arguments[0]);if(!this.ID){al
 					onnullbool=false;
 					}
 			});
+		if(onnullbool){
 		if(typeof(tjcheck)==='function')onnullbool=tjcheck();
+		}
 		if(onnullbool)$(this).parents('form').submit();
 		});
 	});
