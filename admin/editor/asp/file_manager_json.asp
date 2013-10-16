@@ -22,10 +22,10 @@ aspUrl = left(aspUrl, InStrRev(aspUrl, "/"))
 
 '根目录路径，可以指定绝对路径，比如 /var/www/attached/
 'rootPath = "../attached/"
-rootPath = "/uploads/"
+rootPath = "../../../uploads/"
 '根目录URL，可以指定绝对路径，比如 http://www.yoursite.com/attached/
 'rootUrl = aspUrl & "../attached/"
-rootUrl ="/uploads/"
+rootUrl ="../../../uploads/"
 
 '图片扩展名
 fileTypes = "gif,jpg,jpeg,png,bmp"
