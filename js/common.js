@@ -42,6 +42,7 @@ function Marquee(){this.ID=document.getElementById(arguments[0]);if(!this.ID){al
 		var b=$(this).val();
 		if(b==''){$(this).val(a);$(this).css('color','#787878');}
 		})
+	//表单数据格式验证 start 
 	$('.email').bind('blur',function(){
 		var a=$(this).attr('defaultdata');
 		var b=$(this).val();
@@ -50,13 +51,39 @@ function Marquee(){this.ID=document.getElementById(arguments[0]);if(!this.ID){al
 		}else{
 			var reg=/[a-zA-Z0-9]{1,10}@[a-zA-Z0-9]{1,5}\.[a-zA-Z0-9]{1,5}/;
 			if(!reg.test(b)){
-			alert("请正确填写邮箱！");
+			alert("请填写正确的邮箱！");
 			$(this).val(a);$(this).css('color','#787878');
 			}			
 		}
 
 		});
-
+	$('.qq').bind('blur',function(){
+		var a=$(this).attr('defaultdata');
+		var b=$(this).val();
+		if(b==''){
+			$(this).val(a);$(this).css('color','#787878');
+		}else{
+			var reg=/^[^0]{1}[0-9]{5,10}/;
+			if(!reg.test(b)){
+			alert("请填写正确的QQ号！");
+			$(this).val(a);$(this).css('color','#787878');
+			}			
+		}
+		});
+	$('.phone').bind('blur',function(){
+		var a=$(this).attr('defaultdata');
+		var b=$(this).val();
+		if(b==''){
+			$(this).val(a);$(this).css('color','#787878');
+		}else{
+			var reg=/^1[0-9]{10}/;
+			if(!reg.test(b)){
+			alert("请填写正确的手机号！");
+			$(this).val(a);$(this).css('color','#787878');
+			}			
+		}
+		});
+	//表单数据格式验证 end 
 	$('.submitbtn').bind('click',function(){
 		var formobj=$(this).parents('form').find('.nonull');
 		//console.log($(this).parents('form').find('.nonull'));
