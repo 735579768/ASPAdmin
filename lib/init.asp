@@ -12,6 +12,7 @@
 <%
 '初始化模板引擎
 set tpl=New ASPtpl
+tpl.assign "site_path",site_path
 '设置模板目录
 tpl.p_tpl_dir=TPL_PATH&"/"&themes
 tpl.p_tpl_suffix=".tpl"
