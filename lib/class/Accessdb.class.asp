@@ -29,7 +29,7 @@ Class Accessdb
 		kl_sqlnum=0
 		on error resume next
 		err.clear
-		connstr= "Provider=Microsoft.Jet.OLEDB.4.0;Data Source="&server.MapPath(Sql_Data)&";Jet OLEDB:Database Password="&db_pwd&";"
+		connstr= "Provider=Microsoft.Jet.OLEDB.4.0;Data Source="&Sql_Data&";Jet OLEDB:Database Password="&db_pwd&";"
 		Set kl_conn = Server.CreateObject("ADODB.Connection")
 		Set kl_sqlkey = server.CreateObject("Scripting.Dictionary")
 		Set kl_sqlobj = server.CreateObject("Scripting.Dictionary")
