@@ -57,6 +57,7 @@ width: 150px;
 .yinbtn:active {
 box-shadow: 0 3px 0 #DB1F05,0 3px 6px rgba(0,0,0,0.9);
 }
+.numcode{ display:block; margin-top:20px}
 </style>
 </head>
 <script language="javascript">
@@ -81,7 +82,7 @@ box-shadow: 0 3px 0 #DB1F05,0 3px 6px rgba(0,0,0,0.9);
         <option value="3">记录一个月</option>
         </select></li> <li> <div class="title">验证码：</div>    <input name="numcode" type="text" class="login" id="numcode" size="8" style="width:170px;" maxlength="8" s></li>
     
-        <li><div class="title"></div><img src="/lib/numcode/Code.asp" title="单击更改验证码" border="0" onClick="this.src=this.src+'?'+Math.random();" style=" cursor:pointer;"></li>
+        <li><div class="title"></div><img class="numcode" src="/lib/numcode/Code.asp" title="单击更改验证码" border="0" onClick="this.src=this.src+'?'+Math.random();" style=" cursor:pointer;"></li>
 
 </ul>
 </form></div>
