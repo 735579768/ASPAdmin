@@ -221,25 +221,6 @@ class QuickTag
 		set catreg=nothing
 		positiontag=str	
 	end Function
-	'==========================================================================================
-	'返回当前位置字符串
-	'=========================================================================================	
-	Function getcat(catid,jiange)
-		str=""
-		if catid<>"" then
-		set catrs=db.table("kl_cats").top("1").where("cat_id="&catid).sel()
-		if catrs.recordcount>0 then
-		if catrs("parent_id")<>0 then str=str&getcat(catrs("parent_id"),jiange)
-		if catrs("cat_url")<>"" then
-			str=str&"<a href='"&catrs("cat_url")&"'>"&jiange&catrs("cat_name")&"</a>"
-		else
-			str=str&"<a href='cat.asp?catid="&catrs("cat_id")&"'>"&jiange&catrs("cat_name")&"</a>"
-		end if
-		
-		end if
-		end if
-		getcat=str
-	end Function
 	
 	Function moduletag(str)
 			Set mreg = New RegExp 
