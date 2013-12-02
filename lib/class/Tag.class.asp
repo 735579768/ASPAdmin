@@ -39,6 +39,7 @@ class QuickTag
 			str=arclisttag(str)
 			str=cattag(str)
 			str=positiontag(str)
+			str=tagfile(str)
 			run=str
 		end function
 		'=======================================
@@ -263,5 +264,34 @@ class QuickTag
 			set mreg=nothing
 		moduletag=str
 	end function
+	'==========================================================================================
+	'标签文件
+	'=========================================================================================
+	Function tagfile(str)
+		str1=""
+		Set catreg = New RegExp 
+		catreg.IgnoreCase = True
+		catreg.Global = True
+		catreg.Pattern ="<tag:(\w+?)(\s+?)([\s\S]*?)/?>"
+		set eqm=catreg.execute(str)
+		if eqm.count>0 then
+			for each m in eqm
+				a=bianli("/lib/tag/")
+				for each i in a
+					e=instr(i,".")
+					if e<>0 then
+						c=mid(i,e+1,3)
+						d=mid(i,1,e-1)
+						if c="tag" and d=m.SubMatches(0) then
+						include("/lib/tag/"&i)
+						end if
+					end if
+				next		
+				str=replace(str,m,tplobj.p_var_list("tagcontent"))
+			next
+		end if
+		set catreg=nothing
+		tagfile=str	
+	end Function
 end class
 %>

@@ -852,6 +852,46 @@ function GetBot()
 		GetBot="Robozilla" 
 	end if 
 end function 
+'遍历文件夹中的文件返回一个数组
+'
+  function  bianli(path)   
+	Set fso=Server.CreateObject("Scripting.FileSystemObject")
+	Set f=fso.GetFolder(server.MapPath(path))
+	dim a,b
+	a=f.files.count
+	b=0
+	redim rearr(a)
+	For Each i in f.Files
+	rearr(b)=i.name
+	b=b+1
+	next
+	set f=nothing
+	set fso=nothing
+	bianli=rearr  
+end  function 
+
+
+Function include(filename) 
+	Dim re,content,fso,f,aspStart,aspEnd
+	set fso=CreateObject("Scripting.FileSystemObject") 
+	set f=fso.OpenTextFile(server.mappath(filename)) 
+	content=f.ReadAll 
+	f.close 
+	set f=nothing 
+	set fso=nothing
+	set re=new RegExp 
+	re.pattern="^\s*=" 
+	aspEnd=1 
+	aspStart=inStr(aspEnd,content,"<%")+2 
+	do while aspStart>aspEnd+1 
+	Response.write Mid(content,aspEnd,aspStart-aspEnd-2) 
+	aspEnd=inStr(aspStart,content,"%\>")+2 
+	Execute(re.replace(Mid(content,aspStart,aspEnd-aspStart-2),"Response.Write ")) 
+	aspStart=inStr(aspEnd,content,"<%")+2 
+	loop 
+	Response.write Mid(content,aspEnd) 
+	set re=nothing 
+End Function
 %>
 <script language="javascript" type="text/javascript" runat="server">
 function mydecodeurl(s){return decodeURIComponent(s);}

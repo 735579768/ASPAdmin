@@ -15,7 +15,7 @@ class AspTpl
 	private p_var_r
 	private p_tag_l
 	private p_tag_r
-	private p_var_list
+	public  p_var_list
 	private p_tpl_content
 	private	p_reg
 	private p_fs
