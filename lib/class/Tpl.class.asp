@@ -806,6 +806,15 @@ class AspTpl
 			end if
 		next
 		htmlradio=str
-	End Function	
+	End Function
+	'取标签库中的参数
+	function tagparam(str)
+		if isobject(p_var_list("tagparam")) then
+			set temobj=p_var_list("tagparam")
+			tagparam=temobj(str)
+		else
+			tagparam=""
+		end if
+	end function	
 end class
 %>

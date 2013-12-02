@@ -283,6 +283,7 @@ class QuickTag
 						c=mid(i,e+1,3)
 						d=mid(i,1,e-1)
 						if c="tag" and d=m.SubMatches(0) then
+						settagparam(m.SubMatches(2))'设置要传入的参数
 						include("/lib/tag/"&i)
 						end if
 					end if
@@ -293,5 +294,24 @@ class QuickTag
 		set catreg=nothing
 		tagfile=str	
 	end Function
+	'==========================================================================================
+	'设置标签文件参数
+	'=========================================================================================	
+	function settagparam(str)
+		Set catreg = New RegExp 
+		catreg.IgnoreCase = True
+		catreg.Global = True
+		catreg.Pattern ="(\w+?)\=[\""|\']([\s\S]+?)[\""|\']"
+		set eqm=catreg.execute(str)
+		if eqm.count>0 then
+			set temparam = server.CreateObject("Scripting.Dictionary")
+			for each m in eqm
+				temparam(m.SubMatches(0))=m.SubMatches(1)		
+			next
+			set tplobj.p_var_list("tagparam")=temparam
+		end if
+		set catreg=nothing
+		settagparam=str		
+	end function
 end class
 %>
