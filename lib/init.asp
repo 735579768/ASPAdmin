@@ -7,6 +7,7 @@
 <!--#INCLUDE file="AspTplPlug.class.asp"-->
 <!--#INCLUDE file="class/Tpl.class.asp"-->
 <!--#INCLUDE file="class/Accessdb.class.asp"-->
+<!--#INCLUDE file="class/urlRoute.class.asp"-->
 <!--#INCLUDE FILE="db.class.asp"-->
 <!--#INCLUDE FILE="json.asp"-->
 <%
@@ -18,4 +19,5 @@ tpl.p_tpl_dir=TPL_PATH&"/"&themes
 tpl.p_tpl_suffix=".tpl"
 '初始化数据库db类
 Set db = new Accessdb
+
 %>

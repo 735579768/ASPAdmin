@@ -874,6 +874,9 @@ end  function
 Function include(filename) 
 	Dim re,content,fso,f,aspStart,aspEnd
 	set fso=CreateObject("Scripting.FileSystemObject") 
+	If not fso.FileExists(server.mappath(filename)) Then
+		die("要操作的文件不存在:"&server.mappath(filename))
+	end if
 	set f=fso.OpenTextFile(server.mappath(filename)) 
 	content=f.ReadAll 
 	f.close 

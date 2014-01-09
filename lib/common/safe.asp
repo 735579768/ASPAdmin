@@ -11,7 +11,9 @@ Fy_a=split(Fy_Url,"&")
 redim Fy_Cs(ubound(Fy_a)) 
 'bakon error resume next 
 for Fy_x=0 to ubound(Fy_a) 
+if instr(Fy_a(Fy_x),"=")<>0 then
 Fy_Cs(Fy_x) = left(Fy_a(Fy_x),instr(Fy_a(Fy_x),"=")-1) 
+end if
 Next 
 For Fy_x=0 to ubound(Fy_Cs) 
 If Fy_Cs(Fy_x)<>"" Then 

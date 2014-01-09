@@ -29,4 +29,15 @@ regarr(5)="comments\.asp##comments"
 tpl.assign "qikannian",getqikannian()
 tpl.assign "qikanyue",getqikanyue()
 tpl.assign "qikanfenqi",getqikanfenqi()
+
+
+
+'路由判断
+dim urlstr:urlstr=request.ServerVariables("QUERY_STRING")
+if URL_MODEL=1 then
+set Route=new urlRoute
+Route.seturlstr(urlstr)
+include("/App/"&Route.module&"/"&Route.action&".action.asp")
+
+end if
 %>

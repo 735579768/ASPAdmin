@@ -20,6 +20,7 @@ dim Sql_Data:Sql_Data =site_root&"admin/#data/#aspadmindata.mdb" '鏁版嵁搴�
 const suffix ="kl_"
 const adminDir="admin"
 '=======================动态配置======================" 
+const URL_MODEL=1
 dim themes:themes="default"'主题目录
 dim app_debug:app_debug=true
 dim login_id:login_id=0
